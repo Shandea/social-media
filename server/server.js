@@ -33,7 +33,7 @@ const Router = require('./routes/routes')
 app.listen(port, () => {
   // Perform a database connection when server starts
 
-  mongoose.connect(`mongodb+srv://banyan:banyanlabs@cluster0.j2lsvjv.mongodb.net/groupProject`).then(() => {
+  mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("connected to Database")
   })
 
