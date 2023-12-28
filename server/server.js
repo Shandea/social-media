@@ -19,7 +19,7 @@ app.use(express.json());
 // Routes
 const Router = require('./routes/routes')
 // app.use(require());
-
+Router(app)
 // Get MongoDB driver connection
 // const dbo = require("./db/conn");
 
