@@ -9,7 +9,7 @@ const Form = (props) => {
         {props.children}
         <button type="submit" className={props.btnClass} >{props.btnText}</button>
         <hr className="form-hr" />
-        <button className="signup-btn" type="button">Create New Account</button>
+        <button onClick={props.onClick} className={props.signup} type="button">Create New Account</button>
      </form>
   )
 }
