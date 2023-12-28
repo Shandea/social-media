@@ -1,0 +1,171 @@
+.landingPage-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.container-left{
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    text-align: center;
+
+}
+
+.container-left h1{
+    margin-top: 25%;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.container-left p{
+    margin-top: 15%;
+    width: 50%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 2em;
+}
+
+.container-right{
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.signIn-form{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+    width: 70%;
+    max-width: 70%;
+    height: 70%;
+    max-height: 70%;
+    gap: 10px;
+
+    border: 1px solid black;
+    border-radius: 25px;
+    box-shadow: -2px 2px 3px gray;
+
+    padding-top:2%;
+    
+}
+
+.signIn-input{
+    margin-top: 10%;
+    width: 80%;
+    height: 10%;
+    border-radius: 15px;
+    border-color: darkgray;
+    box-shadow: 2px 2px grey;
+    border: none;
+
+    &:focus{
+        /* background: lightgrey; */
+        border: none;
+    }
+}
+
+.form-btn{
+    width: 80%;
+    height: 7%;
+    border-radius: 15px;
+    margin-top: 5%;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.1);
+        background: #555;
+        color: white;
+        font-size: x-large;
+    }
+}
+
+.container-right hr{
+    width: 85%;
+    /* height: 20px; */
+}
+.signup-btn{
+    width: 60%;
+    height: 15%;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-top: 5%;
+
+    &:hover{
+        transform: scale(1.1);
+        background: #555;
+        color: white;
+        font-size: x-large;
+    }
+}
+
+/* ###############################################################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+///////////////////////  Media Queries*/
+
+@media  (max-width:900px){
+    .landingPage-container{
+        flex-direction: column;
+    
+    }
+    
+    .container-left{
+
+    
+    }
+    
+    .container-left h1{
+        margin-top: 5%;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    
+    .container-left p{
+        margin-top: 8%;
+        width: 50%;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 2em;
+    }
+    
+    .container-right{
+    
+        
+    }
+    
+    .signIn-form{
+       
+        
+    }
+    
+    .signIn-input{
+     
+    }
+    
+    .form-btn{
+ 
+    }
+    
+    .container-right hr{
+      
+    }
+
+    .signup-btn{
+     
+    }
+}
