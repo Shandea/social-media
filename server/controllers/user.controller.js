@@ -23,18 +23,18 @@ module.exports = {
                 if (found) {
                     res.json({ message: "Registration Error" })
 
-                } else  {
+                } else {
 
                     const hash = bcrypt.hashSync(req.body.password, 10)
                     const newUser = new User({
                         username: req.body.username,
-                        // email: req.body.email,
+                        email: req.body.email,
                         password: hash,
-                        // location: {
-                        //     city: req.body.location.city,
-                        //     state: req.body.location.state,
-                        //     zipcode: req.body.zipcode
-                        // },
+                        location: {
+                            city: req.body.location.city,
+                            state: req.body.location.state,
+                            zipcode: req.body.zipcode
+                        },
                         // secretAnswer: req.body.secretAnswer,
                         // secretQuestion: req.body.secretQuestion,
                         // gender: req.body.gender,
@@ -51,16 +51,29 @@ module.exports = {
                 }
             })
             .catch(err => console.log("err", err))
-            // .then(() => {
-            // console.log("new user attempt", newUser)
+        // .then(() => {
+        // console.log("new user attempt", newUser)
 
 
 
-            // })
+        // })
     },
 
 
+    login: (req, res) => {
+        console.log("login attempt", req.body)
 
+        User.find({ email: req.body.email })
+            .then(found => {
+                console.log("found", found)
+                if (!found.length) {
+                    res.json("Invalid Login")
+                } else {
+                    res.json("User Authenticated")
+                }
+            })
+            .catch(err => console.log("Er", err))
+    }
 
 
 

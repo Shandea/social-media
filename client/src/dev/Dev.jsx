@@ -18,6 +18,7 @@ function Dev() {
         secretAnswer: "",
         age: "",
         gender: "",
+        email: ""
 
     })
 
@@ -55,6 +56,13 @@ function Dev() {
             <input name="password"
                 placeholder='password'
                 value={reg.password || ""}
+                onChange={(e) => handleChange(e)}
+            >
+            </input>
+
+            <input name="email"
+                placeholder='email'
+                value={reg.email || ""}
                 onChange={(e) => handleChange(e)}
             >
             </input>
