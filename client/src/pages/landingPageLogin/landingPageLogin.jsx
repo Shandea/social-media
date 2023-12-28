@@ -1,9 +1,8 @@
 import Form from "../../components/block-comps/Form"
 import Input from "../../components/block-comps/Inputs"
 
-const landingPageLogin = (props) => {
-    console.log("sfgsfgdfgdfg",props.handleRegister)
-let handleRegister = props.handleRegister
+const landingPageLogin = ({handleRegister}) => {
+
   
   return (
     <div className="container-right" >

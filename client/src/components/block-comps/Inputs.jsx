@@ -4,6 +4,7 @@ const Inputs = (props) => {
     return (
         <input
             className={props.className}
+            onChange={props.onChange}
 
             type={props.type}
             name={props.name}
@@ -17,6 +18,7 @@ const Inputs = (props) => {
             step={props.step}
             checked={props.checked}
             pattern={props.pattern}
+
         />
     )
 }

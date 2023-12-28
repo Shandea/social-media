@@ -5,9 +5,9 @@ import { useState } from "react"
 
 const LandingPage = (props) => {
 
-let [createAcct, setCreateAcct] = useState(false)
+let [register, setRegister] = useState(false)
 const handleRegister = ()=>{
-  return setCreateAcct(true)
+  return setRegister(true)
 }
 
   return (
@@ -18,7 +18,7 @@ const handleRegister = ()=>{
       </div>
 
 {
-  createAcct ? <LandingPageSignup/> : <LandingPageLogin handleRegister={handleRegister}/>
+  register ? <LandingPageSignup/> : <LandingPageLogin handleRegister={handleRegister}/>
 }
     </div>
   )
