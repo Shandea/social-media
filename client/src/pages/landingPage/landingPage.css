@@ -1,13 +1,15 @@
-.landingPage-container{
+.landingPage-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
 
+    background: whitesmoke;
+
 }
 
-.container-left{
+.container-left {
     border: 1px solid black;
     width: 100%;
     height: 100%;
@@ -19,13 +21,13 @@
 
 }
 
-.container-left h1{
+.container-left h1 {
     margin-top: 25%;
     font-size: 3rem;
     font-weight: 700;
 }
 
-.container-left p{
+.container-left p {
     margin-top: 15%;
     width: 50%;
     font-size: 1.1rem;
@@ -33,7 +35,7 @@
     line-height: 2em;
 }
 
-.container-right{
+.container-right {
     border: 1px solid black;
     width: 100%;
     height: 100%;
@@ -42,10 +44,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.signIn-form{
+.signIn-form {
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -57,15 +59,16 @@
     max-height: 70%;
     gap: 10px;
 
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 25px;
-    box-shadow: -2px 2px 3px gray;
+    background: white;
+    box-shadow: 2px 2px 2px 2px rgba(195, 191, 191, 0.764);
 
-    padding-top:2%;
-    
+    padding-top: 2%;
+
 }
 
-.signIn-input{
+.signIn-input {
     margin-top: 10%;
     width: 80%;
     height: 10%;
@@ -74,20 +77,20 @@
     box-shadow: 2px 2px grey;
     border: none;
 
-    &:focus{
+    &:focus {
         /* background: lightgrey; */
         border: none;
     }
 }
 
-.form-btn{
+.form-btn {
     width: 80%;
     height: 7%;
     border-radius: 15px;
     margin-top: 5%;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
         transform: scale(1.1);
         background: #555;
         color: white;
@@ -95,18 +98,20 @@
     }
 }
 
-.container-right hr{
+.container-right hr {
     width: 85%;
+    margin-top: 10%;
     /* height: 20px; */
 }
-.signup-btn{
+
+.signup-btn {
     width: 60%;
     height: 15%;
     cursor: pointer;
     border-radius: 15px;
     margin-top: 5%;
 
-    &:hover{
+    &:hover {
         transform: scale(1.1);
         background: #555;
         color: white;
@@ -118,54 +123,49 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 ///////////////////////  Media Queries*/
 
-@media  (max-width:900px){
-    .landingPage-container{
+@media (max-width:900px) {
+    .landingPage-container {
         flex-direction: column;
-    
+        height: auto;
     }
-    
-    .container-left{
 
-    
-    }
-    
-    .container-left h1{
+    .container-left {}
+
+    .container-left h1 {
         margin-top: 5%;
         font-size: 2rem;
         font-weight: 700;
     }
-    
-    .container-left p{
-        margin-top: 8%;
+
+    .container-left p {
+        margin-top: 3%;
         width: 50%;
         font-size: 0.9rem;
         font-weight: 500;
         line-height: 2em;
     }
-    
-    .container-right{
-    
-        
-    }
-    
-    .signIn-form{
-       
-        
-    }
-    
-    .signIn-input{
-     
-    }
-    
-    .form-btn{
- 
-    }
-    
-    .container-right hr{
-      
+
+    .container-right {
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        /* flex: none; */
+        justify-content: initial;
+
     }
 
-    .signup-btn{
-     
+    .signIn-form {
+        width: 100%;
+        height: 80vh;
+        margin-top: 5%;
+
     }
+
+    .signIn-input {}
+
+    .form-btn {}
+
+    .container-right hr {}
+
+    .signup-btn {}
 }

@@ -22,3 +22,32 @@ const Inputs = (props) => {
 }
 
 export default Inputs
+
+
+
+/* <input
+                    type="text"
+                    placeholder="UserName"
+                    required
+                    name="username"
+                    style={{ border: validUserName(register.username) || register.username === "" ? null : "red solid 1px" }}
+
+                    value={register.username}
+                    onChange={(e) => setRegister({ ...register, [e.target.name]: e.target.value })} />
+                    
+                    
+                    const [register, setRegister] = useState({
+        username: "",
+        password: "",
+        confirmPassword: "",
+        location: {
+            city: "",
+            state: "",
+            zipcode: ""
+        },
+        secretQuestion: "",
+        secretAnswer: "",
+        age: "",
+        gender: "",
+    })
+                    */
