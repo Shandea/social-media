@@ -4,6 +4,8 @@ import './global.css';
 import App from './App';
 
 import Dev from "./dev/Dev"
+import MainContainer from './pages/mainContainer/mainContainer';
+
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -15,9 +17,10 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         {/* <App /> */}
-
+    
 
         <Route path="/dev" element={<Dev />} />
+        <Route path="/main" element={<MainContainer />} />
 
       </Routes>
     </BrowserRouter>
