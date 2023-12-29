@@ -5,3 +5,38 @@
     /* this is the container the middle section in the body is in...  */
     
 }
+
+:root{
+    --primary-gradient-text: -webkit-linear-gradient(#dc07d8, #ffffff);
+    --primary-btn: linear-gradient(180deg, #ffffff 50%,#dc07d8);
+
+    /* regular/matte colors */
+    --primary:#dc07d8;
+}
+
+.form-btn {
+    width: 80%;
+    border-radius: 6px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    cursor: pointer;
+
+    font-size: 1.2rem;
+    padding: 10px;
+    height: 10%; 
+    border: none;
+    background: var(--primary-btn);
+    box-shadow: 2px 2px 2px 2px lightgray;
+    color: var(--primary);
+
+    &:hover {
+        transform: scale(1.05);
+        background: var(--primary-btn);
+        color: var(--primary);
+        font-size: 1.5rem;
+        text-align: center;
+    }
+}
+
+
+

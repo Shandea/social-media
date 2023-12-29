@@ -26,7 +26,8 @@
 
 .container-left h1 {
    
-    background: -webkit-linear-gradient(#eee, #333);
+    background: var(--primary-gradient-text);
+    /* background: -webkit-linear-gradient(#dc07d8, #ffffff); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -34,7 +35,7 @@
     font-size: 3rem;
     font-weight: 700;
 }
-npo
+
 .container-left p {
     margin-top: 15%;
     width: 50%;

@@ -1,0 +1,17 @@
+.messsagescomponentcontainer {
+    border: solid yellow 3px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .messsagescomponentcontainer h2 {
+    font-size: x-large;
+    color:black;
+  }
+  .messsagescomponentcontainer p{
+    font-size: large;
+    color:blue;
+  }
+  

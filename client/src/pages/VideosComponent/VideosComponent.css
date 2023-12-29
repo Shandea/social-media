@@ -1,0 +1,17 @@
+.videoscomponentcontainer {
+    border: solid yellow 3px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .videoscomponentcontainer h2 {
+    font-size: x-large;
+    color:black;
+  }
+  .videoscomponentcontainer p{
+    font-size: large;
+    color:black;
+  }
+  
