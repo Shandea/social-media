@@ -25,6 +25,16 @@ const LeftSideNav = () => {
         <div >
           {/* <Link to={`/profile/${authedUser._id}`}></Link> */}
           <Link
+            to={`/feed/`}
+          // className={leftNav.mainFeed === "User" ? "focusedOption" : null}
+          >
+            Feeds
+          </Link>
+
+        </div>
+        <div >
+          {/* <Link to={`/profile/${authedUser._id}`}></Link> */}
+          <Link
             to={`/profile/`}
           // className={leftNav.mainFeed === "User" ? "focusedOption" : null}
           >

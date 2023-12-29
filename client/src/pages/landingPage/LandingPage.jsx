@@ -18,7 +18,7 @@ const LandingPage = (props) => {
     <div className="landingPage-container">
       <div className="container-left" >
         <h1>Company Name</h1>
-        <Link to="/profile" > bypass auth </Link>
+        <Link to="/feed" > bypass auth </Link>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, sed! Doloremque quos accusamus maiores sint illum, ea corrupti voluptatem. Dolorem omnis at similique voluptas a eveniet, iste reprehenderit consectetur molestias?</p>
       </div>
 

@@ -19,7 +19,7 @@ import HobbyComponent from "./pages/hobbyComponent/HobbyComponent";
 import VideosComponent from "./pages/videosComponent/VideosComponent";
 import FriendsComponent from "./pages/friendsComponent/FriendsComponent"
 import ImagesComponent from "./pages/imagesComponent/ImagesComponent"
-
+import Feed from "./pages/feedComponent/Feed"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -40,6 +40,7 @@ root.render(
 
           {/* <Route path="/main" element={<MainContainer />} />  */}
 
+          <Route path="/feed" element={<Feed />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/messages" element={<MessagesComponent />} />
           <Route path="/hobby" element={<HobbyComponent />} />
