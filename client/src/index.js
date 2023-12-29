@@ -4,10 +4,14 @@ import './global.css';
 import App from './App';
 
 import Dev from "./dev/Dev"
-import MainContainer from './pages/MainContainer/mainContainer';
+import MainContainer from './pages/MainContainer/MainContainer';
+
 
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import Home from './pages/Home/Home';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,11 +20,24 @@ root.render(
     <BrowserRouter >
       <Routes>
         <Route path="/" element={<App />} />
-        {/* <App /> */}
-    
+
+        <Route element={<ProtectedRoutes />}>
+
+          {/* all secure routes go in this section */}
+
+
+          <Route path="/home" element={<Home />} />
+
+          <Route path="/main" element={<MainContainer />} />
+
+
+
+        </Route>
+
+
 
         <Route path="/dev" element={<Dev />} />
-        <Route path="/main" element={<MainContainer />} />
+
 
       </Routes>
     </BrowserRouter>
