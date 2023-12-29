@@ -12,7 +12,7 @@ const MainContainer = () => {
   return (
     <div className="userTop">
       <div className="left">
-        <LeftSideNav />
+        {/* <LeftSideNav /> */}
       </div>
       <div className="mid">
         {/* <UserComponent/> */}

@@ -14,7 +14,7 @@
     /* color:blue; */
     font-style: italic;
 }
-.leftnavcontainer p{
+.leftnavcontainer div{
     
     align-self: flex-start;
     font-size:large;
