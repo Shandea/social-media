@@ -17,8 +17,8 @@ const LeftSideNav = () => {
   return (
     <>
       <div className="leftnavcontainer">
-        <h3>Feeds</h3>
-        <h5>Current View : {leftNav.mainFeed}</h5>
+        <h3 className='leftsidenavh3'>Feeds</h3>
+        <h5 className='leftsidenavh5' >Current View : {leftNav.mainFeed}</h5>
         <p 
         name="user" 
         value="User" 

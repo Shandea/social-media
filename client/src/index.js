@@ -4,7 +4,7 @@ import './global.css';
 import App from './App';
 
 import Dev from "./dev/Dev"
-import MainContainer from './pages/mainContainer/mainContainer';
+import MainContainer from './pages/MainContainer/mainContainer';
 
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
