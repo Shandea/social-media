@@ -11,7 +11,7 @@
     background-color:red;
     width:20%;
     height:80%;
-    
+    border-radius:10%;
     margin-top:auto;
     border:solid grey 4px;
     justify-content: center;
@@ -24,6 +24,7 @@
     width:50%;
     height:90%;
     border:solid grey 4px;
+    border-radius:10%;
 }
 .right{
     background-color:blue;
@@ -31,4 +32,5 @@
     height:80%;
     margin-top:auto;
     border:solid grey 4px;
+    border-radius:10%;
 }
