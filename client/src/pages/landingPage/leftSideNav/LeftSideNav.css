@@ -1,0 +1,35 @@
+.leftnavcontainer{
+    /* border:solid yellow 2px; */
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    max-height:100%;
+    padding:auto;
+}
+h3{
+    font-size: xx-large;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+h5{
+    /* color:blue; */
+    font-style: italic;
+}
+p{
+    
+    align-self: flex-start;
+    font-size:large;
+    margin-left:10px;
+    /* border:solid green 1px; */
+    padding:5px;
+}
+p:hover{
+    color:purple;
+    transform: scale(1.3);
+    border:dotted grey 2px;
+    border-radius:20%;
+}
+.focusedOption{
+    border:solid green 4px;
+    color:white;
+    border-radius:15%;
+}
