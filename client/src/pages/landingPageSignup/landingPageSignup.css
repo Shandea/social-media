@@ -1,15 +1,10 @@
-
 /* takes extra button off of form */
-.signup-btn{
+.signup-btn {
     display: none;
 }
 
 
-.signup-form{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
+.signup-form {
 
     display: flex;
     flex-direction: column;
@@ -21,7 +16,6 @@
     max-height: 70%;
     gap: 10px;
 
-    /* border: 1px solid black; */
     border-radius: 25px;
     background: white;
     box-shadow: 2px 2px 2px 2px rgba(195, 191, 191, 0.764);
@@ -31,26 +25,11 @@
     overflow-y: auto;
 }
 
-.signup-form hr{
+.signup-form hr {
     display: none;
 }
 
-/* .signup-form-btn{
-    width: 80%;
-    height: 7%;
-    border-radius: 15px;
-    margin-top: 5%;
-    cursor: pointer;
-
-    &:hover {
-        transform: scale(1.1);
-        background: #555;
-        color: white;
-        font-size: x-large;
-    }
-} */
-
-.signup-inputs{
+.signup-inputs {
     margin-top: 10%;
     width: 80%;
     border-radius: 15px;
@@ -59,35 +38,55 @@
     border: none;
 
     &:focus {
-        /* background: lightgrey; */
+        outline: 1px solid lightgray;
         border: none;
     }
 }
 
-.name-div{
+.name-div {
     display: flex;
     justify-content: space-around;
     width: 100%;
     height: 100%;
 }
-.name-div-input{
+
+.name-div-input {
     width: 30%;
     height: 30%;
 }
 
-.email-psw-username-div{
-display: flex;
-flex-direction: column;
-align-items: center;
+.email-psw-username-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-width: 100%;
-height: 100vh;
-}
-.email-psw-username-input{
-height: 28px;
+    width: 100%;
+    height: 100vh;
 }
 
-.birth-date{
+.email-psw-username-input {
+    height: 28px;
+}
+
+.location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    margin-top: 3%;
+}
+
+.location-input {
+    width: 20%;
+    height: 2em;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 2px 2px grey;
+}
+
+.birth-date {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,23 +94,19 @@ height: 28px;
     width: 100%;
     height: 100%;
 
-    /* border-radius: 15px;
-    border:none;
-    box-shadow:2px 2px grey ; */
-
-    margin-top:0%;
+    margin-top: 0%;
 }
 
-.birth-date-input{
+.birth-date-input {
     width: 20%;
     height: 2em;
-     border-radius: 15px;
-    border:none;
-    box-shadow:2px 2px grey ; 
-    
+    border-radius: 15px;
+    border: none;
+    box-shadow: 2px 2px grey;
+
 }
 
-.gender{
+.gender {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -121,16 +116,13 @@ height: 28px;
 
     margin-top: 5%;
 }
-.gender input{
+
+.gender input {
     width: 2em;
     height: 1.1em;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    
 }
 
-.signup-radio{
+.signup-radio {
     border: 1px solid black;
     border-radius: 15px;
     height: 45px;
@@ -141,19 +133,13 @@ height: 28px;
     align-items: center;
 }
 
-.location{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
 
-    margin-top: 3%;
-}
-.location-input{
-    width: 20%;
-    height: 2em;
-     border-radius: 15px;
-    border:none;
-    box-shadow:2px 2px grey ; 
+.motion-div {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
