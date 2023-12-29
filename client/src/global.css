@@ -1,3 +1,11 @@
+@import './App.css';
+
+
+#MainContentContainer {
+    /* this is the container the middle section in the body is in...  */
+    
+}
+
 :root{
     --primary-gradient-text: -webkit-linear-gradient(#dc07d8, #ffffff);
     --primary-btn: linear-gradient(180deg, #ffffff 50%,#dc07d8);
@@ -31,4 +39,4 @@
 }
 
 
-@import './App.css';
+
