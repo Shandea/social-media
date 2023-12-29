@@ -1,0 +1,16 @@
+.usercomponentcontainer {
+  border: solid yellow 3px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.usercomponentcontainer h2 {
+  font-size: x-large;
+  color:black;
+}
+.usercomponentcontainer p{
+  font-size: large;
+  color:black;
+}
