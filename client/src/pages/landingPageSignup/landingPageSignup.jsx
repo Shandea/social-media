@@ -10,7 +10,8 @@ const LandingPageSignup = (props) => {
         firstname: "",
         lastname: "",
         username: "",
-        contact: "",
+        email: "",
+        phone: "",
         password: "",
         confirmPassword: "",
         location: {
@@ -54,7 +55,7 @@ const LandingPageSignup = (props) => {
 
     return (
         <div className="container-right">
-
+{console.log("reg", reg)}
 
             <Form
                 onSubmit={(e) => handleSubmit(e)}
@@ -106,9 +107,21 @@ const LandingPageSignup = (props) => {
                         className="signup-inputs email-psw-username-input"
 
                         type="text"
-                        name="contact"
-                        value={reg.contact || ""}
-                        placeholder="Email or Phone Number"
+                        name="email"
+                        value={reg.email || ""}
+                        placeholder="Email"
+                        required={true}
+                        onChange={(e) => handleChange(e)}
+
+                    // pattern={ }
+                    />
+                    <Input
+                        className="signup-inputs email-psw-username-input"
+
+                        type="text"
+                        name="phone"
+                        value={reg.phone || ""}
+                        placeholder="Phone Number"
                         required={true}
                         onChange={(e) => handleChange(e)}
 
