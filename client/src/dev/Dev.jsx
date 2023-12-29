@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-
-
 function Dev() {
 
     const [reg, setReg] = useState({

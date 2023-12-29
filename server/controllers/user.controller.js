@@ -76,10 +76,21 @@ module.exports = {
                 }
             })
             .catch(err => console.log("Er", err))
-    }
+    },
 
+    all: (req,res)=>{
+            User.find({}).populate().exec()
+            .then(data =>{
+                if(!data){
+                    return res.json({message:"error"})
+                }else{
+                    return res.json(data)
+                }
+            })
+            .catch(err=>console.log(err))
+    } 
 
-
+    
 }
 
 
