@@ -11,4 +11,6 @@ module.exports = app => {
         res.json("test good, end points working")
     })
 
+    app.get("/user/all",UserController.all)
+
 }

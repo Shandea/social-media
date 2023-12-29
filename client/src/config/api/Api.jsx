@@ -1,35 +1,39 @@
+
 import instance from "../Axios";
 
-
-// this is the api object found through landing signup and login
 const API = {
-    userRegister : async (user) => {
-        
-        // instance of axios... check config folder
-        await instance
-            .post(`user/register`, user)
-            .then(res => {
-                console.log("from backend", res.data)
-                return res.data
-            })
-            .catch(err => console.log("err"))
-
-    },
-    userLogin : async (login) => {
-
-        // console.log("got here", login)
-        await instance
-            .post(`user/login`, login)
-            .then(res => {
-                console.log("from backend", res.data)
-                return res.data
-            })
-            .catch(err => console.log("err"))
-
+  userRegister: async (user) => {
+    try {
+      const response = await instance.post(`user/register`, user);
+      // console.log("from backend", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error in userRegister:", error);
+      throw error; // You might want to throw the error to handle it elsewhere
     }
-}
+  },
 
+  userLogin: async (login) => {
+    try {
+      const response = await instance.post(`user/login`, login);
+      // console.log("from backend", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error in userLogin:", error);
+      throw error;
+    }
+  },
 
-// dont forget to export in the index!!!!!!
-// or your import will be messed up... see landing sign up for example of import and usage in handleSubmit
-export default API
+  userAll: async () => {
+    try {
+      const response = await instance.get(`user/all`);
+      // console.log("from backend get all", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error in userAll:", error);
+      throw error;
+    }
+  },
+};
+
+export default API;
