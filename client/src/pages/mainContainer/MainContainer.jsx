@@ -1,9 +1,9 @@
 import "./mainContainer.css";
 import React from "react";
 // import LeftSideNav from "../leftSideNav/LeftSideNav";
-import Body from "../Body/Body";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Body from "../body/Body";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 
 const MainContainer = () => {

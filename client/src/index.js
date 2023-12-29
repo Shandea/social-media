@@ -4,13 +4,13 @@ import './global.css';
 import App from './App';
 
 import Dev from "./dev/Dev"
-import MainContainer from './pages/MainContainer/MainContainer';
+import MainContainer from './pages/mainContainer/MainContainer';
 
 
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
-import Home from './pages/Home/Home';
+import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
+import Home from './pages/home/Home';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
