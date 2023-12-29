@@ -12,7 +12,12 @@ require("dotenv").config()
 // .config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+//had to do for the cors communication to fronend credentials
+app.use(cors({
+  origin:`http://localhost:3000`,
+  optionsSuccessStatus:200,
+  credentials:true
+}));
 
 app.use(express.json());
 

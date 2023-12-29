@@ -2,11 +2,11 @@ import Form from "../../components/block-comps/Form"
 import Input from "../../components/block-comps/Inputs"
 
 import React, { useState } from 'react'
-import axios from 'axios'
+import API from "../../config/api"
 
-const LandingPageLogin = (props) => {
-  // console.log("sfgsfgdfgdfg",props.handleRegister)
-  // let handleRegister = props.handleRegister
+
+
+const LandingPageLogin = ({ handleRegister }) => {
 
   const [login, setLogin] = useState({
     email: "",
@@ -14,81 +14,31 @@ const LandingPageLogin = (props) => {
   })
 
   const handleChange = (e) => {
-    console.log(e.target.name)
-    setLogin(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
+    let { name, value } = e.target
+    return setLogin(log => ({
+        ...log,
+        [name]: value
     }))
-  }
+}
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios({
-      method: 'POST',
-      url: 'http://localhost:5000/user/login',
-      data: login
-    })
-      .then(res => console.log("res", res))
-      .catch(err => console.log("err", err))
+    API.login(login)
   }
 
   return (
     <div className="container-right" >
-      {console.log("login", login)}
-
-      <div className="signIn-form">
-
-        <Input
-          className="signIn-input"
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={(e) => handleChange(e)}
-          required={true}
-        />
-
-        <Input
-          className="signIn-input"
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={(e) => handleChange(e)}
-
-          required={true}
-        />
-
-        <button
-          className="form-btn"
-          onClick={(e) => handleSubmit(e)}
-
-        >Log in</button>
-        <hr className="form-hr" />
-
-        <br />
-        <br />
-
-
-        <button
-          className="createAcct-btn"
-          onClick={props.handleRegister}
-        >Create Account</button>
-
-
-
-
-      </div>
-
-
-      {/* <Form
-        onSubmit={() => ("")}
+  
+      <Form
+        onSubmit={(e)=>handleSubmit(e)}
         className="signIn-form"
         btnText="Log In"
         btnClass="form-btn"
-        // onClick={() => handleRegister()}
+        onClick={() => handleRegister()}
         signup="createAcct-btn"
-      > */}
-      {/* <Input
+      >
+        <Input
           className="signIn-input"
           type="email"
           name="email"
@@ -104,17 +54,11 @@ const LandingPageLogin = (props) => {
           onChange={(e) => handleChange(e)}
 
           required={true}
-        /> */}
-
-      {/* <button>dd</button> */}
-      {/* </Form> */}
-
-
-
-    </div>
+        />
+      </Form>
+    </div >
   )
 }
-
 
 
 export default LandingPageLogin

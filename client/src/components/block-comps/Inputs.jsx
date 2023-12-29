@@ -4,7 +4,7 @@ const Inputs = (props) => {
     return (
         <input
             className={props.className}
-        onChange={props.onChange}
+            onChange={props.onChange}
             type={props.type}
             name={props.name}
             value={props.value}
@@ -16,7 +16,6 @@ const Inputs = (props) => {
             max={props.max}
             step={props.step}
             checked={props.checked}
-            pattern={props.pattern}
         />
     )
 }
