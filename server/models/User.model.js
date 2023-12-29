@@ -14,7 +14,10 @@ const UserSchema = new Schema({
     },
     firstName: String,
     lastName: String,
-    email: String,
+    email: {
+        type: String,
+        unique: true
+    },
     phone: Number,
     gender: String,
     age: Number,
@@ -28,7 +31,7 @@ const UserSchema = new Schema({
     },
     secretQuestion: String,
     secretAnswer: String,
-    birthday: Date,
+    birthDate: {},
     hobbies: [String],
 
     feeds: [{ type: Schema.Types.ObjectId, ref: 'Feeds' }],

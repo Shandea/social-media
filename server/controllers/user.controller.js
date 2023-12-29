@@ -33,12 +33,15 @@ module.exports = {
                         location: {
                             city: req.body.location.city,
                             state: req.body.location.state,
-                            zipcode: req.body.zipcode
+                            zipcode: req.body.location.zipcode
                         },
                         // secretAnswer: req.body.secretAnswer,
                         // secretQuestion: req.body.secretQuestion,
-                        // gender: req.body.gender,
-                        // birthdate: req.body.birthday
+                        gender: req.body.gender,
+                        birthDate: req.body.birthDate,
+                        phone: req.body.phone,
+                        firstName: req.body.firstname,
+                        lastName: req.body.lastname
 
                     })
                     User.create(newUser)
