@@ -11,6 +11,15 @@ import MainContainer from './pages/mainContainer/MainContainer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 import Home from './pages/home/Home';
+import Body from './pages/body/Body';
+
+import Profile from './pages/profile/Profile'
+import MessagesComponent from "./pages/messagesComponent/MessagesComponent"
+import HobbyComponent from "./pages/hobbyComponent/HobbyComponent";
+import VideosComponent from "./pages/videosComponent/VideosComponent";
+import FriendsComponent from "./pages/friendsComponent/FriendsComponent"
+import ImagesComponent from "./pages/imagesComponent/ImagesComponent"
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,10 +34,22 @@ root.render(
 
           {/* all secure routes go in this section */}
 
+          {/* <Route path="/" element={<Body />} > */}
 
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} /> */}
 
-          <Route path="/main" element={<MainContainer />} />
+          {/* <Route path="/main" element={<MainContainer />} />  */}
+
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/messages" element={<MessagesComponent />} />
+          <Route path="/hobby" element={<HobbyComponent />} />
+          <Route path="/videos" element={<VideosComponent />} />
+          <Route path="/friends" element={<FriendsComponent />} />
+          <Route path="/images" element={<ImagesComponent />} />
+
+
+          {/* </Route> */}
+
 
 
 

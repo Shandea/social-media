@@ -16,27 +16,27 @@ export default function Body() {
         <>
 
             <div
-            style={{display: 'flex', flexDirection: 'row', border: "1px solid yellow"}}
+                style={{ display: 'flex', flexDirection: 'row', border: "1px solid yellow" }}
             >
 
 
-            <div id="LeftSideNavContainer" style={{width: '15%', border: '1px solid blue'}}>
-                <LeftSideNav />
-            </div>
+                <div id="LeftSideNavContainer" style={{ width: '15%', border: '1px solid blue' }}>
+                    <LeftSideNav />
+                </div>
 
 
-            <div id="MainContentContainer" style={{width: '80%', height: '100%'}}>
+                <div id="MainContentContainer" style={{ width: '80%', height: '100%' }}>
 
-                {console.log("Body Render")}
+                    {console.log("Body Render")}
+                    <Outlet />
+                    {/* {out ? (<Outlet />) : null} */}
 
-                {out ? (<Outlet />) : (<Home />)}
+                </div>
 
-            </div>
-
-            <div id="RightSideContainer" style={{width: '15%', border: '1px solid blue'}}>
-                {/* add friendslist comp when built */}
-                friend list
-            </div>
+                <div id="RightSideContainer" style={{ width: '15%', border: '1px solid blue' }}>
+                    {/* add friendslist comp when built */}
+                    friend list
+                </div>
 
             </div>
         </>

@@ -4,6 +4,7 @@ import React from "react";
 import Body from "../body/Body";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import { Outlet } from "react-router";
 
 
 const MainContainer = () => {
@@ -20,13 +21,13 @@ const MainContainer = () => {
       <div id="BodyContainer" style={{ height: '80%' }}>
         {/* body */}
         <Body />
-
+        {/* <Outlet /> */}
       </div>
 
       <div id="FooterContainer">
         {/* footer */}
-        <Footer />
-
+        {/* <Footer /> */}
+      
       </div>
 
 

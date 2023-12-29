@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, useNavigate, useOutlet, useParams, useLocation } from 'react-router-dom'
 
 import axios from 'axios'
+import MainContainer from '../../pages/mainContainer/MainContainer'
 
 
 function ProtectedRoutes() {
@@ -10,11 +11,11 @@ function ProtectedRoutes() {
         <>
             <div>ProtectedRoutes</div>
             {console.log("Protected Route HIT")}
-            {console.log(useOutlet() ? "outlet true " : "outlet false")}
+            {/* {console.log(useOutlet() ? "outlet true " : "outlet false")} */}
 
             {/* replace true with context authed user once built */}
-
-            {true ? <Outlet /> : nav("/")}
+<MainContainer />
+            {/* {true ? <MainContainer /> : nav("/")} */}
 
         </>
 

@@ -1,5 +1,6 @@
 import "./LeftSideNav.css";
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
 
 const LeftSideNav = () => {
   const [leftNav, setLeftNav] = useState({
@@ -19,49 +20,118 @@ const LeftSideNav = () => {
       <div className="leftnavcontainer">
         <h3 className='leftsidenavh3'>Feeds</h3>
         <h5 className='leftsidenavh5' >Current View : {leftNav.mainFeed}</h5>
-        <p 
-        name="user" 
-        value="User" 
-        onClick={(e) => feedClick(e)}
-        className={leftNav.mainFeed === "User" ? "focusedOption" : null}>
+
+
+        <div >
+          {/* <Link to={`/profile/${authedUser._id}`}></Link> */}
+          <Link
+            to={`/profile/`}
+          // className={leftNav.mainFeed === "User" ? "focusedOption" : null}
+          >
+            Profile
+          </Link>
+
+        </div>
+
+        {/* <p
+          name="user"
+          value="User"
+          onClick={(e) => feedClick(e)}
+          className={leftNav.mainFeed === "User" ? "focusedOption" : null}
+        >
           Me
-        </p>
-        <p 
-        name="images" 
-        value="Images" 
-        onClick={(e) => feedClick(e)}
-        className={leftNav.mainFeed === "Images" ? "focusedOption" : null}>
+        </p> */}
+
+        {/* <p
+          name="images"
+          value="Images"
+          onClick={(e) => feedClick(e)}
+          className={leftNav.mainFeed === "Images" ? "focusedOption" : null}>
           Images
-        </p>
-        <p 
-        name="videos" 
-        value="Videos" 
-        onClick={(e) => feedClick(e)}
-        className={leftNav.mainFeed === "Videos" ? "focusedOption" : null}>
+        </p> */}
+     <div>
+
+          <Link
+            to={`/images/`}
+            className={leftNav.mainFeed === "Images" ? "focusedOption" : null}
+          >
+            Images
+          </Link>
+        </div>
+
+
+        <div>
+
+        <Link
+          to={`/videos/`}
+          className={leftNav.mainFeed === "Videos" ? "focusedOption" : null}
+        >
           Videos
-        </p>
-        <p 
-        name="friends" 
-        value="Friends" 
-        onClick={(e) => feedClick(e)}
-        className={leftNav.mainFeed === "Friends" ? "focusedOption" : null}
+        </Link>
+</div>
+
+        {/* <p
+          name="videos"
+          value="Videos"
+          onClick={(e) => feedClick(e)}
+          className={leftNav.mainFeed === "Videos" ? "focusedOption" : null}>
+          Videos
+        </p> */}
+
+<div>
+
+        <Link
+          to={`/friends/`}
+          className={leftNav.mainFeed === "friends" ? "focusedOption" : null}
+        >
+          friends
+        </Link>
+        </div>
+
+        {/* <p
+          name="friends"
+          value="Friends"
+          onClick={(e) => feedClick(e)}
+          className={leftNav.mainFeed === "Friends" ? "focusedOption" : null}
         >
           Friends
-        </p>
-        <p 
-        name="messages"
-         value="Messages"
+        </p> */}
+     <div>
+
+        <Link
+          to={`/messages/`}
+          className={leftNav.mainFeed === "Messages" ? "focusedOption" : null}
+        >
+          Messges
+        </Link>
+        </div>
+
+
+        {/* <p
+          name="messages"
+          value="Messages"
           onClick={(e) => feedClick(e)}
           className={leftNav.mainFeed === "Messages" ? "focusedOption" : null}>
           Messages
-        </p>
-        <p 
-        name="hobby" 
-        value="Hobby"
-         onClick={(e) => feedClick(e)}
-         className={leftNav.mainFeed === "Hobby" ? "focusedOption" : null}>
+        </p> */}
+     <div>
+
+        <Link
+          to={`/hobby/`}
+          className={leftNav.mainFeed === "Hobby" ? "focusedOption" : null}
+        >
           Hobby
-        </p>
+        </Link>
+        </div>
+
+
+        {/* <p
+          name="hobby"
+          value="Hobby"
+          onClick={(e) => feedClick(e)}
+          className={leftNav.mainFeed === "Hobby" ? "focusedOption" : null}>
+          Hobby
+        </p> */}
         {/* <p>{leftNav.mainFeed}</p> */}
       </div>
     </>
