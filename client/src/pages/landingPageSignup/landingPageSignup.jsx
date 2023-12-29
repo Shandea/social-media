@@ -1,7 +1,7 @@
 import Form from "../../components/block-comps/Form"
 import Input from "../../components/block-comps/Inputs"
 
-import axios from 'axios'
+import API from "../../config/api"
 import { useState, useEffect } from "react"
 
 const LandingPageSignup = (props) => {
@@ -29,7 +29,7 @@ const LandingPageSignup = (props) => {
     })
 
     useEffect(() => {
-        console.log(reg)
+        // console.log(reg)
     }, [reg])
 
     const handleChange = (e) => {
@@ -41,21 +41,16 @@ const LandingPageSignup = (props) => {
     }
 
     const handleSubmit = (e) => {
-        console.log("my state", reg)
+        // console.log("my state", reg)
         e.preventDefault()
+            //created api folder... check config folder
+        API.register(reg)
 
-        axios({
-            method: 'POST',
-            url: 'http://localhost:5000/user/register',
-            data: reg
-        })
-            .then(res => console.log("res", res))
-            .catch(err => console.log("err"))
     }
 
     return (
         <div className="container-right">
-{console.log("reg", reg)}
+{/* {console.log("reg", reg)} */}
 
             <Form
                 onSubmit={(e) => handleSubmit(e)}
@@ -106,7 +101,7 @@ const LandingPageSignup = (props) => {
                     <Input
                         className="signup-inputs email-psw-username-input"
 
-                        type="text"
+                        type="email"
                         name="email"
                         value={reg.email || ""}
                         placeholder="Email"
@@ -124,8 +119,8 @@ const LandingPageSignup = (props) => {
                         placeholder="Phone Number"
                         required={true}
                         onChange={(e) => handleChange(e)}
+                        
 
-                    // pattern={ }
                     />
                     <Input
                         className="signup-inputs email-psw-username-input"

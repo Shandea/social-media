@@ -49,6 +49,8 @@ npo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 ///////////////////////  Media Queries*/
 
+/* need query for height also */
+
 @media (max-width:900px) {
     .landingPage-container {
         flex-direction: column;
