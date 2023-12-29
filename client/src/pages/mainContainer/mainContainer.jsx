@@ -1,6 +1,6 @@
 import "./mainContainer.css";
 import React from "react";
-import LeftSideNav from "../landingPage/leftSideNav/LeftSideNav";
+import LeftSideNav from "../leftSideNav/LeftSideNav";
 
 const MainContainer = () => {
   return (
