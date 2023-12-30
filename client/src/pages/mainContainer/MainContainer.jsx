@@ -1,9 +1,9 @@
 import "./mainContainer.css";
 import React from "react";
 // import LeftSideNav from "../leftSideNav/LeftSideNav";
-import Body from "../body/Body";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
+import Body from "./body/Body";
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
 import { Outlet } from "react-router";
 
 

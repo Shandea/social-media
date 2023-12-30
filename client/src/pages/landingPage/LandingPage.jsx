@@ -1,5 +1,5 @@
-import LandingPageSignup from "../landingPageSignup/landingPageSignup"
-import LandingPageLogin from "../landingPageLogin/LandingPageLogin"
+import LandingPageSignup from "./landingPageSignup/landingPageSignup"
+import LandingPageLogin from "./landingPageLogin/LandingPageLogin"
 import { Link } from 'react-router-dom'
 
 import { useState ,useEffect } from "react"

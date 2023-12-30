@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Outlet, useOutlet } from 'react-router-dom'
 
-import LeftSideNav from "../leftSideNav/LeftSideNav";
-import Home from "../home/Home"
+import LeftSideNav from "./leftNav/LeftSideNav";
+import Home from "./../../home/Home"
 
 export default function Body() {
 
