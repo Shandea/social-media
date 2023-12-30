@@ -1,8 +1,8 @@
-import Form from "../../components/block-comps/Form"
-import Input from "../../components/block-comps/Inputs"
+import Form from "../../../components/block-comps/Form"
+import Input from "../../../components/block-comps/Inputs"
 
 import React, { useState } from 'react'
-import API from "../../config/api"
+import API from "../../../config/api"
 
 
 

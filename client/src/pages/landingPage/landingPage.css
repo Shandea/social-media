@@ -1,5 +1,5 @@
-@import '../landingPageLogin/landingPageLogin.css';
-@import '../landingPageSignup/landingPageSignup.css';
+@import './landingPageLogin/landingPageLogin.css';
+@import './landingPageSignup/landingPageSignup.css';
 
 .landingPage-container {
     display: flex;
