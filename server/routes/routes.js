@@ -4,6 +4,7 @@ module.exports = app => {
 
     app.post("/user/register", UserController.register)
     app.post("/user/login", UserController.login)
+    app.get("/user/authCheck", UserController.authCheck)
 
 
     app.get("/test", (req, res) => {
@@ -11,6 +12,6 @@ module.exports = app => {
         res.json("test good, end points working")
     })
 
-    app.get("/user/all",UserController.all)
+    app.get("/user/all", UserController.all)
 
 }
