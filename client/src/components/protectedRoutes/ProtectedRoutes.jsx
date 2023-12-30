@@ -7,6 +7,28 @@ import MainContainer from '../../pages/mainContainer/MainContainer'
 
 function ProtectedRoutes() {
     let nav = useNavigate()
+    
+    const [loggedIn, setLoggedIn] = useState(false)
+    
+    useEffect(() => {
+
+        axios.defaults.withCredentials = true
+        axios({
+            method: "GET",
+            // withCredentials: true,
+            url: 'http://localhost:5000/user/authCheck',
+        })
+            .then(res => {
+                console.log("still good", res)
+                if(res.data.message !== "proceed"){
+                    nav("/")
+                }
+              
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+
     return (
         <>
             <div>ProtectedRoutes</div>
@@ -14,7 +36,7 @@ function ProtectedRoutes() {
             {/* {console.log(useOutlet() ? "outlet true " : "outlet false")} */}
 
             {/* replace true with context authed user once built */}
-<MainContainer />
+            <MainContainer />
             {/* {true ? <MainContainer /> : nav("/")} */}
 
         </>

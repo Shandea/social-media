@@ -6,7 +6,7 @@ import LandingPage from "./pages/landingPage/LandingPage"
 import Home from './pages/home/Home';
 import Body from './pages/mainContainer/body/Body';
 
-import Dev from "./dev/Dev"
+import Dev from "./dev/Register"
 
 import MainContainer from './pages/mainContainer/MainContainer';
 
@@ -52,6 +52,8 @@ const App = () => {
 
         </Route>
 
+
+{/*  Below this line for non production sandbox links */}
 
 
         <Route path="/dev" element={<Dev />} />

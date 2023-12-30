@@ -2,7 +2,7 @@ const express = require("express");
 
 const mongoose = require('mongoose')
 
-
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -12,6 +12,8 @@ require("dotenv").config()
 // .config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
+
+app.use(cookieParser())
 //had to do for the cors communication to fronend credentials
 app.use(cors({
   origin:`http://localhost:3000`,

@@ -5,7 +5,7 @@ export default function Home() {
 
 
     return (
-<Outlet />
+{/* <Outlet /> */}
         // <div id="Home" style={{border: "red 2px solid"}}>
           
         //     <div>Home</div>

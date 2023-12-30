@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-function Dev() {
+function Register() {
 
     const [reg, setReg] = useState({
         username: "",
@@ -98,4 +98,4 @@ function Dev() {
     )
 }
 
-export default Dev
+export default Register
