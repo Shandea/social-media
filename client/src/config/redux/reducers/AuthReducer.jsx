@@ -12,6 +12,7 @@ let initialState = {
     //state obj
 
     allUsers: [],
+    error:null,
 
     firstname: "",
     lastname: "",
@@ -70,7 +71,7 @@ const authReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                // allUsers:[...allUsers,users]
+                allUsers:[...state.allUsers, action.payload ]
             }
         default:
             return state

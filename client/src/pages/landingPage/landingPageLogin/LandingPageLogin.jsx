@@ -22,10 +22,9 @@ const LandingPageLogin = ({ authState,getCreateAcct }) => {
     // const checkUser = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()_+-=[]{}])([A-Za-z0-9_!@#$%^&*()+-={}[]]){8,}/gi
     let { email, password } = authState
   
-      
-
     const login = Object.assign({},{email,password})
     console.log("dfs",login)
+    API.login(login)
 
     // axios({
     //   method: 'POST',

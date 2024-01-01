@@ -13,7 +13,7 @@ const LandingPage = ({props,authState}) => {
   // let [users,setUsers] = useState([])
   
   useEffect(()=>{
-   
+   API.userAll()
       // const fetchUsers = async () => {
       //   try {
       //     const usersData = await API.userAll();
@@ -24,6 +24,8 @@ const LandingPage = ({props,authState}) => {
       // };
   
       // fetchUsers();
+
+
   },[])
 
   // const handleRegister = () => {

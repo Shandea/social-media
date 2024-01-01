@@ -1,5 +1,7 @@
 
 import instance from "../Axios";
+import store from "../redux/Store"
+import { getAllUsers } from "../redux/actions/AuthActions";
 
 const API = {
   userRegister: async (regUser) => {
@@ -17,6 +19,7 @@ const API = {
   },
 
   userLogin: async (login) => {
+    // console.log("login api",login)
     try {
       const response = await instance.post(`user/login`, login);
       // console.log("from backend", response.data);
@@ -31,7 +34,9 @@ const API = {
     try {
       const response = await instance.get(`user/all`);
       // console.log("from backend get all", response.data);
-      return response.data;
+      const usersAllData = response.data
+      store.dispatch(getAllUsers(usersAllData))
+      return usersAllData;
     } catch (error) {
       console.error("Error in userAll:", error);
       throw error;

@@ -4,9 +4,10 @@ import {
     HANDLE_INPUTS_AUTH,
 } from "../Types";
 
-export const getAllUsers = ()=>{
+export const getAllUsers = (info)=>{
     return {
-        type: GET_ALL_USERS
+        type: GET_ALL_USERS,
+        payload:info
     }
 }
 
