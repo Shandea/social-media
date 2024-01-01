@@ -2,7 +2,10 @@
 import instance from "../Axios";
 
 const API = {
-  userRegister: async (user) => {
+  userRegister: async (regUser) => {
+    let {firstname, lastname, password, confirmPassword, location, birthDate, gender, email, username, phone } = regUser
+    const user = {firstname, lastname, email, username, password, confirmPassword, location, birthDate, phone, gender}
+    console.log("made api",user)
     try {
       const response = await instance.post(`user/register`, user);
       // console.log("from backend", response.data);

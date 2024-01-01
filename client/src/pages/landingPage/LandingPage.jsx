@@ -5,36 +5,37 @@ import { Link } from 'react-router-dom'
 import { useState ,useEffect } from "react"
 import API from "../../config/api"
 
+import {connect} from "react-redux"
 
-const LandingPage = (props) => {
+const LandingPage = ({props,authState}) => {
 
-  let [createAcct, setCreateAcct] = useState(false)
-  let [users,setUsers] = useState([])
+  // let [createAcct, setCreateAcct] = useState(false)
+  // let [users,setUsers] = useState([])
   
   useEffect(()=>{
    
-      const fetchUsers = async () => {
-        try {
-          const usersData = await API.userAll();
-          setUsers(usersData);
-        } catch (error) {
-          console.error("Error fetching users:", error);
-        }
-      };
+      // const fetchUsers = async () => {
+      //   try {
+      //     const usersData = await API.userAll();
+      //     setUsers(usersData);
+      //   } catch (error) {
+      //     console.error("Error fetching users:", error);
+      //   }
+      // };
   
-      fetchUsers();
+      // fetchUsers();
   },[])
 
-  const handleRegister = () => {
+  // const handleRegister = () => {
 
-    return setCreateAcct(true)
+  //   return setCreateAcct(true)
 
-  }
+  // }
 
   return (
     <div className="landingPage-container">
 
-      {console.log("users loggg",users)}
+      {/* {console.log("users loggg",users)} */}
       
       <div className="container-left" >
         <h1>Company Name</h1>
@@ -43,10 +44,15 @@ const LandingPage = (props) => {
       </div>
 
       {
-        createAcct ? <LandingPageSignup /> : <LandingPageLogin handleRegister={handleRegister} />
+        authState.createAcct ? <LandingPageSignup /> : <LandingPageLogin  />
       }
     </div>
   )
 }
-
-export default LandingPage
+const mapStateToProps = (state)=>{
+  console.log("state reduc auth",state)
+  return{
+    authState: state.auth
+  }
+}
+export default connect(mapStateToProps,null)(LandingPage)

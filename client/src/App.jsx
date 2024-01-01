@@ -3,12 +3,12 @@ import { Routes, Route }from 'react-router'
 import LandingPage from "./pages/landingPage/LandingPage"
 
 // import Dev from "./dev/Dev"
-import Home from './pages/home/Home';
-import Body from './pages/mainContainer/body/Body';
+// import Home from './pages/home/Home';
+// import Body from './pages/mainContainer/body/Body';
 
 import Dev from "./dev/Register"
 
-import MainContainer from './pages/mainContainer/MainContainer';
+// import MainContainer from './pages/mainContainer/MainContainer';
 
 import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 import Profile from './pages/mainContainer/body/profile/Profile'

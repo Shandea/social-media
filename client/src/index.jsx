@@ -4,10 +4,10 @@ import './global.css';
 import App from './App';
 
 
+import store from './config/redux/Store'
 
-
-
-import { BrowserRouter} from 'react-router-dom'
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom'
 // import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 // import Home from './pages/home/Home';
 // import Body from './pages/body/Body';
@@ -26,7 +26,9 @@ root.render(
   <>
 
     <BrowserRouter >
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
 
   </>
