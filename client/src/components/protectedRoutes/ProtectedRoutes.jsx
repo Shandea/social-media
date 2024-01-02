@@ -5,6 +5,10 @@ import axios from 'axios'
 import MainContainer from '../../pages/mainContainer/MainContainer'
 
 
+import { connect } from 'react-redux'
+import API from '../../config/api/Api'
+
+
 function ProtectedRoutes() {
     let nav = useNavigate()
     
@@ -12,18 +16,20 @@ function ProtectedRoutes() {
     
     useEffect(() => {
 
-        axios.defaults.withCredentials = true
-        axios({
-            method: "GET",
-            // withCredentials: true,
-            url: 'http://localhost:5000/user/authCheck',
-        })
-            .then(res => {
+        // axios.defaults.withCredentials = true
+        // axios({
+        //     method: "GET",
+        //     // withCredentials: true,
+        //     url: 'http://localhost:5000/user/authCheck',
+        // })
+            API.getUser().then(res => {
                 console.log("still good", res)
-                if(res.data.message !== "proceed"){
+                if(res.message !== "proceed"){
                     nav("/")
                 }else {
                     //store res.data (user) in redux
+                
+                    
                 }
               
             })
@@ -66,4 +72,9 @@ function ProtectedRoutes() {
     )
 }
 
-export default ProtectedRoutes
+const mapDispatchToProps=(dispatch)=>{
+    return{
+    } 
+}
+
+export default connect(null, mapDispatchToProps)(ProtectedRoutes)

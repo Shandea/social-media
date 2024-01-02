@@ -1,7 +1,7 @@
 
 import instance from "../Axios";
 import store from "../redux/Store"
-import { getAllUsers } from "../redux/actions/AuthActions";
+import { getAllUsers, getUser } from "../redux/actions/AuthActions";
 import { useNavigate } from "react-router-dom";
 
 const API = {
@@ -20,7 +20,7 @@ const API = {
   },
 
   userLogin: async (login) => {
-    // console.log("login api",login)
+    console.log("login api",login)
     try {
       const response = await instance.post(`user/login`, login);
       console.log("from backend", response.data);
@@ -39,6 +39,18 @@ const API = {
       const usersAllData = response.data
       store.dispatch(getAllUsers(usersAllData))
       return usersAllData;
+    } catch (error) {
+      console.error("Error in userAll:", error);
+      throw error;
+    }
+  },
+  getUser: async () => {
+    try {
+      const response = await instance.get(`user/authCheck`);
+      console.log("from backend get all", response.data);
+      const usersData = response.data
+      store.dispatch(getUser(usersData))
+      return usersData;
     } catch (error) {
       console.error("Error in userAll:", error);
       throw error;

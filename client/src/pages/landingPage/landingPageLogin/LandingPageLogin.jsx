@@ -23,7 +23,7 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
     let { email, password } = authState
 
     const login = Object.assign({}, { email, password })
-    console.log("dfs", login, authState)
+    console.log("dfs", login)
     API.login(login).then(res => {
       if (res.message === "Logged in successfully"){
       nav("/profile")

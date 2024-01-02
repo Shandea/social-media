@@ -6,8 +6,10 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import { Outlet } from "react-router";
 
+import { connect } from "react-redux";
 
-const MainContainer = () => {
+
+const MainContainer = (props) => {
   return (
 
     <div className="userTop" style={{ display: 'flex', flexDirection: 'column' }}>
@@ -43,4 +45,13 @@ const MainContainer = () => {
   );
 };
 
-export default MainContainer;
+const mapStateToProps = (state) =>{
+  console.log("mainContainer logg", state)
+  return{
+    authState:state.auth
+  }
+}
+
+
+
+export default connect(mapStateToProps,null)(MainContainer);

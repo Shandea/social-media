@@ -1,0 +1,29 @@
+import {connect} from 'react-redux'
+
+//props will be your console log for seeing reducer info
+const "" = (props)=>{
+
+}
+
+const mapStateToProps = (state) =>{
+    return {
+        // example 
+        //state.app is coming from index combinereducers
+        // appState: state.app 
+    }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        // example
+        // this comes from reducer actions
+        // signUp : (pass in info declared in actions)=>dispatch(handleSignUp(pass in info if any))
+    }
+}
+
+
+// if not using one of the parms
+export default connect(null,null)("")
+
+// else 
+export default connect(mapStateToProps,mapDispatchToProps)("")

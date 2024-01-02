@@ -2,6 +2,7 @@ import {
     GET_ALL_USERS,
     GET_CREATE_ACCT,
     HANDLE_INPUTS_AUTH,
+    GET_USER,
 } from '../Types'
 
 let initialState = {
@@ -12,6 +13,7 @@ let initialState = {
     //state obj
 
     allUsers: [],
+    user: {},
     error:null,
 
     firstname: "",
@@ -68,10 +70,16 @@ const authReducer = (state = initialState, action) => {
                 createAcct: !state.createAcct
             }
         case GET_ALL_USERS:
-
             return {
                 ...state,
                 allUsers:[...state.allUsers, action.payload ]
+            }
+        case GET_USER:
+            let {username, userId} = action.payload.user
+            console.log(action.payload)
+            return {
+                ...state,
+                user:Object.assign(state.user,{username, userId})
             }
         default:
             return state

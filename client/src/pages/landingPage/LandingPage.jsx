@@ -6,6 +6,7 @@ import { useState ,useEffect } from "react"
 import API from "../../config/api"
 
 import {connect} from "react-redux"
+import Navbar from "../navbar/Navbar"
 
 const LandingPage = ({props,authState}) => {
 
@@ -35,6 +36,8 @@ const LandingPage = ({props,authState}) => {
   // }
 
   return (
+    <>
+    <Navbar/>
     <div className="landingPage-container">
 
       {/* {console.log("users loggg",users)} */}
@@ -49,6 +52,8 @@ const LandingPage = ({props,authState}) => {
         authState.createAcct ? <LandingPageSignup /> : <LandingPageLogin  />
       }
     </div>
+    </>
+    
   )
 }
 const mapStateToProps = (state)=>{
