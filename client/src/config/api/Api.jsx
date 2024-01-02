@@ -2,6 +2,7 @@
 import instance from "../Axios";
 import store from "../redux/Store"
 import { getAllUsers } from "../redux/actions/AuthActions";
+import { useNavigate } from "react-router-dom";
 
 const API = {
   userRegister: async (regUser) => {
@@ -22,8 +23,9 @@ const API = {
     // console.log("login api",login)
     try {
       const response = await instance.post(`user/login`, login);
-      // console.log("from backend", response.data);
+      console.log("from backend", response.data);
       return response.data;
+      // useNavigate("/profile")
     } catch (error) {
       console.error("Error in userLogin:", error);
       throw error;
