@@ -48,7 +48,12 @@ module.exports = {
                     User.create(newUser)
                         .then(created => {
                             console.log("created User", created)
-                            res.json({ message: "Success", User: created })
+
+                            const token = jwt.sign({ userId: created._id, username: created.username }, process.env.SECRET_KEY)
+
+                            console.log("token", token, created)
+                            return res.cookie('jwt', token, { httpOnly: true, secure: false, maxAge: 3600000 }).status(200).json({ message: "Logged in successfully", token: token, user: created })
+                            // res.json({ message: "Success", User: created })
 
                             // on successful reg, give a jwt and auth to site
                         })
