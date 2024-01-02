@@ -1,0 +1,32 @@
+.profilecontainerdiv{
+    border:solid purple 2px;
+    justify-content: center;
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+}
+/* .profilecontainerdiv *{
+    border:dotted purple 3px;
+} */
+.profileHeader{
+    color:red;
+    /* background-color:red; */
+    align-items: center;
+    border: solid green 2px;
+    justify-content: center;
+}
+/* .bioHeader{
+    align-self: left;
+    justify-self: left;
+    border: dotted grey 2px;
+} */
+.iconBtns{
+    background-color:grey;
+    border:dotted pink 2px;
+
+}
+
+.linkclass{
+    color:purple;
+    cursor: crosshair;
+}
