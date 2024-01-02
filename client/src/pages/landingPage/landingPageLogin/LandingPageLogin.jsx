@@ -6,64 +6,56 @@ import API from "../../../config/api"
 import { useNavigate } from 'react-router'
 
 import axios from 'axios'
+import { connect } from "react-redux"
+import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
 
-const LandingPageLogin = ({ handleRegister }) => {
+const LandingPageLogin = ({ authState,getCreateAcct }) => {
 
 
   let nav = useNavigate()
-
-
-  const [login, setLogin] = useState({
-    email: "",
-    password: ""
-  })
-
-  const handleChange = (e) => {
-    let { name, value } = e.target
-    return setLogin(log => ({
-      ...log,
-      [name]: value
-    }))
-  }
-
 
   const handleSubmit = (e) => {
     e.preventDefault()
     // API.login(login)
 
-    axios({
-      method: 'POST',
-      url: 'http://localhost:5000/user/login',
-      data: login
-    })
+    ///create a regex
+    // const checkUser = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()_+-=[]{}])([A-Za-z0-9_!@#$%^&*()+-={}[]]){8,}/gi
+    let { email, password } = authState
+  
+    const login = Object.assign({},{email,password})
+    console.log("dfs",login)
+    API.login(login)
 
-      .then(res => {
+    // axios({
+    //   method: 'POST',
+    //   url: 'http://localhost:5000/user/login',
+    //   data: login
+    // })
 
-        console.log("login res", res)
+    //   .then(res => {
 
-        if (res.data.message == "Logged in successfully") {
+    //     console.log("login res", res)
 
-          console.log("we are in")
+    //     if (res.data.message == "Logged in successfully") {
 
-          nav("/profile")
+    //       console.log("we are in")
 
-
-        }
-      })
-      .catch(err => console.log("login err", err))
+    //       nav("/profile")
 
 
+    //     }
+    //   })
+    //   .catch(err => console.log("login err", err))
   }
 
   return (
     <div className="container-right" >
-      {console.log("login state", login)}
       <Form
         onSubmit={(e) => handleSubmit(e)}
         className="signIn-form"
         btnText="Log In"
         btnClass="form-btn"
-        onClick={() => handleRegister()}
+        onClick={getCreateAcct}
         signup="createAcct-btn"
       >
         <Input
@@ -71,7 +63,6 @@ const LandingPageLogin = ({ handleRegister }) => {
           type="email"
           name="email"
           placeholder="Email"
-          onChange={(e) => handleChange(e)}
           required={true}
         />
         <Input
@@ -79,8 +70,6 @@ const LandingPageLogin = ({ handleRegister }) => {
           type="password"
           name="password"
           placeholder="Password"
-          onChange={(e) => handleChange(e)}
-
           required={true}
         />
       </Form>
@@ -88,5 +77,15 @@ const LandingPageLogin = ({ handleRegister }) => {
   )
 }
 
+const mapStateToProps = (state)=>{
+  return{
+    authState:state.auth
+  }
+}
 
-export default LandingPageLogin
+const mapDispatchToProps=(dispatch)=>{
+  return {
+    getCreateAcct: ()=>dispatch(getCreateAcct())
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(LandingPageLogin)

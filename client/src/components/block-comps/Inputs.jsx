@@ -1,10 +1,11 @@
-
+import {connect} from 'react-redux'
+import {handleInputsAuth} from '../../config/redux/actions/AuthActions';
 
 const Inputs = (props) => {
     return (
         <input
             className={props.className}
-            onChange={props.onChange}
+            onChange={(e)=>props.handleInputChange(e.target)}
             type={props.type}
             name={props.name}
             value={props.value}
@@ -20,7 +21,13 @@ const Inputs = (props) => {
     )
 }
 
-export default Inputs
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        handleInputChange : (input)=>dispatch(handleInputsAuth(input))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Inputs)
 
 
 
