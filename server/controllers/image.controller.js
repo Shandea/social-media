@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const Image = require("../models/image.model")
+const Image = require("../models/Image.model")
 const User = require("../models/User.model")
 
 module.exports = {

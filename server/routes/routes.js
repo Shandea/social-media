@@ -1,11 +1,24 @@
 const UserController = require('../controllers/user.controller')
 const AuthCheck = require("../middleware/auth") 
+const ImageController = require("../controllers/image.controller")
 
 module.exports = app => {
 
     app.post("/user/register", UserController.register)
     app.post("/user/login", UserController.login)
     app.get("/user/authCheck", UserController.authCheck)
+
+
+
+
+
+
+
+///////  Image Section ////
+
+    app.post("/imageUpload/profile", AuthCheck, ImageController.profileUpload)
+
+
 
 
     app.get("/test", AuthCheck,(req, res, next) => {

@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 const ImageSchema = new Schema({
     image: String,
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
-    userName: String,
+    username: String,
     type: String
 }, { timestamps: true })
 

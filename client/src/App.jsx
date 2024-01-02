@@ -7,7 +7,7 @@ import LandingPage from "./pages/landingPage/LandingPage"
 // import Body from './pages/mainContainer/body/Body';
 
 import Dev from "./dev/Register"
-
+import ImageUpload from "./dev/ImageUpload"
 // import MainContainer from './pages/mainContainer/MainContainer';
 
 import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
@@ -57,6 +57,7 @@ const App = () => {
 
 
         <Route path="/dev" element={<Dev />} />
+        <Route path="/ImageUpload" element={<ImageUpload />} />
 
 
       </Routes>
