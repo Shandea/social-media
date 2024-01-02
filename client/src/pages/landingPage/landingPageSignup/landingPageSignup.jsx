@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import Form from "../../../components/block-comps/Form"
 import Input from "../../../components/block-comps/Inputs"
 
@@ -27,7 +28,10 @@ const dropIn = {
     }
 }
 
+
 const LandingPageSignup = ({authState}) => {
+
+let nav = useNavigate()
 
     const handleSubmit = (e,reg) => {
         console.log("my state", authState)
@@ -36,7 +40,11 @@ const LandingPageSignup = ({authState}) => {
         //created api folder... check config folder
 
         // do a regex here
-        API.register(authState)
+        API.register(authState).then(res => {
+            console.log("reg res", res)
+            nav("/profile")
+
+        })
 
     }
 
