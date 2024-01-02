@@ -9,7 +9,7 @@ import axios from 'axios'
 import { connect } from "react-redux"
 import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
 
-const LandingPageLogin = ({ authState,getCreateAcct }) => {
+const LandingPageLogin = ({ authState, getCreateAcct }) => {
 
 
   let nav = useNavigate()
@@ -21,71 +21,76 @@ const LandingPageLogin = ({ authState,getCreateAcct }) => {
     ///create a regex
     // const checkUser = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()_+-=[]{}])([A-Za-z0-9_!@#$%^&*()+-={}[]]){8,}/gi
     let { email, password } = authState
-  
-    const login = Object.assign({},{email,password})
-    console.log("dfs",login)
-    API.login(login)
 
-    // axios({
-    //   method: 'POST',
-    //   url: 'http://localhost:5000/user/login',
-    //   data: login
-    // })
+    const login = Object.assign({}, { email, password })
+    console.log("dfs", login, authState)
+    API.login(login).then(res => {
+      if (res.message === "Logged in successfully"){
+      nav("/profile")
+    }
+      // console.log("res", res)
+    })
 
-    //   .then(res => {
+  // axios({
+  //   method: 'POST',
+  //   url: 'http://localhost:5000/user/login',
+  //   data: login
+  // })
 
-    //     console.log("login res", res)
+  //   .then(res => {
 
-    //     if (res.data.message == "Logged in successfully") {
+  //     console.log("login res", res)
 
-    //       console.log("we are in")
+  //     if (res.data.message == "Logged in successfully") {
 
-    //       nav("/profile")
+  //       console.log("we are in")
+
+  //       nav("/profile")
 
 
-    //     }
-    //   })
-    //   .catch(err => console.log("login err", err))
-  }
-
-  return (
-    <div className="container-right" >
-      <Form
-        onSubmit={(e) => handleSubmit(e)}
-        className="signIn-form"
-        btnText="Log In"
-        btnClass="form-btn"
-        onClick={getCreateAcct}
-        signup="createAcct-btn"
-      >
-        <Input
-          className="signIn-input"
-          type="email"
-          name="email"
-          placeholder="Email"
-          required={true}
-        />
-        <Input
-          className="signIn-input"
-          type="password"
-          name="password"
-          placeholder="Password"
-          required={true}
-        />
-      </Form>
-    </div >
-  )
+  //     }
+  //   })
+  //   .catch(err => console.log("login err", err))
 }
 
-const mapStateToProps = (state)=>{
-  return{
-    authState:state.auth
-  }
+return (
+  <div className="container-right" >
+    <Form
+      onSubmit={(e) => handleSubmit(e)}
+      className="signIn-form"
+      btnText="Log In"
+      btnClass="form-btn"
+      onClick={getCreateAcct}
+      signup="createAcct-btn"
+    >
+      <Input
+        className="signIn-input"
+        type="email"
+        name="email"
+        placeholder="Email"
+        required={true}
+      />
+      <Input
+        className="signIn-input"
+        type="password"
+        name="password"
+        placeholder="Password"
+        required={true}
+      />
+    </Form>
+  </div >
+)
 }
 
-const mapDispatchToProps=(dispatch)=>{
+const mapStateToProps = (state) => {
   return {
-    getCreateAcct: ()=>dispatch(getCreateAcct())
+    authState: state.auth
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(LandingPageLogin)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCreateAcct: () => dispatch(getCreateAcct())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPageLogin)

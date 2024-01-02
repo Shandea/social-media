@@ -22,11 +22,32 @@ function ProtectedRoutes() {
                 console.log("still good", res)
                 if(res.data.message !== "proceed"){
                     nav("/")
+                }else {
+                    //store res.data (user) in redux
                 }
               
             })
             .catch(err => console.log(err))
     }, [])
+
+
+    // useEffect(() => {
+
+    //     axios.defaults.withCredentials = true
+    //     axios({
+    //         method: "GET",
+    //         // withCredentials: true,
+    //         url: 'http://localhost:5000/user/authCheck',
+    //     })
+    //         .then(res => {
+    //             console.log("still good", res)
+    //             if(res.data.message !== "proceed"){
+    //                 nav("/")
+    //             }
+              
+    //         })
+    //         .catch(err => console.log(err))
+    // }, [])
 
 
     return (
