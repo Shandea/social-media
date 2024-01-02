@@ -2,6 +2,7 @@ import {
     GET_ALL_USERS,
     GET_CREATE_ACCT,
     HANDLE_INPUTS_AUTH,
+    GET_USER,
 } from "../Types";
 
 export const getAllUsers = (info)=>{
@@ -21,5 +22,12 @@ export const handleInputsAuth = (input)=>{
     return{
         type:HANDLE_INPUTS_AUTH,
         payload:input
+    }
+}
+
+export const getUser= (user)=>{
+    return{
+        type:GET_USER,
+        payload:user
     }
 }
