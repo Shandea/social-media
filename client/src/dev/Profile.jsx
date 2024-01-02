@@ -20,7 +20,7 @@ export default function Profile() {
 
 
         /// this will go to redux
-                
+
     }, [])
 
 
@@ -37,11 +37,12 @@ export default function Profile() {
             <p>{profile?.phone}</p>
             <p>{profile?.username}</p>
             <div
-            
+
             >
 
-                {/* <img src=`http://localhost:5000/${profile?.profileImg}`></img> */}
-            </div>
+                <div id="profileImg"
+                    style={{ backgroundImage: `url(${"http://localhost:5000" + profile?.profileImg})`, backgroundRepeat: 'none', backgroundSize: 'contain', width: '100px', height: '100px' }}>
+                </div>            </div>
 
         </>
     )
