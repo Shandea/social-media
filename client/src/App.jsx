@@ -1,4 +1,4 @@
-import { Routes, Route }from 'react-router'
+import { Routes, Route } from 'react-router'
 
 import LandingPage from "./pages/landingPage/LandingPage"
 
@@ -18,6 +18,7 @@ import VideosComponent from "./pages/mainContainer/body/videos/VideosComponent";
 import FriendsComponent from "./pages/mainContainer/body/friendsList/FriendsComponent"
 import ImagesComponent from "./pages/mainContainer/body/images/ImagesComponent"
 import Feed from "./pages/mainContainer/body/feed/Feed"
+import ProfileTest from "./dev/Profile"
 
 const App = () => {
   return (
@@ -53,11 +54,12 @@ const App = () => {
         </Route>
 
 
-{/*  Below this line for non production sandbox links */}
+        {/*  Below this line for non production sandbox links */}
 
 
         <Route path="/dev" element={<Dev />} />
         <Route path="/ImageUpload" element={<ImageUpload />} />
+        <Route path="/profiletest" element={<ProfileTest />} />
 
 
       </Routes>

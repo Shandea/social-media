@@ -62,12 +62,12 @@ module.exports = {
             .catch(err => console.log("err", err))
 
 
-        .then(() => {
-        console.log("new user attempt", newUser)
+            .then(() => {
+                console.log("new user attempt", newUser)
 
 
 
-        })
+            })
     },
 
 
@@ -108,7 +108,7 @@ module.exports = {
             res.status(500).json({ error: 'Login failed' });
         }
     },
-// hmmm
+    // hmmm
     authCheck: (req, res) => {
         console.log("req.heas", req.cookies)
         console.log("req.cookies.jwt ::::", req.cookies['jwt'])
@@ -127,49 +127,21 @@ module.exports = {
             if (decode.userId) {
 
                 res.json({ message: "proceed", user: decode })
-            }else {
-                res.json({message: "token expired"})
+            } else {
+                res.json({ message: "token expired" })
             }
         }
     },
 
+    getUser: (req, res) => {
 
-
-    // User.findOne({ email: req.body.email })
-    //     .then(found => {
-    //         console.log("found", found, req.body.password)
-    //         if (!found) {
-
-    //             console.log("login - NO USER")
-
-    //             res.json({ error: 'Authentication failed' });
-
-    //         } else if (!bcrypt.compare(found.password, req.body.password)) {
-
-    //             console.log("login BAD PASSWORD", req.body.password)
-
-    //             return res.status(401).json({ error: 'Authentication failed' });
-
-    //         } else if (bcrypt.compare(req.body.password === found.password)) {
-    //             // const passwordMatch = await bcrypt.compare(password, user.password);
-    //             console.log("PASSWORD MATCH")
-
-    //             const token = jwt.sign({ userId: found._id, username: found.username }, process.env.SECRET_KEY)
-
-    //             console.log("good login token:", token)
-
-    //             // attach to cookie here
-
-    //             res.status(200).json({ token })
-    //         }
-    //     })
-    // .catch(err => {
-
-    //     console.log("Er", err)
-    //     res.status(500).json({ error: 'Login failed' });
-
-    // })
-
+        console.log("get user HIT", req.locals)
+        User.findById(req.locals.userId)
+            .then(found => {
+                console.log("found", found)
+                res.json(found)
+            })
+    },
 
     // I notice you use returns in your res.json... I don't ... is there a difference?
 
