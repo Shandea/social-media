@@ -1,9 +1,9 @@
-.friendscomponentcontainer {
-    border: solid yellow 3px;
+/* .friendscomponentcontainer {
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: blue;
   }
   
   .friendscomponentcontainer h2 {
@@ -14,4 +14,28 @@
     font-size: large;
     color:black;
   }
+   */
+
+.friendscomponentcontainer {
+  color: white;
+}
+
+.friendscomponentcontainer img {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
   
+}
+
+.friendscomponentcontainer div {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: aliceblue;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap:30px;
+}

@@ -58,7 +58,7 @@ function ProtectedRoutes() {
 
     return (
         <>
-            <div>ProtectedRoutes</div>
+            {/* <div>ProtectedRoutes</div> */}
             {console.log("Protected Route HIT")}
             {/* {console.log(useOutlet() ? "outlet true " : "outlet false")} */}
 
