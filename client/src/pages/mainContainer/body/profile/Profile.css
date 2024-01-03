@@ -4,29 +4,119 @@
     align-items:center;
     display:flex;
     flex-direction:column;
+    overflow-y:auto;
+    
+
+    
+                                    /* this an issue */
+                                    max-height:80vh;
+    
+    
+    
+    
+    margin-top:auto;
 }
-/* .profilecontainerdiv *{
-    border:dotted purple 3px;
-} */
+
 .profileHeader{
     color:red;
     /* background-color:red; */
     align-items: center;
-    border: solid green 2px;
+    /* border: solid green 2px; */
     justify-content: center;
+    margin-left: 40px;
 }
-/* .bioHeader{
-    align-self: left;
-    justify-self: left;
-    border: dotted grey 2px;
-} */
+
+
+.usernameandpicdiv{
+
+
+                             /* this a solution??? */
+                             margin-top:1300px;
+    
+    
+    
+    
+    /* border:dotted yellow 4px; */
+    display:flex;
+}
+.profileimage{
+    background-color: blue;
+    border-radius:50%;
+    height:150px;
+    width:150px;
+}
 .iconBtns{
-    background-color:grey;
-    border:dotted pink 2px;
-
+   
+    margin-top:25px;
+    
 }
-
+.fontbig{
+    font-size: xx-large;
+    padding:10px;
+    margin:10px;
+}
 .linkclass{
     color:purple;
     cursor: crosshair;
+}
+.photocontainer{
+    /* background-color:pink; */
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:15px;
+    margin:10px 20px;
+}
+.groupcontainer{
+    /* background-color:salmon; */
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:15px;
+    margin:10px 20px;
+}
+.hobbycontainer{
+    /* background-color:orangered; */
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:15px;
+    margin:10px 20px;
+}
+.photoelement{
+    margin:10px;
+    width:100px;
+    height:100px;
+    color:red;
+    padding:10px;
+    border:solid green 4px; 
+}
+.groupelement{
+    margin:10px;
+    width:150px;
+    height:200px;
+    color:red;
+    padding:auto;
+    border:solid green 4px; 
+}
+.hobbyelement{
+    margin:10px;
+    width:200px;
+    height:200px;
+    color:red;
+    padding:auto;
+    border:solid green 4px; 
+}
+.hobbytitle{
+    /* align-self:center; */
+    /* justify-self: center; */
+    /* border:solid grey 1px; */
+    text-align: center;
+}
+.plussign{
+    margin-left:40px;
+    margin-bottom:-10px;
+    color:purple;
+    /* background-color: red; */
+    font-size: xx-large;
 }
