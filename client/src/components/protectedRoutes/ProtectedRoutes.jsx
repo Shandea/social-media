@@ -31,10 +31,7 @@ function ProtectedRoutes() {
                 } else {
                     nav("/")
                     // nav
-
-
                 }
-
             })
             .catch(err => {
                 nav("/")
@@ -42,6 +39,9 @@ function ProtectedRoutes() {
             })
     }, [])
 
+    useEffect(() => {
+        API.getUserProfile()
+    }, [])
 
     // useEffect(() => {
 
@@ -78,9 +78,11 @@ function ProtectedRoutes() {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return {
+        authState:state.auth
+
     }
 }
-
-export default connect(null, mapDispatchToProps)(ProtectedRoutes)
+// first param is state, 2nd is dispatch (functions / actions)
+export default connect(mapStateToProps, null)(ProtectedRoutes)

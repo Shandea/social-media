@@ -49,7 +49,7 @@ module.exports = {
                         .then(created => {
                             console.log("created User", created)
 
-                            const token = jwt.sign({ userId: created._id, username: created.username }, process.env.SECRET_KEY)
+                            const token = jwt.sign({ userId: created._id, username: created.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
 
                             console.log("token", token, created)
                             return res.cookie('jwt', token, { httpOnly: true, secure: false, maxAge: 3600000 }).status(200).json({ message: "Logged in successfully", token: token, user: created })
@@ -87,7 +87,7 @@ module.exports = {
 
                 console.log("else hit.. log me in")
 
-                const token = jwt.sign({ userId: user._id, username: user.username }, process.env.SECRET_KEY)
+                const token = jwt.sign({ userId: user._id, username: user.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
 
                 console.log("token", token)
                 return res.cookie('jwt', token, { httpOnly: true, secure: false, maxAge: 3600000 }).status(200).json({ message: "Logged in successfully", token: token })
