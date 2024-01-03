@@ -5,40 +5,51 @@ import axios from "axios";
 import { connect } from "react-redux";
 // import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
 import { getCreateAcct } from "../../../../config/redux/actions/AuthActions";
-import { FaCalendarPlus, FaCommentDots, FaCommentSlash } from "react-icons/fa6";
+import {
+  FaCalendarPlus,
+  FaCommentDots,
+  FaCommentSlash,
+  FaCirclePlus,
+} from "react-icons/fa6";
 
 const Profile = ({ authState }) => {
   let nav = useNavigate();
   console.log("authState: ", authState);
   // console.log('authState.user: ', authState.authState.user)
+  let fakeimages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let fakegroups = [1, 2, 3, 4, 5, 6];
+  let fakehobbys = [1, 2, 3, 4];
+
+
+
+
 
   return (
     <>
       <div className="profilecontainerdiv">
-        <h2 className="profileHeader">{authState.user.username}</h2>
+        <div className="usernameandpicdiv">
+          <div className="profileimage"></div>
+          <h2 className="profileHeader">{authState.user.username}</h2>
+        </div>
         <div className="iconBtns">
-        
           {/* add to friends list */}
-          <button>
+          <button className="fontbig" title='Add Friend'>
             <FaCalendarPlus />
           </button>
           {/* msg */}
-          <button>
+          <button className="fontbig" title='Message'>
             <FaCommentDots />
           </button>
           {/* mute? */}
-          <button>
+          <button className="fontbig" title='Block Person'>
             <FaCommentSlash />
           </button>{" "}
         </div>
-        <br/>
-        <br/>
-        <div>profile pic goes here</div>
         <br />
         <br />
-        <p className='bioHeader'>bio</p>
+        <p className="bioHeader">About Me: </p>
         <div>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui fuga
+          /t \t /tab?!? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui fuga
           delectus consequatur officiis animi et, impedit porro reprehenderit
           laborum, sed ea expedita alias. Dolorem porro sint est corrupti
           temporibus eius cupiditate consectetur molestiae voluptatem
@@ -62,12 +73,48 @@ const Profile = ({ authState }) => {
           voluptatum nam asperiores numquam? Iure possimus deleniti cumque
           voluptates consequatur saepe, laborum ratione recusandae nihil!
         </div>
-        <br/>
-        <br/>
-        <a className='linkclass'>Photos</a>
-        <br/>
-        <br/>
-        <a className='linkclass'>Hobby Projects</a>
+        <br />
+        <br />
+
+        <a className="linkclass">
+         <h2> Photos <FaCirclePlus className="plussign" /></h2>
+        </a>
+        <div className="photocontainer">
+          {fakeimages.map((e) => {
+            return <div className="photoelement">{e}</div>;
+          })}
+        </div>
+
+
+        <br />
+        <br />
+
+        <a className="linkclass">
+         <h2> Groups <FaCirclePlus className="plussign" /></h2>
+        </a>
+        <div className="groupcontainer">
+          {fakegroups.map((e) => {
+            return <div className="groupelement">{e}</div>;
+          })}
+        </div>
+        <br />
+        <br />
+
+        <a className="linkclass">
+          <h2>
+          Hobby Projects
+           <FaCirclePlus className="plussign" />
+          </h2>
+        </a>
+        <div className="hobbycontainer">
+          {fakehobbys.map((e) => {
+            return <div>
+                <p className='hobbytitle'>Hobby Title</p>
+                  <div className="hobbyelement">  {e}
+                  </div>
+                    </div>;
+          })}
+        </div>
       </div>
     </>
   );
