@@ -3,6 +3,7 @@ import {
     GET_CREATE_ACCT,
     HANDLE_INPUTS_AUTH,
     GET_USER,
+    GET_PROFILE,
 } from "../Types";
 
 export const getAllUsers = (info)=>{
@@ -29,5 +30,11 @@ export const getUser= (user)=>{
     return{
         type:GET_USER,
         payload:user
+    }
+}
+export const getProfile= (profile)=>{
+    return{
+        type:GET_PROFILE,
+        payload:profile
     }
 }

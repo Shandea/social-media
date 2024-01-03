@@ -1,34 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import API from '../config/api/Api'
+
+import { connect } from 'react-redux'
 
 
-
-
-export default function Profile() {
-
+const Profile = ({authState})=> {
+    console.log("user profile_:",authState.userProfile)
+    let profile = authState.userProfile
     useEffect(() => {
-
-        axios({
-            method: "GET",
-            withCredentials: true,
-            url: "http://localhost:5000/user/getProfile"
-        })
-            .then(res => {
-                console.log("res", res)
-                setProfile(res.data)
-            })
-
-
-        /// this will go to redux
-
+        API.getUserProfile()
     }, [])
-
-
-    const [profile, setProfile] = useState({})
 
     return (
         <>
-            {console.log("profile", profile)}
+            {/* {console.log("profile", profile)} */}
             <div>Profile</div>
             <p>{profile?.firstName}</p>
             <p>{profile?.lastName}</p>
@@ -41,11 +27,18 @@ export default function Profile() {
             >
 
                 <div id="profileImg"
-                    style={{ backgroundImage: `url(${"http://localhost:5000" + profile?.profileImg})`, backgroundRepeat: 'none', backgroundSize: 'contain', width: '100px', height: '100px' }}>
-                </div>            </div>
+                    style={{ backgroundImage: `url(${"http://localhost:5000" + profile?.profileImg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', width: '100px', height: '100px' }}>
+                </div>
+            </div>
 
         </>
     )
 }
 
+const mapStateToProps = (state)=>{
+    return {
+        authState:state.auth
+    }
+}
 
+export default connect(mapStateToProps,null)(Profile)

@@ -3,6 +3,7 @@ import {
     GET_CREATE_ACCT,
     HANDLE_INPUTS_AUTH,
     GET_USER,
+    GET_PROFILE
 } from '../Types'
 
 let initialState = {
@@ -14,6 +15,7 @@ let initialState = {
 
     allUsers: [],
     user: {},
+    userProfile: {},
     error:null,
 
     firstname: "",
@@ -80,6 +82,13 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user:Object.assign(state.user,{username, userId})
+            }
+        case GET_PROFILE:
+            
+            console.log("get profile obj_:",action.payload)
+            return {
+                ...state,
+                userProfile:Object.assign(state.userProfile,action.payload)
             }
         default:
             return state

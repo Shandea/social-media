@@ -61,13 +61,6 @@ module.exports = {
             })
             .catch(err => console.log("err", err))
 
-
-            .then(() => {
-                console.log("new user attempt", newUser)
-
-
-
-            })
     },
 
 

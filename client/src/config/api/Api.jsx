@@ -1,8 +1,7 @@
 
 import instance from "../Axios";
 import store from "../redux/Store"
-import { getAllUsers, getUser } from "../redux/actions/AuthActions";
-import { useNavigate } from "react-router-dom";
+import { getAllUsers, getUser, getProfile } from "../redux/actions/AuthActions";
 
 const API = {
   userRegister: async (regUser) => {
@@ -50,6 +49,19 @@ const API = {
       console.log("from backend get all", response.data);
       const usersData = response.data
       store.dispatch(getUser(usersData))
+      return usersData;
+    } catch (error) {
+      console.error("Error in userAll:", error);
+      throw error;
+    }
+  },
+  getUserProfile: async () => {
+    console.log("firing")
+    try {
+      const response = await instance.get(`user/getProfile`);
+      console.log("from backend get all", response.data);
+      const usersData = response.data
+      store.dispatch(getProfile(usersData))
       return usersData;
     } catch (error) {
       console.error("Error in userAll:", error);
