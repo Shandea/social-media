@@ -42,7 +42,8 @@ export default function Profile() {
 
                 <div id="profileImg"
                     style={{ backgroundImage: `url(${"http://localhost:5000" + profile?.profileImg})`, backgroundRepeat: 'none', backgroundSize: 'contain', width: '100px', height: '100px' }}>
-                </div>            </div>
+                </div>        
+                    </div>
 
         </>
     )

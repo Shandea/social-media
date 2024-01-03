@@ -12,6 +12,13 @@ module.exports = {
         console.log("req.locals", req.locals)
 
         let image = req.files.images
+        
+        console.log("image pre trim", image)
+        // let reg = /^\s+|\s+$/g
+        image.name = image.name.replace(" ", '_')
+
+
+
 
         console.log("image", image)
 

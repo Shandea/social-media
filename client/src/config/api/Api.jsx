@@ -47,12 +47,12 @@ const API = {
   getUser: async () => {
     try {
       const response = await instance.get(`user/authCheck`);
-      console.log("from backend get all", response.data);
+      console.log("from backend get AUTH", response.data);
       const usersData = response.data
       store.dispatch(getUser(usersData))
       return usersData;
     } catch (error) {
-      console.error("Error in userAll:", error);
+      console.error("Error in getUser AUTH:", error);
       throw error;
     }
   },
