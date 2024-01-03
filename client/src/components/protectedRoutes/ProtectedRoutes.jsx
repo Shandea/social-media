@@ -11,9 +11,9 @@ import API from '../../config/api/Api'
 
 function ProtectedRoutes() {
     let nav = useNavigate()
-    
+
     const [loggedIn, setLoggedIn] = useState(false)
-    
+
     useEffect(() => {
 
         // axios.defaults.withCredentials = true
@@ -22,18 +22,24 @@ function ProtectedRoutes() {
         //     // withCredentials: true,
         //     url: 'http://localhost:5000/user/authCheck',
         // })
-            API.getUser().then(res => {
+        API.getUser()
+            .then(res => {
                 console.log("still good", res)
-                if(res.message !== "proceed"){
-                    nav("/")
-                }else {
+                if (res.message == "proceed") {
+                    nav("/profile")
                     //store res.data (user) in redux
-                
-                    
+                } else {
+                    nav("/")
+                    // nav
+
+
                 }
-              
+
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                nav("/")
+                console.log(err)
+            })
     }, [])
 
 
@@ -50,7 +56,7 @@ function ProtectedRoutes() {
     //             if(res.data.message !== "proceed"){
     //                 nav("/")
     //             }
-              
+
     //         })
     //         .catch(err => console.log(err))
     // }, [])
@@ -72,9 +78,9 @@ function ProtectedRoutes() {
     )
 }
 
-const mapDispatchToProps=(dispatch)=>{
-    return{
-    } 
+const mapDispatchToProps = (dispatch) => {
+    return {
+    }
 }
 
 export default connect(null, mapDispatchToProps)(ProtectedRoutes)

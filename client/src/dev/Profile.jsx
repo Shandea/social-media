@@ -22,11 +22,10 @@ const Profile = ({authState})=> {
             <p>{profile?.gender}</p>
             <p>{profile?.phone}</p>
             <p>{profile?.username}</p>
-            <div
-
-            >
+            <div>
 
                 <div id="profileImg"
+
                     style={{ backgroundImage: `url(${"http://localhost:5000" + profile?.profileImg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', width: '100px', height: '100px' }}>
                 </div>
             </div>
