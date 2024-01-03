@@ -17,7 +17,7 @@ import HobbyComponent from "./pages/mainContainer/body/hobby/HobbyComponent";
 import VideosComponent from "./pages/mainContainer/body/videos/VideosComponent";
 import FriendsComponent from "./pages/mainContainer/body/friendsList/FriendsComponent"
 import ImagesComponent from "./pages/mainContainer/body/images/ImagesComponent"
-import Feed from "./pages/mainContainer/body/feed/Feed"
+import FeedView from "./pages/mainContainer/body/feed/FeedView"
 import ProfileTest from "./dev/Profile"
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
 
           {/* <Route path="/main" element={<MainContainer />} />  */}
 
-          <Route path="/feed" element={<Feed />} />
+          <Route path="/feed" element={<FeedView />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/messages" element={<MessagesComponent />} />
           <Route path="/hobby" element={<HobbyComponent />} />
