@@ -1,0 +1,22 @@
+.LeftSideNavContainer {
+    background-color: rgb(60, 205, 16);
+    grid-area: lft;
+}
+
+.MainContentContainer {
+    background-color: rgb(20, 79, 131);
+    grid-area: mid;
+    overflow-y: auto;
+    border: 1px solid white;
+    min-height: 0;
+}
+
+.RightSideContainer {
+    background-color: rgb(131, 20, 24);
+   grid-area: rht;
+}
+.profile{
+    border: 1px solid gold;
+    min-width: 100%;
+    min-height: 100%;
+}

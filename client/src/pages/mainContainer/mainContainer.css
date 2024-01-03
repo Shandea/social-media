@@ -1,39 +1,19 @@
-.userTop{
-    background-color: black;
-    height:100vh;
-    width:100vw;
-    color:chartreuse;
-    display:flex;
-    flex-direction: row;
+@import './body/body.css';
+
+.headerContainer{
+    height: 10%;
+    max-height: 10%;
 }
 
-.left{
-    background-color:red;
-    width:20%;
-    height:80%;
-    border-radius:10%;
-    margin-top:auto;
-    border:solid grey 4px;
-    justify-content: center;
-    align-items: center;
-    padding:15px;
-}
-.mid{
-    background-color:white;
-    margin:auto;
-    width:50%;
-    height:90%;
-    border:solid grey 4px;
-    border-radius:10%;
-    justify-content: center;
-    align-items: center;
-    padding:15px;   
-}
-.right{
-    background-color:blue;
-    width:20%;
-    height:80%;
-    margin-top:auto;
-    border:solid grey 4px;
-    border-radius:10%;
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.bodyMainContainer{
+ display: grid;
+ grid-template-areas: "lft mid rht";
+ grid-template-columns: 1fr 4fr 1fr;
+ grid-template-rows: 85vh;
+ width:100vw;
+ height: 100%; 
+ /* min-height:85vh;
+ max-height:80vh;
+     */
 }

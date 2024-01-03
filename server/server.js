@@ -40,7 +40,7 @@ Router(app)
 // const dbo = require("./db/conn");
 
 /////  TEST AREA ///
-
+app.set('json spaces', 2)
 
 
 
