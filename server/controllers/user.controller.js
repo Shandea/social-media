@@ -135,6 +135,15 @@ module.exports = {
                 res.json(found)
             })
     },
+    viewProfile: (req, res) => {
+
+        console.log("get user HIT", req.body._id)
+        User.findById(req.body._id)
+            .then(found => {
+                console.log("found", found)
+                res.json(found)
+            })
+    },
 
     // I notice you use returns in your res.json... I don't ... is there a difference?
 

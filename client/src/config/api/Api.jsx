@@ -68,6 +68,18 @@ const API = {
       throw error;
     }
   },
+  getViewProfile: async (payload) => {
+    // console.log("firing",payload)
+    try {
+      const response = await instance.post(`/user/viewProfile`,{_id:payload});
+      console.log("from backend view profile", response.data);
+      const usersData = response.data
+      return usersData;
+    } catch (error) {
+      console.error("Error in userAll:", error);
+      throw error;
+    }
+  },
 };
 
 export default API;
