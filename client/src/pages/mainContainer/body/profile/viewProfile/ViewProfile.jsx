@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import "./Profile.css";
-import { connect } from "react-redux";
+import React, { useState,useEffect } from "react";
+import { useNavigate,useParams } from "react-router-dom";
 import {
   FaCalendarPlus,
   FaCommentDots,
@@ -9,23 +7,33 @@ import {
   FaCirclePlus,
 } from "react-icons/fa6";
 
-const Profile = ({ authState }) => {
+import API from "../../../../../config/api/Api";
+
+const ViewProfile = (props) => {
   let nav = useNavigate();
   let fakeimages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   let fakegroups = [1, 2, 3, 4, 5, 6];
   let fakehobbys = [1, 2, 3, 4];
 
-
+let [profileView,setProfileView] = useState({});
+let {id} = useParams()
+useEffect(()=>{
+    API.getViewProfile(id).then(res=>{
+        console.log("res data",res)
+        
+        setProfileView(res)
+    })
+},[id])
 
 
 
   return (
     <>
+    {console.log("console log view",profileView)}
       <div className="profilecontainerdiv">
         <div className="usernameandpicdiv">
           <div className="profileimage"></div>
-          <h2 className="profileHeader">{authState.user.username}</h2>
-          <button>EDIT</button>
+          <h2 className="profileHeader">{profileView.username}</h2>
         </div>
         <div className="iconBtns">
           {/* add to friends list */}
@@ -116,10 +124,4 @@ const Profile = ({ authState }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    authState: state.auth,
-  };
-};
-
-export default connect(mapStateToProps, null)(Profile);
+export default ViewProfile;

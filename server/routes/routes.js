@@ -10,6 +10,7 @@ module.exports = app => {
 
 
     app.get("/user/getProfile", AuthCheck, UserController.getUser)
+    app.post("/user/viewProfile", AuthCheck, UserController.viewProfile)
 
 
 
