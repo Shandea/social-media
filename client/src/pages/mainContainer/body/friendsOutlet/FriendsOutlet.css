@@ -1,0 +1,74 @@
+
+
+
+
+
+
+
+
+
+/* 
+item css
+.item p {
+    margin: 6px 0px;
+}
+
+.item_prices{
+    display: flex;
+    gap: 20px;
+}
+.item_price_new{
+    color: #374151;
+    font-size: 18px;
+    font-weight: 600;
+}
+.item-price-old{
+    color: #8c8c8c;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: line-through;
+}
+
+.item:hover{
+    transform:scale(1.05);
+    transition:0.6s;
+} */
+
+
+
+/* 
+POPPULAR CSS
+.popular{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 90vh;
+}
+
+.popular h1{
+    color: #171717;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.popular hr{
+    width: 200px;
+    height:6px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.popular-item{
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+} */
+
+
+
+
+
+
+
+

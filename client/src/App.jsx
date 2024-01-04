@@ -19,6 +19,7 @@ import FriendsComponent from "./pages/mainContainer/body/friendsList/FriendsComp
 import ImagesComponent from "./pages/mainContainer/body/images/ImagesComponent"
 import FeedView from "./pages/mainContainer/body/feed/FeedView"
 import ProfileTest from "./dev/Profile"
+import FriendsOutlet from './pages/mainContainer/body/friendsOutlet/FriendsOutlet';
 
 const App = () => {
   return (
@@ -42,7 +43,7 @@ const App = () => {
           <Route path="/messages" element={<MessagesComponent />} />
           <Route path="/hobby" element={<HobbyComponent />} />
           <Route path="/videos" element={<VideosComponent />} />
-          <Route path="/friends" element={<FriendsComponent />} />
+          <Route path="/friends" element={<FriendsOutlet />} />
           <Route path="/images" element={<ImagesComponent />} />
 
 
