@@ -3,7 +3,10 @@ import Body from "./body/Body";
 import Header from "./header/Header";
 // import Footer from "./footer/Footer";
 
+import { connect } from 'react-redux'
+
 const MainContainer = (props) => {
+
   return (
     <div className="mcBody">
       <div className="HeaderContainer" >
@@ -32,4 +35,12 @@ const MainContainer = (props) => {
   );
 };
 
-export default MainContainer;
+const mapStateToProps = (state) => {
+  console.warn("WTF", state)
+  return {
+    authState: state.auth
+  }
+
+}
+
+export default connect(mapStateToProps, null)(MainContainer)
