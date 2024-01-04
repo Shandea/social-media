@@ -6,11 +6,9 @@ import FriendsComponent from './friendsList/FriendsComponent';
 
 const  Body = (props)=> {
 
-    // let out = useOutlet()
     return (
         <>
             <div className="bodyMainContainer" >
-
 
                 <div className="LeftSideNavContainer" >
                     <LeftSideNav />
@@ -18,15 +16,11 @@ const  Body = (props)=> {
 
 
                 <div className="MainContentContainer">
-
                     {console.log("Body Render")}
                     <Outlet />
-                    {/* {out ? (<Outlet />) : null} */}
-
                 </div>
 
                 <div className="RightSideContainer" >
-                    {/* add friendslist comp when built */}
                 <FriendsComponent/>
                 </div>
 

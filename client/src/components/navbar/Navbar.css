@@ -6,8 +6,15 @@
   max-height: 100%;
   min-width: 100%;
   min-height: 100%;
-  display: flex;
-
+  display: grid;
+  grid-template-areas: "nlft nmid nrht";
+  grid-template-columns: 1f 1fr 1fr;
+  border-bottom: 3px solid var(--primary);
+  /* margin-bottom: 10px; */
+}
+.header span{
+  margin-right: 30px;
+  cursor: pointer;
 }
 
 .header-left {
@@ -15,6 +22,7 @@
   justify-content: center;
   align-items: center;
   float: left;
+  grid-area: nlft;
 }
 
 .header .search-container {
@@ -33,6 +41,10 @@
   font-size: 25px;
   font-weight: bold;
   margin-right: 16px;
+  background: var(--primary-gradient-text);
+  /* background: -webkit-linear-gradient(#dc07d8, #ffffff); */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
 
   &:hover {
@@ -40,15 +52,7 @@
   }
 }
 
-.header .headerRightDiv:hover {
-  background-color: #ddd;
-  color: black;
-}
 
-.header .headerRightDiv:active {
-  background-color: dodgerblue;
-  color: white;
-}
 
 .search-container button {
   float: right;
@@ -76,29 +80,78 @@
   /* float: right; */
   display: flex;
   gap: 10px;
-  border: 1px solid black;
   height: 100%;
-
+grid-area: nmid;
 }
 
-.headerRightDiv {
+
+.plusColor{
+  color: rgb(19, 134, 215);
+}
+
+.badge{
+  position: relative;
+  top: 10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+
+.iconContainer{
   align-self: center;
   border-radius: 50%;
-  border: 1px solid black;
+  border: none;
   margin-right: 10px;
+  
+}
+.othertest{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px transparent;
+  object-fit: cover;
+}
+.imgtest{
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &:hover{
+    transform: scale(1.2);
+  }
+}
+
+.navIcons{
+  font-size: 30px;
+  color: var(--primary);
+
+  &:hover{
+    transform: scale(1.2);
+  }
 }
 
 .homeIcon {
-  font-size: 30px;
-  color: var(--primary);
+
 }
 .friendIcon {
-  font-size: 30px;
-  color: var(--primary);
+
 }
 .groupIcon {
-  font-size: 30px;
-  color: var(--primary);
+  
+}
+.header-right{
+  width: 100%;}
+
+.right{
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
+ width: 100%;
+ grid-area: nrht;
 }
 
 
@@ -112,4 +165,28 @@
   .header-right {
     float: none;
   }
+}
+
+
+
+
+.notification {
+  background-color: inherit;
+  color: white;
+  text-decoration: none;
+  padding: 0;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 5px;
+  border-radius: 50%;
+  background-color: purple;
+  color: white;
 }

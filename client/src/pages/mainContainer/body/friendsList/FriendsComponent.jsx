@@ -5,7 +5,7 @@ const FriendsComponent = () => {
   return (
     <div className='friendscomponentcontainer'>
         <h2>Friends</h2>
-        <input placeholder='🔍Im a search box? maybe...' style={{width:"100%"}}/>
+        <input placeholder='🔍Im a search box? maybe...' />
         <p>feeeed me</p>
         <div>
           <img src={abc} alt=''/>

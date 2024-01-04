@@ -41,7 +41,7 @@ const LandingPage = ({props,authState}) => {
       {/* {console.log("users loggg",users)} */}
       
       <div className="container-left" >
-        <h1>Company Name</h1>
+        <h1>SHOW CASE</h1>
         <Link to="/feed" > bypass auth </Link>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, sed! Doloremque quos accusamus maiores sint illum, ea corrupti voluptatem. Dolorem omnis at similique voluptas a eveniet, iste reprehenderit consectetur molestias?</p>
       </div>

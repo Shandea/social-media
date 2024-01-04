@@ -1,10 +1,10 @@
 .profilecontainerdiv{
-    border:solid purple 2px;
+    /* border:solid purple 2px; */
     justify-content: center;
     align-items:center;
     display:flex;
     flex-direction:column;
-    overflow-y:auto;
+    /* overflow-y:auto; */
     
 
     

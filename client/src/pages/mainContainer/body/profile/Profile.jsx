@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "./Profile.css";
-import axios from "axios";
 import { connect } from "react-redux";
-// import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
-import { getCreateAcct } from "../../../../config/redux/actions/AuthActions";
 import {
   FaCalendarPlus,
   FaCommentDots,
@@ -14,8 +11,6 @@ import {
 
 const Profile = ({ authState }) => {
   let nav = useNavigate();
-  console.log("authState: ", authState);
-  // console.log('authState.user: ', authState.authState.user)
   let fakeimages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   let fakegroups = [1, 2, 3, 4, 5, 6];
   let fakehobbys = [1, 2, 3, 4];
@@ -126,10 +121,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    //   getCreateAcct: () => dispatch(getCreateAcct())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, null)(Profile);

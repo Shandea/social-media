@@ -18,6 +18,7 @@
 
 .friendscomponentcontainer {
   color: white;
+  max-width: 100%;
 }
 
 .friendscomponentcontainer img {
@@ -37,5 +38,6 @@
   color: black;
   display: flex;
   align-items: center;
-  gap:30px;
+  /* gap:30px; */
+
 }

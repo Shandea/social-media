@@ -5,7 +5,7 @@ import Header from "./header/Header";
 
 const MainContainer = (props) => {
   return (
-    <>
+    <div className="mcBody">
       <div className="HeaderContainer" >
         {/* header */}
         <Header />
@@ -28,7 +28,7 @@ const MainContainer = (props) => {
         </div>
 
       </div>
-    </>
+    </div>
   );
 };
 
