@@ -25,61 +25,61 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
     const login = Object.assign({}, { email, password })
     console.log("dfs", login)
     API.login(login).then(res => {
-      if (res.message === "Logged in successfully"){
-      nav("/profile")
-    }
+      if (res.message === "Logged in successfully") {
+        nav("/feed")
+      }
       // console.log("res", res)
     })
 
-  // axios({
-  //   method: 'POST',
-  //   url: 'http://localhost:5000/user/login',
-  //   data: login
-  // })
+    // axios({
+    //   method: 'POST',
+    //   url: 'http://localhost:5000/user/login',
+    //   data: login
+    // })
 
-  //   .then(res => {
+    //   .then(res => {
 
-  //     console.log("login res", res)
+    //     console.log("login res", res)
 
-  //     if (res.data.message == "Logged in successfully") {
+    //     if (res.data.message == "Logged in successfully") {
 
-  //       console.log("we are in")
+    //       console.log("we are in")
 
-  //       nav("/profile")
+    //       nav("/profile")
 
 
-  //     }
-  //   })
-  //   .catch(err => console.log("login err", err))
-}
+    //     }
+    //   })
+    //   .catch(err => console.log("login err", err))
+  }
 
-return (
-  <div className="container-right" >
-    <Form
-      onSubmit={(e) => handleSubmit(e)}
-      className="signIn-form"
-      btnText="Log In"
-      btnClass="form-btn"
-      onClick={getCreateAcct}
-      signup="createAcct-btn"
-    >
-      <Input
-        className="signIn-input"
-        type="email"
-        name="email"
-        placeholder="Email"
-        required={true}
-      />
-      <Input
-        className="signIn-input"
-        type="password"
-        name="password"
-        placeholder="Password"
-        required={true}
-      />
-    </Form>
-  </div >
-)
+  return (
+    <div className="container-right" >
+      <Form
+        onSubmit={(e) => handleSubmit(e)}
+        className="signIn-form"
+        btnText="Log In"
+        btnClass="form-btn"
+        onClick={getCreateAcct}
+        signup="createAcct-btn"
+      >
+        <Input
+          className="signIn-input"
+          type="email"
+          name="email"
+          placeholder="Email"
+          required={true}
+        />
+        <Input
+          className="signIn-input"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required={true}
+        />
+      </Form>
+    </div >
+  )
 }
 
 const mapStateToProps = (state) => {

@@ -52,7 +52,7 @@ const App = () => {
           {/* </Route> */}
 
 
-        <Route path="/feedtest" element={<AddFeed />} />
+        {/* <Route path="/feedtest" element={<AddFeed />} /> */}
 
 
         </Route>
