@@ -41,3 +41,7 @@
   /* gap:30px; */
 
 }
+
+.friendLink{
+  display: flex;
+}

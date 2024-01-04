@@ -12,6 +12,7 @@ import ImageUpload from "./dev/ImageUpload"
 
 import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 import Profile from './pages/mainContainer/body/profile/Profile'
+import ViewProfile from './pages/mainContainer/body/profile/viewProfile/ViewProfile';
 import MessagesComponent from "./pages/mainContainer/body/messages/MessagesComponent"
 import HobbyComponent from "./pages/mainContainer/body/hobby/HobbyComponent";
 import VideosComponent from "./pages/mainContainer/body/videos/VideosComponent";
@@ -39,6 +40,7 @@ const App = () => {
 
           <Route path="/feed" element={<FeedView />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<ViewProfile />} />
           <Route path="/messages" element={<MessagesComponent />} />
           <Route path="/hobby" element={<HobbyComponent />} />
           <Route path="/videos" element={<VideosComponent />} />
