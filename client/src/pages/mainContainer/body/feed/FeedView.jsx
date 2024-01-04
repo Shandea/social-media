@@ -2,6 +2,9 @@ import React from 'react'
 
 import FeedContainer from "../../../../components/feeds/FeedContainer"
 
+import AddFeed from "./AddFeed"
+
+
 export default function Feed() {
     // feed container... a feed 
 
@@ -56,6 +59,10 @@ export default function Feed() {
             <div className='feedContainer'>
                 <FeedContainer />
             </div>
+
+
+            {/* ???????????????????????/ */}
+            <AddFeed />
 
         </>
     )

@@ -7,23 +7,24 @@ import { connect } from 'react-redux'
 
 
 // const AddFeed = ({authState}) => {
-const AddFeed = (props) => {
+const AddFeed = ({authState}) => {
 
     ///// pull in authed user
-    console.warn("authstate", props)
+    console.warn("authstate", authState)
 
 
     const [selectedFiles, setSelectedFiles] = useState([])
 
     const [addFeed, setAddFeed] = useState({
-        author: "bobs ID",/// authed user from redux,
-        authorName: "bob", //// 
+        author: authState.user.userId,/// authed user from redux,
+        authorName: authState.user.username, //// 
         feedContent: "",
         likes: 0,
         image: {}
     })
 
     const handleFeedChange = (e) => {
+        console.log("onChange", e.target.id, e.target.value)
         setAddFeed(prev => ({
             ...prev,
             [e.target.id]: e.target.value
