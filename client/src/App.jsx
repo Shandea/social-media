@@ -20,6 +20,7 @@ import FriendsComponent from "./pages/mainContainer/body/friendsList/FriendsComp
 import ImagesComponent from "./pages/mainContainer/body/images/ImagesComponent"
 import FeedView from "./pages/mainContainer/body/feed/FeedView"
 import ProfileTest from "./dev/Profile"
+import AddFeed from './dev/feed/AddFeed';
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
           {/* </Route> */}
 
 
+        <Route path="/feedtest" element={<AddFeed />} />
 
 
         </Route>
