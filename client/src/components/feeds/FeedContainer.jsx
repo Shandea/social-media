@@ -1,5 +1,7 @@
 import React from 'react'
 
+import convertDate from "../../util/convertDate"
+
 function FeedContainer({ obj }) {
     return (
         <>
@@ -25,7 +27,7 @@ function FeedContainer({ obj }) {
 
                     <div style={{ border: "1px red solid" }}>follow user</div>
 
-                    <div style={{ border: "1px red solid" }}>{obj.createdAt}</div>
+                    <div style={{ border: "1px red solid" }}>{convertDate(obj.createdAt)}</div>
 
 
                 </div>
