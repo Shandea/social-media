@@ -16,7 +16,8 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Navbar = () => {
+const Navbar = (props) => {
+    // console.log("header prop", props)
     
     let nav = useNavigate()
     return (
@@ -33,7 +34,7 @@ const Navbar = () => {
             </div>
             <div className="header-right">
                 <span className="headerRightDiv iconContainer" ><IoHome className="homeIcon navIcons" /></span>
-                <span className="headerRightDiv iconContainer" ><FaUserFriends className="friendIcon navIcons" /></span>
+                <span className="headerRightDiv iconContainer" ><FaUserFriends onClick={()=>props.handleShowRightDM()} className="friendIcon navIcons" /></span>
                 <span className="headerRightDiv iconContainer"  ><RiMacbookFill className="groupIcon navIcons" /></span>
             </div>
 
@@ -46,14 +47,9 @@ const Navbar = () => {
                 <span className="" ><MdOutlineMessage className="navIcons" /></span>
                 {/* notifications */}
 
-                {/* <span className="noti" >
-                    <span className="badge">3</span>
-                    <IoNotificationsCircleOutline className="navIcons" />
-                </span> */}
-
                 <a href="#" className="notification">
                     <IoNotificationsCircleOutline className="navIcons"/>
-                    <span class="badge">3</span>
+                    <span className="badge">3</span>
                 </a>
                 {/* user image goes here */}
                 <span  className=" othertest" ><img className="imgtest"onClick={()=>nav("/profile/")} src={imgtest} alt="" /></span>

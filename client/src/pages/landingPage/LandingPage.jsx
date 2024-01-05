@@ -2,43 +2,20 @@ import LandingPageSignup from "./landingPageSignup/landingPageSignup"
 import LandingPageLogin from "./landingPageLogin/LandingPageLogin"
 import { Link } from 'react-router-dom'
 
-import { useState ,useEffect } from "react"
+import { useEffect } from "react"
 import API from "../../config/api"
 
 import {connect} from "react-redux"
 
 const LandingPage = ({props,authState}) => {
-
-  // let [createAcct, setCreateAcct] = useState(false)
-  // let [users,setUsers] = useState([])
   
   useEffect(()=>{
    API.userAll()
-      // const fetchUsers = async () => {
-      //   try {
-      //     const usersData = await API.userAll();
-      //     setUsers(usersData);
-      //   } catch (error) {
-      //     console.error("Error fetching users:", error);
-      //   }
-      // };
-  
-      // fetchUsers();
-
-
   },[])
-
-  // const handleRegister = () => {
-
-  //   return setCreateAcct(true)
-
-  // }
 
   return (
     <>
     <div className="landingPage-container">
-
-      {/* {console.log("users loggg",users)} */}
       
       <div className="container-left" >
         <h1>SHOW CASE</h1>
@@ -55,7 +32,6 @@ const LandingPage = ({props,authState}) => {
   )
 }
 const mapStateToProps = (state)=>{
-  console.log("state reduc auth",state)
   return{
     authState: state.auth
   }

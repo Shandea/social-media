@@ -1,6 +1,7 @@
 const UserController = require('../controllers/user.controller')
 const AuthCheck = require("../middleware/auth")
 const ImageController = require("../controllers/image.controller")
+const FeedController = require("../controllers/feed.controller")
 
 module.exports = app => {
 
@@ -18,6 +19,14 @@ module.exports = app => {
     ///////  Image Section ////
 
     app.post("/imageUpload/profile", AuthCheck, ImageController.profileUpload)
+
+
+
+
+    /////    Feed Section  /////
+
+    app.post("/api/addFeed", FeedController.addFeed)
+    app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
 
 
 

@@ -19,7 +19,7 @@ const API = {
   },
 
   userLogin: async (login) => {
-    console.log("login api",login)
+    // console.log("login api",login)
     try {
       const response = await instance.post(`user/login`, login);
       // console.log("from backend", response.data);
@@ -72,7 +72,7 @@ const API = {
     // console.log("firing",payload)
     try {
       const response = await instance.post(`/user/viewProfile`,{_id:payload});
-      console.log("from backend view profile", response.data);
+      // console.log("from backend view profile", response.data);
       const usersData = response.data
       return usersData;
     } catch (error) {

@@ -1,14 +1,17 @@
-import { Outlet, useOutlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import LeftSideNav from "./leftNav/LeftSideNav";
 import FriendsComponent from './friendsList/FriendsComponent';
-// import Home from "./../../home/Home"
 
 const  Body = (props)=> {
 
+    console.log("body props", props)
+
     return (
         <>
-            <div className="bodyMainContainer" >
+        {
+            props.chatFriends ?
+             <div className="bodyMainContainer2" >
 
                 <div className="LeftSideNavContainer" >
                     <LeftSideNav />
@@ -24,7 +27,26 @@ const  Body = (props)=> {
                 <FriendsComponent/>
                 </div>
 
+            </div>:
+
+            <div className="bodyMainContainer" >
+
+            <div className="LeftSideNavContainer" >
+                <LeftSideNav />
             </div>
+
+
+            <div className="MainContentContainer">
+                <Outlet />
+            </div>
+
+            {/* <div className="RightSideContainer" >
+            <FriendsComponent/>
+            </div> */}
+
+        </div>
+        }
+           
         </>
     )
 }
