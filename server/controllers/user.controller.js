@@ -14,12 +14,12 @@ module.exports = {
     register: (req, res) => {
         console.log("register attempt", req.body)
 
-        User.findOne({ username: req.body.username })
+        User.findOne({ email: req.body.email })
             .then(found => {
                 console.log("found", found)
-                if (!req.body.password) {
-                    res.json("Register error, please fill out fields")
-                }
+                // if (!req.body.password) {
+                //     res.json("Register error, please fill out fields")
+                // }
 
                 if (found) {
                     res.json({ message: "Registration Error" })
