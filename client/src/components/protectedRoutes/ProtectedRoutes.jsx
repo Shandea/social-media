@@ -24,7 +24,7 @@ function ProtectedRoutes() {
         // })
         API.getUser()
             .then(res => {
-                console.log("still good", res)
+                // console.log("still good", res)
                 if (res.message == "proceed") {
                     nav("/profile")
                     //store res.data (user) in redux
@@ -65,7 +65,7 @@ function ProtectedRoutes() {
     return (
         <>
             {/* <div>ProtectedRoutes</div> */}
-            {console.log("Protected Route HIT")}
+            {/* {console.log("Protected Route HIT")} */}
             {/* {console.log(useOutlet() ? "outlet true " : "outlet false")} */}
 
             {/* replace true with context authed user once built */}
