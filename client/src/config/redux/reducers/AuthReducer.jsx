@@ -78,14 +78,14 @@ const authReducer = (state = initialState, action) => {
             }
         case GET_USER:
             let {username, userId} = action.payload.user
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 user:Object.assign(state.user,{username, userId})
             }
         case GET_PROFILE:
             
-            console.log("get profile obj_:",action.payload)
+            // console.log("get profile obj_:",action.payload)
             return {
                 ...state,
                 userProfile:Object.assign(state.userProfile,action.payload)
