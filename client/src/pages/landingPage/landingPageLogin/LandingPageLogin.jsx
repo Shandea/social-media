@@ -21,8 +21,6 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
     // console.log("dfs", login)
     API.login(login).then(res => {
       if (res.message === "Logged in successfully") {
-        nav("/profile")
-      }else{
         nav("/feed")
       }
     })

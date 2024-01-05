@@ -25,7 +25,7 @@ module.exports = app => {
 
     /////    Feed Section  /////
 
-    app.post("/api/addFeed", FeedController.addFeed)
+    app.post("/api/addFeed", AuthCheck, FeedController.addFeed)
     app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
 
 
