@@ -50,22 +50,12 @@
     width: 90%;
     height: 100%;
     justify-content: center;
-    align-items:center;
-    display:flex;
-    flex-direction:column;
-    /* overflow-y:auto; */
-                                    /* this an issue */
-                                    max-height:80vh;
-    margin-top:auto;
-}
-
-.profileHeader{
-    color:red;
-    /* background-color:red; */
     align-items: center;
     padding: 10px;
     overflow: auto;
     margin-top: 30px ;
+    
+   
 }
 
 .profileScroll::-webkit-scrollbar {
@@ -93,6 +83,7 @@
 .innerLeftScroll::-webkit-scrollbar {
     display: none;
 }
+
 
 .rightScroll {
     grid-area: rScroll;
@@ -139,6 +130,7 @@
     }
 }
 
+
 .outer {
     /* background-color: aqua; */
     width: 100%;
@@ -146,8 +138,24 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 40px;
+    align-items: center;
 
+
+    /* background:rgba(211, 211, 211, 0.792); */
+    background-image: url("./../../../../imagess/imag.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bios {
+    width: 100%;
+    height: 30%;
+    /* border: 1px solid gold; */
+    border: none;
+    box-shadow: 2px 2px 3px rgba(128, 66, 28, 0.63);
 
     display: flex;
     flex-direction: column;
@@ -156,14 +164,31 @@
     grid-area: bios;
 
 }
-   
-.profileimage{
-    background-color: blue;
-    border-radius:50%;
-    height:150px;
-    width:150px;
-}
 
+.photoWall {
+    width: 100%;
+    height: 300px;
+    border: none;
+    box-shadow: 2px 2px 3px rgba(128, 66, 28, 0.63);
+}
+.friendWall {
+    width: 100%;
+    height: 300px;
+    border: none;
+    box-shadow: 2px 2px 3px rgba(128, 66, 28, 0.63);
+}
+.hobbyWall {
+    width: 100%;
+    height: 300px;
+    border: none;
+    box-shadow: 2px 2px 3px rgba(128, 66, 28, 0.63);
+}
+.createPostWall {
+    width: 100%;
+    height: 300px;
+    border: none;
+    box-shadow: 2px 2px 3px rgba(128, 66, 28, 0.63);
+}
 .postWall {
     width: 100%;
     height: 300px;
