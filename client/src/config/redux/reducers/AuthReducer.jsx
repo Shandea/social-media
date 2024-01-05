@@ -3,12 +3,14 @@ import {
     GET_CREATE_ACCT,
     HANDLE_INPUTS_AUTH,
     GET_USER,
-    GET_PROFILE
+    GET_PROFILE,
+    SHOW_DM
 } from '../Types'
 
 let initialState = {
     //flags
     createAcct: false,
+    showDM:false,
 
 
     //state obj
@@ -89,6 +91,13 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userProfile:Object.assign(state.userProfile,action.payload)
+            }
+        case SHOW_DM:
+            
+            // console.log("get profile obj_:",action.payload)
+            return {
+                ...state,
+                showDM:!state.showDM
             }
         default:
             return state

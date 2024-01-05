@@ -19,7 +19,7 @@ const LeftSideNav = ({ profile }) => {
             to={`/feed/`}
           // className={leftNav.mainFeed === "User" ? "focusedOption" : null}
           >
-            <BsGlobeAmericas /> FEEDS
+            <BsGlobeAmericas title="Feeds" /> 
 
           </Link>
 

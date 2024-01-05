@@ -7,7 +7,10 @@ import { useState } from "react";
 import { connect } from 'react-redux'
 
 const MainContainer = (props) => {
-  const [chatFriends,setChatfriends] = useState(false)
+
+const [chatFriends,setChatfriends] = useState(false)
+
+
 const handleShowRightDM = ()=>{
   return setChatfriends(!chatFriends)
 }

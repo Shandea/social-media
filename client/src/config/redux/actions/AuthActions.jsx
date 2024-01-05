@@ -4,6 +4,7 @@ import {
     HANDLE_INPUTS_AUTH,
     GET_USER,
     GET_PROFILE,
+    SHOW_DM,
 } from "../Types";
 
 export const getAllUsers = (info)=>{
@@ -36,5 +37,10 @@ export const getProfile= (profile)=>{
     return{
         type:GET_PROFILE,
         payload:profile
+    }
+}
+export const showDM = ()=>{
+    return{
+        type:SHOW_DM,
     }
 }
