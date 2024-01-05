@@ -23,6 +23,7 @@ const  Body = (props)=> {
 
 
                 <div className="MainContentContainer">
+                    {/* {console.log("Body Render")} */}
                     <Outlet />
                 </div>
 
