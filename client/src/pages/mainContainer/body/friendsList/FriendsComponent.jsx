@@ -5,14 +5,13 @@ import { connect } from 'react-redux'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 const FriendsComponent = ({ getAll }) => {
-  console.log("api", getAll)
-
 
   useEffect(() => {
     API.userAll()
   }, [])
   return (
     <div className='friendscomponentcontainer'>
+      {/* <input placeholder='🔍Im a search box? maybe...' /> */}
       {
         getAll.allUsers.map((friends, i)=>friends.map((friend,i)=>{
           return(
@@ -39,14 +38,6 @@ const FriendsComponent = ({ getAll }) => {
           )
         }))
       }
-
-      {/* <h2>Friends</h2>
-        <input placeholder='🔍Im a search box? maybe...' />
-        <p>feeeed me</p>
-        <div>
-          <img src={abc} alt=''/>
-          <h4>Social Friend</h4>
-        </div> */}
     </div>
   )
 }

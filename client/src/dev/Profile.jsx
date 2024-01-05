@@ -14,7 +14,7 @@ const Profile = ({authState})=> {
 
     return (
         <>
-            {/* {console.log("profile", profile)} */}
+            {console.log("profile", profile)}
             <div>Profile</div>
             <p>{profile?.firstName}</p>
             <p>{profile?.lastName}</p>

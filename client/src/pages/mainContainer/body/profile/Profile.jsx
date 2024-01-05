@@ -1,43 +1,116 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
+// import { useNavigate } from "react-router";
 import "./Profile.css";
 import { connect } from "react-redux";
-import {
-  FaCalendarPlus,
-  FaCommentDots,
-  FaCommentSlash,
-  FaCirclePlus,
-} from "react-icons/fa6";
+import { CiEdit } from "react-icons/ci";
+
+
+// import {
+//   FaCalendarPlus,
+//   FaCommentDots,
+//   FaCommentSlash,
+//   FaCirclePlus,
+// } from "react-icons/fa6";
+
+import EditProfile from "./EditProfile";
 
 const Profile = ({ authState }) => {
-  let nav = useNavigate();
-  let fakeimages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  let fakegroups = [1, 2, 3, 4, 5, 6];
-  let fakehobbys = [1, 2, 3, 4];
 
+  // console.log("authSTATE,PROFILEIMG", authState)
+  let srcStr = authState.userProfile.profileImg
+  let [pIMG, setPIMG] = useState('')
+  let [editProfile, setEditProfile] = useState(false)
 
+  useEffect(() => {
+    return setPIMG(srcStr)
+  }, [srcStr])
 
+  const getEditProfile = () => {
+    return setEditProfile(true)
+  }
+  const backtoProfile = () => {
+    return setEditProfile(false)
+  }
 
 
   return (
     <>
-      <div className="profilecontainerdiv">
-        <div className="usernameandpicdiv">
+      {/* {console.log("img src tag", srcStr)} */}
+      {
+        editProfile ? <EditProfile backtoProfile={backtoProfile} /> :
+          <div className="outer">
+            <div className="profileOuterContainer">
+              <div className="" >background banner</div>
+              <span className="badge2">
+                <img alt="" src={`http://localhost:5000${pIMG}`} />
+            <div className="underbanner">
+              <button onClick={getEditProfile} > <CiEdit style={{color:"black",fontSize:"large"}}/> EDIT</button>
+            </div>
+              </span>
+            </div>
+            <div className="profileScroll">
+
+              <div className="leftScroll">
+
+                <div className="innerLeftScroll">
+                  <div className="bios">
+                    <h4>bio</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos facilis at labore saepe similique architecto quia id? Veritatis, delectus minus.</p>
+                    <button>edit bio</button>
+                    <p>education</p>
+                    <p>location</p>
+                    <p>marital status</p>
+                    <button>edit details</button>
+                  </div>
+
+                  <div className="photoWall">
+                    <h3>photos show here</h3>
+                  </div>
+                  <div className="friendWall">
+                    <h3>friends show here</h3>
+                  </div>
+                  <div className="hobbyWall">
+                    <h3>hobbies show here</h3>
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="rightScroll">
+                <div className="innerRightScroll">
+                  <div className="createPostWall">
+                    <h3>create a post here</h3>
+                  </div>
+                  <div className="postWall">
+                    <h3>posts show here</h3>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+      }
+
+
+
+      {/* <div className="profilecontainerdiv"> */}
+      {/* <div className="usernameandpicdiv">
           <div className="profileimage"></div>
           <h2 className="profileHeader">{authState.user.username}</h2>
           <button>EDIT</button>
         </div>
-        <div className="iconBtns">
-          {/* add to friends list */}
-          <button className="fontbig" title='Add Friend'>
+        <div className="iconBtns"> */}
+      {/* add to friends list */}
+      {/* <button className="fontbig" title='Add Friend'>
             <FaCalendarPlus />
-          </button>
-          {/* msg */}
-          <button className="fontbig" title='Message'>
+          </button> */}
+      {/* msg */}
+      {/* <button className="fontbig" title='Message'>
             <FaCommentDots />
-          </button>
-          {/* mute? */}
-          <button className="fontbig" title='Block Person'>
+          </button> */}
+      {/* mute? */}
+      {/* <button className="fontbig" title='Block Person'>
             <FaCommentSlash />
           </button>{" "}
         </div>
@@ -111,7 +184,7 @@ const Profile = ({ authState }) => {
                     </div>;
           })}
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
