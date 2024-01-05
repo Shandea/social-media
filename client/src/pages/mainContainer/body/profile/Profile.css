@@ -147,7 +147,7 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 40px;
-}
+
 
     display: flex;
     flex-direction: column;
@@ -156,12 +156,7 @@
     grid-area: bios;
 
 }
-                             /* this a solution??? */
-                             margin-top:1300px;
-    
-    /* border:dotted yellow 4px; */
-    display:flex;
-}
+   
 .profileimage{
     background-color: blue;
     border-radius:50%;

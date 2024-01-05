@@ -70,11 +70,6 @@ const BlockedFriends = fakefriends.filter(e=>(e.friendStatus =="Blocked"))
 console.log('BlockedFriends: ', BlockedFriends)
 
 
-
-
-
-
-
   return (
     <div className="friendsoutletcontainer">
       <h2>Friends</h2>
