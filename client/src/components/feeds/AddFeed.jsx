@@ -17,7 +17,7 @@ const AddFeed = ({authState}) => {
 
     const [addFeed, setAddFeed] = useState({
         author: authState.user.userId,/// authed user from redux,
-        authorName: authState.user.username, //// 
+        // authorName: authState.user.username, //// 
         feedContent: "",
         likes: 0,
         image: {}
@@ -44,8 +44,10 @@ const AddFeed = ({authState}) => {
         // }
         // console.log("addFeed", addFeed)
 
-        formData.append('author', addFeed.author)
-        formData.append('authorName', addFeed.authorName)
+        // formData.append('author', addFeed.userId)
+        // formData.append('authorName', addFeed.username)
+        formData.append('author', authState.user.userId)
+        formData.append('authorName', authState.user.username)
         formData.append('feedContent', addFeed.feedContent)
         formData.append('likes', 0)
 

@@ -51,7 +51,7 @@ export default function Feed() {
             {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
 
             <div className='feedContainer'>
-                {feeds.sort((a, b) => b.createdAt - a.createdAt).map((obj, i) => {
+                {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
                     return (
                         <div key={i}>
                             <FeedContainer obj={obj} />
