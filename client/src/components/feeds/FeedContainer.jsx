@@ -1,9 +1,9 @@
 import React from 'react'
 
-function FeedContainer() {
+function FeedContainer({ obj }) {
     return (
         <>
-        
+            {console.log("FEED container props", obj)}
             <div
                 id="FeedContainter"
                 style={{
@@ -21,9 +21,12 @@ function FeedContainer() {
                         display: 'flex'
                     }}
                 >
-                    <div style={{ border: "1px red solid" }}>user</div>
+                    <div style={{ border: "1px red solid" }}>{obj.authorName}</div>
+
                     <div style={{ border: "1px red solid" }}>follow user</div>
-                    <div style={{ border: "1px red solid" }}>date sent</div>
+
+                    <div style={{ border: "1px red solid" }}>{obj.createdAt}</div>
+
 
                 </div>
 
@@ -37,22 +40,29 @@ function FeedContainer() {
 
                     }}
                 >
+                    {obj.imgPath ? (
 
-                    <div id="FeedImage"
+                        <div id="FeedImage"
 
-                        style={{
-                            border: 'solid black 2px',
-                            display: 'flex',
-                            justifyContent: 'center'
+                            style={{
+                                border: 'solid black 2px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                height: '200px',
+                                width: '200px',
+                                backgroundImage: `url("http://localhost:5000${obj.imgPath}")`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: 'cover'
+                            }}
+                        >
 
-                        }}
-                    >
-                        if there is a image, render here,centered
+                        </div>
+                    ) : (null)}
+                    <div id="FeedContent">
+
+                        {obj.feedContent}
 
                     </div>
-
-                    <div id="FeedContent">feed content :
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. At corporis dolorum odio impedit sequi nam libero error deleniti? Reprehenderit illo iure, expedita quod voluptate dolores! Quos fugit inventore nesciunt maxime iste animi ratione earum error hic expedita alias, mollitia voluptas, unde accusantium cumque assumenda modi nisi omnis facere saepe delectus culpa distinctio. Fuga, amet? Sed veritatis recusandae facere quia maxime quae incidunt eum, quos nisi est corporis delectus. Pariatur neque quibusdam odio assumenda, porro iusto earum aliquid labore necessitatibus facere deleniti inventore natus optio non doloremque veniam omnis ab sint molestiae nam, illum veritatis? Aliquam qui ut illum voluptatibus alias.</div>
 
                 </div>
 
@@ -66,8 +76,8 @@ function FeedContainer() {
                         display: 'flex'
                     }}
                 >
-                    <div style={{ border: "1px red solid" }}>likes</div>
-                    <div style={{ border: "1px red solid" }}>comments</div>
+                    <div style={{ border: "1px red solid" }}>likes : {obj.likes}</div>
+                    <div style={{ border: "1px red solid" }}>comments :{obj.comments.length}</div>
                     <div style={{ border: "1px red solid" }}>add comment</div>
 
 
@@ -75,11 +85,11 @@ function FeedContainer() {
 
                 </div>
             </div>
-        
-        
-        
+
+
+
         </>
-            )
+    )
 }
 
 export default FeedContainer
