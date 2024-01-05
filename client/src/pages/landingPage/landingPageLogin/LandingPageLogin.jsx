@@ -8,8 +8,6 @@ import { connect } from "react-redux"
 import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
 
 const LandingPageLogin = ({ authState, getCreateAcct }) => {
-
-
   let nav = useNavigate()
 
   const handleSubmit = (e) => {
@@ -23,15 +21,12 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
     // console.log("dfs", login)
     API.login(login).then(res => {
       if (res.message === "Logged in successfully") {
-
-        nav("/profile")
-      }else{
-
         nav("/feed")
       }
       // console.log("res", res)
     })
   }
+
   return (
     <div className="container-right" >
       <Form

@@ -33,9 +33,11 @@ const Navbar = (props) => {
                 </div>
             </div>
             <div className="header-right">
+
                 <span className="headerRightDiv iconContainer" ><IoHome title="Home" className="homeIcon navIcons" /></span>
                 <span className="headerRightDiv iconContainer" ><FaUserFriends title="Friends" onClick={()=>props.handleShowRightDM()} className="friendIcon navIcons" /></span>
                 <span className="headerRightDiv iconContainer"  ><RiMacbookFill title="Instant Message" className="groupIcon navIcons" /></span>
+
             </div>
 
             <div className="right">
@@ -48,7 +50,9 @@ const Navbar = (props) => {
                 {/* notifications */}
 
                 <a href="#" className="notification">
+
                     <IoNotificationsCircleOutline title="Notifications" className="navIcons"/>
+
                     <span className="badge">3</span>
                 </a>
                 {/* user image goes here */}

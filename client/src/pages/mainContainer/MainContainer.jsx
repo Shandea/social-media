@@ -7,7 +7,10 @@ import { useState } from "react";
 import { connect } from 'react-redux'
 
 const MainContainer = (props) => {
+
 const [chatFriends,setChatfriends] = useState(false)
+
+
 const handleShowRightDM = ()=>{
   return setChatfriends(!chatFriends)
 }
@@ -22,7 +25,6 @@ const handleShowRightDM = ()=>{
 
       <div className="userTop" >
 
-    
         <div className="BodyContainer" >
           {/* body */}
           <Body chatFriends={chatFriends} />

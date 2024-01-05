@@ -13,7 +13,9 @@
 .bodyMainContainer{
  display: grid;
  grid-template-areas: "lft mid";
+
  grid-template-columns: 1fr 10fr ;
+
  grid-template-rows: 85vh;
  width:100vw;
  max-width: 100%;
