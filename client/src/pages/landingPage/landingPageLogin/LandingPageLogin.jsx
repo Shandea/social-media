@@ -22,7 +22,7 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
     API.login(login).then(res => {
       if (res.message === "Logged in successfully") {
         nav("/profile")
-      }
+      }else{
         nav("/feed")
       }
       // console.log("res", res)

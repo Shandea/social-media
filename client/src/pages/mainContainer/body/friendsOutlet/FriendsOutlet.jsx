@@ -76,7 +76,7 @@ console.log('BlockedFriends: ', BlockedFriends)
 
 
   return (
-    <div className="friendscomponentcontainer">
+    <div className="friendsoutletcontainer">
       <h2>Friends</h2>
       
       
