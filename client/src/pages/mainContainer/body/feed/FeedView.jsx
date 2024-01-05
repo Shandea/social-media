@@ -5,6 +5,7 @@ import FeedContainer from "../../../../components/feeds/FeedContainer"
 import AddFeed from "../../../../components/feeds/AddFeed"
 
 import axios from 'axios'
+import FeedActions from '../../../../components/feeds/FeedActions'
 
 
 export default function Feed() {
@@ -39,29 +40,9 @@ export default function Feed() {
                 style={{ border: "black 2px solid", display: 'flex', justifyContent: 'space-evenly' }}
             >
 
-                <div
-                    style={{ border: "black 2px solid" }}
+                <FeedActions />
 
-                > New</div>
-
-                <div
-                    style={{ border: "black 2px solid" }}
-
-                >trending</div>
-
-                <div
-                    style={{ border: "black 2px solid" }}
-
-                >My feeds</div>
-
-                <div
-                    style={{ border: "black 2px solid" }}
-
-                >following</div>
             </div>
-
-            <div id="FeedAddActions">(add) - opens modal to add feed ,|| search area to search feeds in DB </div>
-
 
             <AddFeed />
 
@@ -70,7 +51,7 @@ export default function Feed() {
             {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
 
             <div className='feedContainer'>
-                {feeds.map((obj, i) => {
+                {feeds.sort((a, b) => b.createdAt - a.createdAt).map((obj, i) => {
                     return (
                         <div key={i}>
                             <FeedContainer obj={obj} />

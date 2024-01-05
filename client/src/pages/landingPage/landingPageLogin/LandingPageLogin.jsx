@@ -23,6 +23,9 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
       if (res.message === "Logged in successfully") {
         nav("/feed")
       }
+      else{
+        nav("/")
+      }
       // console.log("res", res)
     })
   }
