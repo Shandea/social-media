@@ -42,7 +42,7 @@ let nav = useNavigate()
         // do a regex here
         API.register(authState).then(res => {
             console.log("reg res", res)
-            nav("/profile")
+            nav("/feed")
 
         })
 
