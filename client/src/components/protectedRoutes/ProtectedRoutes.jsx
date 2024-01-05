@@ -24,7 +24,7 @@ function ProtectedRoutes() {
         // })
         API.getUser()
             .then(res => {
-                // console.log("still good", res)
+                console.log("still good", res.user)
                 if (res.message == "proceed") {
                     // nav("/feed")
                     return

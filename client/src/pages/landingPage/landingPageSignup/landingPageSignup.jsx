@@ -29,20 +29,23 @@ const dropIn = {
 }
 
 
-const LandingPageSignup = ({authState}) => {
+const LandingPageSignup = ({ authState }) => {
 
-let nav = useNavigate()
+    let nav = useNavigate()
 
-    const handleSubmit = (e,reg) => {
+    const handleSubmit = (e, reg) => {
         console.log("my state", authState)
         e.preventDefault()
-    
+
         //created api folder... check config folder
 
         // do a regex here
         API.register(authState).then(res => {
             console.log("reg res", res)
-            nav("/feed")
+            if (res.message == 'proceed') {
+
+                nav("/feed")
+            }
 
         })
 
@@ -76,7 +79,7 @@ let nav = useNavigate()
                             value={authState.firstname || ""}
                             placeholder="First Name"
                             required={true}
-                           
+
                         />
                         <Input
                             className="signup-inputs name-div-input"
@@ -86,7 +89,7 @@ let nav = useNavigate()
                             value={authState.lastname || ""}
                             placeholder="Last Name"
                             required={true}
-                           
+
                         />
 
                     </div>
@@ -100,7 +103,7 @@ let nav = useNavigate()
                             placeholder='username'
                             value={authState.username || ""}
                             required={true}
-                           
+
 
                         />
                         <Input
@@ -111,7 +114,7 @@ let nav = useNavigate()
                             value={authState.email || ""}
                             placeholder="Email"
                             required={true}
-                           
+
                         />
                         <Input
                             className="signup-inputs email-psw-username-input"
@@ -121,7 +124,7 @@ let nav = useNavigate()
                             value={authState.phone || ""}
                             placeholder="Phone Number"
                             required={true}
-                           
+
                         />
                         <Input
                             className="signup-inputs email-psw-username-input"
@@ -131,7 +134,7 @@ let nav = useNavigate()
                             placeholder='Password'
                             value={authState.password || ""}
                             required={true}
-                           
+
                         />
                         <Input
                             className="signup-inputs email-psw-username-input"
@@ -141,7 +144,7 @@ let nav = useNavigate()
                             placeholder='Confirm Password'
                             value={authState.confirmPassword || ""}
                             required={true}
-                           
+
                         />
 
                     </div>
@@ -223,7 +226,7 @@ let nav = useNavigate()
                                 name="gender"
                                 value="female"
                                 required={true}
-                               
+
 
                             />
 
@@ -240,7 +243,7 @@ let nav = useNavigate()
                                 name="gender"
                                 value="male"
                                 required={true}
-                               
+
 
                             />
 
@@ -257,13 +260,13 @@ let nav = useNavigate()
                                 name="gender"
                                 value="other"
                                 required={true}
-                               
+
                             />
 
                         </div>
                     </div>
 
-        </motion.div>
+                </motion.div>
 
             </Form>
 
@@ -271,10 +274,10 @@ let nav = useNavigate()
     )
 }
 
-const mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
     return {
-        authState:state.auth
+        authState: state.auth
     }
 }
 
-export default connect(mapStateToProps,null)(LandingPageSignup)
+export default connect(mapStateToProps, null)(LandingPageSignup)
