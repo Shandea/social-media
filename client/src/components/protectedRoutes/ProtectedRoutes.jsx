@@ -26,7 +26,8 @@ function ProtectedRoutes() {
             .then(res => {
                 // console.log("still good", res)
                 if (res.message == "proceed") {
-                    nav("/profile")
+                    // nav("/feed")
+                    return
                     //store res.data (user) in redux
                 } else {
                     nav("/")
