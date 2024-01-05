@@ -1,46 +1,53 @@
 import "./mainContainer.css";
-import React from "react";
-// import LeftSideNav from "../leftSideNav/LeftSideNav";
 import Body from "./body/Body";
 import Header from "./header/Header";
-import Footer from "./footer/Footer";
-import { Outlet } from "react-router";
+import { useState } from "react";
+// import Footer from "./footer/Footer";
+
+import { connect } from 'react-redux'
+
+const MainContainer = (props) => {
+
+const [chatFriends,setChatfriends] = useState(false)
 
 
-const MainContainer = () => {
+const handleShowRightDM = ()=>{
+  return setChatfriends(!chatFriends)
+}
+
   return (
-
-    <div className="userTop" style={{ display: 'flex', flexDirection: 'column' }}>
-
-      <div id="HeaderContainer" style={{ height: '10%' }}>
+    <div className="mcBody">
+      <div className="HeaderContainer" >
         {/* header */}
-        <Header />
+        <Header handleShowRightDM={handleShowRightDM} />
 
       </div>
 
-      <div id="BodyContainer" style={{ height: '80%' }}>
-        {/* body */}
-        <Body />
-        {/* <Outlet /> */}
+      <div className="userTop" >
+
+        <div className="BodyContainer" >
+          {/* body */}
+          <Body chatFriends={chatFriends} />
+          {/* <Outlet /> */}
+        </div>
+
+        <div className="FooterContainer">
+          {/* footer */}
+          {/* <Footer /> */}
+
+        </div>
+
       </div>
-
-      <div id="FooterContainer">
-        {/* footer */}
-        {/* <Footer /> */}
-      
-      </div>
-
-
-      {/* <div className="left">
-        <LeftSideNav />
-      </div>
-
-      <div className="mid"></div>
-
-      <div className="right"></div> */}
-
     </div>
   );
 };
 
-export default MainContainer;
+const mapStateToProps = (state) => {
+  console.warn("WTF", state)
+  return {
+    authState: state.auth
+  }
+
+}
+
+export default connect(mapStateToProps, null)(MainContainer)

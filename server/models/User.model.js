@@ -33,6 +33,7 @@ const UserSchema = new Schema({
     secretAnswer: String,
     birthDate: {},
     hobbies: [String],
+    profileImg: String,
 
     feeds: [{ type: Schema.Types.ObjectId, ref: 'Feeds' }],
     messages: [{

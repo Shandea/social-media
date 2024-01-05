@@ -1,8 +1,10 @@
 import React from 'react'
-
-function Header() {
+import Navbar from '../../../components/navbar/Navbar'
+function Header(props) {
+    
     return (
-        <div>Header</div>
+        // <div>Header</div>
+        <Navbar handleShowRightDM={props.handleShowRightDM}/>
     )
 }
 

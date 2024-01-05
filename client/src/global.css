@@ -1,4 +1,14 @@
 @import './App.css';
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 
 #MainContentContainer {
@@ -12,6 +22,8 @@
 
     /* regular/matte colors */
     --primary:#dc07d8;
+    --info: rgb(19, 134, 215);
+
 }
 
 .form-btn {
@@ -33,12 +45,18 @@
 
     &:hover {
         transform: scale(1.05);
-        background: var(--primary-btn);
+        background: purple;
         color: var(--primary);
         font-size: 1.5rem;
         text-align: center;
     }
 }
 
-
+.input{
+    font-size: 2em;
+    &:focus{
+        background-color: lightgray;
+        outline: 1px solid lightgray;
+    }
+}
 

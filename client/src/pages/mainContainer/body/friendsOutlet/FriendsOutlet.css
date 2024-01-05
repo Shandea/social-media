@@ -1,0 +1,102 @@
+.friendsoutletcontainer {
+  border: solid blue 2px;
+  background-color: grey;
+  font-size: xx-large;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.friendsoutletcontainer img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.friendrequests {
+  border: solid yellow 2px;
+  background-color: blue;
+  font-size: larger;
+  width: 100%;
+  padding: 20px;
+}
+.requestsdiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.pendingfriend {
+  border: solid blue 2px;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  width: 200px;
+  background-color: red;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+.pendingfriendsbuttons {
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+}
+.currentfriends {
+  border: solid grey 2px;
+  background-color: green;
+  width: 100%;
+}
+.accepteddiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.acceptedfriend {
+  border: solid grey 2px;
+  display: flex;
+  flex-direction: column;
+  background-color: purple;
+  height: 250px;
+  width: 200px;
+  margin: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.acceptedfriendsbuttons {
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.blockedlist {
+  border: solid pink 2px;
+  width: 100%;
+  background-color: orangered;
+  width: 100%;
+}
+.blockeddiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.blockedfriend {
+  border: solid grey 2px;
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+  height: 250px;
+  width: 200px;
+  margin: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.blockedfriendsbuttons {
+  align-items: center;
+  justify-content: center;
+}

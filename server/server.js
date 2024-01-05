@@ -1,5 +1,7 @@
 const express = require("express");
-
+const fs = require('fs')
+const fileUpload = require('express-fileupload')
+const path = require('path')
 const mongoose = require('mongoose')
 
 const cookieParser = require('cookie-parser')
@@ -12,6 +14,13 @@ require("dotenv").config()
 // .config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
+
+app.use(fileUpload({
+    createParentPath: true
+}))
+
+
+app.use("/public/", express.static(process.cwd() + "/public"))
 
 app.use(cookieParser())
 //had to do for the cors communication to fronend credentials
@@ -31,7 +40,7 @@ Router(app)
 // const dbo = require("./db/conn");
 
 /////  TEST AREA ///
-
+app.set('json spaces', 2)
 
 
 

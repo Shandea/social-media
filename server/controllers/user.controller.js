@@ -48,19 +48,19 @@ module.exports = {
                     User.create(newUser)
                         .then(created => {
                             console.log("created User", created)
-                            res.json({ message: "Success", User: created })
+
+                            const token = jwt.sign({ userId: created._id, username: created.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
+
+                            console.log("token", token, created)
+                            return res.cookie('jwt', token, { httpOnly: true, secure: false, maxAge: 3600000 }).status(200).json({ message: "Logged in successfully", token: token, user: created })
+                            // res.json({ message: "Success", User: created })
 
                             // on successful reg, give a jwt and auth to site
                         })
                 }
             })
             .catch(err => console.log("err", err))
-        // .then(() => {
-        // console.log("new user attempt", newUser)
 
-
-
-        // })
     },
 
 
@@ -73,7 +73,7 @@ module.exports = {
 
             if (!user) {
                 console.log("no user clive")
-                return res.status(401).json({ error: 'Authentication failed' });
+                return res.json({ error: 'Authentication failed' });
 
             }
 
@@ -81,13 +81,13 @@ module.exports = {
             console.log("password match boolean", passwordMatch)
             if (!passwordMatch) {
                 console.log("shit password boss")
-                return res.status(401).json({ error: 'Authentication failed' });
+                return res.json({ error: 'Authentication failed' });
 
             } else {
 
                 console.log("else hit.. log me in")
 
-                const token = jwt.sign({ userId: user._id, username: user.username }, process.env.SECRET_KEY)
+                const token = jwt.sign({ userId: user._id, username: user.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
 
                 console.log("token", token)
                 return res.cookie('jwt', token, { httpOnly: true, secure: false, maxAge: 3600000 }).status(200).json({ message: "Logged in successfully", token: token })
@@ -101,7 +101,7 @@ module.exports = {
             res.status(500).json({ error: 'Login failed' });
         }
     },
-// hmmm
+    // hmmm
     authCheck: (req, res) => {
         console.log("req.heas", req.cookies)
         console.log("req.cookies.jwt ::::", req.cookies['jwt'])
@@ -120,49 +120,30 @@ module.exports = {
             if (decode.userId) {
 
                 res.json({ message: "proceed", user: decode })
-            }else {
-                res.json({message: "token expired"})
+            } else {
+                res.json({ message: "token expired" })
             }
         }
     },
 
+    getUser: (req, res) => {
 
+        console.log("get user HIT", req.locals)
+        User.findById(req.locals.userId)
+            .then(found => {
+                console.log("found", found)
+                res.json(found)
+            })
+    },
+    viewProfile: (req, res) => {
 
-    // User.findOne({ email: req.body.email })
-    //     .then(found => {
-    //         console.log("found", found, req.body.password)
-    //         if (!found) {
-
-    //             console.log("login - NO USER")
-
-    //             res.json({ error: 'Authentication failed' });
-
-    //         } else if (!bcrypt.compare(found.password, req.body.password)) {
-
-    //             console.log("login BAD PASSWORD", req.body.password)
-
-    //             return res.status(401).json({ error: 'Authentication failed' });
-
-    //         } else if (bcrypt.compare(req.body.password === found.password)) {
-    //             // const passwordMatch = await bcrypt.compare(password, user.password);
-    //             console.log("PASSWORD MATCH")
-
-    //             const token = jwt.sign({ userId: found._id, username: found.username }, process.env.SECRET_KEY)
-
-    //             console.log("good login token:", token)
-
-    //             // attach to cookie here
-
-    //             res.status(200).json({ token })
-    //         }
-    //     })
-    // .catch(err => {
-
-    //     console.log("Er", err)
-    //     res.status(500).json({ error: 'Login failed' });
-
-    // })
-
+        console.log("get user HIT", req.body._id)
+        User.findById(req.body._id)
+            .then(found => {
+                console.log("found", found)
+                res.json(found)
+            })
+    },
 
     // I notice you use returns in your res.json... I don't ... is there a difference?
 

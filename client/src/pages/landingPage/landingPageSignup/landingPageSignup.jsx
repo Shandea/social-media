@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom"
 import Form from "../../../components/block-comps/Form"
 import Input from "../../../components/block-comps/Inputs"
 
 import API from "../../../config/api"
-import { useState, useEffect } from "react"
+
+import { connect } from "react-redux"
 
 import { motion } from 'framer-motion'
 const dropIn = {
@@ -26,53 +28,28 @@ const dropIn = {
     }
 }
 
-const LandingPageSignup = (props) => {
 
-    const [reg, setReg] = useState({
-        firstname: "",
-        lastname: "",
-        username: "",
-        email: "",
-        phone: "",
-        password: "",
-        confirmPassword: "",
-        location: {
-            city: "",
-            state: "",
-            zipcode: ""
-        },
-        birthDate: {
-            month: "",
-            day: "",
-            year: ""
-        },
-        gender: ""
+const LandingPageSignup = ({authState}) => {
 
-    })
+let nav = useNavigate()
 
-    useEffect(() => {
-        // console.log(reg)
-    }, [reg])
-
-    const handleChange = (e) => {
-        let { name, value } = e.target
-        return setReg(reg => ({
-            ...reg,
-            [name]: value
-        }))
-    }
-
-    const handleSubmit = (e) => {
-        // console.log("my state", reg)
+    const handleSubmit = (e,reg) => {
+        console.log("my state", authState)
         e.preventDefault()
+    
         //created api folder... check config folder
-        API.register(reg)
+
+        // do a regex here
+        API.register(authState).then(res => {
+            console.log("reg res", res)
+            nav("/feed")
+
+        })
 
     }
 
     return (
         <div className="container-right">
-            {/* {console.log("reg", reg)} */}
             <Form
                 onSubmit={(e) => handleSubmit(e)}
                 className="signup-form"
@@ -89,7 +66,6 @@ const LandingPageSignup = (props) => {
                     exit={'exit'}
                 >
 
-
                     <div className="name-div">
 
                         <Input
@@ -97,22 +73,20 @@ const LandingPageSignup = (props) => {
 
                             type="text"
                             name="firstname"
-                            value={reg.firstname || ""}
+                            value={authState.firstname || ""}
                             placeholder="First Name"
                             required={true}
-                            onChange={(e) => handleChange(e)}
-
+                           
                         />
                         <Input
                             className="signup-inputs name-div-input"
 
                             type="text"
                             name="lastname"
-                            value={reg.lastname || ""}
+                            value={authState.lastname || ""}
                             placeholder="Last Name"
                             required={true}
-                            onChange={(e) => handleChange(e)}
-
+                           
                         />
 
                     </div>
@@ -124,9 +98,9 @@ const LandingPageSignup = (props) => {
                             type="text"
                             name="username"
                             placeholder='username'
-                            value={reg.username || ""}
+                            value={authState.username || ""}
                             required={true}
-                            onChange={(e) => handleChange(e)}
+                           
 
                         />
                         <Input
@@ -134,24 +108,20 @@ const LandingPageSignup = (props) => {
 
                             type="email"
                             name="email"
-                            value={reg.email || ""}
+                            value={authState.email || ""}
                             placeholder="Email"
                             required={true}
-                            onChange={(e) => handleChange(e)}
-
-                        // pattern={ }
+                           
                         />
                         <Input
                             className="signup-inputs email-psw-username-input"
 
                             type="text"
                             name="phone"
-                            value={reg.phone || ""}
+                            value={authState.phone || ""}
                             placeholder="Phone Number"
                             required={true}
-                            onChange={(e) => handleChange(e)}
-
-
+                           
                         />
                         <Input
                             className="signup-inputs email-psw-username-input"
@@ -159,10 +129,9 @@ const LandingPageSignup = (props) => {
                             type="password"
                             name="password"
                             placeholder='Password'
-                            value={reg.password || ""}
+                            value={authState.password || ""}
                             required={true}
-                            onChange={(e) => handleChange(e)}
-
+                           
                         />
                         <Input
                             className="signup-inputs email-psw-username-input"
@@ -170,10 +139,9 @@ const LandingPageSignup = (props) => {
                             type="password"
                             name="confirmPassword"
                             placeholder='Confirm Password'
-                            value={reg.confirmPassword || ""}
+                            value={authState.confirmPassword || ""}
                             required={true}
-                            onChange={(e) => handleChange(e)}
-
+                           
                         />
 
                     </div>
@@ -183,33 +151,30 @@ const LandingPageSignup = (props) => {
                             className=" location-input"
 
                             type="text"
-                            name="city"
-                            value={reg.location.city || ""}
+                            name="location.city"
+                            value={authState.location.city || ""}
                             placeholder="City"
                             required={true}
-                            onChange={(e) => setReg(prev => ({ ...prev, location: { ...prev.location, [e.target.name]: e.target.value } }))}
 
                         />
                         <Input
                             className=" location-input"
 
                             type="text"
-                            name="state"
-                            value={reg.location.state || ""}
+                            name="location.state"
+                            value={authState.location.state || ""}
                             placeholder="State"
                             required={true}
-                            onChange={(e) => setReg(prev => ({ ...prev, location: { ...prev.location, [e.target.name]: e.target.value } }))}
 
                         />
                         <Input
                             className=" location-input"
 
                             type="text"
-                            name="zipcode"
-                            value={reg.location.zipcode || ""}
+                            name="location.zipcode"
+                            value={authState.location.zipcode || ""}
                             placeholder="Zipcode"
                             required={true}
-                            onChange={(e) => setReg(prev => ({ ...prev, location: { ...prev.location, [e.target.name]: e.target.value } }))}
 
                         />
                     </div>
@@ -219,33 +184,30 @@ const LandingPageSignup = (props) => {
                             className=" birth-date-input"
 
                             type="text"
-                            name="month"
-                            value={reg.birthDate.month || ""}
+                            name="birthDate.month"
+                            value={authState.birthDate.month || ""}
                             placeholder="03/"
                             required={true}
-                            onChange={(e) => setReg(prev => ({ ...prev, birthDate: { ...prev.birthDate, [e.target.name]: e.target.value } }))}
 
                         />
                         <Input
                             className=" birth-date-input"
 
                             type="text"
-                            name="day"
-                            value={reg.birthDate.day || ""}
+                            name="birthDate.day"
+                            value={authState.birthDate.day || ""}
                             placeholder="30/"
                             required={true}
-                            onChange={(e) => setReg(prev => ({ ...prev, birthDate: { ...prev.birthDate, [e.target.name]: e.target.value } }))}
 
                         />
                         <Input
                             className=" birth-date-input"
 
                             type="text"
-                            name="year"
-                            value={reg.birthDate.year || ""}
+                            name="birthDate.year"
+                            value={authState.birthDate.year || ""}
                             placeholder="2000"
                             required={true}
-                            onChange={(e) => setReg(prev => ({ ...prev, birthDate: { ...prev.birthDate, [e.target.name]: e.target.value } }))}
 
                         />
                     </div>
@@ -261,7 +223,7 @@ const LandingPageSignup = (props) => {
                                 name="gender"
                                 value="female"
                                 required={true}
-                                onChange={(e) => handleChange(e)}
+                               
 
                             />
 
@@ -278,7 +240,7 @@ const LandingPageSignup = (props) => {
                                 name="gender"
                                 value="male"
                                 required={true}
-                                onChange={(e) => handleChange(e)}
+                               
 
                             />
 
@@ -295,8 +257,7 @@ const LandingPageSignup = (props) => {
                                 name="gender"
                                 value="other"
                                 required={true}
-                                onChange={(e) => handleChange(e)}
-
+                               
                             />
 
                         </div>
@@ -306,9 +267,14 @@ const LandingPageSignup = (props) => {
 
             </Form>
 
-
         </div >
     )
 }
 
-export default LandingPageSignup
+const mapStateToProps=(state)=>{
+    return {
+        authState:state.auth
+    }
+}
+
+export default connect(mapStateToProps,null)(LandingPageSignup)

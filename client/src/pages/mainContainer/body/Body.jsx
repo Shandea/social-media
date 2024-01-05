@@ -1,44 +1,64 @@
-import React from 'react'
-
-import { Outlet, useOutlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import LeftSideNav from "./leftNav/LeftSideNav";
-import Home from "./../../home/Home"
+import FriendsComponent from './friendsList/FriendsComponent';
 
-export default function Body() {
+import { connect } from 'react-redux';
 
-    let out = useOutlet()
+const  Body = (props)=> {
 
-
-
+    console.log("body props", props)
 
     return (
         <>
+        {
 
-            <div
-                style={{ display: 'flex', flexDirection: 'row', border: "1px solid yellow" }}
-            >
+            props.chatFriends || props.authState.auth.showDM ?
 
+             <div className="bodyMainContainer2" >
 
-                <div id="LeftSideNavContainer" style={{ width: '15%', border: '1px solid blue' }}>
+                <div className="LeftSideNavContainer" >
                     <LeftSideNav />
                 </div>
 
 
-                <div id="MainContentContainer" style={{ width: '80%', height: '100%' }}>
-
-                    {console.log("Body Render")}
+                <div className="MainContentContainer">
+                    {/* {console.log("Body Render")} */}
                     <Outlet />
-                    {/* {out ? (<Outlet />) : null} */}
-
                 </div>
 
-                <div id="RightSideContainer" style={{ width: '15%', border: '1px solid blue' }}>
-                    {/* add friendslist comp when built */}
-                    friend list
+                <div className="RightSideContainer" >
+                <FriendsComponent/>
                 </div>
+
+            </div>:
+
+            <div className="bodyMainContainer" >
+
+            <div className="LeftSideNavContainer" >
+                <LeftSideNav />
 
             </div>
+
+
+            <div className="MainContentContainer">
+                <Outlet />
+            </div>
+
+
+            {/* <div className="RightSideContainer" >
+            <FriendsComponent/>
+            </div> */}
+
+        </div>
+        }
+           
         </>
     )
 }
+const mapStateToProps =(state)=>{
+    return {
+        authState:state
+    }
+}
+export default connect(mapStateToProps,null)(Body)
