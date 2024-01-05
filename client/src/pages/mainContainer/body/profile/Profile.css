@@ -1,19 +1,61 @@
-.profilecontainerdiv{
-    /* border:solid purple 2px; */
+.profileOuterContainer {
+    text-decoration: none;
+    margin: 10px 10px 40px 10px;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+    border: 1px solid blue;
+    border-radius: 10px;
+    background: linear-gradient(
+        gold 50%,
+        rgba(24, 23, 23, 0.84)
+    );
+    grid-area: banner;
+}
+
+.badge2 {
+    position: absolute;
+    top: 130px;
+    right: 41%;
+    box-shadow: 2px 2px white;
+    border-radius: 50%;
+    background-color: green;
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.badge2 img {
+    width: 200px;
+    height: 200px;
+    border: 3px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profileScroll {
+    /* border: 1px solid yellow; */
+    display: grid;
+    grid-template-areas:
+        "bios bios"
+        "lScroll rScroll";
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 90%;
+    height: 100%;
     justify-content: center;
     align-items:center;
     display:flex;
     flex-direction:column;
     /* overflow-y:auto; */
-    
-
-    
                                     /* this an issue */
                                     max-height:80vh;
-    
-    
-    
-    
     margin-top:auto;
 }
 
@@ -21,20 +63,101 @@
     color:red;
     /* background-color:red; */
     align-items: center;
-    /* border: solid green 2px; */
+    padding: 10px;
+    overflow: auto;
+    margin-top: 30px ;
+}
+
+.profileScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.leftScroll {
+    grid-area: lScroll;
+    border: none;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(255, 255, 255, 0.865); */
+    background-color: rgba(255, 255, 255, 0.865);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.innerLeftScroll {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.innerLeftScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.rightScroll {
+    grid-area: rScroll;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.865);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.innerRightScroll {
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
+
+/* .innerRightScroll::-webkit-scrollbar {
+    display: none;
+} */
+
+.underbanner {
+    grid-area: ubanner;
+    border: none;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 30px;
+    position:absolute;
+    top: 150px;
+    right: 100px;
+    z-index: 0;
+}
+.underbanner button{
+    width: 40%;
+    border: none;
+    box-shadow: 2px 2px 3px var(--info);
+    background: none;
+    cursor: pointer;
+    &:hover{
+        color: white;
+        background: var(--info);
+        transform: scale(1.2);
+    }
+}
+
+.outer {
+    /* background-color: aqua; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-left: 40px;
 }
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    grid-area: bios;
 
-.usernameandpicdiv{
-
-
+}
                              /* this a solution??? */
                              margin-top:1300px;
-    
-    
-    
     
     /* border:dotted yellow 4px; */
     display:flex;
@@ -45,78 +168,24 @@
     height:150px;
     width:150px;
 }
-.iconBtns{
-   
-    margin-top:25px;
-    
+
+.postWall {
+    width: 100%;
+    height: 300px;
+    border: none;
+    box-shadow: 2px 2px 3px rgba(128, 66, 28, 0.63);
 }
-.fontbig{
-    font-size: xx-large;
-    padding:10px;
-    margin:10px;
-}
-.linkclass{
-    color:purple;
-    cursor: crosshair;
-}
-.photocontainer{
-    /* background-color:pink; */
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding:15px;
-    margin:10px 20px;
-}
-.groupcontainer{
-    /* background-color:salmon; */
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding:15px;
-    margin:10px 20px;
-}
-.hobbycontainer{
-    /* background-color:orangered; */
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding:15px;
-    margin:10px 20px;
-}
-.photoelement{
-    margin:10px;
-    width:100px;
-    height:100px;
-    color:red;
-    padding:10px;
-    border:solid green 4px; 
-}
-.groupelement{
-    margin:10px;
-    width:150px;
-    height:200px;
-    color:red;
-    padding:auto;
-    border:solid green 4px; 
-}
-.hobbyelement{
-    margin:10px;
-    width:200px;
-    height:200px;
-    color:red;
-    padding:auto;
-    border:solid green 4px; 
-}
-.hobbytitle{
-    /* align-self:center; */
-    /* justify-self: center; */
-    /* border:solid grey 1px; */
-    text-align: center;
-}
-.plussign{
-    margin-left:40px;
-    margin-bottom:-10px;
-    color:purple;
-    /* background-color: red; */
-    font-size: xx-large;
+
+.arrowDrop{
+    position: absolute;
+    right: -100px;
+    font-size: 50px;
+    background:none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px;
+    color: rgba(0, 0, 0, 0.541);
+    &:hover{
+        transform: scale(1.2);
+    }
 }

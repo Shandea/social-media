@@ -20,11 +20,15 @@ const FriendsComponent = ({ getAll }) => {
               {
                 friend?.profileImg ?
                 (
-                  <div key={i}>
+                  <div className='friendCard' key={i}>
                     <Link  className='friendLink' to={`/profile/${friend._id}`}>
                   <img  alt='' src={`http://localhost:5000${friend.profileImg}`}/>
                   <h4>{friend.username}</h4>
                   </Link>
+                  <div className='statusDiv'>
+                    <h6>ONLINE</h6>
+                    <div className='onlineStatus'></div>
+                  </div>
                   </div>
                   
                 ) :

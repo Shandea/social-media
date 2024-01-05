@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom'
 import LeftSideNav from "./leftNav/LeftSideNav";
 import FriendsComponent from './friendsList/FriendsComponent';
 
+import { connect } from 'react-redux';
+
 const  Body = (props)=> {
 
     console.log("body props", props)
@@ -10,7 +12,9 @@ const  Body = (props)=> {
     return (
         <>
         {
-            props.chatFriends ?
+
+            props.chatFriends || props.authState.auth.showDM ?
+
              <div className="bodyMainContainer2" >
 
                 <div className="LeftSideNavContainer" >
@@ -33,12 +37,14 @@ const  Body = (props)=> {
 
             <div className="LeftSideNavContainer" >
                 <LeftSideNav />
+
             </div>
 
 
             <div className="MainContentContainer">
                 <Outlet />
             </div>
+
 
             {/* <div className="RightSideContainer" >
             <FriendsComponent/>
@@ -50,5 +56,9 @@ const  Body = (props)=> {
         </>
     )
 }
-
-export default Body
+const mapStateToProps =(state)=>{
+    return {
+        authState:state
+    }
+}
+export default connect(mapStateToProps,null)(Body)

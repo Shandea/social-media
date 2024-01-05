@@ -25,10 +25,9 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
       }else{
         nav("/feed")
       }
-      // console.log("res", res)
     })
   }
-  
+
   return (
     <div className="container-right" >
       <Form
