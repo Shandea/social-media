@@ -8,8 +8,6 @@ import { connect } from "react-redux"
 import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
 
 const LandingPageLogin = ({ authState, getCreateAcct }) => {
-
-
   let nav = useNavigate()
 
   const handleSubmit = (e) => {
@@ -25,9 +23,12 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
       if (res.message === "Logged in successfully") {
         nav("/profile")
       }
+        nav("/feed")
+      }
+      // console.log("res", res)
     })
   }
-
+  
   return (
     <div className="container-right" >
       <Form
