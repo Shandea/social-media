@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { connect } from "react-redux";
 import { CiEdit } from "react-icons/ci";
+import { MdDoubleArrow } from "react-icons/md";
+
+import { showDM } from "../../../../config/redux/actions/AuthActions"; 
+
 
 
 // import {
@@ -14,10 +18,10 @@ import { CiEdit } from "react-icons/ci";
 
 import EditProfile from "./EditProfile";
 
-const Profile = ({ authState }) => {
+const Profile = (props) => {
 
-  // console.log("authSTATE,PROFILEIMG", authState)
-  let srcStr = authState.userProfile.profileImg
+  console.log("authSTATE,PROFILEIMG", props)
+  let srcStr = props.authState.userProfile.profileImg
   let [pIMG, setPIMG] = useState('')
   let [editProfile, setEditProfile] = useState(false)
 
@@ -31,7 +35,9 @@ const Profile = ({ authState }) => {
   const backtoProfile = () => {
     return setEditProfile(false)
   }
-
+const showDM = ()=>{
+  return props.showDm()
+}
 
   return (
     <>
@@ -43,10 +49,13 @@ const Profile = ({ authState }) => {
               <div className="" >background banner</div>
               <span className="badge2">
                 <img alt="" src={`http://localhost:5000${pIMG}`} />
-            <div className="underbanner">
-              <button onClick={getEditProfile} > <CiEdit style={{color:"black",fontSize:"large"}}/> EDIT</button>
-            </div>
+                <div className="underbanner">
+                  <button onClick={getEditProfile} > <CiEdit style={{ color: "black", fontSize: "large" }} /> EDIT</button>
+                </div>
               </span>
+              <div>
+                <MdDoubleArrow onClick={showDM} className="arrowDrop" />
+              </div>
             </div>
             <div className="profileScroll">
 
@@ -194,5 +203,10 @@ const mapStateToProps = (state) => {
     authState: state.auth,
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showDm: ()=>dispatch(showDM())
+  };
+};
 
-export default connect(mapStateToProps, null)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
