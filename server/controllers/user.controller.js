@@ -73,7 +73,7 @@ module.exports = {
 
             if (!user) {
                 console.log("no user clive")
-                return res.status(401).json({ error: 'Authentication failed' });
+                return res.json({ error: 'Authentication failed' });
 
             }
 
@@ -81,7 +81,7 @@ module.exports = {
             console.log("password match boolean", passwordMatch)
             if (!passwordMatch) {
                 console.log("shit password boss")
-                return res.status(401).json({ error: 'Authentication failed' });
+                return res.json({ error: 'Authentication failed' });
 
             } else {
 
