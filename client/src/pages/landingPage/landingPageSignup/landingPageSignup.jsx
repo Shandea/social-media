@@ -1,283 +1,314 @@
-import { useNavigate } from "react-router-dom"
-import Form from "../../../components/block-comps/Form"
-import Input from "../../../components/block-comps/Inputs"
+import { useNavigate } from "react-router-dom";
+import Form from "../../../components/block-comps/Form";
+import Input from "../../../components/block-comps/Inputs";
+import React, { useState } from "react"; //added this, may just use redux store for comparison though -graham
+import API from "../../../config/api";
+import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
+import { connect } from "react-redux";
 
-import API from "../../../config/api"
-
-import { connect } from "react-redux"
-
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 const dropIn = {
-    hidden: {
-        y: "-100vh",
-        opacity: 0
+  hidden: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  visible: {
+    y: "0",
+    opacity: 1,
+    transition: {
+      duration: 0.1,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
     },
-    visible: {
-        y: "0",
-        opacity: 1,
-        transition: {
-            duration: 0.1,
-            type: "spring",
-            damping: 25,
-            stiffness: 500
-        }
-    },
-    exit: {
-        y: "100vh",
-        opacity: 0
+  },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+  },
+};
+
+const LandingPageSignup = ({ authState,getCreateAcct }) => {
+  let nav = useNavigate();
+
+
+  const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/; // one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
+  const emailRegex = /^\S+@\S+\.\S+$/; // cuts spaces, no domain, ensures period
+
+
+  const handleSubmit = (e, reg) => {
+    console.log("my state", authState);
+    e.preventDefault();
+
+    //created api folder... check config folder
+
+    // this line is to make the phone number straight numbers. Gotta rember to format it other places -graham
+    authState.phone = authState.phone.replace(/[^\d]/g, '')
+
+    API.register(authState).then((res) => {
+      console.log("reg res", res);
+      if (res.message == "proceed") {
+        nav("/feed");
+      }
+    });
+  };
+
+
+
+  return (
+    <div className="container-right">
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="signup-form"
+
+        signup="signup-btn"
+      >
+        <motion.div
+          onClick={(e) => e.stopPropagation()}
+          className="motion-div"
+          variants={dropIn}
+          initial={"hidden"}
+          animate={"visible"}
+          exit={"exit"}
+        >
+          <div className="name-div">
+            <Input
+              className="signup-inputs name-div-input"
+              type="text"
+              name="firstname"
+              value={authState.firstname || ""}
+              placeholder="First Name"
+              required={true}
+            />
+            <Input
+              className="signup-inputs name-div-input"
+              type="text"
+              name="lastname"
+              value={authState.lastname || ""}
+              placeholder="Last Name"
+              required={true}
+            />
+          </div>
+
+          <div className="email-psw-username-div">
+            <Input
+              className="signup-inputs email-psw-username-input"
+              type="text"
+              name="username"
+              placeholder="username"
+              value={authState.username || ""}
+              required={true}
+            />
+            <Input
+              className="signup-inputs email-psw-username-input"
+              type="email"
+              name="email"
+              value={authState.email || ""}
+              placeholder="Email"
+              required={true}
+            />
+
+            <p>
+              {emailRegex.test(authState.email) ? "Valid Email" : "Bad Email"}
+            </p>
+
+            <Input
+              className="signup-inputs email-psw-username-input"
+              type="text"
+              name="phone"
+              value={authState.phone || ""}
+              placeholder="Phone Number"
+              required={true}
+            />
+            <Input
+              className="signup-inputs email-psw-username-input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={authState.password || ""}
+              required={true}
+            />
+
+            <p>
+              {passRegex.test(authState.password) ? "Valid pass" : "Badd Pass"}
+            </p>
+
+            <Input
+              className="signup-inputs email-psw-username-input"
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={authState.confirmPassword || ""}
+              required={true}
+            />
+            <p>
+                {
+                    authState.password==authState.confirmPassword?'Passwords Match' : "Passwords Don't Match"
+                }
+            </p>
+          </div>
+
+          <div className="location">
+            <Input
+              className=" location-input"
+              type="text"
+              name="location.city"
+              value={authState.location.city || ""}
+              placeholder="City"
+              required={true}
+            />
+            <Input
+              className=" location-input"
+              type="text"
+              name="location.state"
+              value={authState.location.state || ""}
+              placeholder="State"
+              required={true}
+            />
+            <Input
+              className=" location-input"
+              type="text"
+              name="location.zipcode"
+              value={authState.location.zipcode || ""}
+              placeholder="Zipcode"
+              required={true}
+            />
+            <br/>
+<p>
+    {
+        authState.location.zipcode.length==5? null : "Please use 5 digit zipcode"
     }
-}
-
-
-const LandingPageSignup = ({ authState }) => {
-
-    let nav = useNavigate()
-
-    const handleSubmit = (e, reg) => {
-        console.log("my state", authState)
-        e.preventDefault()
-
-        //created api folder... check config folder
-
-        // do a regex here
-        API.register(authState).then(res => {
-            console.log("reg res", res)
-            if (res.message == 'proceed') {
-
-                nav("/feed")
-            }
-
-        })
-
-    }
-
-    return (
-        <div className="container-right">
-            <Form
-                onSubmit={(e) => handleSubmit(e)}
-                className="signup-form"
-                btnText="Sign Up"
-                btnClass="form-btn"
-                signup="signup-btn"
-            >
-                <motion.div
-                    onClick={(e) => e.stopPropagation()}
-                    className='motion-div'
-                    variants={dropIn}
-                    initial={'hidden'}
-                    animate={'visible'}
-                    exit={'exit'}
-                >
-
-                    <div className="name-div">
-
-                        <Input
-                            className="signup-inputs name-div-input"
-
-                            type="text"
-                            name="firstname"
-                            value={authState.firstname || ""}
-                            placeholder="First Name"
-                            required={true}
-
-                        />
-                        <Input
-                            className="signup-inputs name-div-input"
-
-                            type="text"
-                            name="lastname"
-                            value={authState.lastname || ""}
-                            placeholder="Last Name"
-                            required={true}
-
-                        />
-
-                    </div>
-
-                    <div className="email-psw-username-div">
-                        <Input
-                            className="signup-inputs email-psw-username-input"
-
-                            type="text"
-                            name="username"
-                            placeholder='username'
-                            value={authState.username || ""}
-                            required={true}
-
-
-                        />
-                        <Input
-                            className="signup-inputs email-psw-username-input"
-
-                            type="email"
-                            name="email"
-                            value={authState.email || ""}
-                            placeholder="Email"
-                            required={true}
-
-                        />
-                        <Input
-                            className="signup-inputs email-psw-username-input"
-
-                            type="text"
-                            name="phone"
-                            value={authState.phone || ""}
-                            placeholder="Phone Number"
-                            required={true}
-
-                        />
-                        <Input
-                            className="signup-inputs email-psw-username-input"
-
-                            type="password"
-                            name="password"
-                            placeholder='Password'
-                            value={authState.password || ""}
-                            required={true}
-
-                        />
-                        <Input
-                            className="signup-inputs email-psw-username-input"
-
-                            type="password"
-                            name="confirmPassword"
-                            placeholder='Confirm Password'
-                            value={authState.confirmPassword || ""}
-                            required={true}
-
-                        />
-
-                    </div>
-
-                    <div className="location">
-                        <Input
-                            className=" location-input"
-
-                            type="text"
-                            name="location.city"
-                            value={authState.location.city || ""}
-                            placeholder="City"
-                            required={true}
-
-                        />
-                        <Input
-                            className=" location-input"
-
-                            type="text"
-                            name="location.state"
-                            value={authState.location.state || ""}
-                            placeholder="State"
-                            required={true}
-
-                        />
-                        <Input
-                            className=" location-input"
-
-                            type="text"
-                            name="location.zipcode"
-                            value={authState.location.zipcode || ""}
-                            placeholder="Zipcode"
-                            required={true}
-
-                        />
-                    </div>
-                    <label>Birth Date</label>
-                    <div className="birth-date">
-                        <Input
-                            className=" birth-date-input"
-
-                            type="text"
-                            name="birthDate.month"
-                            value={authState.birthDate.month || ""}
-                            placeholder="03/"
-                            required={true}
-
-                        />
-                        <Input
-                            className=" birth-date-input"
-
-                            type="text"
-                            name="birthDate.day"
-                            value={authState.birthDate.day || ""}
-                            placeholder="30/"
-                            required={true}
-
-                        />
-                        <Input
-                            className=" birth-date-input"
-
-                            type="text"
-                            name="birthDate.year"
-                            value={authState.birthDate.year || ""}
-                            placeholder="2000"
-                            required={true}
-
-                        />
-                    </div>
-
-                    <div className="gender">
-                        <div className="signup-radio">
-
-                            <label htmlFor="" >Female</label>
-                            <Input
-                                className=""
-
-                                type="radio"
-                                name="gender"
-                                value="female"
-                                required={true}
-
-
-                            />
-
-                        </div>
-
-                        <div className="signup-radio">
-
-                            <label htmlFor="" >Male</label>
-
-                            <Input
-                                className=""
-
-                                type="radio"
-                                name="gender"
-                                value="male"
-                                required={true}
-
-
-                            />
-
-                        </div>
-
-                        <div className="signup-radio">
-
-                            <label htmlFor="" >Other</label>
-
-                            <Input
-                                className=""
-
-                                type="radio"
-                                name="gender"
-                                value="other"
-                                required={true}
-
-                            />
-
-                        </div>
-                    </div>
-
-                </motion.div>
-
-            </Form>
-
-        </div >
-    )
-}
+</p>
+
+          </div>
+          <label>Birth Date</label>
+          <div className="birth-date">
+            <Input
+              className=" birth-date-input"
+              type="text"
+              name="birthDate.month"
+              value={authState.birthDate.month || ""}
+              placeholder="03"
+              required={true}
+              maxLength="2" 
+            />
+            <Input
+              className=" birth-date-input"
+              type="text"
+              name="birthDate.day"
+              value={authState.birthDate.day || ""}
+              placeholder="30"
+              required={true}
+              maxLength="2" 
+            />
+            <Input
+              className=" birth-date-input"
+              type="text"
+              name="birthDate.year"
+              value={authState.birthDate.year || ""}
+              placeholder="2000"
+              required={true}
+              maxLength="4" 
+            />
+            <p>
+                {
+                    authState.birthDate.month>12 || authState.birthDate.month<1? "Use a real month please" : null
+                }
+            </p>
+            <p>
+                {
+                    authState.birthDate.day>32 || authState.birthDate.month<1? "Use a real day please" : null
+                }
+            </p>
+            <p>
+                {
+                    authState.birthDate.year.length>4? "Please use 4 digits for year" : null
+                }
+            </p>
+          </div>
+
+          <div className="gender">
+            <div className="signup-radio">
+              <label htmlFor="">Female</label>
+              <Input
+                className=""
+                type="radio"
+                name="gender"
+                value="female"
+                required={true}
+              />
+            </div>
+
+            <div className="signup-radio">
+              <label htmlFor="">Male</label>
+
+              <Input
+                className=""
+                type="radio"
+                name="gender"
+                value="male"
+                required={true}
+              />
+            </div>
+
+            <div className="signup-radio">
+              <label htmlFor="">Other</label>
+
+              <Input
+                className=""
+                type="radio"
+                name="gender"
+                value="other"
+                required={true}
+              />
+            </div>
+          </div>
+        </motion.div>
+
+
+
+
+{/* THIS PART MUST BE UNCOMMENTED. temporarily commented out for our convenience */}
+
+{/* 
+{
+passRegex.test(authState.password) &
+emailRegex.test(authState.email)  &
+authState.birthDate.year.length==4 &
+authState.firstname.length>0 &
+authState.lastname.length>0 &
+authState.username.length>0 & 
+authState.phone.length>9
+ ? <button type="submit" className="form-btn" >Sign Up</button> : <button type="submit" className="form-btnBAD" disabled='true'>Something Wrong</button>} */}
+       
+       
+       
+       
+
+       
+       {/* you gott get rid of tis line VVV for deployment */}
+       
+        <button type="submit" className="form-btn" >Sign Up</button>
+       
+       
+       
+       
+       
+        <hr className="form-hr" />
+        <button onClick={getCreateAcct} className="createAcct-btn" type="button">Login</button>
+      </form>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
+  return {
+    authState: state.auth,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
     return {
-        authState: state.auth
+      getCreateAcct: () => dispatch(getCreateAcct())
     }
-}
-
-export default connect(mapStateToProps, null)(LandingPageSignup)
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPageSignup);
