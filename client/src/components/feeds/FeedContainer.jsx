@@ -1,11 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import convertDate from "../../util/convertDate"
 
 function FeedContainer({ obj }) {
+
+    const [imgSrc, setImgSrc] = useState(`http://localhost:5000${obj.imgPath}`)
+
+    const handleError = e => {
+    e. stopPropagation()
+    console.log("error hit")
+    
+    setImgSrc("http://localhost:5000/public/default.jpeg")
+    }
+
     return (
         <>
-            {console.log("FEED container props", obj)}
+            {console.warn("img", imgSrc)}
             <div
                 id="FeedContainter"
                 style={{
@@ -14,7 +24,9 @@ function FeedContainer({ obj }) {
                     height: "fit-content",
                     display: 'flex',
                     flexDirection: 'column'
-                }}>
+                }}> 
+
+                
 
                 <div id="User Information"
                     style={{
@@ -45,6 +57,7 @@ function FeedContainer({ obj }) {
                     {obj.imgPath ? (
 
                         <div id="FeedImage"
+                        onError={handleError(e)}
 
                             style={{
                                 border: 'solid black 2px',
@@ -52,7 +65,9 @@ function FeedContainer({ obj }) {
                                 justifyContent: 'center',
                                 height: '200px',
                                 width: '200px',
-                                backgroundImage: `url("http://localhost:5000${obj.imgPath}")`,
+                                backgroundImage: `url("${imgSrc}")`,
+                                // backgroundImage: `url("http://localhost:5000${obj.imgPath}" )`,
+                                // fallbackBackgroundImage: `url("http://localhost:5000/public/default.jpg")`,
                                 backgroundRepeat: "no-repeat",
                                 backgroundSize: 'cover'
                             }}

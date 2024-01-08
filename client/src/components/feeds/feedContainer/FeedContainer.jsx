@@ -7,9 +7,13 @@ import { FaRegComment } from "react-icons/fa";
 import convertDate from "../../../util/convertDate"
 
 function FeedContainer({ obj }) {
+
+ 
+
+
     return (
         <>
-            {console.log("FEED container props", obj)}
+            {/* {console.log("FEED container props")} */}
             
             <div
                 id="FeedContainter" className='FC'
@@ -50,17 +54,19 @@ function FeedContainer({ obj }) {
                     {obj.imgPath ? (
 
                         <div id="FeedImage"
-
-                            style={{
-                                border: 'solid black 2px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                height: '200px',
-                                width: '200px',
-                                backgroundImage: `url("http://localhost:5000${obj.imgPath}")`,
-                                backgroundRepeat: "no-repeat",
-                                backgroundSize: 'cover'
-                            }}
+                        
+                        style={{
+                            border: 'solid black 2px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            height: '200px',
+                            width: '200px',
+                            
+                            backgroundImage: `url("http://localhost:5000${obj.imgPath}"), url("http://localhost:5000/public/default.jpeg")`,
+                            
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: 'cover'
+                        }}
                         >
 
                         </div>
