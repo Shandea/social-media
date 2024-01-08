@@ -7,7 +7,7 @@ module.exports = app => {
 
     app.post("/user/register", UserController.register)
     app.post("/user/login", UserController.login)
-    app.get("/user/authCheck", AuthCheck, UserController.authCheck)
+    app.get("/user/authCheck",  UserController.authCheck)
 
 
     app.get("/user/getProfile", AuthCheck, UserController.getUser)
