@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
+import { FaShare } from "react-icons/fa";
+import { FaPhotoFilm } from "react-icons/fa6";
+import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { connect } from 'react-redux'
 
  import AddFeedActions from './AddFeedActions'
+ import "./AddFeed.css"
 
 
 // const AddFeed = ({authState}) => {
@@ -101,7 +104,7 @@ const AddFeed = ({authState}) => {
                 {console.log("add feed", addFeed)}
                 {console.log("file", selectedFiles)}
 
-                <section>
+                {/* <section>
 
                     <textarea
                         onChange={(e) => handleFeedChange(e)}
@@ -114,8 +117,21 @@ const AddFeed = ({authState}) => {
 
                     </textarea>
 
-                </section>
-                <AddFeedActions handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} />
+                </section> */}
+                {/* <AddFeedActions handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} /> */}
+            </div>
+
+            <div className='postcontainer'>
+                <div className="addpost">
+                <div className='userimg'></div>
+                <input type="text" className='input1' placeholder="  What's on your mind, User?"/>
+                </div>
+                <hr className='line'/>
+                <div className="addpostbottom">
+                    <div><FaShare className='icon1'/>Share</div>
+                    <div><FaPhotoFilm className='icon2'/>Video/Photo</div>
+                    <div><MdOutlineEmojiEmotions className='icon3'/>Feeling/Activity</div>
+                </div>
             </div>
         </>
     )

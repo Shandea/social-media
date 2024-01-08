@@ -10,6 +10,7 @@ function FeedContainer({ obj }) {
     return (
         <>
             {console.log("FEED container props", obj)}
+            
             <div
                 id="FeedContainter" className='FC'
              >
@@ -90,7 +91,7 @@ function FeedContainer({ obj }) {
 <input type="text" className='input1' placeholder='  Write a comment...'/>
                 </div>
             </div>
-
+           
 
 
         </>
