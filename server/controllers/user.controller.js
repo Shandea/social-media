@@ -87,6 +87,10 @@ module.exports = {
             } else {
 
                 console.log("else hit.. log me in")
+                
+                /// on login, user will be seen as online
+                user.isOnline = true
+                user.save()
 
                 const token = jwt.sign({ userId: user._id, username: user.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
 
