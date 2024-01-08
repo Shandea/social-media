@@ -88,6 +88,9 @@ module.exports = {
 
                 console.log("else hit.. log me in")
 
+                user.isOnline = true
+                user.save()
+
                 const token = jwt.sign({ userId: user._id, username: user.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
 
                 console.log("token", token)

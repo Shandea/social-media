@@ -27,7 +27,7 @@ const FriendsComponent = ({ getAll }) => {
                   </Link>
                   <div className='statusDiv'>
                     <h6>ONLINE</h6>
-                    <div className='onlineStatus'></div>
+                    <div className='onlineStatus' style={{backgroundColor: friend.isOnline ? "lime" : null}}></div>
                   </div>
                   </div>
                   
