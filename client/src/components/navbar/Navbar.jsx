@@ -9,14 +9,16 @@ import { MdOutlineMessage } from "react-icons/md";
 
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 
-import imgtest from '../../imagess/imgtest3.png'
+// import imgtest from '../../imagess/imgtest3.png'
 
 import { useNavigate } from "react-router-dom";
 
 
+import {connect} from 'react-redux'
 
 
-const Navbar = (props) => {
+
+const Navbar = ({props, authState}) => {
     // console.log("header prop", props)
     
     let nav = useNavigate()
@@ -56,11 +58,19 @@ const Navbar = (props) => {
                     <span className="badge">3</span>
                 </a>
                 {/* user image goes here */}
-                <span  className=" othertest" ><img className="imgtest"onClick={()=>nav("/profile/")} src={imgtest} alt="" /></span>
+                <span className=" othertest" ><img className="imgtest" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" /></span>
 
             </div>
         </div>
     )
 }
 
-export default Navbar
+
+const mapStateToProps = (state) => {
+    // console.warn("state redux", state)
+    return {
+        authState: state.auth
+    }
+}
+
+export default connect(mapStateToProps, null)(Navbar)
