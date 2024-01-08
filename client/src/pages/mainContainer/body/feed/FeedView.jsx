@@ -40,7 +40,7 @@ export default function Feed() {
                 style={{ border: "black 2px solid", display: 'flex', justifyContent: 'space-evenly' }}
             >
 
-                <FeedActions />
+                {/* <FeedActions /> */}
 
             </div>
 
@@ -50,10 +50,16 @@ export default function Feed() {
 
             {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
 
-            <div className='feedContainer'>
+            <div className='feedContainer' style={{
+                marginTop: "20px",
+                overflowY: "auto"
+            }}>
                 {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
                     return (
-                        <div key={i}>
+                        <div key={i}
+                      
+                        
+                        >
                             <FeedContainer obj={obj} />
                         </div>
                     )
