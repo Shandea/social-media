@@ -28,13 +28,10 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
 
   return (
     <div className="container-right" >
-      <Form
+      <form
         onSubmit={(e) => handleSubmit(e)}
         className="signIn-form"
-        btnText="Log In"
-        btnClass="form-btn"
-        onClick={getCreateAcct}
-        signup="createAcct-btn"
+
       >
         <Input
           className="signIn-input"
@@ -50,7 +47,10 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
           placeholder="Password"
           required={true}
         />
-      </Form>
+         <button type="submit" className="form-btn" >Log In</button>
+        <hr className="form-hr" />
+        <button onClick={getCreateAcct} className="createAcct-btn" type="button">Create New Account</button>
+      </form>
     </div >
   )
 }
