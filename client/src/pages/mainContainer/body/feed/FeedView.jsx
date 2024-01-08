@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import FeedContainer from "../../../../components/feeds/FeedContainer"
+import FeedContainer from "../../../../components/feeds/feedContainer/FeedContainer"
 
 import AddFeed from "../../../../components/feeds/AddFeed"
 
