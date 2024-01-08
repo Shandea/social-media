@@ -42,7 +42,8 @@ module.exports = {
                         birthDate: req.body.birthDate,
                         phone: req.body.phone,
                         firstName: req.body.firstname,
-                        lastName: req.body.lastname
+                        lastName: req.body.lastname,
+                        profileImg: `/public/default.jpeg`
 
                     })
                     User.create(newUser)
@@ -98,7 +99,7 @@ module.exports = {
         }
         catch (error) {
             console.log("catch error hit", error)
-            res.status(500).json({ error: 'Login failed' });
+            res.json({ error: 'Login failed' });
         }
     },
     // hmmm
