@@ -108,6 +108,15 @@ module.exports = {
 
     logout: (req, res) => {
         
+        ///// ADD isOnline false
+        console.log("req-local - logout", req.locals)
+        User.findById(req.locals.userId)
+            .then(found => {
+                found.isOnline = false
+                found.save()
+            })
+            .catch(err => console.log("logout err", err))
+
         console.log("logging out")
          res.cookie("jwt", "LOGGEDOUT", {expiresIn: new Date(Date.now)}).status(201).json({"Logged": "Out"})
         // , {
