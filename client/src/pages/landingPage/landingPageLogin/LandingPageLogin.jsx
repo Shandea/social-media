@@ -6,9 +6,13 @@ import { useNavigate } from 'react-router'
 
 import { connect } from "react-redux"
 import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
+import React, {useState} from 'react'
 
 const LandingPageLogin = ({ authState, getCreateAcct }) => {
   let nav = useNavigate()
+  let [errorMsg, setErrorMsg] = useState("")
+
+  // let loginMsg = ""
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -17,11 +21,15 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
     // const checkUser = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()_+-=[]{}])([A-Za-z0-9_!@#$%^&*()+-={}[]]){8,}/gi
     let { email, password } = authState
 
+
     const login = Object.assign({}, { email, password })
     // console.log("dfs", login)
     API.login(login).then(res => {
       if (res.message === "Logged in successfully") {
         nav("/feed")
+      }else{
+        setErrorMsg("Something went bad")
+        // console.log('error hit')
       }
     })
   }
@@ -48,6 +56,7 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
           required={true}
         />
          <button type="submit" className="form-btn" >Log In</button>
+         <p>{errorMsg}</p>
         <hr className="form-hr" />
         <button onClick={getCreateAcct} className="createAcct-btn" type="button">Create New Account</button>
       </form>

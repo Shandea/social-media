@@ -3,7 +3,7 @@ import Form from "../../../components/block-comps/Form";
 import Input from "../../../components/block-comps/Inputs";
 import React, { useState } from "react"; //added this, may just use redux store for comparison though -graham
 import API from "../../../config/api";
-import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
+import { getCreateAcct } from "../../../config/redux/actions/AuthActions";
 import { connect } from "react-redux";
 
 import { motion } from "framer-motion";
@@ -28,13 +28,11 @@ const dropIn = {
   },
 };
 
-const LandingPageSignup = ({ authState,getCreateAcct }) => {
+const LandingPageSignup = ({ authState, getCreateAcct }) => {
   let nav = useNavigate();
-
 
   const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/; // one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
   const emailRegex = /^\S+@\S+\.\S+$/; // cuts spaces, no domain, ensures period
-
 
   const handleSubmit = (e, reg) => {
     console.log("my state", authState);
@@ -43,7 +41,7 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
     //created api folder... check config folder
 
     // this line is to make the phone number straight numbers. Gotta rember to format it other places -graham
-    authState.phone = authState.phone.replace(/[^\d]/g, '')
+    authState.phone = authState.phone.replace(/[^\d]/g, "");
 
     API.register(authState).then((res) => {
       console.log("reg res", res);
@@ -53,14 +51,11 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
     });
   };
 
-
-
   return (
     <div className="container-right">
       <form
         onSubmit={(e) => handleSubmit(e)}
         className="signup-form"
-
         signup="signup-btn"
       >
         <motion.div
@@ -109,7 +104,7 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
             />
 
             <p>
-              {emailRegex.test(authState.email) ? "Valid Email" : "Bad Email"}
+              {emailRegex.test(authState.email) || authState.email=="" ? null : "Bad Email"}
             </p>
 
             <Input
@@ -130,7 +125,9 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
             />
 
             <p>
-              {passRegex.test(authState.password) ? "Valid pass" : "Badd Pass"}
+              {passRegex.test(authState.password) || authState.password == ""
+                ? null
+                : "Badd Pass"}
             </p>
 
             <Input
@@ -142,9 +139,9 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
               required={true}
             />
             <p>
-                {
-                    authState.password==authState.confirmPassword?'Passwords Match' : "Passwords Don't Match"
-                }
+              {authState.password == authState.confirmPassword
+                ? null
+                : "Passwords Don't Match"}
             </p>
           </div>
 
@@ -173,13 +170,13 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
               placeholder="Zipcode"
               required={true}
             />
-            <br/>
-<p>
-    {
-        authState.location.zipcode.length==5? null : "Please use 5 digit zipcode"
-    }
-</p>
-
+            <br />
+            <p>
+              {authState.location.zipcode.length == 5 ||
+              authState.location.zipcode == ""
+                ? null
+                : "Please use 5 digit zipcode"}
+            </p>
           </div>
           <label>Birth Date</label>
           <div className="birth-date">
@@ -188,42 +185,42 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
               type="text"
               name="birthDate.month"
               value={authState.birthDate.month || ""}
-              placeholder="03"
+            //   placeholder="03"
               required={true}
-              maxLength="2" 
+              maxLength="2"
             />
             <Input
               className=" birth-date-input"
               type="text"
               name="birthDate.day"
               value={authState.birthDate.day || ""}
-              placeholder="30"
+            //   placeholder="30"
               required={true}
-              maxLength="2" 
+              maxLength="2"
             />
             <Input
               className=" birth-date-input"
               type="text"
               name="birthDate.year"
               value={authState.birthDate.year || ""}
-              placeholder="2000"
+            //   placeholder="2000"
               required={true}
-              maxLength="4" 
+              maxLength="4"
             />
             <p>
-                {
-                    authState.birthDate.month>12 || authState.birthDate.month<1? "Use a real month please" : null
-                }
+              {authState.birthDate.month > 12 || authState.birthDate.month < 1
+                ? "Use a real month please"
+                : null}
             </p>
             <p>
-                {
-                    authState.birthDate.day>32 || authState.birthDate.month<1? "Use a real day please" : null
-                }
+              {authState.birthDate.day > 32 || authState.birthDate.month < 1
+                ? "Use a real day please"
+                : null}
             </p>
             <p>
-                {
-                    authState.birthDate.year.length>4? "Please use 4 digits for year" : null
-                }
+              {authState.birthDate.year.length > 4
+                ? "Please use 4 digits for year"
+                : null}
             </p>
           </div>
 
@@ -265,12 +262,9 @@ const LandingPageSignup = ({ authState,getCreateAcct }) => {
           </div>
         </motion.div>
 
+        {/* THIS PART MUST BE UNCOMMENTED. temporarily commented out for our convenience */}
 
-
-
-{/* THIS PART MUST BE UNCOMMENTED. temporarily commented out for our convenience */}
-
-{/* 
+        {/* 
 {
 passRegex.test(authState.password) &
 emailRegex.test(authState.email)  &
@@ -280,22 +274,21 @@ authState.lastname.length>0 &
 authState.username.length>0 & 
 authState.phone.length>9
  ? <button type="submit" className="form-btn" >Sign Up</button> : <button type="submit" className="form-btnBAD" disabled='true'>Something Wrong</button>} */}
-       
-       
-       
-       
 
-       
-       {/* you gott get rid of tis line VVV for deployment */}
-       
-        <button type="submit" className="form-btn" >Sign Up</button>
-       
-       
-       
-       
-       
+        {/* you gott get rid of tis line VVV for deployment */}
+
+        <button type="submit" className="form-btn">
+          Sign Up
+        </button>
+
         <hr className="form-hr" />
-        <button onClick={getCreateAcct} className="createAcct-btn" type="button">Login</button>
+        <button
+          onClick={getCreateAcct}
+          className="createAcct-btn"
+          type="button"
+        >
+          Login
+        </button>
       </form>
     </div>
   );
@@ -307,8 +300,8 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-    return {
-      getCreateAcct: () => dispatch(getCreateAcct())
-    }
-  }
+  return {
+    getCreateAcct: () => dispatch(getCreateAcct()),
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPageSignup);
