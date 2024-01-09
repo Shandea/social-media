@@ -8,6 +8,7 @@
     padding:auto;
     overflow: auto;
     margin: 0;
+    background-color: whitesmoke;
 }
 .leftnavcontainer a {
     text-decoration: none;

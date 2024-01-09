@@ -19,6 +19,7 @@ body, html {
 :root{
     --primary-gradient-text: -webkit-linear-gradient(#dc07d8, #ffffff);
     --primary-btn: linear-gradient(180deg, #ffffff 50%,#7d357c);
+    --blue-gradient: linear-gradient(97.05deg, rgba(255, 0, 255, 0.727) 3.76%, rgb(174, 60, 174) 100%);
 
     /* regular/matte colors */
     --primary:#dc07d8;
