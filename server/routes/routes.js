@@ -8,7 +8,7 @@ module.exports = app => {
     app.post("/user/register", UserController.register)
     app.post("/user/login", UserController.login)
     app.get("/user/authCheck",  UserController.authCheck)
-    app.get("/user/logout", UserController.logout)
+    app.get("/user/logout", AuthCheck, UserController.logout)
 
 
     app.get("/user/getProfile", AuthCheck, UserController.getUser)
@@ -28,6 +28,7 @@ module.exports = app => {
 
     app.post("/api/addFeed", AuthCheck, FeedController.addFeed)
     app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
+    app.put("/api/feeds/addFeedLike", AuthCheck, FeedController.addFeedLike)
 
 
 

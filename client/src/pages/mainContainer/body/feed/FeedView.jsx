@@ -29,7 +29,25 @@ export default function Feed() {
 
     const [feeds, setFeeds] = useState([])
 
+    const handleAddLike = (e) => {
+        console.log("adding like", e.target.id)
 
+        axios({
+            method: "put",
+            url: "http://localhost:5000/api/feeds/addfeedlike",
+            data: { id: e.target.id },
+            withCredentials: true
+        })
+            .then(res => {
+                console.log("add like RES", res)
+
+                console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
+
+                setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
+
+            })
+
+    }
 
 
     return (
@@ -57,10 +75,12 @@ export default function Feed() {
                 {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
                     return (
                         <div key={i}
-                      
-                        
+
+
                         >
-                            <FeedContainer obj={obj} />
+                            <FeedContainer
+                                handleAddLike={handleAddLike}
+                                obj={obj} />
                         </div>
                     )
 
