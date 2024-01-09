@@ -43,7 +43,7 @@ const handleShowRightDM = ()=>{
 };
 
 const mapStateToProps = (state) => {
-  console.warn("WTF", state)
+  // console.warn("WTF", state)
   return {
     authState: state.auth
   }

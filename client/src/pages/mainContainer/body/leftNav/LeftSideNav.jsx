@@ -1,12 +1,33 @@
 import "./LeftSideNav.css";
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { BsGlobeAmericas } from "react-icons/bs";
 
 import { connect } from "react-redux";
 
+import axios from 'axios'
+
 const LeftSideNav = ({ profile }) => {
+
+  let nav = useNavigate()
+
+const handleLogout = (e) => {
+  console.log("logging out")
+  // e.preventDefault()
+  axios({
+    method: "get",
+    url: "http://localhost:5000/user/logout",
+    withCredentials: true
+  }).then(res => {
+    console.log("logout", res)
+    nav("/")
+  }
+  )
+  .catch(err => console.log("logouterr", err))
+  // nav("/")
+}
+
 
   return (
     <>
@@ -70,11 +91,18 @@ const LeftSideNav = ({ profile }) => {
         <div>
           <Link
             to={`/hobby/`}
+            onClick={(e) => handleLogout(e)}
           // className={leftNav.mainFeed === "Hobby" ? "focusedOption" : null}
           >
             Hobby
           </Link>
         </div>
+
+
+
+<div onClick={handleLogout}>logout</div>
+
+
       </div>
     </>
   );
