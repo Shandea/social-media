@@ -60,7 +60,25 @@ module.exports = {
     },
 
 
+    // Messages.aggregate([
+    //     {
+    //         $match:
+    //             { recipient: req.user._id }
+    //     },
+    //     // {
+    //     //     $project: { 
+    //     //         senderName: 1,
+    //     //         recipient: 1
+    //     //     }
+    //     // },
+    //     {
+    //         $group: {
+    //             _id: { sender: '$senderName', id: '$sender' },
+    //             ///  add new message [] here for accurate count
 
+    //         }
+    //     },
+    // ])
 
 
 

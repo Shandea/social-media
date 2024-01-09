@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const  Body = (props)=> {
 
-    console.log("body props", props)
+    // console.log("body props", props)
 
     return (
         <>

@@ -16,7 +16,7 @@ module.exports = {
 
         User.findOne({ email: req.body.email })
             .then(found => {
-                console.log("found", found)
+                console.log("found user")
                 // if (!req.body.password) {
                 //     res.json("Register error, please fill out fields")
                 // }
@@ -105,10 +105,21 @@ module.exports = {
             res.json({ error: 'Login failed' });
         }
     },
+
+    logout: (req, res) => {
+        
+        console.log("logging out")
+         res.cookie("jwt", "LOGGEDOUT", {expiresIn: new Date(Date.now)}).status(201).json({"Logged": "Out"})
+        // , {
+        //     // expires: new Date(Date.now()),
+        //     httpOnly: true,
+        //     secure: false
+        // })
+    },
     // hmmm
     authCheck: (req, res) => {
-        console.log("req.heas", req.cookies)
-        console.log("req.cookies.jwt ::::", req.cookies['jwt'])
+        // console.log("req.heas", req.cookies)
+        // console.log("req.cookies.jwt ::::", req.cookies['jwt'])
         if (!req.cookies['jwt']) {
             // console.log("req.cookies", req.cookies)
             // console.log("cookie found")
@@ -135,7 +146,7 @@ module.exports = {
         console.log("get user HIT", req.locals)
         User.findById(req.locals.userId)
             .then(found => {
-                console.log("found", found)
+                // console.log("found", found)
                 res.json(found)
             })
     },
@@ -144,7 +155,7 @@ module.exports = {
         console.log("get user HIT", req.body._id)
         User.findById(req.body._id)
             .then(found => {
-                console.log("found", found)
+                // console.log("found", found)
                 res.json(found)
             })
     },
