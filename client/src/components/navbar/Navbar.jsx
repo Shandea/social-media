@@ -63,7 +63,7 @@ const Navbar = ({props, authState}) => {
         //             <span className="badge">3</span>
         //         </a>
         //         {/* user image goes here */}
-        //         <span className=" othertest" ><img className="imgtest" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" /></span>
+                // <span className=" othertest" ><img className="imgtest" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" /></span>
 
         //     </div>
         // </div>
@@ -102,7 +102,8 @@ const Navbar = ({props, authState}) => {
             <div className="circle icon"><FaRegComment /></div>
             <div className="circle icon" ><FaBell /></div>
             <div className="circle1">
-              <img src={hacker6} alt="" className="img1"/>
+              {/* <img src={hacker6} alt="" className="img1"/> */}
+              <img className="img1" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" />
             </div>
           </div>
         </div>
