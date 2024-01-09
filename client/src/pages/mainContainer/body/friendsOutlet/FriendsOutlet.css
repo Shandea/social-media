@@ -12,7 +12,7 @@
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
 }
 .friendsoutletcontainer img {
-  height: 150px;
+  height: 100%;
   width: 100%;
   /* border-radius: 50%; */
   /* border: solid black; */
@@ -38,11 +38,10 @@
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
   display: flex;
   flex-direction: column;
-  height: 300px;
-  width: 200px;
   background-color: white;
-  margin-left: 30px;
-  margin-top: 30px;
+  height: auto;
+  width: 200px;
+  margin: 50px;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -166,6 +165,7 @@
   border: none;
   width: 150px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .btn:hover {
