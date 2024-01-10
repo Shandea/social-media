@@ -9,20 +9,17 @@
 .MainContentContainer {
     background-color: whitesmoke;
     grid-area: mid;
-    overflow-y: auto;
-    border-left: 1px solid var(--primary);
+    /* border-left: 1px solid var(--primary); */
     border-right: 1px solid var(--primary);
     min-height: 0;
-
+height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     /* margin: 5px 10px; */
 }
-.MainContentContainer::-webkit-scrollbar {
-    display: none;
-}
+
 .RightSideContainer {
     /* background-color: rgb(131, 20, 24); */
     background-color:white;

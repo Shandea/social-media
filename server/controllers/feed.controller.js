@@ -60,7 +60,64 @@ module.exports = {
     },
 
 
+    addFeedLike: (req, res) => {
+        console.log("req body ADD Like", req.body, "reqlocal-userId", req.locals.userId)
+        Feeds.findById(req.body.id)
+            .then(found => {
+                console.log("found feed", found)
 
+                // when ready to restrict votes to one user
+                // if (!found.likedBy.includes(req.locals.userId)) {
+
+                    found.likes += 1
+                    found.likedBy.push(req.locals.userId)
+                    found.save()
+
+                    User.findByIdAndUpdate({ _id: found.author },
+                        {
+                            $push: {
+                                notifications: [
+                                    {
+                                        like: {
+                                            likedDoc: found._id,
+                                            user: req.locals.username,
+                                            userId: req.locals.userId,
+                                            createdAt: new Date(),
+                                            ogFeed: found.OgFeed
+                                        }
+                                    }
+                                ]
+                            }
+                        })
+
+                        .then(res.json(found))
+                        .catch(err => console.log("add like ERROR", err))
+                // } else {
+                //     res.json({message: "You have already voted"})
+                // }
+            })
+    }
+
+
+    // Messages.aggregate([
+    //     {
+    //         $match:
+    //             { recipient: req.user._id }
+    //     },
+    //     // {
+    //     //     $project: { 
+    //     //         senderName: 1,
+    //     //         recipient: 1
+    //     //     }
+    //     // },
+    //     {
+    //         $group: {
+    //             _id: { sender: '$senderName', id: '$sender' },
+    //             ///  add new message [] here for accurate count
+
+    //         }
+    //     },
+    // ])
 
 
 

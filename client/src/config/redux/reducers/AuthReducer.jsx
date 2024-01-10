@@ -33,9 +33,9 @@ let initialState = {
         zipcode: ""
     },
     birthDate: {
-        month: "",
-        day: "",
-        year: ""
+        month: "01",
+        day: "01",
+        year: "2000"
     },
     gender: "",
     bio: "",

@@ -9,6 +9,8 @@ import {
 
 import API from "../../../../../config/api/Api";
 
+import FriendStatus from "../../../../../components/friends/friendStatus/FriendStatus";
+
 const ViewProfile = (props) => {
   let nav = useNavigate();
   let fakeimages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -39,6 +41,11 @@ useEffect(()=>{
                 <img alt="" src={`http://localhost:5000${profileView.profileImg}`} />
               </span>
             </div>
+
+            <div>
+              <FriendStatus id={id}/>
+            </div>
+
             <div className="profileScroll">
 
               <div className="leftScroll">

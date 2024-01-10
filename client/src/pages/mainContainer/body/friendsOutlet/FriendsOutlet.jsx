@@ -72,26 +72,26 @@ console.log('BlockedFriends: ', BlockedFriends)
 
   return (
     <div className="friendsoutletcontainer">
-      <h2>Friends</h2>
+      {/* <h2>Friends</h2> */}
       
       
       
       
       
       <div className="friendrequests">
-        <h4>Friends requests:</h4>
+        <h5>Friend Requests</h5>
         <div className='requestsdiv'>
         {
         PendingFriends.map((friend, i)=>{
           return(
             <div key={i} className='pendingfriend'>
-              <h4>{friend.username}</h4>
+              {/* <h4>{friend.username}</h4> */}
               <img src={friend.profileImg} alt='friendProfileImg'/>
-              <h6>{friend.firstName}</h6>
-              <h6>{friend.lastname}</h6>
+              <p className="name1">{friend.firstName} {friend.lastname}</p>
+              
               <div className='pendingfriendsbuttons'>
-                <button>accept</button>
-                <button>reject</button>
+                <button className="btn">Accept</button>
+                <button className="btn1">Reject</button>
               </div>
             </div>
           )
@@ -104,21 +104,21 @@ console.log('BlockedFriends: ', BlockedFriends)
 
 
 
-
+      <hr className="line"/>
       <div className="currentfriends">
-        <h4>Friends:</h4>
+        <h4 className="FS">Friends</h4>
         <div className='accepteddiv'>
         {
        AcceptedFriends.map((friend, i)=>{
           return(
             <div key={i} className='acceptedfriend'>
-              <h4>{friend.username}</h4>
+              {/* <h4>{friend.username}</h4> */}
               <img src={friend.profileImg} alt='friendProfileImg'/>
-              <h6>{friend.firstName}</h6>
-              <h6>{friend.lastname}</h6>
+              <p className="name1">{friend.firstName} {friend.lastname}</p>
+              
               <div className='acceptedfriendsbuttons'>
-                <button>Message</button>
-                <button>Block</button>
+                <button className="btn">Message</button>
+                <button className="btn1">Block</button>
               </div>
             </div>
           )
@@ -132,20 +132,20 @@ console.log('BlockedFriends: ', BlockedFriends)
 
 
 
-
+      <hr className="line"/>
       <div className="blockedlist">
-        <h4>Blocked People:</h4>
+        <h4 className="FS">Blocked Friends</h4>
         <div className='blockeddiv'>
         {
       BlockedFriends.map((friend, i)=>{
           return(
             <div key={i} className='blockedfriend'>
-              <h4>{friend.username}</h4>
+              {/* <h4>{friend.username}</h4> */}
               <img src={friend.profileImg} alt='friendProfileImg'/>
-              <h6>{friend.firstName}</h6>
-              <h6>{friend.lastname}</h6>
+              <p className="name1">{friend.firstName} {friend.lastname}</p>
+              
               <div className='blockedfriendsbuttons'>
-                <button>Unblock</button>
+                <button className="btn">Unblock</button>
               </div>
             </div>
           )

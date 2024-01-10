@@ -15,21 +15,24 @@ function ProtectedRoutes() {
     const [loggedIn, setLoggedIn] = useState(false)
 
     useEffect(() => {
-
-        // axios.defaults.withCredentials = true
-        // axios({
-        //     method: "GET",
-        //     // withCredentials: true,
-        //     url: 'http://localhost:5000/user/authCheck',
-        // })
-        API.getUser()
+        console.log("Prot RT useEffect FIRE")
+        axios.defaults.withCredentials = true
+        axios({
+            method: "GET",
+            withCredentials: true,
+            url: 'http://localhost:5000/user/authCheck',
+        })
+        // API.getUser()
             .then(res => {
-                // console.log("still good", res.user)
-                if (res.message == "proceed") {
+
+                console.log("still good", res.data)
+                if (res.data.message == "proceed") {
+
                     // nav("/feed")
                     return
                     //store res.data (user) in redux
                 } else {
+                    console.log("ProtecteRoute bad auth should reroute")
                     nav("/")
                     // nav
                 }
@@ -81,7 +84,7 @@ function ProtectedRoutes() {
 
 const mapStateToProps = (state) => {
     return {
-        authState:state.auth
+        authState: state.auth
 
     }
 }

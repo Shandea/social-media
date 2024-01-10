@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
         }
     }
     catch {
-        console.log("CATCH HIT")
+        console.log("CATCH HIT from auth middleware")
     }
 }
 

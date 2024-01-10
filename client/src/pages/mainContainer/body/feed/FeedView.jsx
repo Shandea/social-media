@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import FeedContainer from "../../../../components/feeds/FeedContainer"
+import FeedContainer from "../../../../components/feeds/feedContainer/FeedContainer"
 
 import AddFeed from "../../../../components/feeds/AddFeed"
 
@@ -29,7 +29,25 @@ export default function Feed() {
 
     const [feeds, setFeeds] = useState([])
 
+    const handleAddLike = (e) => {
+        console.log("adding like", e.target.id)
 
+        axios({
+            method: "put",
+            url: "http://localhost:5000/api/feeds/addfeedlike",
+            data: { id: e.target.id },
+            withCredentials: true
+        })
+            .then(res => {
+                console.log("add like RES", res)
+
+                console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
+
+                setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
+
+            })
+
+    }
 
 
     return (
@@ -40,7 +58,7 @@ export default function Feed() {
                 style={{ border: "black 2px solid", display: 'flex', justifyContent: 'space-evenly' }}
             >
 
-                <FeedActions />
+                {/* <FeedActions /> */}
 
             </div>
 
@@ -50,11 +68,19 @@ export default function Feed() {
 
             {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
 
-            <div className='feedContainer'>
+            <div className='feedContainer' style={{
+                marginTop: "20px",
+                overflowY: "auto"
+            }}>
                 {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
                     return (
-                        <div key={i}>
-                            <FeedContainer obj={obj} />
+                        <div key={i}
+
+
+                        >
+                            <FeedContainer
+                                handleAddLike={handleAddLike}
+                                obj={obj} />
                         </div>
                     )
 

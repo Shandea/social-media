@@ -1,0 +1,35 @@
+.postcontainer {
+    width: 500px;
+    border: solid rgba(128, 128, 128, 0.525) 1px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
+   
+}
+
+.addpost {
+    display: flex;
+    align-items: center;
+}
+
+.addpostbottom {
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon1 {
+color: green;
+font-size: xx-large;
+}
+
+.icon2 {
+    color: blue;
+    font-size: xx-large;
+}
+
+.icon3 {
+    color: yellow;
+    font-size: xx-large;
+}
