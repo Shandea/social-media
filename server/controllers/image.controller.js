@@ -17,7 +17,10 @@ module.exports = {
         // let reg = /^\s+|\s+$/g
         image.name = image.name.replace(" ", '_')
 
-
+        if(req.locals.userId == "undefined"){
+            console.log("req locals undefined?")
+            res.status(400).json({message: "something went wrong"})
+        }
 
 
         console.log("image", image)

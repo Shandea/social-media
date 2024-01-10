@@ -36,6 +36,7 @@ const ImageUpload = () => {
 
     return (
         <>
+        {/* {console.log("formdata", formData)} */}
 
             <form onSubmit={handleSubmit} >
 
