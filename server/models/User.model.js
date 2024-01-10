@@ -22,7 +22,12 @@ const UserSchema = new Schema({
     gender: String,
     age: Number,
 
-    bio: String,
+    details:{
+        bio: String,
+        education: String,
+        localInfo: String,
+        maritalStatus: String
+    },
     pronoun: String,
     location: {
         city: String,

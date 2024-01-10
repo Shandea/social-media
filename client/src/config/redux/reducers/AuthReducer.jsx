@@ -10,7 +10,7 @@ import {
 let initialState = {
     //flags
     createAcct: false,
-    showDM:false,
+    showDM: false,
 
 
     //state obj
@@ -18,7 +18,7 @@ let initialState = {
     allUsers: [],
     user: {},
     userProfile: {},
-    error:null,
+    error: null,
 
     firstname: "",
     lastname: "",
@@ -37,14 +37,35 @@ let initialState = {
         day: "01",
         year: "2000"
     },
-    gender: ""
+    gender: "",
+    bio: "",
+    details: {
+        education: "",
+        localInfo: "",
+        maritalStatus: ""
+    }
+
+
 }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case HANDLE_INPUTS_AUTH:
             let { name, value } = action.payload
-            if (name.startsWith('location')) {
+
+            if
+                (name.startsWith('details')) {
+                const detailsField = name.split('.')[1];
+                return {
+                    ...state,
+                    details: {
+                        ...state.details,
+                        [detailsField]: value,
+                    },
+                };
+            }
+            if
+                (name.startsWith('location')) {
                 const locationField = name.split('.')[1];
                 return {
                     ...state,
@@ -68,6 +89,8 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 [name]: value
             }
+
+
         case GET_CREATE_ACCT:
             return {
                 ...state,
@@ -76,28 +99,28 @@ const authReducer = (state = initialState, action) => {
         case GET_ALL_USERS:
             return {
                 ...state,
-                allUsers:[...state.allUsers, action.payload ]
+                allUsers: [...state.allUsers, action.payload]
             }
         case GET_USER:
-            let {username, userId} = action.payload.user
+            let { username, userId } = action.payload.user
             // console.log(action.payload)
             return {
                 ...state,
-                user:Object.assign(state.user,{username, userId})
+                user: Object.assign(state.user, { username, userId })
             }
         case GET_PROFILE:
-            
+
             // console.log("get profile obj_:",action.payload)
             return {
                 ...state,
-                userProfile:Object.assign(state.userProfile,action.payload)
+                userProfile: Object.assign(state.userProfile, action.payload)
             }
         case SHOW_DM:
-            
+
             // console.log("get profile obj_:",action.payload)
             return {
                 ...state,
-                showDM:!state.showDM
+                showDM: !state.showDM
             }
         default:
             return state

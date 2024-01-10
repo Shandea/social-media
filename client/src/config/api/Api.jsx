@@ -80,6 +80,25 @@ const API = {
       throw error;
     }
   },
+  updateProfileBio: async (info) => {
+    console.log("firing", info)
+    let details = {
+      bio:info.bio,
+      education:info.details.education,
+      localInfo:info.details.localInfo,
+      maritalStatus:info.details.maritalStatus,
+    }
+    console.log(details)
+    try {
+      const response = await instance.patch(`/user/updatebio`,{details:details});
+      // console.log("from backend view profile", response.data);
+      const usersData = response.data
+      return usersData;
+    } catch (error) {
+      console.error("Error in userAll:", error);
+      throw error;
+    }
+  },
 };
 
 export default API;

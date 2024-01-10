@@ -3,6 +3,7 @@ const AuthCheck = require("../middleware/auth")
 const ImageController = require("../controllers/image.controller")
 const FeedController = require("../controllers/feed.controller")
 
+
 module.exports = app => {
 
     app.post("/user/register", UserController.register)
@@ -50,5 +51,7 @@ module.exports = app => {
     })
 
     app.get("/user/all", UserController.all)
+
+    app.patch("/user/updatebio",AuthCheck, UserController.updateBio)
 
 }
