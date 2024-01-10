@@ -181,6 +181,102 @@ module.exports = {
                 }
             })
             .catch(err => console.log(err))
+    }, 
+
+
+
+
+    addFriend: (req, res) => {
+        console.log("adding Friend")
+        console.log("id", req.locals.userId, "req-body", req.body)
+
+        let messageId = [req.locals.userId, req.body.id].sort().join("")
+
+        User.findById(req.locals.userId) // Logged In User
+            .then(found => {
+                console.log("Current User", found, "req.body.userId", req.body)
+                let filter = found.friends.filter((obj) => obj.userId.toString() === req.body.id.toString())
+                console.log("filter", filter)
+
+                if (filter.length) {
+
+                    if (filter[0].friendStatus == "requested") {
+                        console.log("requested to approved")
+                        filter[0].friendStatus = "approved"
+                        found.save()
+                    } else if (filter[0].friend == "removed") {
+                        filter[0].friendStatus = "pending"
+                        found.save()
+                    } else if
+                        (filter[0].friendStatus == "approved") {
+                        console.log("requested to remove")
+                        filter[0].friendStatus = "removed"
+                        found.save()
+                    }
+                }
+
+                User.findById(req.body.id) // friend to add
+                    .then(userFound => { // friend to add
+                        let filter2 = userFound.friends.filter((obj) => obj.userId.toString() === req.locals.userId.toString())
+                        console.log("filter2", filter2)
+                        if (filter2.length) {
+
+                            if (filter2[0].friendStatus === "pending") {
+                                console.log("pending to approved")
+                                filter2[0].friendStatus = "approved"
+                                userFound.save()
+                                // filter2.save()
+                                // socket.emit("addFriend", userFound._id)
+                            } else if (filter2[0].friend === "removed") {
+                                filter2[0].friendStatus = 'requested'
+                                userFound.save()
+                            } else
+                                if (filter2[0].friendStatus === "approved") {
+                                    console.log("pending to approved")
+                                    filter2[0].friendStatus = "removed"
+                                    userFound.save()
+                                    // filter2.save()
+                                    // socket.emit("addFriend", userFound._id)
+                                }
+
+
+                        } else if (found.friends.filter((obj) => obj.userId !== userFound._id)) {
+                         
+                            console.log("NO friends, fresh match")
+                            // if FOUND has friend userFound and friend === pending, change ot approved....
+
+                            found.friends.push({
+                                username: userFound.username,
+                                userId: userFound._id,
+                                messageId: messageId,
+                                friendStatus: "pending",
+                                created: new Date()
+                            })
+                            console.log("useerFound-2nd add friend", userFound)
+                            console.log("req friends add", req.locals.userId)
+                            userFound.friends.push({
+                                username: req.locals.username,
+                                userId: req.locals.userId,
+                                messageId: messageId,
+                                friendStatus: "requested",
+                                created: new Date()
+                            })
+                            userFound.save()
+                            found.save()
+                                // .then(added => {
+                                //     console.log("Updated User", added, "found", found)
+                                //     // res.json(added)
+                                // }
+                                // )
+                                // .catch(err => console.log("Error adding friend", err))
+                        }
+                    })
+            })
+
+
+
+
+
     }
 
 

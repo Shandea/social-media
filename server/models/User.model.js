@@ -54,7 +54,7 @@ const UserSchema = new Schema({
 
     friends: [{
         userId: { type: Schema.Types.ObjectId, ref: 'User' },
-        userName: String,
+        username: String,
         messageId: String, // mongoId sorted with userID and merged
         friendStatus: String, // pending, approved, etc
         created: Date,
