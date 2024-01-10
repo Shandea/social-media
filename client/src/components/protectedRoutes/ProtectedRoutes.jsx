@@ -24,7 +24,7 @@ function ProtectedRoutes() {
         // })
         API.getUser()
             .then(res => {
-                console.log("still good", res.user)
+                // console.log("still good", res.user)
                 if (res.message == "proceed") {
                     // nav("/feed")
                     return
@@ -66,7 +66,7 @@ function ProtectedRoutes() {
     return (
         <>
             {/* <div>ProtectedRoutes</div> */}
-            {console.log("Protected Route HIT")}
+            {/* {console.log("Protected Route HIT")} */}
             {/* {console.log(useOutlet() ? "outlet true " : "outlet false")} */}
 
             {/* replace true with context authed user once built */}

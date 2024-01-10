@@ -17,6 +17,7 @@ const Inputs = (props) => {
             max={props.max}
             step={props.step}
             checked={props.checked}
+            defaultValue={props.defaultValue}
         />
     )
 }
