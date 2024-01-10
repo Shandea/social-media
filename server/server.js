@@ -45,13 +45,12 @@ app.set('json spaces', 2)
 
 
 
-
 app.listen(port, () => {
   // Perform a database connection when server starts
 
   mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("connected to Database")
-  })
+  }).catch(err => console.log("err", err, process.env.MONGO_URI))
 
   console.log(`Server is running on port: ${port}`);
 });
