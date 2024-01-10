@@ -204,31 +204,35 @@ module.exports = {
 
     addFriend: (req, res) => {
         console.log("adding Friend")
-        console.log("id", req.locals.userId, "req-body", req.body)
+        console.log("Logged In", req.locals.userId, "req-body", req.body)
 
         let messageId = [req.locals.userId, req.body.id].sort().join("")
 
         User.findById(req.locals.userId) // Logged In User
             .then(found => {
-                console.log("Current User", found, "req.body.userId", req.body)
+                console.log("Current User", found.username, "req.body.userId", req.body)
                 let filter = found.friends.filter((obj) => obj.userId.toString() === req.body.id.toString())
                 console.log("filter", filter)
 
                 if (filter.length) {
 
+                    console.log("if FILTER.length   =>  line 219")
+
                     if (filter[0].friendStatus == "requested") {
-                        console.log("requested to approved")
+                        console.log("status =  REQUESTED => approved")
                         filter[0].friendStatus = "approved"
                         found.save()
-                    } else if (filter[0].friend == "removed") {
+                    } else if (filter[0].friendStatus == "removed") {
+                        console.log("status = REMOVED", filter[0].friendStatus)
                         filter[0].friendStatus = "pending"
                         found.save()
-                    } else if
-                        (filter[0].friendStatus == "approved") {
-                        console.log("requested to remove")
-                        filter[0].friendStatus = "removed"
-                        found.save()
-                    }
+                    } 
+                    // else if
+                    //     (filter[0].friendStatus == "approved") {
+                    //     console.log("requested to remove")
+                    //     filter[0].friendStatus = "removed"
+                    //     found.save()
+                    // }
                 }
 
                 User.findById(req.body.id) // friend to add
@@ -237,23 +241,28 @@ module.exports = {
                         console.log("filter2", filter2)
                         if (filter2.length) {
 
+
+                            console.log("FILTER 2 length => 245")
+
                             if (filter2[0].friendStatus === "pending") {
                                 console.log("pending to approved")
                                 filter2[0].friendStatus = "approved"
                                 userFound.save()
                                 // filter2.save()
                                 // socket.emit("addFriend", userFound._id)
-                            } else if (filter2[0].friend === "removed") {
+                            } else if (filter2[0].friendStatus === "removed") {
                                 filter2[0].friendStatus = 'requested'
                                 userFound.save()
-                            } else
-                                if (filter2[0].friendStatus === "approved") {
-                                    console.log("pending to approved")
-                                    filter2[0].friendStatus = "removed"
-                                    userFound.save()
-                                    // filter2.save()
-                                    // socket.emit("addFriend", userFound._id)
-                                }
+                            } 
+                            // else
+                            //     if (filter2[0].friendStatus === "approved") {
+                            //         console.log("pending to approved")
+                            //         filter2[0].friendStatus = "removed"
+                            //         userFound.save()
+
+                            //         // filter2.save()
+                            //         // socket.emit("addFriend", userFound._id)
+                            //     }
 
 
                         } else if (found.friends.filter((obj) => obj.userId !== userFound._id)) {
