@@ -1,17 +1,262 @@
-.messsagescomponentcontainer {
-    border: solid yellow 3px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .messsagescomponentcontainer h2 {
-    font-size: x-large;
-    color:black;
-  }
-  .messsagescomponentcontainer p{
-    font-size: large;
-    color:blue;
-  }
-  
+.mainmessagecontainer {
+  display: flex;
+  /* border: solid 1px rgba(128, 128, 128, 0.238); */
+  width: 100%;
+  height: 100%;
+}
+
+.messageleft {
+  /* border: solid 1px rgba(128, 128, 128, 0.238); */
+width: 400px;
+height: 625px;
+box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
+}
+
+.messageright {
+  /* border: solid 1px rgba(128, 128, 128, 0.238); */
+  width: 70%;
+  height: 625px;
+}
+
+.header {
+ display: flex;
+}
+
+.headerleft {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+ margin: 5px;
+ font-weight: bolder;
+}
+
+.headerright {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+ margin: 5px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+width: 35px;
+height: 35px;
+border-radius: 50%;
+background-color: rgba(128, 128, 128, 0.363);
+}
+
+#search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchdiv {
+  margin: 10px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+/* border: solid black 1px; */
+background-color: rgba(128, 128, 128, 0.142);
+border-radius: 20px;
+height: 40px;
+}
+
+.searchicon {
+  font-size: x-large;
+  color: rgba(128, 128, 128, 0.679);
+}
+
+.searchinput {
+  width: 80%;
+  height: 80%;
+background-color: transparent;
+border: none;
+outline: none;
+}
+
+.contactdiv {
+  width: 100%;
+  /* border: solid blue 1px; */
+  height: 515px;
+}
+
+.messagerighttop {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2) ;
+width: 100%;
+height: 60px;
+/* border: solid 1px rgba(128, 128, 128, 0.238); */
+display: flex;
+}
+
+.messagerighttopleft {
+  display: flex;
+  justify-content: flex-start;
+width: 60%;
+}
+
+.messagerighttopright {
+  display: flex;
+  justify-content: flex-end;
+width: 40%;
+margin: 10px;
+}
+
+
+.contactimg {
+  border: solid black 1px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.contactinfo {
+  width: 75%;
+margin-top: 5px;
+}
+
+.text1 {
+font-weight: bold;
+margin: 3px;
+}
+
+.text2 {
+color: rgba(128, 128, 128, 0.734);
+margin: 3px;
+}
+
+.optiondiv {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--blue-gradient);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+}
+
+.messagerightmiddle {
+display: flex;
+flex-direction: column;
+/* border: solid black 1px; */
+height: 520px;
+overflow-y: auto;
+}
+
+.messagemiddleleft {
+display: flex;
+justify-content: flex-start;
+}
+
+.messagemiddleright {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contactpic {
+border: solid black 1px;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+margin: 10px;
+}
+
+.contactmessage {
+width: 50%;
+height: auto;
+background-color: rgba(128, 128, 128, 0.21);
+border-radius: 30px;
+margin: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-top-right-radius: 5px;
+border-bottom-left-radius: 5px;
+}
+
+.usermessage {
+  width: 50%;
+height: auto;
+background: var(--blue-gradient);
+border-radius: 30px;
+margin: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-top-left-radius: 5px;
+border-bottom-right-radius: 5px;
+color: white;
+padding: 10px;
+}
+
+.messagerightbottom {
+display: flex;
+/* justify-content: space-between; */
+}
+
+.sendmessageicon {
+display: flex;
+}
+
+.plus {
+  width: 25px;
+  height: 25px;
+  background: var(--blue-gradient);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.attachimg {
+  color: rgb(197, 7, 197);
+  font-size: x-large;
+  margin: 10px;
+}
+
+.sendmessageinput {
+  height: 35px;
+  width: 75%;
+  background-color: rgba(128, 128, 128, 0.153);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.messageinput {
+ width: 95%;
+ height: 95%; 
+ border: none;
+outline: none;
+background-color: transparent;
+}
+
+.bttn {
+  height: 35px; 
+  width: 120px;
+  background: var(--blue-gradient);
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.bttn:hover {
+  color: rgb(197, 7, 197);
+  background: white;
+  border: solid 1px rgb(197, 7, 197);
+}
