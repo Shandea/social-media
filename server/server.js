@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser')
 
 const app = express();
 
+const socketServer = require("./config/socketServer")
+
 const cors = require("cors");
 
 require("dotenv").config()
@@ -43,17 +45,19 @@ Router(app)
 app.set('json spaces', 2)
 
 
+const server = socketServer.socketServer(app)
 
 
 
-app.listen(port, () => {
+server.listen(port, () => {
+// app.listen(port, () => {
   // Perform a database connection when server starts
 
   mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("connected to Database")
   })
 
-  console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port} and socket is connected`);
 });
 
 
