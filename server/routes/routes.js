@@ -50,7 +50,7 @@ module.exports = app => {
         res.json({ message: "test good, end points working", user: req.locals })
     })
 
-    app.get("/user/all", UserController.all)
+    app.get("/user/all", AuthCheck, UserController.all)
 
     app.patch("/user/updatebio",AuthCheck, UserController.updateBio)
 

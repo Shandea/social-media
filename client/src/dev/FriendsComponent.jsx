@@ -1,6 +1,6 @@
-import './FriendsComponent.css'
+// import './FriendsComponent.css'
 
-import API from '../../../../config/api/'
+// import API from '../../../../config/api/'
 import { connect } from 'react-redux'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -32,10 +32,14 @@ const FriendsComponent = ({ getAll }) => {
 
     // useEffect(() => {
     socket.on("updateLoggedIn", data => {
+
       console.log("user loggin in")
+
       axios({
         method: "GET",
         url: 'http://localhost:5000/user/all',
+        withCredentials: true
+
       })
         .then(res => {
           setUsers(res.data)
@@ -44,14 +48,17 @@ const FriendsComponent = ({ getAll }) => {
 
 
     socket.on("updateLoggedOut", data => {
+
       console.log("user loggin out")
 
       axios({
         method: "GET",
         url: 'http://localhost:5000/user/all',
+        withCredentials: true
+
       })
         .then(res => {
-          // console.log("res-getusers", res)
+          console.log("res-getusers", res)
           setUsers(res.data)
         })
 

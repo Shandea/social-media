@@ -22,11 +22,11 @@ module.exports = {
 
 
             socket.on('loggedIn', (data) => { // from Login
-                // console.log("Scoket - logged In", data)
+                console.log("Socket - logged In", data)
                 io.emit("updateLoggedIn", data) // to RightBody
             })
             socket.on('loggedOut', (data) => {  // from logged in users
-                // console.log("Socket - logged Out", data)
+                console.log("Socket - logged Out", data)
                 io.emit("updateLoggedOut", data) // to RightBody
             })
 

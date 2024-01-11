@@ -8,6 +8,12 @@ import { connect } from "react-redux"
 import { getCreateAcct } from "../../../config/redux/actions/AuthActions"
 import React, {useState} from 'react'
 
+import io from 'socket.io-client'
+
+
+const socket = io.connect('http://localhost:5000')
+
+
 const LandingPageLogin = ({ authState, getCreateAcct }) => {
   let nav = useNavigate()
   let [errorMsg, setErrorMsg] = useState("")
@@ -26,6 +32,8 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
     // console.log("dfs", login)
     API.login(login).then(res => {
       if (res.message === "Logged in successfully") {
+        socket.emit("loggedIn", "loggedIn")
+
         nav("/feed")
       }else{
         setErrorMsg("Something went bad")
