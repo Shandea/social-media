@@ -276,7 +276,10 @@ module.exports = {
                                 userId: userFound._id,
                                 messageId: messageId,
                                 friendStatus: "pending",
-                                created: new Date()
+                                created: new Date(),
+                                firstName: userFound.firstName,
+                                lastName: userFound.lastName,
+                                profileImg: userFound.profileImg
                             })
                             console.log("useerFound-2nd add friend", userFound)
                             console.log("req friends add", req.locals.userId)
@@ -285,7 +288,10 @@ module.exports = {
                                 userId: req.locals.userId,
                                 messageId: messageId,
                                 friendStatus: "requested",
-                                created: new Date()
+                                created: new Date(),
+                                firstName: found.firstName ,
+                                lastName: found.lastName,
+                                profileImg: found.profileImg,
                             })
                             userFound.save()
                             found.save()
