@@ -90,12 +90,13 @@ margin-left: 2px;
 }
 
 .input1 {
-    width: 90%;
+    width: 89%;
     height: 40px;
     border-radius: 20px;
     outline: none;
     border: none;
     background-color: rgba(128, 128, 128, 0.118);
+    padding-left: 10px;
 }
 
 

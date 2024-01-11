@@ -140,18 +140,18 @@ const AddFeed = ({ authState }) => {
                     {/* <input type="text" className='input1' placeholder="  What's on your mind, User?"/> */}
 
 
-                    <textarea
+                    <input
                         className='input1'
                         onChange={(e) => handleFeedChange(e)}
                         name="feedContent"
                         id="feedContent"
                         value={addFeed.feedContent || ""}
-                        placeholder="Whats on your mind?"
+                        placeholder="  Whats on your mind?"
                     // style={{ height: "50px", width: "442px" }}
                     >
 
 
-                    </textarea>
+                    </input>
 
 
 
