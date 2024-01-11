@@ -4,6 +4,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { ImImages } from "react-icons/im";
+import ContactCard from "../ContactCard/ContactCard";
 
 const MessagesComponent = () => {
   return (
@@ -32,7 +33,19 @@ const MessagesComponent = () => {
               />
             </div>
           </div>
-          <div className="contactdiv"></div>
+          <div className="contactdiv">
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+            <ContactCard /> 
+          </div>
         </div>
         <div className="messageright">
           <div className="messagerighttop">
