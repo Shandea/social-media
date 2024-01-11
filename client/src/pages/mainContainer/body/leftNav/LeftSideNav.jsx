@@ -17,26 +17,27 @@ const LeftSideNav = ({ profile }) => {
 
   let nav = useNavigate()
 
-const handleLogout = (e) => {
-  console.log("logging out")
-  // e.preventDefault()
-  axios({
-    method: "get",
-    url: "http://localhost:5000/user/logout",
-    withCredentials: true
-  }).then(res => {
-    console.log("logout", res)
-    nav("/")
+  const handleLogout = (e) => {
+    console.log("logging out")
+    // e.preventDefault()
+    socket.emit("loggedOut", "loggedOut")
+    
+    axios({
+      method: "get",
+      url: "http://localhost:5000/user/logout",
+      withCredentials: true
+    }).then(res => {
+      console.log("logout", res)
+      nav("/")
+    }
+    )
+      .catch(err => console.log("logouterr", err))
+    // nav("/")
+
+
+
+
   }
-  )
-  .catch(err => console.log("logouterr", err))
-  // nav("/")
-
-  socket.emit("loggedOut", "loggedOut")
-
-
-
-}
 
 
   return (
@@ -50,19 +51,19 @@ const handleLogout = (e) => {
             to={`/feed/`}
           // className={leftNav.mainFeed === "User" ? "focusedOption" : null}
           >
-            <BsGlobeAmericas title="Feeds" style={{fontSize: "30px"}}/> 
+            <BsGlobeAmericas title="Feeds" style={{ fontSize: "30px" }} />
 
           </Link>
 
         </div>
-        
+
         <div>
 
           <Link
             to={`/images/`}
           // className={leftNav.mainFeed === "Images" ? "focusedOption" : null}
           >
-           <h2> Images</h2>
+            <h2> Images</h2>
           </Link>
         </div>
 
@@ -73,7 +74,7 @@ const handleLogout = (e) => {
             to={`/videos/`}
           // className={leftNav.mainFeed === "Videos" ? "focusedOption" : null}
           >
-           <h2>Videos</h2> 
+            <h2>Videos</h2>
           </Link>
         </div>
 
@@ -83,18 +84,18 @@ const handleLogout = (e) => {
             to={`/friends/`}
           // className={leftNav.mainFeed === "friends" ? "focusedOption" : null}
           >
-           <h2>friends</h2> 
+            <h2>friends</h2>
           </Link>
         </div>
 
-      
+
         <div>
 
           <Link
             to={`/messages/`}
           // className={leftNav.mainFeed === "Messages" ? "focusedOption" : null}
           >
-           <h2>Messages</h2> 
+            <h2>Messages</h2>
           </Link>
         </div>
 
@@ -110,7 +111,7 @@ const handleLogout = (e) => {
 
 
 
-<div onClick={handleLogout}><h2>logout</h2></div>
+        <div onClick={handleLogout}><h2>logout</h2></div>
 
 
       </div>

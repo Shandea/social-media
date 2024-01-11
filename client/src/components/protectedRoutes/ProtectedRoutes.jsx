@@ -47,8 +47,9 @@ function ProtectedRoutes() {
     }, [])
     
     useEffect(() => {
+        console.warn("protected useeffect")
         API.getUserProfile()
-        API.getUser()
+        // API.getUser()
     }, [])
 
     // useEffect(() => {
@@ -73,7 +74,7 @@ function ProtectedRoutes() {
     return (
         <>
             {/* <div>ProtectedRoutes</div> */}
-            {/* {console.log("Protected Route HIT")} */}
+            {console.warn("Protected Route HIT")}
             {/* {console.log(useOutlet() ? "outlet true " : "outlet false")} */}
 
             {/* replace true with context authed user once built */}

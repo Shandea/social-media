@@ -44,6 +44,7 @@ const FriendsComponent = ({ getAll }) => {
 
 
     socket.on("updateLoggedOut", data => {
+
       console.log("user loggin out")
 
       axios({

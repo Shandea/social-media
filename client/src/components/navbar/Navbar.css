@@ -324,6 +324,16 @@ background: rgba(128, 128, 128, 0.326);
 color: black;
 }
 
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 50%;
+}
+
+
+
 
 
 @media screen and (max-width: 600px) {
