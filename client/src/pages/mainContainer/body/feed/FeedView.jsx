@@ -13,6 +13,7 @@ export default function Feed() {
 
 
     useEffect(() => {
+        
 
         axios({
             method: "GET",
@@ -20,10 +21,11 @@ export default function Feed() {
             withCredentials: true,
         })
             .then(res => {
-                console.log("res", res)
+                console.log("res feed views", res)
                 setFeeds(res.data)
             })
             .catch(err => console.log("get feed err", err))
+        
 
     }, [])
 

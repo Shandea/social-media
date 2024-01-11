@@ -89,7 +89,7 @@ const API = {
     }
   },
   updateProfile: async (info) => {
-    console.log("firing update profile", info)
+    // console.log("firing update profile", info)
     let profileInfo = {
       firstName:info?.firstname ? info.firstname: info.userProfile.firstName,
       lastName:info?.firstname ? info.lastname: info.userProfile.lastName,
@@ -104,21 +104,15 @@ const API = {
       vibe:info?.vibe ? info.vibe: info.userProfile.vibe,
       gender:info?.gender ? info.gender: info.userProfile.gender
 
-      // :info.firstName,
-      // firstName:info.firstName,
-      // firstName:info.firstName,
-      // firstName:info.firstName,
-      // firstName:info.firstName,
     }
-    console.log("firing update profile info", profileInfo)
-    
+    // console.log("firing update profile info", profileInfo)
     try {
       const response = await instance.patch(`/user/updateuserprofile`,profileInfo);
-      // console.log("from backend view profile", response.data);
+      // console.log("from backend update user profile", response.data);
       const usersData = response.data
       return usersData;
     } catch (error) {
-      console.error("Error in userAll:", error);
+      console.error("Error in update user profile:", error);
       throw error;
     }
   },
