@@ -15,7 +15,7 @@ const FeedsSchema = new mongoose.Schema({
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
     imgPath: String,
     OgFeed: { type: Schema.Types.ObjectId, ref: 'Feeds' },
-    authorImg: String,
+    authorImg: String,  /// MAKE REF to user for most recent img
 
     commentCount: Number
 

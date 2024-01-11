@@ -20,8 +20,10 @@ import FriendsComponent from "./pages/mainContainer/body/friendsList/FriendsComp
 import ImagesComponent from "./pages/mainContainer/body/images/ImagesComponent"
 import FeedView from "./pages/mainContainer/body/feed/FeedView"
 import ProfileTest from "./dev/Profile"
-
+import NotificationView from "./pages/mainContainer/body/notification/NotificationView"
 import FriendsOutlet from './pages/mainContainer/body/friendsOutlet/FriendsOutlet';
+
+import FriendSearch from "./components/friends/friendSearch/FriendSearch"
 
 const App = () => {
   return (
@@ -48,12 +50,13 @@ const App = () => {
           <Route path="/videos" element={<VideosComponent />} />
           <Route path="/friends" element={<FriendsOutlet />} />
           <Route path="/images" element={<ImagesComponent />} />
-
+          <Route path="/notification" element={<NotificationView />} />
+          <Route path="/FriendSearch" element={<FriendSearch />} />
 
           {/* </Route> */}
 
 
-        {/* <Route path="/feedtest" element={<AddFeed />} /> */}
+          {/* <Route path="/feedtest" element={<AddFeed />} /> */}
 
 
         </Route>

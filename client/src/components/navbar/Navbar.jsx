@@ -1,122 +1,172 @@
-// import { FaSearch } from "react-icons/fa";
-// import { IoHome } from "react-icons/io5";
-// import { FaUserFriends } from "react-icons/fa";
-// import { GrGroup } from "react-icons/gr";
-// import { RiMacbookFill } from "react-icons/ri";
+
 import { FaHome, FaRegComment, FaBell } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi"
 import { IoSearch, IoAdd } from "react-icons/io5"
 import { TbGridDots } from "react-icons/tb"
+
+import { TbDoorExit } from "react-icons/tb";
 import hacker6 from "../../imagess/hacker6.png"
 
-// import { AiOutlinePlus } from "react-icons/ai";
-// import { MdOutlineMessage } from "react-icons/md";
 
-// import { IoNotificationsCircleOutline } from "react-icons/io5";
+import { useNavigate, Link } from "react-router-dom";
 
-// import imgtest from '../../imagess/imgtest3.png'
-
-import { useNavigate } from "react-router-dom";
-
-
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import axios from 'axios'
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:5000')
 
 
 
-const Navbar = ({props, authState}) => {
-    // console.log("header prop", props)
-    
-    let nav = useNavigate()
-    return (
-        // <div className="header">
-        //     <div className="header-left">
 
-        //         <span className="logo">SHOW CASE</span>
-        //         <div className="search-container">
-        //             <form action="/action_page.php">
-        //                 <input type="text" placeholder="Search.." name="search" />
-        //                 <button type="submit"><FaSearch className="search-icon" /></button>
-        //             </form>
-        //         </div>
-        //     </div>
-        //     <div className="header-right">
+const Navbar = ({ props, authState }) => {
+  console.log("header prop", props, authState)
 
-        //         <span className="headerRightDiv iconContainer" ><IoHome title="Home" className="homeIcon navIcons" /></span>
-        //         <span className="headerRightDiv iconContainer" ><FaUserFriends title="Friends" onClick={()=>props.handleShowRightDM()} className="friendIcon navIcons" /></span>
-        //         <span className="headerRightDiv iconContainer"  ><RiMacbookFill title="Instant Message" className="groupIcon navIcons" /></span>
+  let nav = useNavigate()
 
-        //     </div>
 
-        //     <div className="right">
-        //         {/* plus sign dropdown */}
-        //         <span className="" ><AiOutlinePlus style={{ color: 'rgb(19, 134, 215)' }} className="navIcons " /></span>
+  const handleLogout = (e) => {
+    console.log("logging out")
+    // e.preventDefault()
+    socket.emit("loggedOut", "loggedOut")
 
-        //         {/* unread messges */}
+    axios({
+      method: "get",
+      url: "http://localhost:5000/user/logout",
+      withCredentials: true
+    }).then(res => {
+      console.log("logout", res)
+      nav("/")
+    }
+    )
+      .catch(err => console.log("logouterr", err))
+    // nav("/")
 
-        //         <span className="" ><MdOutlineMessage title="Messages" className="navIcons" /></span>
-        //         {/* notifications */}
 
-        //         <a href="#" className="notification">
 
-        //             <IoNotificationsCircleOutline title="Notifications" className="navIcons"/>
 
-        //             <span className="badge">3</span>
-        //         </a>
-        //         {/* user image goes here */}
-                // <span className=" othertest" ><img className="imgtest" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" /></span>
+  }
 
-        //     </div>
-        // </div>
-        <>
-    
-        <div className="navbar">
-          <div className="left-nav">
-            <div className="circle">
-              <p className="logo">S</p>
-            </div>
-            <div className="search2"><IoSearch /></div>
-            <input
-              type="search"
-              name=""
-              className="search"
-              placeholder="Search"
-            />
+
+
+  return (
+
+    <>
+    {console.log("AUTHstate - NAV", authState)}
+
+      <div className="navbar">
+        <div className="left-nav">
+          <div className="circle">
+            <p className="logo">S</p>
           </div>
-          <div className="middle-nav">
-  <div className="middle-left-nav">
-          <div className="circle icon">
-              <FaHome />
+          <div className="search2"><IoSearch /></div>
+          <input
+            type="search"
+            name=""
+            className="search"
+            placeholder="Search"
+          />
+        </div>
+
+
+        <div
+          className="welcome"
+        >
+          <p>Welcome back {authState.user.username}</p>
+        </div>
+
+        <div className="middle-nav">
+          <div className="middle-left-nav">
+            <div className="circle icon">
+              <Link to="/feed">
+
+                <FaHome />
+              </Link>
             </div>
-            </div>
-            <div className="middle-right-nav">
-  <div className="circle icon"><PiUsersThreeFill /></div>
-            </div>
-  
           </div>
-          {/* { modal ? <Modal /> : ""}
+          <div className="middle-right-nav">
+            <div className="circle icon">
+              <Link to="/friends">
+                <PiUsersThreeFill />
+              </Link>
+            </div>
+
+          </div>
+
+        </div>
+        {/* { modal ? <Modal /> : ""}
           { modal1 ? <Modal1 /> : ""} */}
-          <div className="right-nav">
-            <div className="circle icon add"><IoAdd /> </div>
+        <div className="right-nav">
+          <div className="circle icon add"><IoAdd /> </div>
+
+
+          <Link to="/FriendSearch">
+
             <div className="search1">Find friends</div>
-            <div className="circle icon dots" ><TbGridDots /></div>
-            <div className="circle icon"><FaRegComment /></div>
-            <div className="circle icon" ><FaBell /></div>
-            <div className="circle1">
-              {/* <img src={hacker6} alt="" className="img1"/> */}
-              <img className="img1" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" />
+
+          </Link>
+
+
+
+          <div className="circle icon dots" ><TbGridDots /></div>
+
+          <Link to="/messages/">
+            <div
+              className="circle icon">
+              <FaRegComment />
             </div>
+          </Link>
+
+
+
+
+          {Object.keys(authState.userProfile).length
+                            ?
+                            (
+                                <div className="notbubble">
+
+                                    {authState?.userProfile?.notifications.length ? authState?.userProfile?.notifications.length : 0}
+
+                                    {/* <Link style={{ fontSize: "26px" }} className="fas fa-bolt" to={`/notifications/${authedUser._id}`}>  </Link> */}
+                                </div>
+
+                            )
+                            :
+                            (
+                                null
+                            )
+                        }
+
+
+
+          <Link to="/notification">
+            <div
+              className="circle icon" >
+              <FaBell />
+            </div>
+          </Link>
+
+          <div
+            className="circle icon"
+            onClick={handleLogout}
+          ><TbDoorExit />
+          </div>
+
+          <div className="circle1">
+            {/* <img src={hacker6} alt="" className="img1"/> */}
+            <img className="img1" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" />
           </div>
         </div>
-      </>
-    )
+      </div>
+    </>
+  )
 }
 
 
 const mapStateToProps = (state) => {
-    // console.warn("state redux", state)
-    return {
-        authState: state.auth
-    }
+  // console.warn("state redux", state)
+  return {
+    authState: state.auth
+  }
 }
 
 export default connect(mapStateToProps, null)(Navbar)
