@@ -10,6 +10,7 @@ import API from '../../config/api/Api'
 
 
 function ProtectedRoutes() {
+    
     let nav = useNavigate()
 
     const [loggedIn, setLoggedIn] = useState(false)
@@ -22,9 +23,8 @@ function ProtectedRoutes() {
             withCredentials: true,
             url: 'http://localhost:5000/user/authCheck',
         })
-        // API.getUser()
-            .then(res => {
-
+        .then(res => {
+            
                 console.log("still good", res.data)
                 if (res.data.message == "proceed") {
 
@@ -42,9 +42,10 @@ function ProtectedRoutes() {
                 console.log(err)
             })
     }, [])
-
+    
     useEffect(() => {
         API.getUserProfile()
+        API.getUser()
     }, [])
 
     // useEffect(() => {
