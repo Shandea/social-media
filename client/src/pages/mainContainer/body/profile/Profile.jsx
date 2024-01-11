@@ -9,7 +9,7 @@ import Inputs from "../../../../components/block-comps/Inputs";
 import API from "../../../../config/api/Api";
 
 
-import EditProfile from "./EditProfile";
+import EditProfile from "./editProfile/EditProfile";
 
 const dimensions = {
   width: "100%",
