@@ -6,7 +6,7 @@ import LandingPage from "./pages/landingPage/LandingPage"
 // import Home from './pages/home/Home';
 // import Body from './pages/mainContainer/body/Body';
 
-import Dev from "./dev/Register"
+import Dev from "./dev/FriendsComponent"
 import ImageUpload from "./dev/ImageUpload"
 // import MainContainer from './pages/mainContainer/MainContainer';
 

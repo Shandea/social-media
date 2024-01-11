@@ -8,6 +8,11 @@ import { connect } from "react-redux";
 
 import axios from 'axios'
 
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:5000')
+
+
+
 const LeftSideNav = ({ profile }) => {
 
   let nav = useNavigate()
@@ -26,6 +31,11 @@ const handleLogout = (e) => {
   )
   .catch(err => console.log("logouterr", err))
   // nav("/")
+
+  socket.emit("loggedOut", "loggedOut")
+
+
+
 }
 
 
