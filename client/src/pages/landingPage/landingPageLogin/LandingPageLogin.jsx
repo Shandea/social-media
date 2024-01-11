@@ -63,7 +63,7 @@ const LandingPageLogin = ({ authState, getCreateAcct }) => {
           placeholder="Password"
           required={true}
         />
-         <button type="submit" className="form-btn" >Log In</button>
+         <button type="submit" className="formbtn" >Log In</button>
          <p>{errorMsg}</p>
         <hr className="form-hr" />
         <button onClick={getCreateAcct} className="createAcct-btn" type="button">Create New Account</button>
