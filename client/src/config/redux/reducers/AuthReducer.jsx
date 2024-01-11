@@ -43,7 +43,9 @@ let initialState = {
         education: "",
         localInfo: "",
         maritalStatus: ""
-    }
+    },
+    pronoun: "",
+    vibe: ""
 
 
 }
