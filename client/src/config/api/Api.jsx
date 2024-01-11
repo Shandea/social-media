@@ -95,8 +95,15 @@ const API = {
       lastName:info?.firstname ? info.lastname: info.userProfile.lastName,
       email:info?.firstname ? info.email: info.userProfile.email,
       phone:info?.phone ? info.phone: info.userProfile.phone,
-      phone:info?.phone ? info.phone: info.userProfile.phone,
-      phone:info?.phone ? info.phone: info.userProfile.phone,
+      location:{
+        city:info?.location.city ? info.location.city: info.userProfile.location.city,
+        state:info?.location.state ? info.location.state: info.userProfile.location.state,
+        zipcode:info?.location.zipcode ? info.location.zipcode: info.userProfile.location.zipcode,
+      },
+      pronoun:info?.pronoun ? info.pronoun: info.userProfile.pronoun,
+      vibe:info?.vibe ? info.vibe: info.userProfile.vibe,
+      gender:info?.gender ? info.gender: info.userProfile.gender
+
       // :info.firstName,
       // firstName:info.firstName,
       // firstName:info.firstName,
@@ -105,15 +112,15 @@ const API = {
     }
     console.log("firing update profile info", profileInfo)
     
-    // try {
-    //   const response = await instance.patch(`/user/updateuserprofile`);
-    //   // console.log("from backend view profile", response.data);
-    //   const usersData = response.data
-    //   return usersData;
-    // } catch (error) {
-    //   console.error("Error in userAll:", error);
-    //   throw error;
-    // }
+    try {
+      const response = await instance.patch(`/user/updateuserprofile`,profileInfo);
+      // console.log("from backend view profile", response.data);
+      const usersData = response.data
+      return usersData;
+    } catch (error) {
+      console.error("Error in userAll:", error);
+      throw error;
+    }
   },
 };
 
