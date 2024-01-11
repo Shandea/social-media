@@ -43,7 +43,8 @@ module.exports = {
                         phone: req.body.phone,
                         firstName: req.body.firstname,
                         lastName: req.body.lastname,
-                        profileImg: `/public/default.jpeg`
+                        profileImg: `/public/default.jpeg`,
+                        isOnline: true
 
                     })
                     User.create(newUser)

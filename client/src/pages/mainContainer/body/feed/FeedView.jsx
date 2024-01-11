@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import FeedContainer from "../../../../components/feeds/feedContainer/FeedContainer"
 
-import AddFeed from "../../../../components/feeds/AddFeed"
+import AddFeed from "../../../../components/feeds/addFeed/AddFeed"
 
 import axios from 'axios'
 import FeedActions from '../../../../components/feeds/FeedActions'

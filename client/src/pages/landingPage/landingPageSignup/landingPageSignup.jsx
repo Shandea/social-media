@@ -45,7 +45,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
 
     API.register(authState).then((res) => {
       console.log("reg res", res);
-      if (res.message == "proceed") {
+      if (res.message == "Logged in successfully") {
         nav("/feed");
       }
     });

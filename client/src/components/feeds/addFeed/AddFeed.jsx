@@ -5,12 +5,12 @@ import { FaPhotoFilm } from "react-icons/fa6";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { connect } from 'react-redux'
 
- import AddFeedActions from './AddFeedActions'
- import "./AddFeed.css"
+import AddFeedActions from '../addFeedActions/AddFeedActions'
+import "./AddFeed.css"
 
 
 // const AddFeed = ({authState}) => {
-const AddFeed = ({authState}) => {
+const AddFeed = ({ authState }) => {
 
     ///// pull in authed user
     console.warn("authstate", authState)
@@ -19,7 +19,7 @@ const AddFeed = ({authState}) => {
     const [selectedFiles, setSelectedFiles] = useState([])
 
     const [addFeed, setAddFeed] = useState({
-        author: authState.user.userId,/// authed user from redux,
+        author: authState.userProfile._id,/// authed user from redux,
         // authorName: authState.user.username, //// 
         feedContent: "",
         likes: 0,
@@ -49,8 +49,8 @@ const AddFeed = ({authState}) => {
 
         // formData.append('author', addFeed.userId)
         // formData.append('authorName', addFeed.username)
-        formData.append('author', authState.user.userId)
-        formData.append('authorName', authState.user.username)
+        formData.append('author', authState.userProfile._id)
+        formData.append('authorName', authState.userProfile.username)
         formData.append('feedContent', addFeed.feedContent)
         formData.append('likes', 0)
 
@@ -118,19 +118,51 @@ const AddFeed = ({authState}) => {
                     </textarea>
 
                 </section> */}
-                {/* <AddFeedActions handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} /> */}
             </div>
 
             <div className='postcontainer'>
                 <div className="addpost">
-                <div className='userimg'></div>
-                <input type="text" className='input1' placeholder="  What's on your mind, User?"/>
+
+                    <div 
+                    className='userimg'
+                        style={{
+                            backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover'
+                        }}
+
+                    >
+
+
+
+                    </div>
+
+                    {/* <input type="text" className='input1' placeholder="  What's on your mind, User?"/> */}
+
+
+                    <textarea
+                        className='input1'
+                        onChange={(e) => handleFeedChange(e)}
+                        name="feedContent"
+                        id="feedContent"
+                        value={addFeed.feedContent || ""}
+                        placeholder="Whats on your mind?"
+                    // style={{ height: "50px", width: "442px" }}
+                    >
+
+
+                    </textarea>
+
+
+
+
                 </div>
-                <hr className='line'/>
+                <hr className='line' />
                 <div className="addpostbottom">
-                    <div><FaShare className='icon1'/>Share</div>
-                    <div><FaPhotoFilm className='icon2'/>Video/Photo</div>
-                    <div><MdOutlineEmojiEmotions className='icon3'/>Feeling/Activity</div>
+                    <AddFeedActions handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} />
+                    {/* <div><FaShare className='icon1'/>Share</div> */}
+                    {/* <div><FaPhotoFilm className='icon2'/>Add Img</div>
+                    <div><MdOutlineEmojiEmotions className='icon3'/>Submit</div> */}
                 </div>
             </div>
         </>
@@ -141,9 +173,9 @@ const AddFeed = ({authState}) => {
 const mapStateToProps = (state) => {
     console.log("AUTHED USER", state)
     return {
-      authState: state.auth
+        authState: state.auth
     }
-  
-  }
+
+}
 
 export default connect(mapStateToProps, null)(AddFeed)
