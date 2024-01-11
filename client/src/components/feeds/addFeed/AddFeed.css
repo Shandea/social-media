@@ -16,7 +16,7 @@
     margin: 5px;
     padding: 5px;
     display: flex;
-    justify-content: space-around;
+    width: 100%;
 }
 
 .icon1 {
@@ -30,6 +30,6 @@ font-size: xx-large;
 }
 
 .icon3 {
-    color: yellow;
+    color: green;
     font-size: xx-large;
 }

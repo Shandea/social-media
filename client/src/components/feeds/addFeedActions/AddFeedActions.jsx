@@ -3,6 +3,7 @@ import AddFeedImgForm from '../AddFeedImgForm'
 
 import { FaPhotoFilm } from "react-icons/fa6";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
+import { MdOutlinePostAdd } from "react-icons/md";
 import "./AddFeedActions.css"
 
 
@@ -22,19 +23,19 @@ const AddFeedActions = ({ handleFeedSubmit, handleSelectedFiles }) => {
 
             <section id="FeedAddNewActions">
 
-                <div><FaPhotoFilm
+                <div className='left'><FaPhotoFilm
                     className='icon2'
                     onClick={(e) => setAddImage(true)}
                 />
-                Add Img
+                
                 </div>
 
-                <div>
-                    <MdOutlineEmojiEmotions 
+                <div className='right'>
+                    <MdOutlinePostAdd  
                     className='icon3' 
                     onClick={(e) => handleFeedSubmit(e)} 
                     />
-                    Submit
+                    
                     </div>
 
                 {/* <div onClick={(e) => setAddImage(true)}>
