@@ -51,6 +51,7 @@ const Navbar = ({ props, authState }) => {
   return (
 
     <>
+    {console.log("AUTHstate - NAV", authState)}
 
       <div className="navbar">
         <div className="left-nav">
@@ -114,6 +115,28 @@ const Navbar = ({ props, authState }) => {
               <FaRegComment />
             </div>
           </Link>
+
+
+
+
+          {Object.keys(authState.userProfile).length
+                            ?
+                            (
+                                <div className="notbubble">
+
+                                    {authState?.userProfile?.notifications.length ? authState?.userProfile?.notifications.length : 0}
+
+                                    {/* <Link style={{ fontSize: "26px" }} className="fas fa-bolt" to={`/notifications/${authedUser._id}`}>  </Link> */}
+                                </div>
+
+                            )
+                            :
+                            (
+                                null
+                            )
+                        }
+
+
 
           <Link to="/notification">
             <div

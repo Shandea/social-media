@@ -8,7 +8,9 @@ import convertDate from "../../../util/convertDate"
 
 import axios from 'axios'
 
-function FeedContainer({ obj, handleAddLike }) {
+import { connect } from 'react-redux'
+
+function FeedContainer({ obj, handleAddLike, authState }) {
 
 
 
@@ -30,7 +32,7 @@ function FeedContainer({ obj, handleAddLike }) {
 
     return (
         <>
-            {/* {console.log("FEED container props", obj)} */}
+            {console.log("FEED container props", obj)}
 
             <div
                 id="FeedContainter" className='FC'
@@ -44,7 +46,21 @@ function FeedContainer({ obj, handleAddLike }) {
                     }}
                 >
                     <div className='userpost'>
-                        <div className='friendimg'></div>
+                        <div className='friendimg'
+                          style={{
+                            border: 'solid black 2px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            height: '50px',
+                            width: '50px',
+                            borderRadius: '25px',
+                            backgroundImage: `url("http://localhost:5000${obj.authorImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: 'cover'
+                          }}
+                        >
+
+                        </div>
                         <div className='nametime'>
                             <div className='name'>{obj.authorName}</div>
                             <div className='time'>{convertDate(obj.createdAt)}</div>
@@ -116,7 +132,7 @@ function FeedContainer({ obj, handleAddLike }) {
 
 
 
-                    <div className='comment'><FaRegComment />comments :{obj.comments.length}</div>
+                    <div className='comment'><FaRegComment />{obj.comments.length}</div>
 
 
 
@@ -125,7 +141,29 @@ function FeedContainer({ obj, handleAddLike }) {
                 </div>
                 <hr className='line' />
                 <div className='addcomment'>
-                    <div className='userimg'></div>
+
+                    <div className='userimg'
+                    
+                    
+                    style={{
+                        border: 'solid black 2px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        height: '20px',
+                        width: '20px',
+                        borderRadius: '25px',
+                        backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: 'cover'
+                      }}
+
+
+                    >
+
+
+
+                    </div>
+
                     <input type="text" className='input1' placeholder='  Write a comment...' />
                 </div>
             </div>
@@ -136,4 +174,10 @@ function FeedContainer({ obj, handleAddLike }) {
     )
 }
 
-export default FeedContainer
+const mapStateToProps = (state) => {
+    return {
+        authState: state.auth
+    }
+}
+export default connect(mapStateToProps, null)(FeedContainer)
+
