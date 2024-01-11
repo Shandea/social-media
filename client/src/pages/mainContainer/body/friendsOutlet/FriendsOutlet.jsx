@@ -61,14 +61,14 @@ const FriendsOutlet = ({ state }) => {
       friendStatus: "Blocked",
     },
   ];
-  const PendingFriends = fakefriends.filter((e) => e.friendStatus == "Pending");
-  console.log("PendingFriends: ", PendingFriends);
-  const AcceptedFriends = fakefriends.filter(
-    (e) => e.friendStatus == "Accepted"
-  );
-  console.log("AcceptedFriends: ", AcceptedFriends);
-  const BlockedFriends = fakefriends.filter((e) => e.friendStatus == "Blocked");
-  console.log("BlockedFriends: ", BlockedFriends);
+  // const PendingFriends = fakefriends.filter((e) => e.friendStatus == "Pending");
+  // console.log("PendingFriends: ", PendingFriends);
+  // const AcceptedFriends = fakefriends.filter(
+  //   (e) => e.friendStatus == "Accepted"
+  // );
+  // console.log("AcceptedFriends: ", AcceptedFriends);
+  // const BlockedFriends = fakefriends.filter((e) => e.friendStatus == "Blocked");
+  // console.log("BlockedFriends: ", BlockedFriends);
 
   const PendingFriends2 = state.userProfile.friends?.filter(
     (e) => e.friendStatus === "requested"
@@ -82,6 +82,16 @@ const FriendsOutlet = ({ state }) => {
     (e) => e.friendStatus === "Blocked"
   );
   console.log("BlockedFriends2: ", BlockedFriends2);
+  const RequestedFriends2 = state.userProfile.friends?.filter(
+    (e) => e.friendStatus === "pending"
+  );
+  console.log("RequestedFriends2: ", RequestedFriends2);
+console.warn('ALL FRIENDS', state.userProfile.friends)
+
+
+
+
+
 
   return (
     <div className="friendsoutletcontainer">
@@ -102,6 +112,29 @@ const FriendsOutlet = ({ state }) => {
                   <p>{friend.username}</p>
                   <div className="pendingfriendsbuttons">
                     <button className="btn">Accept</button>
+                    <button className="btn1">Reject</button>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <p>loading</p>
+          )}
+        </div>
+        <h5>Your Pending Requests</h5>
+        <div className="requestsdiv">
+          {RequestedFriends2 ? (
+            RequestedFriends2.map((friend, i) => {
+              return (
+                <div key={i} className="pendingfriend">
+                  {/* <h4>{friend.username}</h4> */}
+                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" />
+                  <p className="name1">
+                    {friend.firstName} {friend.lastName}
+                  </p>
+                  <p>{friend.username}</p>
+                  <div className="pendingfriendsbuttons">
+                    {/* <button className="btn">Accept</button> */}
                     <button className="btn1">Reject</button>
                   </div>
                 </div>
