@@ -63,7 +63,11 @@ const UserSchema = new Schema({
         messageId: String, // mongoId sorted with userID and merged
         friendStatus: String, // pending, approved, etc
         created: Date,
-        friend: Boolean // when accepted, flip true
+        friend: Boolean,
+        firstName: String,
+        lastName: String,
+        profileImg: String,
+         // when accepted, flip true
     }],
     following: [{ type: Schema.Types.ObjectId, ref: "User" }],
     followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
