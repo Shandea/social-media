@@ -7,6 +7,8 @@ import MainContainer from '../../pages/mainContainer/MainContainer'
 
 import { connect } from 'react-redux'
 import API from '../../config/api/Api'
+import store from '../../config/redux/Store'
+import { getUser } from "../../config/redux/actions/AuthActions"
 
 
 function ProtectedRoutes() {
@@ -29,6 +31,7 @@ function ProtectedRoutes() {
                 if (res.data.message == "proceed") {
 
                     // nav("/feed")
+                    store.dispatch(getUser(res.data))
                     return
                     //store res.data (user) in redux
                 } else {
@@ -85,8 +88,12 @@ function ProtectedRoutes() {
 const mapStateToProps = (state) => {
     return {
         authState: state.auth
-
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUser: ()=>dispatch(getUser())
     }
 }
 // first param is state, 2nd is dispatch (functions / actions)
-export default connect(mapStateToProps, null)(ProtectedRoutes)
+export default connect(mapStateToProps, mapDispatchToProps)(ProtectedRoutes)

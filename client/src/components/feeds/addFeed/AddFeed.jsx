@@ -13,7 +13,7 @@ import "./AddFeed.css"
 const AddFeed = ({ authState }) => {
 
     ///// pull in authed user
-    console.warn("authstate", authState)
+    console.warn("authstate add feeed", authState)
 
 
     const [selectedFiles, setSelectedFiles] = useState([])
