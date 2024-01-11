@@ -49,7 +49,7 @@ module.exports = {
                         })
 
                 } else if (found.length && found[0].type == "profile") {
-                    console.log("found.length hit")
+                    console.log("found.length hit", req.locals.userId)
                     Image.findByIdAndUpdate(found[0]._id, { image: `/public/images/${req.locals.userId}/` + image.name })
                         .then(updated => {
 

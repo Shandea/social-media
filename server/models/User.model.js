@@ -55,6 +55,8 @@ const UserSchema = new Schema({
 
     vibe: String,
     isOnline: Boolean,
+    
+    notifications: [{}],
 
 
     friends: [{
