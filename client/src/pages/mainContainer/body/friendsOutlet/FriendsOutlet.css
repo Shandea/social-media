@@ -176,3 +176,15 @@
   background: var(--blue-gradient);
   color: white;
 }
+
+.imagediv{
+  border: solid black 2px;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 25px;
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+}

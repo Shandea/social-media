@@ -1,9 +1,8 @@
 import "./FriendsOutlet.css";
 import API from "../../../../config/api/Api";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import axios from 'axios'
-
+import axios from "axios";
 
 const FriendsOutlet = ({ state }) => {
   // console.log("FriendsOutlet: api: ", getAll)
@@ -11,22 +10,20 @@ const FriendsOutlet = ({ state }) => {
   //   API.userAll()
   // }, [])
 
-  const [users, setUsers] = useState([])
-
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     // API.userAll()
 
     axios({
-      method: 'get',
-      url: 'http://localhost:5000/user/all',
-      withCredentials: true
-    })
-      .then(res => {
-        console.log("res", res)
-        setUsers(res.data)
-      })
-    },[])
+      method: "get",
+      url: "http://localhost:5000/user/all",
+      withCredentials: true,
+    }).then((res) => {
+      console.log("res", res);
+      setUsers(res.data);
+    });
+  }, []);
   //btton functionality APIs here
 
   // const fakefriends = [
@@ -108,12 +105,9 @@ const FriendsOutlet = ({ state }) => {
   );
   console.log("RequestedFriends2: ", RequestedFriends2);
 
-console.warn('ALL FRIENDS', state.userProfile.friends)
+  console.warn("ALL FRIENDS", state.userProfile.friends);
 
-
-console.warn('Users', users)
-
-
+  console.warn("Users", users);
 
   return (
     <div className="friendsoutletcontainer">
@@ -127,7 +121,20 @@ console.warn('Users', users)
               return (
                 <div key={i} className="pendingfriend">
                   {/* <h4>{friend.username}</h4> */}
-                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" />
+                  <div
+                    id="FeedImage"
+                    style={{
+                      border: 'solid black 2px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      height: '60px',
+                      width: '60px',
+                      borderRadius: '25px',
+backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: 'cover'
+                    }}
+                  ></div>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
                   </p>
@@ -150,7 +157,20 @@ console.warn('Users', users)
               return (
                 <div key={i} className="pendingfriend">
                   {/* <h4>{friend.username}</h4> */}
-                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" />
+                  <div
+                    id="FeedImage"
+                    style={{
+                      border: 'solid black 2px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      height: '60px',
+                      width: '60px',
+                      borderRadius: '25px',
+backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: 'cover'
+                    }}
+                  ></div>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
                   </p>
@@ -177,10 +197,20 @@ console.warn('Users', users)
               return (
                 <div key={i} className="acceptedfriend">
                   {/* <h4>{friend.username}</h4> */}
-                  <img
-                    src={`http://localhost:5000${friend.profileImg}`}
-                    alt="friendProfileImg"
-                  />
+                  <div
+                    id="FeedImage"
+                    style={{
+                      border: 'solid black 2px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      height: '60px',
+                      width: '60px',
+                      borderRadius: '25px',
+backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: 'cover'
+                    }}
+                  ></div>
                   <p className="name1">
                     {friend.firstName} {friend.lastname}
                   </p>
@@ -228,10 +258,24 @@ console.warn('Users', users)
               return (
                 <div key={i} className="acceptedfriend">
                   {/* <h4>{friend.username}</h4> */}
-                  <img
+                  {/* <img
                     src={`http://localhost:5000${friend.profileImg}`}
                     alt="friendProfileImg"
-                  />
+                  /> */}
+                  <div
+                    id="FeedImage"
+                    style={{
+                      border: 'solid black 2px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      height: '60px',
+                      width: '60px',
+                      borderRadius: '25px',
+backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: 'cover'
+                    }}
+                  ></div>
                   <p className="name1">
                     {friend.firstName} {friend.lastname}
                   </p>
