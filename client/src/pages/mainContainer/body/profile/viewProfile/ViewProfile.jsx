@@ -1,10 +1,10 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 
 import API from "../../../../../config/api/Api";
 import { connect } from "react-redux";
-import { showDM } from "../../../../../config/redux/actions/AuthActions";
+import { hideOnline } from "../../../../../config/redux/actions/AuthActions";
 import axios from "axios";
 import FeedContainer from "../../../../../components/feeds/feedContainer/FeedContainer";
 import AddFeed from "../../../../../components/feeds/addFeed/AddFeed";
@@ -14,129 +14,95 @@ import FriendStatus from "../../../../../components/friends/friendStatus/FriendS
 const ViewProfile = (props) => {
   console.log(props.authState)
 
-let [profileView,setProfileView] = useState({});
-let {id} = useParams()
-useEffect(()=>{
-    API.getViewProfile(id).then(res=>{
-        console.log("res data",res)
-        
-        setProfileView(res)
+  let [profileView, setProfileView] = useState({});
+  let { id } = useParams()
+  useEffect(() => {
+    API.getViewProfile(id).then(res => {
+      console.log("res data", res)
+
+      setProfileView(res)
     })
-    props.showDm()
-},[id])
+    props.hideOnline()
+  }, [id])
 
-const [feeds, setFeeds] = useState([])
+  const [feeds, setFeeds] = useState([])
 
-useEffect(() => {
+  useEffect(() => {
 
-  axios({
-    method: "GET",
-    url: "http://localhost:5000/api/getfeeds",
-    withCredentials: true,
-  })
-    .then(res => {
-       let filteredFeed = res.data.filter((feed) => feed.author === profileView._id)
-      console.log("this should be profile view",res.data)
-      console.log("this should be profiles view",profileView._id)
-      setFeeds(filteredFeed)
+    axios({
+      method: "GET",
+      url: "http://localhost:5000/api/getfeeds",
+      withCredentials: true,
     })
-    .catch(err => console.log("get feed err", err))
+      .then(res => {
+        let filteredFeed = res.data.filter((feed) => feed.author === profileView._id)
+        // console.log("this should be profile view",res.data)
+        // console.log("this should be profiles view",profileView._id)
+        setFeeds(filteredFeed)
+      })
+      .catch(err => console.log("get feed err", err))
 
-}, [profileView._id])
+  }, [profileView._id])
 
   return (
     <>
-     {console.log("img src tag", profileView)}
-     {console.log("img src feeds", feeds)}
-     {
-       
-          <div className="outer">
-            <div className="profileOuterContainer">
-              <div className="" >background banner</div>
-              <span className="badge2">
-                <img alt="" src={`http://localhost:5000${profileView.profileImg}`} />
-              </span>
-            </div>
+      {console.log("img src tag", profileView)}
+      {console.log("img src feeds", feeds)}
+      {
 
-            <div>
-              <FriendStatus id={id}/>
-            </div>
+        <>
 
-            <div className="profileScroll">
+          <span>
+            <img width={200} height={200} alt="" src={`http://localhost:5000${profileView.profileImg}`} />
+          </span>
 
-              <div className="leftScroll">
-
-                <div className="innerLeftScroll">
-                  <div className="bios">
-                    <h4>bio</h4>
-                    <p>{profileView?.details?.bio || "I Have No Bio"}</p>
-                    <h4>bio details</h4>
-                    <p>{profileView?.details?.education || "I Have No Education"}</p>
-                    <p>{profileView?.details?.localInfo || "I Have No Local Info"}</p>
-                    <p>{profileView.details?.maritalStatus || "I Have No Marital Status"}</p>
-                  
-                  </div>
-
-                  <div className="photoWall">
-                    <h3>photos show here</h3>
-                  </div>
-                  <div className="friendWall">
-                    <h3>friends show here</h3>
-                  </div>
-                  <div className="hobbyWall">
-                    <h3>hobbies show here</h3>
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="rightScroll">
-                <div className="innerRightScroll">
-                  <div className="createPostWall">
-                    <h3>create a post here</h3>
-                    <AddFeed />
-                  </div>
-                  <div className="postWall">
-                    <h3>posts show here</h3>
-                    <div className='feedContainer' style={{
-                      marginTop: "20px",
-                      overflowY: "auto"
-                    }}>
-                      {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
-                        return (
-                          <div key={i}
-
-
-                          >
-                            <FeedContainer
-                              // handleAddLike={handleAddLike}
-                              obj={obj} />
-                          </div>
-                        )
-
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
+          <div>
+            <FriendStatus id={id} />
           </div>
+
+          <h4>bio</h4>
+          <p>{profileView?.details?.bio || "I Have No Bio"}</p>
+          <h4>bio details</h4>
+          <p>{profileView?.details?.education || "I Have No Education"}</p>
+          <p>{profileView?.details?.localInfo || "I Have No Local Info"}</p>
+          <p>{profileView.details?.maritalStatus || "I Have No Marital Status"}</p>
+
+          <h3>create a post here</h3>
+          <AddFeed />
+
+          <h3>posts show here</h3>
+          <div className='feedContainer' style={{
+            marginTop: "20px",
+            overflowY: "auto"
+          }}>
+            {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
+              return (
+                <div key={i}
+
+                >
+                  <FeedContainer
+                    // handleAddLike={handleAddLike}
+                    obj={obj} />
+                </div>
+              )
+
+            })}
+          </div>
+        </>
       }
     </>
   );
 };
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
   return {
-    authState:state.auth
+    authState: state.auth
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    showDm: () => dispatch(showDM()),
+    hideOnline: () => dispatch(hideOnline()),
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(ViewProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(ViewProfile);

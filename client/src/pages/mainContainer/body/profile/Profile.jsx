@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { CiEdit } from "react-icons/ci";
 import { MdDoubleArrow } from "react-icons/md";
 
-import { showDM, handleInputsAuth } from "../../../../config/redux/actions/AuthActions";
+import { showOnline, handleInputsAuth } from "../../../../config/redux/actions/AuthActions";
 import Inputs from "../../../../components/block-comps/Inputs";
 import API from "../../../../config/api/Api";
 import axios from "axios";
@@ -58,8 +58,8 @@ const Profile = (props) => {
   const backtoProfile = () => {
     return setEditProfile(false)
   }
-  const showDM = () => {
-    return props.showDm()
+  const showMeOnline = () => {
+    return props.showOnline()
   }
 
   const handlebiosUpdate = (e) => {
@@ -89,7 +89,7 @@ const Profile = (props) => {
               </div>
             </span>
 
-            <MdDoubleArrow onClick={showDM} style={{ fontSize: "100px" }} />
+            <MdDoubleArrow onClick={showMeOnline} style={{ fontSize: "100px" }} />
 
             {
               editBios == true ?
@@ -190,7 +190,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    showDm: () => dispatch(showDM()),
+    showOnline: () => dispatch(showOnline()),
     handleInputChange: (input) => dispatch(handleInputsAuth(input))
   };
 };
