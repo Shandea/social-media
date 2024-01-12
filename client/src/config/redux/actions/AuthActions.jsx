@@ -4,7 +4,8 @@ import {
     HANDLE_INPUTS_AUTH,
     GET_USER,
     GET_PROFILE,
-    SHOW_DM,
+    SHOW_ONLINE,
+    HIDE_ONLINE
 } from "../Types";
 
 export const getAllUsers = (info)=>{
@@ -39,8 +40,13 @@ export const getProfile= (profile)=>{
         payload:profile
     }
 }
-export const showDM = ()=>{
+export const showOnline = ()=>{
     return{
-        type:SHOW_DM,
+        type:SHOW_ONLINE,
+    }
+}
+export const hideOnline = ()=>{
+    return{
+        type:HIDE_ONLINE,
     }
 }

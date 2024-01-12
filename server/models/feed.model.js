@@ -34,11 +34,13 @@ const CommentSchema = new mongoose.Schema({
     OgComment: { type: Schema.Types.ObjectId, ref: 'Comments' },
     commentCount: Number,
     parent: { type: Schema.Types.ObjectId, ref: 'Comments' },
-    parentdoc: { type: Schema.Types.ObjectId, ref: 'Comments' },
+    parentDoc: { type: Schema.Types.ObjectId, ref: 'Comments' },
     parentAuthorId: { type: Schema.Types.ObjectId, ref: 'User' }, /// for Reply vs add comment
     parentAuthorName: String,
     nestLevel: Number,
-    nestedPath: [{ type: Schema.Types.ObjectId, ref: 'Comments' }]
+    nestedPath: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
+    authorImg: String,  /// MAKE REF to user for most recent img
+
 
 }, { timestamps: true }
     // ))

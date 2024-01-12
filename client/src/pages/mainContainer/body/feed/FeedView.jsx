@@ -14,6 +14,8 @@ import "./feedView.css"
 export default function Feed() {
     // feed container... a feed 
 
+    const [render, setRender] = useState(false)
+    const [feeds, setFeeds] = useState([])
 
     useEffect(() => {
         
@@ -30,27 +32,61 @@ export default function Feed() {
             .catch(err => console.log("get feed err", err))
         
 
-    }, [])
+    }, [render])
 
-    const [feeds, setFeeds] = useState([])
 
     const [feedSearch, setFeedSearch] = useState("")
 
+
+
+    const handleSetFeeds = (e) => {
+        // setFeeds(input)
+
+        console.warn("HandleSetFeed hit  ===>  Rerender Please")
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/api/getfeeds",
+            withCredentials: true,
+        })
+            .then(res => {
+                console.log("res", res)
+                setFeeds(res.data)
+            })
+            .catch(err => console.log("get feed err", err))
+        // render ? setRender(false) : setRender(true)
+        // console.log("TOP lvl handle set feeds")
+    }
+
     const handleAddLike = (e) => {
-        console.log("adding like", e.target.id)
+        console.warn("adding like", e.target.id, e.target.getAttribute("name"))
+        // let type = e.target.getAttribute("type")
+
+        let type = e.currentTarget.attributes['type'].value
+
+        console.log("type", type)
+        let payload = {
+            type: e.currentTarget.attributes['type'].value,
+            id: e.target.id
+
+        }
 
         axios({
             method: "put",
             url: "http://localhost:5000/api/feeds/addfeedlike",
             data: { id: e.target.id },
+            data: payload,
             withCredentials: true
         })
             .then(res => {
                 console.log("add like RES", res)
                 // console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
                 setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
+                handleSetFeeds()
             })
-    }
+    
+
+    
+        }
 
     const handleApiSearch = (e, input) => {
         console.log("handleAPISearch", input)
@@ -115,11 +151,12 @@ export default function Feed() {
 
         <>
             {console.log("feed state", feeds)}
+            {console.warn("RENDER STATUS", render)}
             <div id="FeedTopAction"
             >
 
                 <div id="filterActions">
-                    
+
                     <div
                         onClick={(e) => handleGetNewFeeds(e)}
                     >
@@ -155,7 +192,7 @@ export default function Feed() {
 
             </div>
 
-            <AddFeed />
+            <AddFeed handleSetFeeds={handleSetFeeds} />
 
 
             {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
@@ -169,6 +206,7 @@ export default function Feed() {
                         <div key={i}
                         >
                             <FeedContainer
+                                handleSetFeeds={handleSetFeeds}
                                 handleAddLike={handleAddLike}
                                 obj={obj} />
                         </div>

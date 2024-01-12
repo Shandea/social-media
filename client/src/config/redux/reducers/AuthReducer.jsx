@@ -4,13 +4,14 @@ import {
     HANDLE_INPUTS_AUTH,
     GET_USER,
     GET_PROFILE,
-    SHOW_DM
+    HIDE_ONLINE,
+    SHOW_ONLINE
 } from '../Types'
 
 let initialState = {
     //flags
     createAcct: false,
-    showDM: false,
+    showOnline: false,
 
 
     //state obj
@@ -117,12 +118,19 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 userProfile: Object.assign(state.userProfile, action.payload)
             }
-        case SHOW_DM:
+        case SHOW_ONLINE:
 
             // console.log("get profile obj_:",action.payload)
             return {
                 ...state,
-                showDM: !state.showDM
+                showOnline: true
+            }
+        case HIDE_ONLINE:
+
+            // console.log("get profile obj_:",action.payload)
+            return {
+                ...state,
+                showOnline: false
             }
         default:
             return state

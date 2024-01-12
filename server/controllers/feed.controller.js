@@ -75,10 +75,51 @@ module.exports = {
 
 
     addFeedLike: (req, res) => {
-        console.log("req body ADD Like", req.body, "reqlocal-userId", req.locals.userId)
-        Feeds.findById(req.body.id)
-            .then(found => {
+        console.log("req body ADD Like", req.body, "reqlocal-userId", req.locals.userId, "type", req.body.type)
+       
+       if(req.body.type == "feed"){
+
+           Feeds.findById(req.body.id)
+           .then(found => {
                 console.log("found feed", found)
+
+                // when ready to restrict votes to one user
+                // if (!found.likedBy.includes(req.locals.userId)) {
+
+                    found.likes += 1
+                found.likedBy.push(req.locals.userId)
+                found.save()
+                
+                User.findByIdAndUpdate({ _id: found.author },
+                    {
+                        $push: {
+                            notifications: [
+                                {
+                                    like: {
+                                        likedDoc: found._id,
+                                        user: req.locals.username,
+                                        userId: req.locals.userId,
+                                        createdAt: new Date(),
+                                        ogFeed: found.OgFeed
+                                    }
+                                }
+                            ]
+                        }
+                    })
+                    
+                    .then(res.json(found))
+                    .catch(err => console.log("add like ERROR", err))
+                // } else {
+                //     res.json({message: "You have already voted"})
+                // }
+            })
+        }else if (req.body.type == "comment") {
+
+console.log("ADD LIKE COMMENT ======> if hit")
+
+            Comments.findById(req.body.id)
+            .then(found => {
+                console.log("found comment", found)    
 
                 // when ready to restrict votes to one user
                 // if (!found.likedBy.includes(req.locals.userId)) {
@@ -87,7 +128,7 @@ module.exports = {
                 found.likedBy.push(req.locals.userId)
                 found.save()
 
-                User.findByIdAndUpdate({ _id: found.author },
+                User.findByIdAndUpdate({ _id: found.authorId },
                     {
                         $push: {
                             notifications: [
@@ -110,6 +151,9 @@ module.exports = {
                 //     res.json({message: "You have already voted"})
                 // }
             })
+
+
+        }
     },
 
     searchFeed: (req, res) => {
@@ -202,61 +246,141 @@ module.exports = {
     addFeedComment: (req, res) => {
         console.log("ADD COMMENT req-body   ==> ", req.body)
 
-            Comments.create(req.body)
-                .then(created => {
-                    // console.log("created", created)
-                    created.nestedPath.push(req.body.OgFeed)
-                    created.save()
-                    // figure out how to determine if your commenting a comment or a feed
-                    Feeds.findByIdAndUpdate({ _id: created.OgFeed },
-                        //     Feeds.findByIdAndUpdate({ _id: created.OgFeed },
-                        {
-                            $push: { "comments": created._id },
-                            $inc: { "commentCount": 1 },
-                        }, { new: true })
-    
-    
-                        .then(updated => {
-                            // console.log("updated", updated)
-    
-    
-                            User.findOneAndUpdate({ _id: req.body.ogAuthor },
-                                {
-                                    $push: {
-                                        notifications: [
-                                            {
-                                                comment: {
-                                                    authorName: req.body.authorName,
-                                                    authorId: req.body.authorId,
-                                                    parentDoc: updated._id,
-                                                    comment: req.body.content,
-                                                    createdAt: new Date(),
-                                                    ogFeed: req.body.OgFeed
-    
-                                                }
+        Comments.create(req.body)
+            .then(created => {
+                // console.log("created", created)
+                created.nestedPath.push(req.body.OgFeed)
+                created.save()
+                // figure out how to determine if your commenting a comment or a feed
+                Feeds.findByIdAndUpdate({ _id: created.OgFeed },
+                    //     Feeds.findByIdAndUpdate({ _id: created.OgFeed },
+                    {
+                        $push: { "comments": created._id },
+                        $inc: { "commentCount": 1 },
+                    }, { new: true })
+
+
+                    .then(updated => {
+                        // console.log("updated", updated)
+
+
+                        User.findOneAndUpdate({ _id: req.body.ogAuthor },
+                            {
+                                $push: {
+                                    notifications: [
+                                        {
+                                            comment: {
+                                                authorName: req.body.authorName,
+                                                authorId: req.body.authorId,
+                                                parentDoc: updated._id,
+                                                comment: req.body.content,
+                                                createdAt: new Date(),
+                                                ogFeed: req.body.OgFeed
+
                                             }
-                                        ]
+                                        }
+                                    ]
+                                }
+                            })
+                            .then(ogFound => console.log("og Found"))
+
+                        res.json(updated)
+
+                    })
+                    //     res.json(updated)
+                    // })
+                    .catch(err => console.log("err", err))
+            })
+            .catch(err => console.log("err", err))
+    },
+
+    addCommentComment: (req, res) => {
+        console.log("ADD COMMENT COMMENT req-body   ==> ", req.body)
+
+        Comments.create(req.body)
+            .then(created => {
+                console.log("created", created)
+                created.nestedPath.push(req.body.parentDoc)
+                created.save()
+                // figure out how to determine if your commenting a comment or a feed
+                Comments.findByIdAndUpdate({ _id: created.parentDoc },
+                    //     Feeds.findByIdAndUpdate({ _id: created.OgFeed },
+                    {
+                        $push: { "comments": created._id },
+                        $inc: { "commentCount": 1 },
+                    }, { new: true })
+
+
+                    .then(updated => {
+                        // console.log("updated", updated)
+
+
+                        User.findOneAndUpdate({ _id: req.body.ogAuthor },
+                            {
+                                $push: {
+                                    notifications: [
+                                        {
+                                            comment: {
+                                                authorName: req.body.authorName,
+                                                authorId: req.body.authorId,
+                                                parentDoc: updated._id,
+                                                comment: req.body.content,
+                                                createdAt: new Date(),
+                                                ogFeed: req.body.OgFeed
+
+                                            }
+                                        }
+                                    ]
+                                }
+                            })
+                            .then(ogFound => console.log("og Found"))
+
+                        res.json(updated)
+
+                    })
+                    //     res.json(updated)
+                    // })
+                    .catch(err => console.log("err", err))
+            })
+            .catch(err => console.log("err", err))
+    },
+
+    addCommentLike: (req, res) => {
+        console.log("Addd a like to comment", req.params.id, req.locals.userId)
+        Comments.findById(req.params.id)
+            .then(found => {
+                console.log("found comment", found)    
+
+                // when ready to restrict votes to one user
+                // if (!found.likedBy.includes(req.locals.userId)) {
+
+                found.likes += 1
+                found.likedBy.push(req.locals.userId)
+                found.save()
+
+                User.findByIdAndUpdate({ _id: found.authorId },
+                    {
+                        $push: {
+                            notifications: [
+                                {
+                                    like: {
+                                        likedDoc: found._id,
+                                        user: req.locals.username,
+                                        userId: req.locals.userId,
+                                        createdAt: new Date(),
+                                        ogFeed: found.OgFeed
                                     }
-                                })
-                                .then(ogFound => console.log("og Found"))
-    
-                            res.json(updated)
-    
-                        })
-    
-    
-    
-                        //     res.json(updated)
-                        // })
-                        .catch(err => console.log("err", err))
-                })
-                .catch(err => console.log("err", err))
-    
+                                }
+                            ]
+                        }
+                    })
 
-
-
-
-
+                    .then(res.json(found))
+                    .catch(err => console.log("add like ERROR", err))
+                // } else {
+                //     res.json({message: "You have already voted"})
+                // }
+            })
 
     }
 

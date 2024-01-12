@@ -10,7 +10,7 @@ import "./AddFeed.css"
 
 
 // const AddFeed = ({authState}) => {
-const AddFeed = ({ authState }) => {
+const AddFeed = ({ authState, handleSetFeeds }) => {
 
     ///// pull in authed user
     // console.warn("authstate add feeed", authState)
@@ -71,7 +71,7 @@ const AddFeed = ({ authState }) => {
             })
             .catch(err => console.log("feed submit err", err))
 
-
+        handleSetFeeds()
         setAddFeed(prev => ({
             ...prev,
             feedContent: ""
@@ -123,8 +123,8 @@ const AddFeed = ({ authState }) => {
             <div className='postcontainer'>
                 <div className="addpost">
 
-                    <div 
-                    className='userimg'
+                    <div
+                        className='userimg'
                         style={{
                             backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
                             backgroundRepeat: 'no-repeat',
@@ -151,7 +151,7 @@ const AddFeed = ({ authState }) => {
                 <div className="addpostbottom">
 
                     <AddFeedActions handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} />
-               
+
                 </div>
             </div>
         </>
