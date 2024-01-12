@@ -6,6 +6,9 @@ import { FaRegComment } from "react-icons/fa";
 
 import convertDate from "../../../util/convertDate"
 
+import AddComment from "../addComment/AddComment"
+
+
 import axios from 'axios'
 
 import { connect } from 'react-redux'
@@ -47,17 +50,17 @@ function FeedContainer({ obj, handleAddLike, authState }) {
                 >
                     <div className='userpost'>
                         <div className='friendimg'
-                          style={{
-                            border: 'solid black 2px',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            height: '50px',
-                            width: '50px',
-                            borderRadius: '25px',
-                            backgroundImage: `url("http://localhost:5000${obj.authorImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundSize: 'cover'
-                          }}
+                            style={{
+                                border: 'solid black 2px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                height: '50px',
+                                width: '50px',
+                                borderRadius: '25px',
+                                backgroundImage: `url("http://localhost:5000${obj.authorImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: 'cover'
+                            }}
                         >
 
                         </div>
@@ -94,9 +97,7 @@ function FeedContainer({ obj, handleAddLike, authState }) {
                                 justifyContent: 'center',
                                 height: '200px',
                                 width: '200px',
-
                                 backgroundImage: `url("http://localhost:5000${obj.imgPath}"), url("http://localhost:5000/public/default.jpeg")`,
-
                                 backgroundRepeat: "no-repeat",
                                 backgroundSize: 'cover'
                             }}
@@ -130,42 +131,17 @@ function FeedContainer({ obj, handleAddLike, authState }) {
 
                     </div>
 
-
-
                     <div className='comment'><FaRegComment />{obj.comments.length}</div>
 
-
-
-
-
                 </div>
+
                 <hr className='line' />
-                <div className='addcomment'>
-
-                    <div className='userimg'
-                    
-                    
-                    style={{
-                        border: 'solid black 2px',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        height: '20px',
-                        width: '20px',
-                        borderRadius: '25px',
-                        backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundSize: 'cover'
-                      }}
 
 
-                    >
+                <AddComment authState={authState} obj={obj} />
 
 
 
-                    </div>
-
-                    <input type="text" className='input1' placeholder='  Write a comment...' />
-                </div>
             </div>
 
 
