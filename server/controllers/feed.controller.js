@@ -36,13 +36,13 @@ module.exports = {
                 User.findById(req.locals.userId)
                     .then(user => {
                         console.log("user who added feed", user)
-                        
+
                         console.log("Created Feed ", created)
-                        
+
                         created.OgFeed = created._id
                         created.authorImg = user.profileImg
                         created.save()
-                        
+
                     })
                 User.findByIdAndUpdate({ _id: created.author }, { $push: { feeds: created._id } })
                     .then(found => {
@@ -114,17 +114,87 @@ module.exports = {
 
     searchFeed: (req, res) => {
         console.log("searching feeds  =>  ", req.params)
-        let {search} = req.params
+        let { search } = req.params
 
         Feeds.find({ feedContent: { $regex: search, $options: 'i' } })
-        .populate({
-            path: 'comments',
-            populate: { path: 'comments', options: { _recursed: true } }
-        })
-        .then(found => {
-            console.log("found search", found)
-            res.json(found)
-        })    }
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                console.log("found search", found)
+                res.json(found)
+            })
+    },
+
+    findFeed: (req, res) => {
+        // console.log("findFeed", req.params)
+        Feeds.find({ _id: req.params.id })
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                // console.log("foundfeed", found)
+                res.json(found)
+            })
+            .catch(err => console.log("err", err))
+    },
+
+    getFeeds: (req, res) => {
+        // console.log("getFeeds", req.body)
+        //// Add aggregation for ppl you follow and sort so newest are at top
+        Feeds.find()
+            // .populate("comments")
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                // console.log("found", found)
+                res.json(found)
+            })
+            .catch(err => console.log("Feed Get error", err))
+    },
+
+
+    getMyFeeds: (req, res) => {
+        //// Add aggregation for ppl you follow and sort so newest are at top
+        Feeds.find({ author: req.locals.userId })
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                // console.log("found", found)
+                res.json(found)
+            })
+            .catch(err => console.log("Feed Get error", err))
+    },
+
+    getFollowingFeeds: (req, res) => {
+        // console.log("getFollowingFeeds", req.body)
+        User.findById(req.locals.userId)
+
+            .then(found => {
+                // console.log("found", found)
+                // console.log("following", found.following)
+                Feeds.find({ author: { $in: [...found.following] } })
+                    .populate({
+                        path: 'comments',
+                        populate: { path: 'comments', options: { _recursed: true } }
+                    })
+                    .then(feeds => {
+                        // console.log("feeds", feeds)
+                        res.json(feeds)
+                    })
+                    .catch(err => console.log("Feed err", err))
+
+            })
+            .catch(err => console.log(err))
+
+    },
+
 
 
     // Messages.aggregate([

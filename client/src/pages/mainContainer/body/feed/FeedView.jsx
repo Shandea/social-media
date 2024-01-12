@@ -9,7 +9,7 @@ import FeedActions from '../../../../components/feeds/feedTopActions/Actions/Fee
 
 import SearchFeed from "../../../../components/feeds/feedTopActions/Search/SearchFeed"
 
-
+import "./feedView.css"
 
 export default function Feed() {
     // feed container... a feed 
@@ -61,8 +61,54 @@ export default function Feed() {
             url: `http://localhost:5000/api/searchFeed/${input}`,
             withCredentials: true
         })
-        .then(res => setFeeds(res.data))
-        .catch(err => console.log("ERR search feed", err))
+            .then(res => setFeeds(res.data))
+            .catch(err => console.log("ERR search feed", err))
+    }
+
+
+    ////    TOP ACTION button to get  filtered feeds
+
+    const handleGetNewFeeds = () => {
+
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/api/getFeeds"
+        })
+            .then(got => {
+                setFeeds(got.data)
+            })
+            .catch(err => console.log("err", err))
+    }
+
+
+    const handleFollowingFeeds = () => {
+
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/api/getFollowingFeeds",
+            withCredentials: true,
+
+        })
+            .then(got => {
+                setFeeds(got.data)
+            })
+            .catch(err => console.log("err", err))
+    }
+
+
+    const handleMyFeeds = (e) => {
+
+
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/api/getMyFeeds",
+            withCredentials: true,
+
+        })
+            .then(got => {
+                setFeeds(got.data)
+            })
+            .catch(err => console.log("err", err))
     }
 
     return (
@@ -70,23 +116,37 @@ export default function Feed() {
         <>
             {console.log("feed state", feeds)}
             <div id="FeedTopAction"
-            // style={{ border: "black 2px solid", display: 'flex', justifyContent: 'space-evenly' }}
             >
-                {/* <div> */}
-                {/* <FeedActions /> */}
 
-                {/* </div> */}
+                <div id="filterActions">
+                    
+                    <div
+                        onClick={(e) => handleGetNewFeeds(e)}
+                    >
+                        New
+
+                    </div>
+
+                    <div
+                        onClick={(e) => handleFollowingFeeds(e)}
+
+                    >Following</div>
+
+                    <div
+                        onClick={(e) => handleMyFeeds(e)}
+
+                    >
+                        My</div>
 
 
 
+                </div>
 
                 <div>
 
                     <SearchFeed
-                    handleApiSearch={handleApiSearch}
-                        // feedSearch={feedSearch}
-                        // setFeedSearch={setFeedSearch}
-                        // handleFeedSearch={handleFeedSearch}
+                        handleApiSearch={handleApiSearch}
+
                     />
 
                 </div>
