@@ -38,7 +38,7 @@ module.exports = app => {
     app.post("/api/addFeed", AuthCheck, FeedController.addFeed)
     app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
     app.put("/api/feeds/addFeedLike", AuthCheck, FeedController.addFeedLike)
-
+    app.get("/api/searchFeed/:search", AuthCheck, FeedController.searchFeed )
 
 
 
@@ -52,6 +52,6 @@ module.exports = app => {
 
     app.get("/user/all", AuthCheck, UserController.all)
 
-    app.patch("/user/updatebio",AuthCheck, UserController.updateBio)
+    app.patch("/user/updatebio", AuthCheck, UserController.updateBio)
 
 }
