@@ -13,7 +13,7 @@ import "./AddFeed.css"
 const AddFeed = ({ authState }) => {
 
     ///// pull in authed user
-    console.warn("authstate add feeed", authState)
+    // console.warn("authstate add feeed", authState)
 
 
     const [selectedFiles, setSelectedFiles] = useState([])
@@ -56,7 +56,7 @@ const AddFeed = ({ authState }) => {
 
 
 
-        console.log("FORMDATA", formData)
+        // console.log("FORMDATA", formData)
 
 
         axios({
@@ -101,8 +101,8 @@ const AddFeed = ({ authState }) => {
                 {/* {console.log(connect.getState())} */}
 
                 {/* {console.log("Authed User", authState )} */}
-                {console.log("add feed", addFeed)}
-                {console.log("file", selectedFiles)}
+                {/* {console.log("add feed", addFeed)}
+                {console.log("file", selectedFiles)} */}
 
                 {/* <section>
 
@@ -133,12 +133,7 @@ const AddFeed = ({ authState }) => {
 
                     >
 
-
-
                     </div>
-
-                    {/* <input type="text" className='input1' placeholder="  What's on your mind, User?"/> */}
-
 
                     <input
                         className='input1'
@@ -147,22 +142,16 @@ const AddFeed = ({ authState }) => {
                         id="feedContent"
                         value={addFeed.feedContent || ""}
                         placeholder="  Whats on your mind?"
-                    // style={{ height: "50px", width: "442px" }}
                     >
 
-
                     </input>
-
-
-
 
                 </div>
                 <hr className='line' />
                 <div className="addpostbottom">
+
                     <AddFeedActions handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} />
-                    {/* <div><FaShare className='icon1'/>Share</div> */}
-                    {/* <div><FaPhotoFilm className='icon2'/>Add Img</div>
-                    <div><MdOutlineEmojiEmotions className='icon3'/>Submit</div> */}
+               
                 </div>
             </div>
         </>

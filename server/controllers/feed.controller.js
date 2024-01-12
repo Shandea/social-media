@@ -110,7 +110,21 @@ module.exports = {
                 //     res.json({message: "You have already voted"})
                 // }
             })
-    }
+    },
+
+    searchFeed: (req, res) => {
+        console.log("searching feeds  =>  ", req.params)
+        let {search} = req.params
+
+        Feeds.find({ feedContent: { $regex: search, $options: 'i' } })
+        .populate({
+            path: 'comments',
+            populate: { path: 'comments', options: { _recursed: true } }
+        })
+        .then(found => {
+            console.log("found search", found)
+            res.json(found)
+        })    }
 
 
     // Messages.aggregate([
