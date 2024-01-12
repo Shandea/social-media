@@ -1,5 +1,4 @@
 import "./LeftSideNav.css";
-import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 
 import { BsGlobeAmericas } from "react-icons/bs";
@@ -39,9 +38,9 @@ const handleLogout = (e) => {
 
   return (
     <>
-      <div className="leftnavcontainer">
+      <div >
         {/* <h3 className='leftsidenavh3'>Feeds</h3> */}
-        <h5 className='leftsidenavh5' >Current View  </h5>
+        <h5 >Current View  </h5>
         <div >
           {/* <Link to={`/profile/${authedUser._id}`}></Link> */}
           <Link
