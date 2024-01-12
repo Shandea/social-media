@@ -5,60 +5,27 @@ import FriendsComponent from './friendsList/FriendsComponent';
 
 import { connect } from 'react-redux';
 
-const  Body = (props)=> {
+const Body = (props) => {
 
     // console.log("body props", props)
 
     return (
         <>
-        {
-
-            props.chatFriends || props.authState.auth.showOnline ?
-
-             <div className="bodyMainContainer2" >
-
-                <div className="LeftSideNavContainer" >
+            {
+                <div  >
                     <LeftSideNav />
-                </div>
-
-
-                <div className="MainContentContainer">
                     {/* {console.log("Body Render")} */}
                     <Outlet />
+                    <FriendsComponent />
+
                 </div>
-
-                <div className="RightSideContainer" >
-                <FriendsComponent/>
-                </div>
-
-            </div>:
-
-            <div className="bodyMainContainer" >
-
-            <div className="LeftSideNavContainer" >
-                <LeftSideNav />
-
-            </div>
-
-
-            <div className="MainContentContainer">
-                <Outlet />
-            </div>
-
-
-            {/* <div className="RightSideContainer" >
-            <FriendsComponent/>
-            </div> */}
-
-        </div>
-        }
-           
+            }
         </>
     )
 }
-const mapStateToProps =(state)=>{
+const mapStateToProps = (state) => {
     return {
-        authState:state
+        authState: state
     }
 }
-export default connect(mapStateToProps,null)(Body)
+export default connect(mapStateToProps, null)(Body)

@@ -1,43 +1,34 @@
 import "./mainContainer.css";
 import Body from "./body/Body";
 import Header from "./header/Header";
-import { useState } from "react";
 // import Footer from "./footer/Footer";
 
 import { connect } from 'react-redux'
 
 const MainContainer = (props) => {
 
-const [chatFriends,setChatfriends] = useState(false)
-
-
-const handleShowRightDM = ()=>{
-  return setChatfriends(!chatFriends)
-}
-
   return (
-    <div className="mcBody">
-      <div className="HeaderContainer" >
+    <div>
+     
         {/* header */}
-        <Header handleShowRightDM={handleShowRightDM} />
+        <Header />
+   
 
-      </div>
+   
 
-      <div className="userTop" >
-
-        <div className="BodyContainer" >
+      
           {/* body */}
-          <Body chatFriends={chatFriends} />
+          <Body  />
           {/* <Outlet /> */}
-        </div>
+       
 
-        <div className="FooterContainer">
+      
           {/* footer */}
           {/* <Footer /> */}
 
-        </div>
+     
 
-      </div>
+     
     </div>
   );
 };

@@ -11,11 +11,6 @@ body, html {
 }
 
 
-#MainContentContainer {
-    /* this is the container the middle section in the body is in...  */
-    
-}
-
 :root{
     --primary-gradient-text: -webkit-linear-gradient(#dc07d8, #ffffff);
     --primary-btn: linear-gradient(180deg, #ffffff 50%,#7d357c);
@@ -24,7 +19,6 @@ body, html {
     /* regular/matte colors */
     --primary:#dc07d8;
     --info: rgb(19, 134, 215);
-
 }
 
 .form-btn {
