@@ -13,7 +13,7 @@ const Body = (props) => {
         <>
             {
                 <div  >
-                    <LeftSideNav />
+                    {/* <LeftSideNav /> */}
                     {/* {console.log("Body Render")} */}
                     <Outlet />
                     <FriendsComponent />
