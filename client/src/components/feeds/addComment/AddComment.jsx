@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import axios from 'axios'
 
-const AddComment = ({ authState, obj }) => {
+const AddComment = ({ authState, obj, handleSetFeeds }) => {
 
     const [addComment, setAddComment] = useState({
         content: ""
@@ -20,7 +20,9 @@ const AddComment = ({ authState, obj }) => {
             OgFeed: obj.OgFeed,                  // OG feed for notifications
             parentAuthorName: obj.authorName,        // Parent Doc Author for notification
             parentAuthorId: obj.author,
-            parentDoc: obj._id
+            parentDoc: obj._id,
+            authorImg: authState.userProfile.profileImg,  /// MAKE REF to user for most recent img
+
 
 
 
@@ -35,16 +37,23 @@ const AddComment = ({ authState, obj }) => {
             url: "http://localhost:5000/api/addFeedComment",
             data: addComment,
             withCredentials: true,
-        })
+        }).then(res => {
+            console.log("RESRES RES", res)
+        }
+        )
 
+        handleSetFeeds()
+        setAddComment(prev => ({
+            prev: ""
+        }))
     }
 
 
     return (
         <>
-            {console.log("ADD COMMENT", addComment)}
+            {/* {console.log("ADD COMMENT", addComment)}
             {console.log("authState", authState)}
-            {console.log("obj => ", obj)}
+            {console.log("obj => ", obj)} */}
 
             <div className='addcomment'>
 

@@ -46,6 +46,8 @@ module.exports = app => {
 
               ///  Comments  \\\
     app.post("/api/addFeedComment", AuthCheck, FeedController.addFeedComment)
+    app.post("/api/addCommentComment", AuthCheck, FeedController.addCommentComment)
+    app.put("/api/addCommentLike/:id", AuthCheck, FeedController.addCommentLike)
 
 
 
