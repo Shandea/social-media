@@ -1,96 +1,108 @@
-import React, { useState,useEffect } from "react";
-import { useNavigate,useParams } from "react-router-dom";
-import {
-  FaCalendarPlus,
-  FaCommentDots,
-  FaCommentSlash,
-  FaCirclePlus,
-} from "react-icons/fa6";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 
 import API from "../../../../../config/api/Api";
+import { connect } from "react-redux";
+import { hideOnline } from "../../../../../config/redux/actions/AuthActions";
+import axios from "axios";
+import FeedContainer from "../../../../../components/feeds/feedContainer/FeedContainer";
+import AddFeed from "../../../../../components/feeds/addFeed/AddFeed";
 
 import FriendStatus from "../../../../../components/friends/friendStatus/FriendStatus";
 
 const ViewProfile = (props) => {
-  let nav = useNavigate();
-  let fakeimages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  let fakegroups = [1, 2, 3, 4, 5, 6];
-  let fakehobbys = [1, 2, 3, 4];
+  console.log(props.authState)
 
-let [profileView,setProfileView] = useState({});
-let {id} = useParams()
-useEffect(()=>{
-    API.getViewProfile(id).then(res=>{
-        console.log("res data",res)
-        
-        setProfileView(res)
+  let [profileView, setProfileView] = useState({});
+  let { id } = useParams()
+  useEffect(() => {
+    API.getViewProfile(id).then(res => {
+      console.log("res data", res)
+
+      setProfileView(res)
     })
-},[id])
+    props.hideOnline()
+  }, [id])
 
+  const [feeds, setFeeds] = useState([])
 
+  useEffect(() => {
+
+    axios({
+      method: "GET",
+      url: "http://localhost:5000/api/getfeeds",
+      withCredentials: true,
+    })
+      .then(res => {
+        let filteredFeed = res.data.filter((feed) => feed.author === profileView._id)
+        // console.log("this should be profile view",res.data)
+        // console.log("this should be profiles view",profileView._id)
+        setFeeds(filteredFeed)
+      })
+      .catch(err => console.log("get feed err", err))
+
+  }, [profileView._id])
 
   return (
     <>
-     {/* {console.log("img src tag", srcStr)} */}
-     {
-       
-          <div className="outer">
-            <div className="profileOuterContainer">
-              <div className="" >background banner</div>
-              <span className="badge2">
-                <img alt="" src={`http://localhost:5000${profileView.profileImg}`} />
-              </span>
-            </div>
+      {console.log("img src tag", profileView)}
+      {console.log("img src feeds", feeds)}
+      {
 
-            <div>
-              <FriendStatus id={id}/>
-            </div>
+        <>
 
-            <div className="profileScroll">
+          <span>
+            <img width={200} height={200} alt="" src={`http://localhost:5000${profileView.profileImg}`} />
+          </span>
 
-              <div className="leftScroll">
-
-                <div className="innerLeftScroll">
-                  <div className="bios">
-                    <h4>bio</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos facilis at labore saepe similique architecto quia id? Veritatis, delectus minus.</p>
-                    <button>edit bio</button>
-                    <p>education</p>
-                    <p>location</p>
-                    <p>marital status</p>
-                    <button>edit details</button>
-                  </div>
-
-                  <div className="photoWall">
-                    <h3>photos show here</h3>
-                  </div>
-                  <div className="friendWall">
-                    <h3>friends show here</h3>
-                  </div>
-                  <div className="hobbyWall">
-                    <h3>hobbies show here</h3>
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="rightScroll">
-                <div className="innerRightScroll">
-                  <div className="createPostWall">
-                    <h3>create a post here</h3>
-                  </div>
-                  <div className="postWall">
-                    <h3>posts show here</h3>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
+          <div>
+            <FriendStatus id={id} />
           </div>
+
+          <h4>bio</h4>
+          <p>{profileView?.details?.bio || "I Have No Bio"}</p>
+          <h4>bio details</h4>
+          <p>{profileView?.details?.education || "I Have No Education"}</p>
+          <p>{profileView?.details?.localInfo || "I Have No Local Info"}</p>
+          <p>{profileView.details?.maritalStatus || "I Have No Marital Status"}</p>
+
+          <h3>create a post here</h3>
+          <AddFeed />
+
+          <h3>posts show here</h3>
+          <div className='feedContainer' style={{
+            marginTop: "20px",
+            overflowY: "auto"
+          }}>
+            {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
+              return (
+                <div key={i}
+
+                >
+                  <FeedContainer
+                    // handleAddLike={handleAddLike}
+                    obj={obj} />
+                </div>
+              )
+
+            })}
+          </div>
+        </>
       }
     </>
   );
 };
 
-export default ViewProfile;
+const mapStateToProps = (state) => {
+  return {
+    authState: state.auth
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    hideOnline: () => dispatch(hideOnline()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewProfile);

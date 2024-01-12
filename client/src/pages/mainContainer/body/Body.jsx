@@ -13,7 +13,7 @@ const  Body = (props)=> {
         <>
         {
 
-            props.chatFriends || props.authState.auth.showDM ?
+            props.chatFriends || props.authState.auth.showOnline ?
 
              <div className="bodyMainContainer2" >
 

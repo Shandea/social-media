@@ -3,6 +3,7 @@ import API from "../../../../config/api/Api";
 import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
 import axios from 'axios'
+import { Link } from "react-router-dom";
 
 
 const FriendsOutlet = ({ state }) => {
@@ -127,7 +128,9 @@ console.warn('Users', users)
               return (
                 <div key={i} className="pendingfriend">
                   {/* <h4>{friend.username}</h4> */}
+                  <Link to={`/profile/${friend.userId}`}>
                   <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" />
+                  </Link>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
                   </p>
@@ -150,7 +153,9 @@ console.warn('Users', users)
               return (
                 <div key={i} className="pendingfriend">
                   {/* <h4>{friend.username}</h4> */}
+                  <Link to={`/profile/${friend.userId}`}>
                   <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" />
+                  </Link>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
                   </p>
@@ -174,13 +179,19 @@ console.warn('Users', users)
         <div className="accepteddiv">
           {AcceptedFriends2 ? (
             AcceptedFriends2.map((friend, i) => {
+              console.log("accepted frirend console log",friend)
               return (
                 <div key={i} className="acceptedfriend">
                   {/* <h4>{friend.username}</h4> */}
-                  <img
+                  <Link to={`/profile/${friend.userId}`}>
+
+                     <img
                     src={`http://localhost:5000${friend.profileImg}`}
                     alt="friendProfileImg"
-                  />
+                    />
+                    </Link>
+                  
+                 
                   <p className="name1">
                     {friend.firstName} {friend.lastname}
                   </p>
@@ -225,13 +236,16 @@ console.warn('Users', users)
         <div className="accepteddiv">
           {users ? (
             users.map((friend, i) => {
+              console.log("at current user friends outlet",friend)
               return (
                 <div key={i} className="acceptedfriend">
                   {/* <h4>{friend.username}</h4> */}
+                  <Link to={`/profile/${friend._id}`}>
                   <img
                     src={`http://localhost:5000${friend.profileImg}`}
                     alt="friendProfileImg"
                   />
+                  </Link>
                   <p className="name1">
                     {friend.firstName} {friend.lastname}
                   </p>

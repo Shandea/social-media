@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { CiEdit } from "react-icons/ci";
 import { MdDoubleArrow } from "react-icons/md";
 
-import { showDM, handleInputsAuth } from "../../../../config/redux/actions/AuthActions";
+import { showOnline, handleInputsAuth } from "../../../../config/redux/actions/AuthActions";
 import Inputs from "../../../../components/block-comps/Inputs";
 import API from "../../../../config/api/Api";
 import axios from "axios";
@@ -36,20 +36,17 @@ const Profile = (props) => {
   useEffect(() => {
 
     axios({
-        method: "GET",
-        url: "http://localhost:5000/api/getfeeds",
-        withCredentials: true,
+      method: "GET",
+      url: "http://localhost:5000/api/getfeeds",
+      withCredentials: true,
     })
-        .then(res => {
-          let filteredFeed = res.data.filter((feed)=>feed.author === authState.user.userId)
-          // console.log("res feed on profile page", filteredFeed)
-          // console.log("res feed on profile page", res.data[10].author)
-          // console.log("res feed on profile page", authState.user.userId)
-            setFeeds(filteredFeed)
-        })
-        .catch(err => console.log("get feed err", err))
+      .then(res => {
+        let filteredFeed = res.data.filter((feed) => feed.author === authState.user.userId)
+        setFeeds(filteredFeed)
+      })
+      .catch(err => console.log("get feed err", err))
 
-}, [])
+  }, [])
 
   useEffect(() => {
     return setPIMG(srcStr)
@@ -61,18 +58,18 @@ const Profile = (props) => {
   const backtoProfile = () => {
     return setEditProfile(false)
   }
-  const showDM = () => {
-    return props.showDm()
+  const showMeOnline = () => {
+    return props.showOnline()
   }
 
   const handlebiosUpdate = (e) => {
     e.preventDefault()
     // console.log("got here___", props.authState)
     let info = {
-      bio:props.authState.bio,
-      details:props.authState.details
+      bio: props.authState.bio,
+      details: props.authState.details
     }
-    
+
     API.updateProfileBio(info)
   }
 
@@ -82,137 +79,105 @@ const Profile = (props) => {
       {console.log("profile page page", feeds)}
       {
         editProfile ? <EditProfile backtoProfile={backtoProfile} /> :
-          <div className="outer">
-            <div className="profileOuterContainer">
-              <div className="" >background banner</div>
-              <span className="badge2">
-                <img alt="" src={`http://localhost:5000${pIMG}`} />
-                <div className="underbanner">
-                  <button onClick={getEditProfile} > <CiEdit style={{ color: "black", fontSize: "large" }} /> EDIT</button>
-                </div>
-              </span>
-              <div>
-                <MdDoubleArrow onClick={showDM} className="arrowDrop" />
+          < >
+
+
+            <span >
+              <img alt="" src={`http://localhost:5000${pIMG}`} />
+              <div >
+                <button onClick={getEditProfile} > <CiEdit style={{ color: "black", fontSize: "large" }} /> EDIT</button>
               </div>
-            </div>
-            <div className="profileScroll">
+            </span>
 
-              <div className="leftScroll">
+            <MdDoubleArrow onClick={showMeOnline} style={{ fontSize: "100px" }} />
 
-                <div className="innerLeftScroll">
-                  {
-                    editBios == true ?
-                      <div className="bios">
-                        <form onSubmit={handlebiosUpdate} style={dimensions}>
-                          <h4>bio</h4>
-                          <label htmlFor="bio">inputs</label>
-                          <textarea name="bio" defaultValue={props.authState.bio || "I Have No Bio"} onChange={(e) => props.handleInputChange(e.target)} />
-                          <div>
-                            <button onClick={() => setEditBios(!editBios)} >CANCEL</button>
-                            <button type="submit" > UPDATE</button>
-                          </div>
-                        </form>
-                        <div style={dimensions}>
-                          <h4>details</h4>
-                          <p>education</p>
-                          <p>location</p>
-                          <p>marital status</p>
-                        </div>
-
-                      </div> :
-
-                      editDetails == true ?
-                        <div className="bios">
-                          <div style={dimensions}>
-                          <h4>bio</h4>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos facilis at labore saepe similique architecto quia id? Veritatis, delectus minus.</p>
-                          </div>
-
-                          <form onSubmit={handlebiosUpdate} style={dimensions} >
-                            <h4>Details</h4>
-                            <label>Education</label>
-                            <Inputs
-                                name={"details.education"}
-                                value={props.authState.details.education || ""}
-                                />
-                              <br />
-                                <label>Location</label>
-                              <Inputs
-                                name={"details.localInfo"}
-                                value={props.authState.details.localInfo || ""}
-                                />
-                              <br />
-                                <label>Marital Status</label>
-                              <Inputs
-                                name={"details.maritalStatus"}
-                                value={props.authState.details.maritalStatus || ""}
-                                />
-                            <div>
-                            <button onClick={()=>setEditDetails(!editDetails)} >CANCEL</button>
-                            <button type="submit" >UPDATE</button>
-                            </div>
-                          </form>
-
-
-                        </div> :
-                        <div className="bio">
-                          <h4>bio</h4>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos facilis at labore saepe similique architecto quia id? Veritatis, delectus minus.</p>
-                          <button onClick={() => setEditBios(!editBios)} >edit bio</button>
-
-                          <p>education</p>
-                          <p>location</p>
-                          <p>marital status</p>
-                          <button onClick={()=>setEditDetails(!editDetails)} >edit details</button>
-                        </div>
-                  }
-
-                  <div className="photoWall">
-                    <h3>photos show here</h3>
+            {
+              editBios == true ?
+                <>
+                  <form onSubmit={handlebiosUpdate} style={dimensions}>
+                    <h4>bio</h4>
+                    <label htmlFor="bio">inputs</label>
+                    <textarea name="bio" defaultValue={props.authState.bio || "I Have No Bio"} onChange={(e) => props.handleInputChange(e.target)} />
+                    <div>
+                      <button onClick={() => setEditBios(!editBios)} >CANCEL</button>
+                      <button type="submit" > UPDATE</button>
+                    </div>
+                  </form>
+                  <div style={dimensions}>
+                    <h4>details</h4>
+                    <p>education</p>
+                    <p>location</p>
+                    <p>marital status</p>
                   </div>
-                  <div className="friendWall">
-                    <h3>friends show here</h3>
-                  </div>
-                  <div className="hobbyWall">
-                    <h3>hobbies show here</h3>
-                  </div>
-                </div>
 
-              </div>
+                </> :
 
-              <div className="rightScroll">
-                <div className="innerRightScroll">
-                  <div className="createPostWall">
-                    <h3>create a post here</h3>
-                    <AddFeed/>
-                  </div>
-                  <div className="postWall">
-                    <h3>posts show here</h3>
-                    <div className='feedContainer' style={{
-                marginTop: "20px",
-                overflowY: "auto"
+                editDetails == true ?
+                  <>
+                    <div style={dimensions}>
+                      <h4>bio</h4>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos facilis at labore saepe similique architecto quia id? Veritatis, delectus minus.</p>
+                    </div>
+
+                    <form onSubmit={handlebiosUpdate} style={dimensions} >
+                      <h4>Details</h4>
+                      <label>Education</label>
+                      <Inputs
+                        name={"details.education"}
+                        value={props.authState.details.education || ""}
+                      />
+                      <br />
+                      <label>Location</label>
+                      <Inputs
+                        name={"details.localInfo"}
+                        value={props.authState.details.localInfo || ""}
+                      />
+                      <br />
+                      <label>Marital Status</label>
+                      <Inputs
+                        name={"details.maritalStatus"}
+                        value={props.authState.details.maritalStatus || ""}
+                      />
+                      <div>
+                        <button onClick={() => setEditDetails(!editDetails)} >CANCEL</button>
+                        <button type="submit" >UPDATE</button>
+                      </div>
+                    </form>
+
+
+                  </> :
+                  <>
+                    <h4>bio</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos facilis at labore saepe similique architecto quia id? Veritatis, delectus minus.</p>
+                    <button onClick={() => setEditBios(!editBios)} >edit bio</button>
+
+                    <p>education</p>
+                    <p>location</p>
+                    <p>marital status</p>
+                    <button onClick={() => setEditDetails(!editDetails)} >edit details</button>
+                  </>
+            }
+            <h3>create a post here</h3>
+            <AddFeed />
+
+            <h3>posts show here</h3>
+            <div className='feedContainer' style={{
+              marginTop: "20px",
+              overflowY: "auto"
             }}>
-                {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
-                    return (
-                        <div key={i}
-
-
-                        >
-                            <FeedContainer
-                                // handleAddLike={handleAddLike}
-                                obj={obj} />
-                        </div>
-                    )
-
-                })}
-            </div>
+              {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
+                return (
+                  <div key={i}
+                  >
+                    <FeedContainer
+                      // handleAddLike={handleAddLike}
+                      obj={obj} />
                   </div>
-                </div>
-              </div>
+                )
 
+              })}
             </div>
-
-          </div>
+          </>
       }
     </>
   );
@@ -225,7 +190,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    showDm: () => dispatch(showDM()),
+    showOnline: () => dispatch(showOnline()),
     handleInputChange: (input) => dispatch(handleInputsAuth(input))
   };
 };
