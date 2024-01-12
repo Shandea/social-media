@@ -36,13 +36,13 @@ module.exports = {
                 User.findById(req.locals.userId)
                     .then(user => {
                         console.log("user who added feed", user)
-                        
+
                         console.log("Created Feed ", created)
-                        
+
                         created.OgFeed = created._id
                         created.authorImg = user.profileImg
                         created.save()
-                        
+
                     })
                 User.findByIdAndUpdate({ _id: created.author }, { $push: { feeds: created._id } })
                     .then(found => {
@@ -110,7 +110,156 @@ module.exports = {
                 //     res.json({message: "You have already voted"})
                 // }
             })
+    },
+
+    searchFeed: (req, res) => {
+        console.log("searching feeds  =>  ", req.params)
+        let { search } = req.params
+
+        Feeds.find({ feedContent: { $regex: search, $options: 'i' } })
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                console.log("found search", found)
+                res.json(found)
+            })
+    },
+
+    findFeed: (req, res) => {
+        // console.log("findFeed", req.params)
+        Feeds.find({ _id: req.params.id })
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                // console.log("foundfeed", found)
+                res.json(found)
+            })
+            .catch(err => console.log("err", err))
+    },
+
+    getFeeds: (req, res) => {
+        // console.log("getFeeds", req.body)
+        //// Add aggregation for ppl you follow and sort so newest are at top
+        Feeds.find()
+            // .populate("comments")
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                // console.log("found", found)
+                res.json(found)
+            })
+            .catch(err => console.log("Feed Get error", err))
+    },
+
+
+    getMyFeeds: (req, res) => {
+        //// Add aggregation for ppl you follow and sort so newest are at top
+        Feeds.find({ author: req.locals.userId })
+            .populate({
+                path: 'comments',
+                populate: { path: 'comments', options: { _recursed: true } }
+            })
+            .then(found => {
+                // console.log("found", found)
+                res.json(found)
+            })
+            .catch(err => console.log("Feed Get error", err))
+    },
+
+    getFollowingFeeds: (req, res) => {
+        // console.log("getFollowingFeeds", req.body)
+        User.findById(req.locals.userId)
+
+            .then(found => {
+                // console.log("found", found)
+                // console.log("following", found.following)
+                Feeds.find({ author: { $in: [...found.following] } })
+                    .populate({
+                        path: 'comments',
+                        populate: { path: 'comments', options: { _recursed: true } }
+                    })
+                    .then(feeds => {
+                        // console.log("feeds", feeds)
+                        res.json(feeds)
+                    })
+                    .catch(err => console.log("Feed err", err))
+
+            })
+            .catch(err => console.log(err))
+
+    },
+
+
+
+    /////////////////////////////  COMMENTS ////////////////////////
+
+    addFeedComment: (req, res) => {
+        console.log("ADD COMMENT req-body   ==> ", req.body)
+
+            Comments.create(req.body)
+                .then(created => {
+                    // console.log("created", created)
+                    created.nestedPath.push(req.body.OgFeed)
+                    created.save()
+                    // figure out how to determine if your commenting a comment or a feed
+                    Feeds.findByIdAndUpdate({ _id: created.OgFeed },
+                        //     Feeds.findByIdAndUpdate({ _id: created.OgFeed },
+                        {
+                            $push: { "comments": created._id },
+                            $inc: { "commentCount": 1 },
+                        }, { new: true })
+    
+    
+                        .then(updated => {
+                            // console.log("updated", updated)
+    
+    
+                            User.findOneAndUpdate({ _id: req.body.ogAuthor },
+                                {
+                                    $push: {
+                                        notifications: [
+                                            {
+                                                comment: {
+                                                    authorName: req.body.authorName,
+                                                    authorId: req.body.authorId,
+                                                    parentDoc: updated._id,
+                                                    comment: req.body.content,
+                                                    createdAt: new Date(),
+                                                    ogFeed: req.body.OgFeed
+    
+                                                }
+                                            }
+                                        ]
+                                    }
+                                })
+                                .then(ogFound => console.log("og Found"))
+    
+                            res.json(updated)
+    
+                        })
+    
+    
+    
+                        //     res.json(updated)
+                        // })
+                        .catch(err => console.log("err", err))
+                })
+                .catch(err => console.log("err", err))
+    
+
+
+
+
+
+
     }
+
 
 
     // Messages.aggregate([

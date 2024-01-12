@@ -7,9 +7,11 @@ import { MdDoubleArrow } from "react-icons/md";
 import { showDM, handleInputsAuth } from "../../../../config/redux/actions/AuthActions";
 import Inputs from "../../../../components/block-comps/Inputs";
 import API from "../../../../config/api/Api";
-
+import axios from "axios";
 
 import EditProfile from "./editProfile/EditProfile";
+import FeedContainer from "../../../../components/feeds/feedContainer/FeedContainer";
+import AddFeed from "../../../../components/feeds/addFeed/AddFeed";
 
 const dimensions = {
   width: "100%",
@@ -19,8 +21,9 @@ const dimensions = {
 }
 
 const Profile = (props) => {
+  let authState = props.authState
 
-  // console.log("authSTATE,PROFILEIMG", props)
+  console.log("authSTATE,PROFILE", props)
   let srcStr = props.authState.userProfile.profileImg
   let [pIMG, setPIMG] = useState('')
   let [editProfile, setEditProfile] = useState(false)
@@ -28,8 +31,25 @@ const Profile = (props) => {
 
   let [editBios, setEditBios] = useState(false)
   let [editDetails, setEditDetails] = useState(false)
+  const [feeds, setFeeds] = useState([])
 
+  useEffect(() => {
 
+    axios({
+        method: "GET",
+        url: "http://localhost:5000/api/getfeeds",
+        withCredentials: true,
+    })
+        .then(res => {
+          let filteredFeed = res.data.filter((feed)=>feed.author === authState.user.userId)
+          // console.log("res feed on profile page", filteredFeed)
+          // console.log("res feed on profile page", res.data[10].author)
+          // console.log("res feed on profile page", authState.user.userId)
+            setFeeds(filteredFeed)
+        })
+        .catch(err => console.log("get feed err", err))
+
+}, [])
 
   useEffect(() => {
     return setPIMG(srcStr)
@@ -59,6 +79,7 @@ const Profile = (props) => {
   return (
     <>
       {/* {console.log("img src tag", srcStr)} */}
+      {console.log("profile page page", feeds)}
       {
         editProfile ? <EditProfile backtoProfile={backtoProfile} /> :
           <div className="outer">
@@ -163,9 +184,28 @@ const Profile = (props) => {
                 <div className="innerRightScroll">
                   <div className="createPostWall">
                     <h3>create a post here</h3>
+                    <AddFeed/>
                   </div>
                   <div className="postWall">
                     <h3>posts show here</h3>
+                    <div className='feedContainer' style={{
+                marginTop: "20px",
+                overflowY: "auto"
+            }}>
+                {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
+                    return (
+                        <div key={i}
+
+
+                        >
+                            <FeedContainer
+                                // handleAddLike={handleAddLike}
+                                obj={obj} />
+                        </div>
+                    )
+
+                })}
+            </div>
                   </div>
                 </div>
               </div>

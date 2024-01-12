@@ -5,14 +5,18 @@ import FeedContainer from "../../../../components/feeds/feedContainer/FeedContai
 import AddFeed from "../../../../components/feeds/addFeed/AddFeed"
 
 import axios from 'axios'
-import FeedActions from '../../../../components/feeds/FeedActions'
+import FeedActions from '../../../../components/feeds/feedTopActions/Actions/FeedActions'
 
+import SearchFeed from "../../../../components/feeds/feedTopActions/Search/SearchFeed"
+
+import "./feedView.css"
 
 export default function Feed() {
     // feed container... a feed 
 
 
     useEffect(() => {
+        
 
         axios({
             method: "GET",
@@ -20,14 +24,17 @@ export default function Feed() {
             withCredentials: true,
         })
             .then(res => {
-                console.log("res", res)
+                console.log("res feed views", res)
                 setFeeds(res.data)
             })
             .catch(err => console.log("get feed err", err))
+        
 
     }, [])
 
     const [feeds, setFeeds] = useState([])
+
+    const [feedSearch, setFeedSearch] = useState("")
 
     const handleAddLike = (e) => {
         console.log("adding like", e.target.id)
@@ -40,30 +47,115 @@ export default function Feed() {
         })
             .then(res => {
                 console.log("add like RES", res)
-
-                console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
-
+                // console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
                 setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
-
             })
-
     }
 
+    const handleApiSearch = (e, input) => {
+        console.log("handleAPISearch", input)
+        // setFeedSearch(e.target.value)
+
+        axios({
+            method: "GET",
+            url: `http://localhost:5000/api/searchFeed/${input}`,
+            withCredentials: true
+        })
+            .then(res => setFeeds(res.data))
+            .catch(err => console.log("ERR search feed", err))
+    }
+
+
+    ////    TOP ACTION button to get  filtered feeds
+
+    const handleGetNewFeeds = () => {
+
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/api/getFeeds"
+        })
+            .then(got => {
+                setFeeds(got.data)
+            })
+            .catch(err => console.log("err", err))
+    }
+
+
+    const handleFollowingFeeds = () => {
+
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/api/getFollowingFeeds",
+            withCredentials: true,
+
+        })
+            .then(got => {
+                setFeeds(got.data)
+            })
+            .catch(err => console.log("err", err))
+    }
+
+
+    const handleMyFeeds = (e) => {
+
+
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/api/getMyFeeds",
+            withCredentials: true,
+
+        })
+            .then(got => {
+                setFeeds(got.data)
+            })
+            .catch(err => console.log("err", err))
+    }
 
     return (
 
         <>
             {console.log("feed state", feeds)}
             <div id="FeedTopAction"
-                style={{ border: "black 2px solid", display: 'flex', justifyContent: 'space-evenly' }}
             >
 
-                {/* <FeedActions /> */}
+                <div id="filterActions">
+                    
+                    <div
+                        onClick={(e) => handleGetNewFeeds(e)}
+                    >
+                        New
+
+                    </div>
+
+                    <div
+                        onClick={(e) => handleFollowingFeeds(e)}
+
+                    >Following</div>
+
+                    <div
+                        onClick={(e) => handleMyFeeds(e)}
+
+                    >
+                        My</div>
+
+
+
+                </div>
+
+                <div>
+
+                    <SearchFeed
+                        handleApiSearch={handleApiSearch}
+
+                    />
+
+                </div>
+
+
 
             </div>
 
             <AddFeed />
-
 
 
             {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
@@ -75,8 +167,6 @@ export default function Feed() {
                 {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
                     return (
                         <div key={i}
-
-
                         >
                             <FeedContainer
                                 handleAddLike={handleAddLike}
@@ -87,10 +177,6 @@ export default function Feed() {
                 })}
             </div>
 
-
-
-
-            {/* ???????????????????????/ */}
 
         </>
     )

@@ -43,18 +43,7 @@ const API = {
       throw error;
     }
   },
-  getUser: async () => {
-    try {
-      const response = await instance.get(`user/authCheck`);
-      // console.log("from backend get AUTH", response.data);
-      const usersData = response.data
-      store.dispatch(getUser(usersData))
-      return usersData;
-    } catch (error) {
-      console.error("Error in getUser AUTH:", error);
-      throw error;
-    }
-  },
+ 
   getUserProfile: async () => {
     // console.log("firing")
     try {
@@ -96,6 +85,34 @@ const API = {
       return usersData;
     } catch (error) {
       console.error("Error in userAll:", error);
+      throw error;
+    }
+  },
+  updateProfile: async (info) => {
+    // console.log("firing update profile", info)
+    let profileInfo = {
+      firstName:info?.firstname ? info.firstname: info.userProfile.firstName,
+      lastName:info?.firstname ? info.lastname: info.userProfile.lastName,
+      email:info?.firstname ? info.email: info.userProfile.email,
+      phone:info?.phone ? info.phone: info.userProfile.phone,
+      location:{
+        city:info?.location.city ? info.location.city: info.userProfile.location.city,
+        state:info?.location.state ? info.location.state: info.userProfile.location.state,
+        zipcode:info?.location.zipcode ? info.location.zipcode: info.userProfile.location.zipcode,
+      },
+      pronoun:info?.pronoun ? info.pronoun: info.userProfile.pronoun,
+      vibe:info?.vibe ? info.vibe: info.userProfile.vibe,
+      gender:info?.gender ? info.gender: info.userProfile.gender
+
+    }
+    // console.log("firing update profile info", profileInfo)
+    try {
+      const response = await instance.patch(`/user/updateuserprofile`,profileInfo);
+      // console.log("from backend update user profile", response.data);
+      const usersData = response.data
+      return usersData;
+    } catch (error) {
+      console.error("Error in update user profile:", error);
       throw error;
     }
   },

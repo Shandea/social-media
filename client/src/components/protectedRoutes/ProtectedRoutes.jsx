@@ -48,7 +48,6 @@ function ProtectedRoutes() {
     
     useEffect(() => {
         API.getUserProfile()
-        API.getUser()
     }, [])
 
     // useEffect(() => {
