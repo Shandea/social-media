@@ -38,10 +38,23 @@ module.exports = app => {
     app.post("/api/addFeed", AuthCheck, FeedController.addFeed)
     app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
     app.put("/api/feeds/addFeedLike", AuthCheck, FeedController.addFeedLike)
-    app.get("/api/searchFeed/:search", AuthCheck, FeedController.searchFeed )
-app.get("/api/getFollowingFeeds", AuthCheck, FeedController.getFollowingFeeds)
-app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
-app.get("/api/getMyFeeds", AuthCheck, FeedController.getMyFeeds)
+    app.get("/api/searchFeed/:search", AuthCheck, FeedController.searchFeed)
+    app.get("/api/getFollowingFeeds", AuthCheck, FeedController.getFollowingFeeds)
+    app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
+    app.get("/api/getMyFeeds", AuthCheck, FeedController.getMyFeeds)
+    /////////////////////////////////
+
+              ///  Comments  \\\
+    app.post("/api/addFeedComment", AuthCheck, FeedController.addFeedComment)
+
+
+
+
+
+
+
+
+    //////////////////////////////
 
 
     app.get("/test", AuthCheck, (req, res, next) => {

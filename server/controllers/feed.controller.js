@@ -197,6 +197,71 @@ module.exports = {
 
 
 
+    /////////////////////////////  COMMENTS ////////////////////////
+
+    addFeedComment: (req, res) => {
+        console.log("ADD COMMENT req-body   ==> ", req.body)
+
+            Comments.create(req.body)
+                .then(created => {
+                    // console.log("created", created)
+                    created.nestedPath.push(req.body.OgFeed)
+                    created.save()
+                    // figure out how to determine if your commenting a comment or a feed
+                    Feeds.findByIdAndUpdate({ _id: created.OgFeed },
+                        //     Feeds.findByIdAndUpdate({ _id: created.OgFeed },
+                        {
+                            $push: { "comments": created._id },
+                            $inc: { "commentCount": 1 },
+                        }, { new: true })
+    
+    
+                        .then(updated => {
+                            // console.log("updated", updated)
+    
+    
+                            User.findOneAndUpdate({ _id: req.body.ogAuthor },
+                                {
+                                    $push: {
+                                        notifications: [
+                                            {
+                                                comment: {
+                                                    authorName: req.body.authorName,
+                                                    authorId: req.body.authorId,
+                                                    parentDoc: updated._id,
+                                                    comment: req.body.content,
+                                                    createdAt: new Date(),
+                                                    ogFeed: req.body.OgFeed
+    
+                                                }
+                                            }
+                                        ]
+                                    }
+                                })
+                                .then(ogFound => console.log("og Found"))
+    
+                            res.json(updated)
+    
+                        })
+    
+    
+    
+                        //     res.json(updated)
+                        // })
+                        .catch(err => console.log("err", err))
+                })
+                .catch(err => console.log("err", err))
+    
+
+
+
+
+
+
+    }
+
+
+
     // Messages.aggregate([
     //     {
     //         $match:

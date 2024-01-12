@@ -35,7 +35,8 @@ const CommentSchema = new mongoose.Schema({
     commentCount: Number,
     parent: { type: Schema.Types.ObjectId, ref: 'Comments' },
     parentdoc: { type: Schema.Types.ObjectId, ref: 'Comments' },
-    parentAuthor: { type: Schema.Types.ObjectId, ref: 'User' }, /// for Reply vs add comment
+    parentAuthorId: { type: Schema.Types.ObjectId, ref: 'User' }, /// for Reply vs add comment
+    parentAuthorName: String,
     nestLevel: Number,
     nestedPath: [{ type: Schema.Types.ObjectId, ref: 'Comments' }]
 
