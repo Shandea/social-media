@@ -3,6 +3,7 @@ import API from "../../../../config/api/Api";
 import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
 import axios from 'axios'
+import { Link } from "react-router-dom";
 
 
 const FriendsOutlet = ({ state }) => {

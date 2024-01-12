@@ -34,8 +34,6 @@ const handleLogout = (e) => {
 
   socket.emit("loggedOut", "loggedOut")
 
-
-
 }
 
 
@@ -101,7 +99,7 @@ const handleLogout = (e) => {
         <div>
           <Link
             to={`/hobby/`}
-            onClick={(e) => handleLogout(e)}
+            // onClick={(e) => handleLogout(e)}
           // className={leftNav.mainFeed === "Hobby" ? "focusedOption" : null}
           >
             <h2>Hobby</h2>
