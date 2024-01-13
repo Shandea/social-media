@@ -18,12 +18,13 @@ const LandingPage = ({props,authState}) => {
     <div className="landingPage-container">
       
       <div className="container-left" >
-        <h1 className="header">SHOW CASE</h1>
+        <div className="innerleft">
+        <h1 className="leftheader">SHOW CASE</h1>
        
         <Link to="/feed" > bypass auth </Link>
         <p className="statement">Connect, Share, and Engage – Welcome to a vibrant community where your voice matters.</p>
       </div>
-
+</div>
       {
         authState.createAcct ? <LandingPageSignup /> : <LandingPageLogin  />
       }
