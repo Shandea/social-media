@@ -5,6 +5,7 @@ import React, { useState } from "react"; //added this, may just use redux store 
 import API from "../../../config/api";
 import { getCreateAcct } from "../../../config/redux/actions/AuthActions";
 import { connect } from "react-redux";
+import { AiFillQuestionCircle } from "react-icons/ai";
 
 import { motion } from "framer-motion";
 const dropIn = {
@@ -66,9 +67,12 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
           animate={"visible"}
           exit={"exit"}
         >
+         
+          <div className="signupheader"><h1>Sign Up</h1></div>
+          <hr  className="line"/>
           <div className="name-div">
             <Input
-              className="signup-inputs name-div-input"
+              className="input3"
               type="text"
               name="firstname"
               value={authState.firstname || ""}
@@ -76,7 +80,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
               required={true}
             />
             <Input
-              className="signup-inputs name-div-input"
+              className="input3"
               type="text"
               name="lastname"
               value={authState.lastname || ""}
@@ -85,9 +89,9 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
             />
           </div>
 
-          <div className="email-psw-username-div">
+          <div className="uppc">
             <Input
-              className="signup-inputs email-psw-username-input"
+              className="input4"
               type="text"
               name="username"
               placeholder="username"
@@ -95,7 +99,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
               required={true}
             />
             <Input
-              className="signup-inputs email-psw-username-input"
+              className="input4"
               type="email"
               name="email"
               value={authState.email || ""}
@@ -108,7 +112,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
             </p>
 
             <Input
-              className="signup-inputs email-psw-username-input"
+              className="input4"
               type="text"
               name="phone"
               value={authState.phone || ""}
@@ -116,7 +120,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
               required={true}
             />
             <Input
-              className="signup-inputs email-psw-username-input"
+              className="input4"
               type="password"
               name="password"
               placeholder="Password"
@@ -131,7 +135,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
             </p>
 
             <Input
-              className="signup-inputs email-psw-username-input"
+              className="input4"
               type="password"
               name="confirmPassword"
               placeholder="Confirm Password"
@@ -144,8 +148,9 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
                 : "Passwords Don't Match"}
             </p>
           </div>
-
+          <div className="local">Location<AiFillQuestionCircle className="q-icon"/></div>
           <div className="location">
+          
             <Input
               className=" location-input"
               type="text"
@@ -170,7 +175,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
               placeholder="Zipcode"
               required={true}
             />
-            <br />
+      
             <p>
               {authState.location.zipcode.length == 5 ||
               authState.location.zipcode == ""
@@ -178,7 +183,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
                 : "Please use 5 digit zipcode"}
             </p>
           </div>
-          <label>Birth Date</label>
+          <label className="BD-label">Birth Date<AiFillQuestionCircle className="q-icon"/></label>
           <div className="birth-date">
             <Input
               className=" birth-date-input"
@@ -223,7 +228,7 @@ const LandingPageSignup = ({ authState, getCreateAcct }) => {
                 : null}
             </p>
           </div>
-
+<div className="gen">Gender<AiFillQuestionCircle className="q-icon"/></div>
           <div className="gender">
             <div className="signup-radio">
               <label htmlFor="">Female</label>
@@ -277,14 +282,14 @@ authState.phone.length>9
 
         {/* you gott get rid of tis line VVV for deployment */}
 
-        <button type="submit" className="form-btn">
+        <button type="submit" className="formbtn">
           Sign Up
         </button>
 
         <hr className="form-hr" />
         <button
           onClick={getCreateAcct}
-          className="createAcct-btn"
+          className="formbtn"
           type="button"
         >
           Login

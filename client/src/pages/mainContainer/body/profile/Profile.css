@@ -121,6 +121,7 @@ box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
 }
 
 .innerleft {
+    width: 98%;
     display: flex;
     justify-content: center;
     align-items: center;
