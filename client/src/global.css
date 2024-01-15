@@ -8,13 +8,15 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
+   
+    
 }
 
 
 :root{
     --primary-gradient-text: -webkit-linear-gradient(#dc07d8, #ffffff);
     --primary-btn: linear-gradient(180deg, #ffffff 50%,#7d357c);
-    --blue-gradient: linear-gradient(97.05deg, rgba(255, 0, 255, 0.727) 3.76%, rgb(174, 60, 174) 100%);
+    --blue-gradient: linear-gradient(97.05deg, rgba(188, 0, 250, 0.51) 3.76%, rgb(187, 0, 250) 100%);
 
     /* regular/matte colors */
     --primary:#dc07d8;

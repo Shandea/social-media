@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import "./ImageUpload.css"
 
 import { useNavigate } from 'react-router-dom'
 
@@ -38,15 +39,15 @@ const ImageUpload = () => {
         <>
         {/* {console.log("formdata", formData)} */}
 
-            <form onSubmit={handleSubmit} >
-
+            <form onSubmit={handleSubmit} className='updatepicform'>
+<label htmlFor="" className='editlabel'><p className='z'>Upload Photo</p>
                 <input
                     type="file"
                     onChange={(e) => handleSelectedFiles(e)}
                     accept="image/*"
                     id="image"
-                    name="image"></input>
-                <button type="submit">update</button>
+                    name="image"></input></label>
+                <button type="submit" className='updatepic'>Update Photo</button>
 
             </form>
 

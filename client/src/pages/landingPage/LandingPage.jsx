@@ -1,6 +1,7 @@
 import LandingPageSignup from "./landingPageSignup/landingPageSignup"
 import LandingPageLogin from "./landingPageLogin/LandingPageLogin"
 import { Link } from 'react-router-dom'
+import Logo from "../../imagess/Logo.png"
 
 import { useEffect } from "react"
 import API from "../../config/api"
@@ -19,7 +20,7 @@ const LandingPage = ({props,authState}) => {
       
       <div className="container-left" >
         <div className="innerleft">
-        <h1 className="leftheader">SHOW CASE</h1>
+        <img src={Logo} alt="logo" className="logo" />
        
         <Link to="/feed" > bypass auth </Link>
         <p className="statement">Connect, Share, and Engage – Welcome to a vibrant community where your voice matters.</p>

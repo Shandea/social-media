@@ -3,7 +3,7 @@ import { FaHome, FaRegComment, FaBell } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi"
 import { IoSearch, IoAdd } from "react-icons/io5"
 import { TbGridDots } from "react-icons/tb"
-
+import logo1 from "../../imagess/logo1.png"
 import { TbDoorExit } from "react-icons/tb";
 import hacker6 from "../../imagess/hacker6.png"
 
@@ -55,8 +55,8 @@ const Navbar = ({ props, authState }) => {
 
       <div className="navbar">
         <div className="left-nav">
-          <div className="circle">
-            <p className="logo">S</p>
+          <div >
+            <img src={logo1} alt="" className="logo1"/>
           </div>
           <div className="search2"><IoSearch /></div>
           <input

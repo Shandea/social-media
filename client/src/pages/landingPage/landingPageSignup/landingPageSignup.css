@@ -1,151 +1,181 @@
 /* takes extra button off of form */
 .signup-btn {
-    display: none;
+  display: none;
 }
 
-
 .signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 70%;
+  max-width: 70%;
+  height: 70%;
+  max-height: 70%;
+  gap: 10px;
 
-    width: 70%;
-    max-width: 70%;
-    height: 70%;
-    max-height: 70%;
-    gap: 10px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 1px 1px 4px 2px rgba(195, 191, 191, 0.764);
 
-    border-radius: 25px;
-    background: white;
-    box-shadow: 2px 2px 2px 2px rgba(195, 191, 191, 0.764);
+  padding-bottom: 3%;
 
-    padding-top: 2%;
-
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 .signup-form hr {
-    display: none;
+  display: none;
 }
 
-.signup-inputs {
-    margin-top: 10%;
-    width: 80%;
-    border-radius: 15px;
-    border-color: darkgray;
-    box-shadow: 2px 2px grey;
-    border: none;
-
-    &:focus {
-        outline: 1px solid lightgray;
-        border: none;
-    }
+.signupheader {
+  width: 100%;
+  margin-left: 30px;
+  margin-top: 10px;
+  text-align: start;
+  font-size: large;
+  font-family: Arial, sans-serif;
 }
 
-.name-div {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
+.line {
+  width: 95%;
+  color: rgba(128, 128, 128, 0.46);
+  margin: 10px;
 }
 
-.name-div-input {
-    width: 30%;
-    height: 30%;
+.input3 {
+  border-radius: 5px;
+  border: solid 1px rgba(128, 128, 128, 0.199);
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(128, 128, 128, 0.084);
+  outline: none;
 }
 
-.email-psw-username-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-    height: 100vh;
+.input4 {
+  border-radius: 5px;
+  border: solid 1px rgba(128, 128, 128, 0.199);
+  width: 95%;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(128, 128, 128, 0.084);
+  outline: none;
 }
 
-.email-psw-username-input {
-    height: 28px;
+.uppc {
+  width: 98%;
 }
 
 .location {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 
-    margin-top: 3%;
+  /* margin-top: 3%; */
 }
 
 .location-input {
-    width: 20%;
-    height: 2em;
-    border-radius: 15px;
-    border: none;
-    box-shadow: 2px 2px grey;
+  margin: 10px;
+  width: 28%;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+  border: solid 1px rgba(128, 128, 128, 0.275);
+ 
+}
+
+.local {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 92%;
+   
+color: rgba(128, 128, 128, 0.623);
 }
 
 .birth-date {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    margin-top: 0%;
+  margin-top: 0%;
 }
 
 .birth-date-input {
-    width: 20%;
-    height: 2em;
-    border-radius: 15px;
-    border: none;
-    box-shadow: 2px 2px grey;
+    margin: 10px;
+    width: 28%;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+    border: solid 1px rgba(128, 128, 128, 0.275);
+    color: rgba(128, 128, 128, 0.623);
+}
+
+.BD-label {
+    width: 92%;
+    color: rgba(128, 128, 128, 0.623);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
 }
 
-.gender {
+.gen {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    width: 92%;
+   
+color: rgba(128, 128, 128, 0.623);
+}
 
-    width: 100%;
-    height: 100%;
 
-    margin-top: 5%;
+
+.gender {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: rgba(128, 128, 128, 0.623);
+  width: 100%;
+  height: 100%;
+
+  /* margin-top: 5%; */
 }
 
 .gender input {
-    width: 2em;
-    height: 1.1em;
+  width: 2em;
+  height: 1.1em;
 }
 
 .signup-radio {
-    border: 1px solid black;
-    border-radius: 15px;
-    height: 45px;
-    width: 100px;
+  border: 1px solid rgba(128, 128, 128, 0.423);
+  border-radius: 5px;
+  width: 25%;
+  padding: 9px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .motion-div {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.form-btnBAD{
-    background-color: grey;
-    border:dotted grey 4px;
-    color:red;
+.form-btnBAD {
+  background-color: grey;
+  border: dotted grey 4px;
+  color: red;
 }

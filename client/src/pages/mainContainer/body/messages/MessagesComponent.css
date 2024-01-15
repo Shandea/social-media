@@ -7,18 +7,21 @@
 
 .messageleft {
   /* border: solid 1px rgba(128, 128, 128, 0.238); */
-width: 400px;
+width: 450px;
 height: 625px;
 box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
+/* display: flex;
+flex-direction: column;
+align-items: center; */
 }
 
 .messageright {
   /* border: solid 1px rgba(128, 128, 128, 0.238); */
-  width: 70%;
+  width: 80%;
   height: 625px;
 }
 
-.header {
+.chatheader {
  display: flex;
 }
 
@@ -79,7 +82,7 @@ outline: none;
 }
 
 .contactdiv {
-  width: 100%;
+  width: 95%;
   /* border: solid blue 1px; */
   height: 515px;
   overflow-y: auto;
@@ -162,39 +165,40 @@ justify-content: flex-start;
 
 .contactpic {
 border: solid black 1px;
-width: 40px;
-height: 40px;
+width: 50px;
+height: 50px;
 border-radius: 50%;
-margin: 10px;
+margin: 5px;
 }
 
 .contactmessage {
-width: 50%;
+width: 30%;
 height: auto;
 background-color: rgba(128, 128, 128, 0.21);
 border-radius: 30px;
-margin-bottom: 10px;
+margin-top: 30px;
 display: flex;
 justify-content: center;
 align-items: center;
 border-top-right-radius: 5px;
 border-bottom-left-radius: 5px;
+padding: 10px;
 }
 
 .usermessage {
-  width: 50%;
+  width: 30%;
 height: auto;
 background: var(--blue-gradient);
 border-radius: 30px;
-margin-bottom: 10px;
-margin-right: 10px;
+margin-top: 30px;
+/* margin-right: 10px; */
 display: flex;
 justify-content: center;
 align-items: center;
 border-top-left-radius: 5px;
 border-bottom-right-radius: 5px;
 color: white;
-padding: 15px;
+padding: 10px;
 }
 
 .messagerightbottom {
@@ -204,6 +208,8 @@ display: flex;
 
 .sendmessageicon {
 display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .plus {
@@ -215,13 +221,14 @@ display: flex;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin-left: 10px;
 }
 
 .attachimg {
-  color: rgb(197, 7, 197);
+color: rgb(204, 0, 255);
   font-size: x-large;
-  margin: 10px;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
 .sendmessageinput {
@@ -247,7 +254,7 @@ background-color: transparent;
   height: 35px; 
   width: 120px;
   background: var(--blue-gradient);
-  border-radius: 20px;
+  border-radius: 10px;
   color: white;
   display: flex;
   justify-content: center;
@@ -257,8 +264,32 @@ background-color: transparent;
   font-size: large;
 }
 
+
+.test {
+  left: -100%;
+  transition: 0.3s;
+}
+
+.test.active {
+  left: 0;
+  transition: 0.3s;
+}
+
+
+
+
 .bttn:hover {
-  color: rgb(197, 7, 197);
-  background: white;
-  border: solid 1px rgb(197, 7, 197);
+background-color: black;
+}
+
+@media (max-width: 700px) {
+  
+.messageleft {
+  display: none;
+}
+
+.messageright {
+  width: 100%;
+}
+
 }
