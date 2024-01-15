@@ -1,3 +1,7 @@
+#AddNewFeedActions {
+width: 100%;
+}
+
 #FeedAddNewActions {
     display: flex;
     width: 100%;
@@ -6,17 +10,17 @@
 }
 
 .left {
-    width: 235px;
+    width: 50%;
 display: flex;
 justify-content: flex-start;
 /* border: solid black 1px; */
-margin-left: 10px;
+/* margin-left: 10px; */
 }
 
 .right {
     /* border: solid black 1px; */
-    width: 220px;
+    width: 50%;
     display: flex;
     justify-content: flex-end;
-    /* margin-right: 10px; */
+    margin-right: 10px;
 }

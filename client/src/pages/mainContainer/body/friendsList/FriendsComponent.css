@@ -17,6 +17,7 @@
    */
 
 .friendscomponentcontainer {
+  /* background-color: whitesmoke; */
   color: white;
   max-width: 100%;
 }
@@ -34,11 +35,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-color: aliceblue;
+  /* background-color: whitesmoke; */
   color: black;
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   /* gap:30px; */
 
 }
@@ -49,23 +50,36 @@
 }
 
 .friendCard{
-  margin:1% ;
-  box-shadow: 2px 2px 3px black;
+ 
+  /* box-shadow: 2px 2px 3px black; */
 }
+
+.friendCard:hover {
+  background-color: rgba(128, 128, 128, 0.184);
+  border-radius: 10px;
+}
+
 .friendCard h4{
   align-self: center;
   margin-left:10px ;
 }
-.StatusDiv{
-  width: 100%;
- align-self: self-end;
+.statusDiv{
+
+  /* background-color: whitesmoke; */
+  /* width: 100%; */
+justify-content: flex-end;
  display: flex;
 }
+
+
+
+
 .onlineStatus{
   background-color: white;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 50%;
   max-width: 0.3px;
   max-height: 0.3px;
   margin-left: 5px;
 }
+

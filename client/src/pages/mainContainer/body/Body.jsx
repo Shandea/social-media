@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
-import LeftSideNav from "./leftNav/LeftSideNav";
-import FriendsComponent from './friendsList/FriendsComponent';
+// import LeftSideNav from "./leftNav/LeftSideNav";
+// import FriendsComponent from './friendsList/FriendsComponent';
 
 import { connect } from 'react-redux';
 
@@ -12,11 +12,11 @@ const Body = (props) => {
     return (
         <>
             {
-                <div  >
+                <div className='main' >
                     {/* <LeftSideNav /> */}
                     {/* {console.log("Body Render")} */}
                     <Outlet />
-                    <FriendsComponent />
+                    {/* <FriendsComponent /> */}
 
                 </div>
             }
