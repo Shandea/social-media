@@ -1,0 +1,99 @@
+.editprofilemain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+   
+}
+
+.editprofilecontent {
+    width: 500px;
+    height: 620px;
+    border: solid 1px rgba(128, 128, 128, 0.471);
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.2) ;
+}
+
+.edittop {
+    display: flex;
+width: 100%;
+/* border: solid black 1px; */
+}
+
+.editheader {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    /* border: solid black 1px; */
+    margin: 10px;
+}
+
+.editclose {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    /* border: solid black 1px; */
+    margin: 10px;
+    font-size: xx-large;
+    color: rgba(128, 128, 128, 0.656);
+}
+
+.editimg {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.editpp {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.imguploaddiv {
+    width: 100%;
+    margin-bottom: 10px;
+   
+    /* border: solid black 1px; */
+}
+
+.editprofileform {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* border: solid red 1px; */
+    height: 380px;
+    overflow-y: auto;
+}
+
+.editprofilelabels {
+width: 95%;
+font-size: large;
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.editprofileinputs {
+    border: 1px solid rgba(128, 128, 128, 0.533);
+    width: 95%;
+    margin: 10px;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+    color: grey;
+}
+
+.btn2 {
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border: none;
+    background: var(--blue-gradient);
+    border-radius: 5px;
+    font-size: large;
+
+}

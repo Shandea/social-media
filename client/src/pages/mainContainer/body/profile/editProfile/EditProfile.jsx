@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from "react-redux";
 import ImageUpload from '../ImageUpload';
-
+import "./EditProfile.css"
 import Inputs from "../../../../../components/block-comps/Inputs"
 import API from '../../../../../config/api/Api';
+import { IoClose } from "react-icons/io5";
+import profilepic from "../../../../../imagess/Profileimage.jpg"
 
 
 const EditProfile = ({authState,backtoProfile}) => {
@@ -14,60 +16,71 @@ const handleProfileUpdate = (e)=>{
 }
 
   return (
-      <>    
-    <div>EditProfile</div>
-    <button onClick={()=>backtoProfile()} >BACK</button>
+      <>
+      <div className='editprofilemain'>  
+      <div className="editprofilecontent">
+        <div className='edittop'>
+    <div className='editheader'><h1>Edit Profile</h1></div>
+    <div className="editclose"><IoClose onClick={()=>backtoProfile()}/></div>
+    </div>
+    <hr className='line'/>
+   <div className='editimg'>
+    <img src={profilepic} alt="pic" className='editpp'/>
+   </div>
+   <div className='imguploaddiv'>
     <ImageUpload/>
-
+</div>
     <div>
-      <form onSubmit={handleProfileUpdate} >
+      <form onSubmit={handleProfileUpdate} className='editprofileform'>
 
       
-      <label htmlFor="firstname">First Name</label>
-      <Inputs
+      <label htmlFor="firstname" className='editprofilelabels'>First Name</label>
+      <Inputs className="editprofileinputs"
       name={"firstname"}
       defaultValue={userPro.firstName}
       />
-      <label htmlFor="lastname">Last Name</label>
-      <Inputs
+      <label htmlFor="lastname" className='editprofilelabels'>Last Name</label>
+      <Inputs className="editprofileinputs"
       name="lastname"
       defaultValue={userPro.lastName}
       />
-      <label htmlFor="email">Email</label>
-      <Inputs
+      <label htmlFor="email" className='editprofilelabels'>Email</label>
+      <Inputs className="editprofileinputs"
       name="email"
       defaultValue={userPro.email}
       />
-      <label htmlFor="phone">Phone Number</label>
-      <Inputs
+      <label htmlFor="phone" className='editprofilelabels'>Phone Number</label>
+      <Inputs className="editprofileinputs"
       name="phone"
       defaultValue={userPro.phone}
       />
-      <label htmlFor="location">Location</label>
-      <Inputs
+      <label htmlFor="location" className='editprofilelabels'>City</label>
+      <Inputs className="editprofileinputs"
       name="location.city"
       defaultValue={userPro.location.city}
       />
-      <Inputs
+      <label htmlFor="location" className='editprofilelabels'>State</label>
+      <Inputs className="editprofileinputs"
       name="location.state"
       defaultValue={userPro.location.state}
       />
-      <Inputs
+      <label htmlFor="location" className='editprofilelabels'>Zip Code</label>
+      <Inputs className="editprofileinputs"
       name="location.zipcode"
       defaultValue={userPro.location.zipcode}
       />
-      <label htmlFor="pronoun">Pronoun</label>
-      <Inputs
+      <label htmlFor="pronoun" className='editprofilelabels'>Pronoun</label>
+      <Inputs className="editprofileinputs"
       name="pronoun"
       defaultValue={userPro.pronoun}
       />
-      <label htmlFor="vibe">Vibe</label>
-      <Inputs
+      <label htmlFor="vibe" className='editprofilelabels'>Vibe</label>
+      <Inputs className="editprofileinputs"
       name="vibe"
       defaultValue={userPro.vibe}
       />
-      <label htmlFor="gender">Gender</label>
-      <Inputs
+      <label htmlFor="gender" className='editprofilelabels'>Gender</label>
+      <Inputs className="editprofileinputs"
       name="gender"
       defaultValue={userPro.gender}
       />
@@ -80,7 +93,7 @@ const handleProfileUpdate = (e)=>{
       defaultValue="" 
       />*/}
 
-      <button type='submit' >UPDATE</button>
+      <button type='submit' className='btn2'>UPDATE</button>
       </form>
     </div>
 
@@ -94,6 +107,8 @@ const handleProfileUpdate = (e)=>{
     vibe
     
     */}
+    </div> 
+    </div> 
     </>
   )
 }
