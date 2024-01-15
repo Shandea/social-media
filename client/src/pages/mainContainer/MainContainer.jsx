@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 const MainContainer = (props) => {
 
   return (
-    <div>
+    <div className="main">
      
         {/* header */}
         <Header />

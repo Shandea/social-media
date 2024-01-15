@@ -10,6 +10,8 @@ import FeedActions from '../../../../components/feeds/feedTopActions/Actions/Fee
 import SearchFeed from "../../../../components/feeds/feedTopActions/Search/SearchFeed"
 
 import "./feedView.css"
+import LeftSideNav from '../leftNav/LeftSideNav'
+import FriendsComponent from '../friendsList/FriendsComponent'
 
 export default function Feed() {
     // feed container... a feed 
@@ -152,41 +154,46 @@ export default function Feed() {
         <>
             {console.log("feed state", feeds)}
             {console.warn("RENDER STATUS", render)}
-            <div id="FeedTopAction"
+
+<div className='mainfeedcontainer'>
+<div className="feedcontainerleft"><LeftSideNav /></div>
+<div className="feedcontainermiddle"><div id="FeedTopAction"
             >
 
                 <div id="filterActions">
+                <div>
 
-                    <div
+<SearchFeed
+    handleApiSearch={handleApiSearch}
+
+/>
+
+</div>
+<hr className='line'/>
+<div className='words'>
+                    <div className='word'
                         onClick={(e) => handleGetNewFeeds(e)}
                     >
                         New
 
                     </div>
 
-                    <div
+                    <div className='word'
                         onClick={(e) => handleFollowingFeeds(e)}
 
                     >Following</div>
 
-                    <div
+                    <div className='word'
                         onClick={(e) => handleMyFeeds(e)}
 
                     >
                         My</div>
+                        </div>
 
 
 
                 </div>
 
-                <div>
-
-                    <SearchFeed
-                        handleApiSearch={handleApiSearch}
-
-                    />
-
-                </div>
 
 
 
@@ -199,7 +206,9 @@ export default function Feed() {
 
             <div className='feedContainer' style={{
                 marginTop: "20px",
-                overflowY: "auto"
+                overflowY: "auto",
+                height: "325px",
+                // border: "1px solid black"
             }}>
                 {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
                     return (
@@ -214,8 +223,11 @@ export default function Feed() {
 
                 })}
             </div>
+            </div>
+<div className="feedcontainerright"><FriendsComponent /></div>
+            
 
-
+            </div>
         </>
     )
 }

@@ -1,10 +1,12 @@
 .postcontainer {
-    width: 500px;
+    width: 600px;
     border: solid rgba(128, 128, 128, 0.525) 1px;
-    height: 150px;
+    height: auto;
     border-radius: 10px;
     box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
-   
+   padding-bottom: 5px;
+   padding-top: 5px;
+   background-color: white;
 }
 
 .addpost {
@@ -32,4 +34,11 @@ font-size: xx-large;
 .icon3 {
     color: green;
     font-size: xx-large;
+}
+
+@media screen and (max-width: 600px) {
+    
+    .postcontainer {
+        width: 350px;
+    }
 }
