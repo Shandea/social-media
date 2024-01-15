@@ -42,7 +42,7 @@ module.exports = {
                         username: req.locals.username,
                         type: "profile"
                     })
-                    User.findOneAndUpdate({ _id: req.locals.userId }, { profileImg: `/public/images/${req.locals._id}/` + image.name })
+                    User.findOneAndUpdate({ _id: req.locals.userId }, { profileImg: `/public/images/${req.locals.userId}/` + image.name })
                         .then(userFound => {
                             // console.log("foundUser", userFound)
                             res.json({ message: "Good upload" })
