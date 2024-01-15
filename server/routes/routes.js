@@ -44,12 +44,15 @@ module.exports = app => {
     app.get("/api/getMyFeeds", AuthCheck, FeedController.getMyFeeds)
     /////////////////////////////////
 
-              ///  Comments  \\\
+    ///  Comments  \\\
     app.post("/api/addFeedComment", AuthCheck, FeedController.addFeedComment)
     app.post("/api/addCommentComment", AuthCheck, FeedController.addCommentComment)
     app.put("/api/addCommentLike/:id", AuthCheck, FeedController.addCommentLike)
 
+    ////////////////////////////
+    /// Notification \\\
 
+    app.post("/api/removeNotice", AuthCheck, FeedController.removeNotice)
 
 
 
