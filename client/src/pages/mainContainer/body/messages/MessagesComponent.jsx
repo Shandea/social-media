@@ -5,13 +5,26 @@ import { IoMdSearch } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { ImImages } from "react-icons/im";
 import ContactCard from "../ContactCard/ContactCard";
+import ContactModal from "./ContactModal";
+
 
 const MessagesComponent = () => {
+
+const [contactModal, setContactModal] = useState(false)
+
+const handleContactModal = () => {
+
+  setContactModal(prev => !prev)
+}
+
   return (
     <>
+   {contactModal ? <ContactModal
+   handleContactModal={handleContactModal}
+   className={contactModal ? "test active" : "test" }/> : null}
       <div className="mainmessagecontainer">
         <div className="messageleft">
-          <div className="header">
+          <div className="chatheader">
             <div className="headerleft">
               <h1>Chats</h1>
             </div>
@@ -59,7 +72,7 @@ const MessagesComponent = () => {
               </div>
             </div>
             <div className="messagerighttopright">
-              <div className="optiondiv">
+              <div className="optiondiv" onClick={() => handleContactModal()}>
                 <BsThreeDots />
               </div>
             </div>
@@ -71,6 +84,7 @@ const MessagesComponent = () => {
             </div>
             <div className="messagemiddleright">
               <div className="usermessage">This is an exsample of the message you send to your contact</div>
+              <div className="contactpic"></div>
             </div>
 
             <div className="messagemiddleleft">
@@ -79,6 +93,7 @@ const MessagesComponent = () => {
             </div>
             <div className="messagemiddleright">
               <div className="usermessage">This is an exsample of the message you send to your contact</div>
+              <div className="contactpic"></div>
             </div>
 
             <div className="messagemiddleleft">
@@ -87,6 +102,7 @@ const MessagesComponent = () => {
             </div>
             <div className="messagemiddleright">
               <div className="usermessage">This is an exsample of the message you send to your contact</div>
+              <div className="contactpic"></div>
             </div>
 
             <div className="messagemiddleleft">
@@ -95,6 +111,7 @@ const MessagesComponent = () => {
             </div>
             <div className="messagemiddleright">
               <div className="usermessage">This is an exsample of the message you send to your contact</div>
+              <div className="contactpic"></div>
             </div>
 
             <div className="messagemiddleleft">
@@ -103,6 +120,7 @@ const MessagesComponent = () => {
             </div>
             <div className="messagemiddleright">
               <div className="usermessage">This is an exsample of the message you send to your contact</div>
+              <div className="contactpic"></div>
             </div>
           </div>
           <div className="messagerightbottom">

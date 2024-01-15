@@ -1,0 +1,25 @@
+.contactmodalmain {
+    /* display: flex; */
+    background-color: white;
+    width: 375px;
+    height: 620px;
+    position: absolute;
+    z-index: 3;
+    /* border: solid 1px rgba(128, 128, 128, 0.526); */
+    left: 0px;
+    transition: 0.3s;
+    box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.2) ;
+}
+
+.contactmodalmain.active {
+    left: -400px;
+    transition: 0.3s;
+}
+
+@media screen and (min-width: 700px) {
+    
+.contactmodalmain {
+    display: none;
+}
+
+}
