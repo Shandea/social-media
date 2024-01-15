@@ -80,12 +80,12 @@ const FriendsComponent = ({ getAll }) => {
                         <div id="FeedImage"
 
                           style={{
-                            border: 'solid black 2px',
+                          
                             display: 'flex',
                             justifyContent: 'center',
                             height: '60px',
                             width: '60px',
-                            borderRadius: '25px',
+                            borderRadius: '50%',
                             backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
                             backgroundRepeat: "no-repeat",
                             backgroundSize: 'cover'

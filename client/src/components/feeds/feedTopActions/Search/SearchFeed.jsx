@@ -48,12 +48,12 @@ const SearchFeed = ({ handleApiSearch }) => {
                     {/* </div> */}
 
                     <input
-                        className='input1'
+                        className='searchinput'
                         onChange={(e) => handleFeedSearch(e)}
                         name="feedSearch"
                         id="feedSearch"
                         value={feedSearch || ""}
-                        placeholder="  Whats are we looking for?"
+                        placeholder="  Search Feeds"
                     >
 
                     </input>
@@ -61,7 +61,7 @@ const SearchFeed = ({ handleApiSearch }) => {
 
                     <div>
 
-                        <input
+                        <input className='inputbtn'
                             type="submit"
                             onClick={(e) => handleApiSearch(e, feedSearch)}
                         ></input>

@@ -1,7 +1,13 @@
 import "./LeftSideNav.css";
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import { BsGlobeAmericas } from "react-icons/bs";
+// import { BsGlobeAmericas } from "react-icons/bs";
+import { MdGroups } from "react-icons/md";
+import { PiImageSquareFill } from "react-icons/pi";
+import { TbMessages } from "react-icons/tb";
+import { LiaFileVideoSolid } from "react-icons/lia";
+import { MdInterests } from "react-icons/md";
+import { TbLogout } from "react-icons/tb";
 
 import { connect } from "react-redux";
 
@@ -39,75 +45,46 @@ const handleLogout = (e) => {
   return (
     <>
       <div >
-        {/* <h3 className='leftsidenavh3'>Feeds</h3> */}
-        <h5 >Current View  </h5>
-        <div >
-          {/* <Link to={`/profile/${authedUser._id}`}></Link> */}
-          <Link
-            to={`/feed/`}
-          // className={leftNav.mainFeed === "User" ? "focusedOption" : null}
-          >
-            <BsGlobeAmericas title="Feeds" style={{fontSize: "30px"}}/> 
-
-          </Link>
-
+        <div className="usernameimg" onClick={() => nav("/profile/")}>
+        <div className="userimg1">
+          
         </div>
+        <div className="username">User Name</div>
+        </div>
+
+
+<div className="leftnavdiv" onClick={() => nav(`/friends/`)}>
+  <div className="leftnavicon"><MdGroups /></div>
+  <div className="leftnavtext">Friends</div>
+</div>
+
+<div className="leftnavdiv" onClick={() => nav(`/images/`)}>
+  <div className="leftnavicon"><PiImageSquareFill /></div>
+  <div className="leftnavtext">Pictures</div>
+</div>
+
+<div className="leftnavdiv" onClick={() => nav(`/messages/`)}>
+  <div className="leftnavicon"><TbMessages /></div>
+  <div className="leftnavtext">Messages</div>
+</div>
+
+<div className="leftnavdiv" onClick={() => nav(`/videos/`)}>
+  <div className="leftnavicon"><LiaFileVideoSolid /></div>
+  <div className="leftnavtext">Videos</div>
+</div>
+
+<div className="leftnavdiv" onClick={() => nav(`/hobby/`)}>
+  <div className="leftnavicon"><MdInterests /></div>
+  <div className="leftnavtext">Hobbies</div>
+</div>
+
+<div className="leftnavdiv" onClick={handleLogout}>
+  <div className="leftnavicon"><TbLogout /></div>
+  <div className="leftnavtext">Logout</div>
+</div>
         
-        <div>
-
-          <Link
-            to={`/images/`}
-          // className={leftNav.mainFeed === "Images" ? "focusedOption" : null}
-          >
-           <h2> Images</h2>
-          </Link>
-        </div>
 
 
-        <div>
-
-          <Link
-            to={`/videos/`}
-          // className={leftNav.mainFeed === "Videos" ? "focusedOption" : null}
-          >
-           <h2>Videos</h2> 
-          </Link>
-        </div>
-
-        <div>
-
-          <Link
-            to={`/friends/`}
-          // className={leftNav.mainFeed === "friends" ? "focusedOption" : null}
-          >
-           <h2>friends</h2> 
-          </Link>
-        </div>
-
-      
-        <div>
-
-          <Link
-            to={`/messages/`}
-          // className={leftNav.mainFeed === "Messages" ? "focusedOption" : null}
-          >
-           <h2>Messages</h2> 
-          </Link>
-        </div>
-
-        <div>
-          <Link
-            to={`/hobby/`}
-            // onClick={(e) => handleLogout(e)}
-          // className={leftNav.mainFeed === "Hobby" ? "focusedOption" : null}
-          >
-            <h2>Hobby</h2>
-          </Link>
-        </div>
-
-
-
-<div onClick={handleLogout}><h2>logout</h2></div>
 
 
       </div>
