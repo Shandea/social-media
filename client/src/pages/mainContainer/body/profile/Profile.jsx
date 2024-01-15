@@ -99,7 +99,26 @@ const Profile = (props) => {
               </div>
             </div>
             <div className="userimgdiv">
-              <img alt="" src={Profileimage} className="img" />
+
+
+<div className="img"
+              style={{
+                // border: 'solid black 2px',
+                // display: 'flex',
+                // justifyContent: 'center',
+                // height: '50px',
+                // width: '50px',
+                // borderRadius: '25px',
+                backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: 'cover'
+              }}
+            >
+</div>
+
+
+              {/* <img alt="" src={Profileimage} className="img" /> */}
+
               <button className="camera" onClick={getEditProfile}>
                 {" "}
                 <IoCameraOutline />
@@ -108,160 +127,160 @@ const Profile = (props) => {
             <div className="mainprofilecontainer">
               <div className="profileleft">
                 <div className="card">
-                <div className="intro">Intro</div>
-                <div className="innerleft">
-                  {editBios == true ? (
-                    <>
-                      <form onSubmit={handlebiosUpdate} style={dimensions}>
-                        <h4>bio</h4>
-                        <label htmlFor="bio">inputs</label>
-                        <textarea
-                          name="bio"
-                          defaultValue={props.authState.bio || "I Have No Bio"}
-                          onChange={(e) => props.handleInputChange(e.target)}
-                        />
-                        <div>
-                          <button onClick={() => setEditBios(!editBios)}>
-                            CANCEL
-                          </button>
-                          <button type="submit"> UPDATE</button>
+                  <div className="intro">Intro</div>
+                  <div className="innerleft">
+                    {editBios == true ? (
+                      <>
+                        <form onSubmit={handlebiosUpdate} style={dimensions}>
+                          <h4>bio</h4>
+                          <label htmlFor="bio">inputs</label>
+                          <textarea
+                            name="bio"
+                            defaultValue={props.authState.bio || "I Have No Bio"}
+                            onChange={(e) => props.handleInputChange(e.target)}
+                          />
+                          <div>
+                            <button onClick={() => setEditBios(!editBios)}>
+                              CANCEL
+                            </button>
+                            <button type="submit"> UPDATE</button>
+                          </div>
+                        </form>
+                        <div style={dimensions}>
+                          <h4>details</h4>
+                          <p>education</p>
+                          <p>location</p>
+                          <p>marital status</p>
                         </div>
-                      </form>
-                      <div style={dimensions}>
-                        <h4>details</h4>
-                        <p>education</p>
-                        <p>location</p>
-                        <p>marital status</p>
-                      </div>
-                    </>
-                  ) : editDetails == true ? (
-                    <>
-                      <div style={dimensions}>
-                        <h4>bio</h4>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Dignissimos facilis at labore saepe similique
-                          architecto quia id? Veritatis, delectus minus.
-                        </p>
-                      </div>
+                      </>
+                    ) : editDetails == true ? (
+                      <>
+                        <div style={dimensions}>
+                          <h4>bio</h4>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Dignissimos facilis at labore saepe similique
+                            architecto quia id? Veritatis, delectus minus.
+                          </p>
+                        </div>
 
-                      <form onSubmit={handlebiosUpdate} style={dimensions}>
-                        <h4>Details</h4>
-                        <label>Education</label>
-                        <Inputs
-                          name={"details.education"}
-                          value={props.authState.details.education || ""}
-                        />
-                        <br />
-                        <label>Location</label>
-                        <Inputs
-                          name={"details.localInfo"}
-                          value={props.authState.details.localInfo || ""}
-                        />
-                        <br />
-                        <label>Marital Status</label>
-                        <Inputs
-                          name={"details.maritalStatus"}
-                          value={props.authState.details.maritalStatus || ""}
-                        />
-                        <div>
-                          <button onClick={() => setEditDetails(!editDetails)}>
-                            CANCEL
-                          </button>
-                          <button type="submit">UPDATE</button>
-                        </div>
-                      </form>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => setEditBios(!editBios)}
-                        className="biobtn"
-                      >
-                        Add Bio
-                      </button>
-                      <div className="biomiddle">
-                        {/* <h4>bio</h4>
+                        <form onSubmit={handlebiosUpdate} style={dimensions}>
+                          <h4>Details</h4>
+                          <label>Education</label>
+                          <Inputs
+                            name={"details.education"}
+                            value={props.authState.details.education || ""}
+                          />
+                          <br />
+                          <label>Location</label>
+                          <Inputs
+                            name={"details.localInfo"}
+                            value={props.authState.details.localInfo || ""}
+                          />
+                          <br />
+                          <label>Marital Status</label>
+                          <Inputs
+                            name={"details.maritalStatus"}
+                            value={props.authState.details.maritalStatus || ""}
+                          />
+                          <div>
+                            <button onClick={() => setEditDetails(!editDetails)}>
+                              CANCEL
+                            </button>
+                            <button type="submit">UPDATE</button>
+                          </div>
+                        </form>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => setEditBios(!editBios)}
+                          className="biobtn"
+                        >
+                          Add Bio
+                        </button>
+                        <div className="biomiddle">
+                          {/* <h4>bio</h4>
                         <p>
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit. Dignissimos facilis at labore saepe similique
                           architecto quia id? Veritatis, delectus minus.
                         </p> */}
-                        <div className="edu"><GiGraduateCap className="capicon"/><p className="edutext">Studied at</p></div>
-                        <div className="edu"><GiGraduateCap className="capicon"/><p className="edutext">Went to</p></div>
-                        <div className="edu"><FaHouse className="capicon"/><p className="edutext">Lives in</p></div>
-                        <div className="edu"><FaHeart className="capicon"/><p className="edutext">Single</p></div>
-                        {/* <p>education</p>
+                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">Studied at</p></div>
+                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">Went to</p></div>
+                          <div className="edu"><FaHouse className="capicon" /><p className="edutext">Lives in</p></div>
+                          <div className="edu"><FaHeart className="capicon" /><p className="edutext">Single</p></div>
+                          {/* <p>education</p>
                         <p>location</p>
                         <p>marital status</p> */}
-                      </div>
-                      <button
-                        onClick={() => setEditDetails(!editDetails)}
-                        className="biobtn"
-                      >
-                        edit details
-                      </button>
-                    </>
-                  )}
-                </div>
+                        </div>
+                        <button
+                          onClick={() => setEditDetails(!editDetails)}
+                          className="biobtn"
+                        >
+                          edit details
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </div>
                 <div className="photos card">
-                <div className="intro">Photos</div>
-                <div className="photocontainer">
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
+                  <div className="intro">Photos</div>
+                  <div className="photocontainer">
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
                   </div>
                 </div>
 
                 <div className="friends card">
-                <div className="intro">Friends</div>
-                <div className="photocontainer">
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
-                  <div className="photoimg"></div>
+                  <div className="intro">Friends</div>
+                  <div className="photocontainer">
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
                   </div>
                 </div>
               </div>
-              
+
               <div className="profileright">
-          <div
-            className="feedContainer"
-            style={{
-              marginTop: "20px",
-              overflowY: "auto",
-            }}
-          >
-            {feeds
-              .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-              .map((obj, i) => {
-                return (
-                  <div key={i}>
-                    <FeedContainer
-                      // handleAddLike={handleAddLike}
-                      obj={obj}
-                    />
-                  </div>
-                );
-              })}
-          </div>
+                <div
+                  className="feedContainer"
+                  style={{
+                    marginTop: "20px",
+                    overflowY: "auto",
+                  }}
+                >
+                  {feeds
+                    .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+                    .map((obj, i) => {
+                      return (
+                        <div key={i}>
+                          <FeedContainer
+                            // handleAddLike={handleAddLike}
+                            obj={obj}
+                          />
+                        </div>
+                      );
+                    })}
+                </div>
 
               </div>
             </div>
           </>
-          </>
-          )}
         </>
-      );
-    };
+      )}
+    </>
+  );
+};
 
-          {/* {
+{/* {
               editBios == true ?
                 <>
                   <form onSubmit={handlebiosUpdate} style={dimensions}>
