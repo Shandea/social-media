@@ -4,7 +4,7 @@ import React from 'react'
 import axios from 'axios'
 
 
-const FriendStatus = ({ id }) => {
+const FriendStatus = ({ id, children }) => {
 
     const handleFriendStatus = () => {
         axios({
@@ -23,7 +23,10 @@ const FriendStatus = ({ id }) => {
             <div
                 onClick={(e) => handleFriendStatus(e)}
 
-            >Add friend</div>
+            >
+
+                {children}
+            </div>
 
 
 
