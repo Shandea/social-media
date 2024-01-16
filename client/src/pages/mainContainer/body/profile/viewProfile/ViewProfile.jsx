@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import { GiGraduateCap } from "react-icons/gi";
+import { FaHouse } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
+import "./ViewProfile.css";
 
 import API from "../../../../../config/api/Api";
 import { connect } from "react-redux";
@@ -12,81 +15,105 @@ import AddFeed from "../../../../../components/feeds/addFeed/AddFeed";
 import FriendStatus from "../../../../../components/friends/friendStatus/FriendStatus";
 
 const ViewProfile = (props) => {
-  console.log(props.authState)
+  console.log(props.authState);
 
   let [profileView, setProfileView] = useState({});
-  let { id } = useParams()
+  let { id } = useParams();
   useEffect(() => {
-    API.getViewProfile(id).then(res => {
-      console.log("res data", res)
+    API.getViewProfile(id).then((res) => {
+      console.log("res data", res);
 
-      setProfileView(res)
-    })
-    props.hideOnline()
-  }, [id])
+      setProfileView(res);
+    });
+    props.hideOnline();
+  }, [id]);
 
-  const [feeds, setFeeds] = useState([])
+  const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-
     axios({
       method: "GET",
       url: "http://localhost:5000/api/getfeeds",
       withCredentials: true,
     })
-      .then(res => {
-        let filteredFeed = res.data.filter((feed) => feed.author === profileView._id)
+      .then((res) => {
+        let filteredFeed = res.data.filter(
+          (feed) => feed.author === profileView._id
+        );
         // console.log("this should be profile view",res.data)
         // console.log("this should be profiles view",profileView._id)
-        setFeeds(filteredFeed)
+        setFeeds(filteredFeed);
       })
-      .catch(err => console.log("get feed err", err))
-
-  }, [profileView._id])
+      .catch((err) => console.log("get feed err", err));
+  }, [profileView._id]);
 
   return (
     <>
       {console.log("img src tag", profileView)}
       {console.log("img src feeds", feeds)}
       {
-
         <>
+          <div className="header">
+            <div className="banner">
+              <div className="topbannernav"></div>
+            </div>
+          </div>
 
           <span>
-            <img width={200} height={200} alt="" src={`http://localhost:5000${profileView.profileImg}`} />
+            <img
+              className="imgView"
+              alt=""
+              src={`http://localhost:5000${profileView.profileImg}`}
+            />
           </span>
 
           <div>
             <FriendStatus id={id} />
           </div>
 
-          <h4>bio</h4>
-          <p>{profileView?.details?.bio || "I Have No Bio"}</p>
-          <h4>bio details</h4>
-          <p>{profileView?.details?.education || "I Have No Education"}</p>
-          <p>{profileView?.details?.localInfo || "I Have No Local Info"}</p>
-          <p>{profileView.details?.maritalStatus || "I Have No Marital Status"}</p>
+          <div className="biodiv">
+            <h2 className="bioheader">Intro</h2>
+            <p className="biotext">{profileView?.details?.bio || "I Have No Bio"}</p>
+           <div className="aligndiv">
+            <div><GiGraduateCap className="capicon" /></div>
+            <p>Studied at {profileView?.details?.education || "I Have No Education"}</p>
+            </div>
+            <div className="aligndiv">
+              <div><FaHouse className="capicon" /></div>
+            <p>Lives In {profileView?.details?.localInfo || "I Have No Local Info"}</p>
+            </div>
+            <div className="aligndiv">
+              <div><FaHeart className="capicon" /></div>
+              <p>
+            
+            {profileView.details?.maritalStatus || "Single"}
+             </p>
+            </div>
+          </div>
 
-          <h3>create a post here</h3>
+          
           <AddFeed />
 
-          <h3>posts show here</h3>
-          <div className='feedContainer' style={{
-            marginTop: "20px",
-            overflowY: "auto"
-          }}>
-            {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
-              return (
-                <div key={i}
-
-                >
-                  <FeedContainer
-                    // handleAddLike={handleAddLike}
-                    obj={obj} />
-                </div>
-              )
-
-            })}
+          
+          <div
+            className="feedContainer"
+            style={{
+              marginTop: "20px",
+              overflowY: "auto",
+            }}
+          >
+            {feeds
+              .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+              .map((obj, i) => {
+                return (
+                  <div key={i}>
+                    <FeedContainer
+                      // handleAddLike={handleAddLike}
+                      obj={obj}
+                    />
+                  </div>
+                );
+              })}
           </div>
         </>
       }
@@ -96,9 +123,9 @@ const ViewProfile = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    authState: state.auth
-  }
-}
+    authState: state.auth,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     hideOnline: () => dispatch(hideOnline()),

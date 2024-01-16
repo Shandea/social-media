@@ -94,6 +94,7 @@ overflow-y: auto;
 }
 
 .card {
+    background-color: white;
     margin: 10px;
     border-radius: 10px;
     border: solid rgba(128, 128, 128, 0.418) 1px;
