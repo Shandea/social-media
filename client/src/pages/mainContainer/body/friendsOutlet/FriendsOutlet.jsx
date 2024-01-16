@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 
+import FriendStatus from '../../../../components/friends/friendStatus/FriendStatus'
+
 
 const FriendsOutlet = ({ state }) => {
   // console.log("FriendsOutlet: api: ", getAll)
@@ -146,8 +148,15 @@ const FriendsOutlet = ({ state }) => {
                   </p>
                   <p>{friend.username}</p>
                   <div className="pendingfriendsbuttons">
-                    <button className="btn">Accept</button>
-                    <button className="btn1">Reject</button>
+
+                    <FriendStatus id={friend._id} >
+                      <button className="btn1">Add Friend</button>
+                    </FriendStatus>
+
+                    <Link to={`/messages/${friend._id}`}>
+                      <button className="btn">Message</button>
+
+                    </Link>
                   </div>
                 </div>
               );
@@ -155,7 +164,7 @@ const FriendsOutlet = ({ state }) => {
           ) : (
             <p>loading</p>
           )}
-                <hr className="line" />
+          <hr className="line" />
 
         </div>
         <h6>Your Pending Requests</h6>
@@ -190,8 +199,11 @@ const FriendsOutlet = ({ state }) => {
                   </p>
                   <div className="pendingfriendsbuttons">
                     {/* <button className="btn">Accept</button> */}
-                    <button className="btn1">Reject</button>
-                  </div>
+                    <Link to={`/messages/${friend._id}`}>
+                      <button className="btn">Message</button>
+
+                    </Link>            
+                          </div>
                 </div>
               );
             })
@@ -318,7 +330,10 @@ const FriendsOutlet = ({ state }) => {
                       <button className="btn">Message</button>
 
                     </Link>
-                    <button className="btn1">Add Friend</button>
+                    <FriendStatus id={friend._id} >
+                      <button className="btn1">Add Friend</button>
+                    </FriendStatus>
+
                   </div>
                 </div>
               );
