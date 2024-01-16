@@ -129,7 +129,7 @@ console.warn('Users', users)
                 <div key={i} className="pendingfriend">
                   {/* <h4>{friend.username}</h4> */}
                   <Link to={`/profile/${friend.userId}`}>
-                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" />
+                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" className="friendimages"/>
                   </Link>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
@@ -154,7 +154,7 @@ console.warn('Users', users)
                 <div key={i} className="pendingfriend">
                   {/* <h4>{friend.username}</h4> */}
                   <Link to={`/profile/${friend.userId}`}>
-                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" />
+                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" className="friendimages"/>
                   </Link>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
@@ -185,7 +185,7 @@ console.warn('Users', users)
                   {/* <h4>{friend.username}</h4> */}
                   <Link to={`/profile/${friend.userId}`}>
 
-                     <img
+                     <img className="friendimages"
                     src={`http://localhost:5000${friend.profileImg}`}
                     alt="friendProfileImg"
                     />
@@ -241,7 +241,7 @@ console.warn('Users', users)
                 <div key={i} className="acceptedfriend">
                   {/* <h4>{friend.username}</h4> */}
                   <Link to={`/profile/${friend._id}`}>
-                  <img
+                  <img className="friendimages"
                     src={`http://localhost:5000${friend.profileImg}`}
                     alt="friendProfileImg"
                   />
