@@ -13,8 +13,8 @@ const SendMessage = ({handleSetMessage, handleSubmitMessage, message}) => {
 
         <div className="messagerightbottom">
             <div className="sendmessageicon">
-                <div className="plus"><FaPlus /></div>
-                <div className="attachimg"><ImImages /></div>
+                {/* <div className="plus"><FaPlus /></div> */}
+                {/* <div className="attachimg"><ImImages /></div> */}
             </div>
 
             <div className="sendmessageinput">
@@ -25,7 +25,7 @@ const SendMessage = ({handleSetMessage, handleSubmitMessage, message}) => {
                     name="message"
                     value={message.messageContent || ""}
                     className="messageinput"
-                    placeholder="...?" />
+                    placeholder="send a message" />
 
             </div>
 
