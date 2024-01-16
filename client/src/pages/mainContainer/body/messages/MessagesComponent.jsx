@@ -25,12 +25,14 @@ const MessagesComponent = ({ authState }) => {
   let queryId = [authed, id].sort().join("")
 
   const payload = { queryId: queryId }
-  const [message, setMessage] = useState({})
+  const [message, setMessage] = useState({})  // the message you are typing
   const [typing, setTyping] = useState(false)
-  const [allMsg, setAllMsg] = useState([])
+  const [allMsg, setAllMsg] = useState([])  // the thread of msgs between 2 users
 
-  const [contact, setContact] = useState({})
+  const [contact, setContact] = useState({})  // user u looking at for most recent pic
   /// if from link get id, else wait for click.... of user card..
+
+  const profile = authState.userProfile.messages
 
   useEffect(() => {
     console.warn("GET USER")
@@ -44,10 +46,7 @@ const MessagesComponent = ({ authState }) => {
         setContact(res.data)
       })
       .catch(err => console.log("err", err))
-
-
-
-  }, [])
+  }, [id])
 
 
   useEffect(() => {
@@ -78,7 +77,7 @@ const MessagesComponent = ({ authState }) => {
   }, [socket])
 
   useEffect(() => {
-    console.log("USEEFF HIT")
+    console.log("USEEFF HIT, getting thread messages")
     axios({
       method: 'POST',
       withCredentials: true,
@@ -175,7 +174,10 @@ const MessagesComponent = ({ authState }) => {
     // socket.emit('mailCall', message.recipient)
     socket.emit('mailCall', [authed, message.recipient])
 
-    setMessage("")
+    setMessage(prev => ({
+      ...prev,
+      messageContent: ""
+    }))
 
   }
 
@@ -185,7 +187,8 @@ const MessagesComponent = ({ authState }) => {
   return (
     <>
       {console.log("ids", id, authed, queryId)}
-      {console.log("threadMsgs",)}
+      {console.log("c'ONTACT",contact)}
+      {console.log("Profile", profile)}
       {/* {console.log("Message Comp - authSt", authState)} */}
       {/* {console.warn("msg input", message)} */}
 
@@ -220,8 +223,14 @@ const MessagesComponent = ({ authState }) => {
           </div>
 
           <div className="contactdiv">
-            <ContactCard />
-            <ContactCard />
+
+            {profile && profile.map((item, i) => {
+              return (
+
+                <ContactCard item={item} contact={contact}/>
+              )
+            })}
+            {/* <ContactCard /> */}
           </div>
         </div>
 
@@ -234,7 +243,7 @@ const MessagesComponent = ({ authState }) => {
             <div className="messagerighttopleft">
               <div className="contactimg"
                 style={{
-                  backgroundImage: `url("http://localhost:5000${contact.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                  backgroundImage: `url("http://localhost:5000${contact?.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: 'cover'
                 }}
@@ -243,9 +252,9 @@ const MessagesComponent = ({ authState }) => {
 
               <div className="contactinfo">
                 <p className="text1">
-                  {contact.username}
+                  {contact?.username}
                 </p>
-                <p className="text2">{contact.isOnline ? "online" : "offline"}</p>
+                <p className="text2">{contact?.isOnline ? "online" : "offline"}</p>
               </div>
 
             </div>
@@ -271,6 +280,7 @@ const MessagesComponent = ({ authState }) => {
 
           {/* footer */}
           <SendMessage
+          message={message}
             handleSubmitMessage={handleSubmitMessage}
             handleSetMessage={handleSetMessage}
           />

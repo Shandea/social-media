@@ -34,7 +34,7 @@ module.exports = {
                                     item.messages.push(created._id),
                                     item.recent = created.messageContent
                                 )
-                                : null
+                                : console.log(" ==== line 37 msg controller ERROR")
                             )
                             foundUser.save()
                             console.log("foundUser saved?")

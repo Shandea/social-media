@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 
+import FriendStatus from '../../../../components/friends/friendStatus/FriendStatus'
+
 
 const FriendsOutlet = ({ state }) => {
   // console.log("FriendsOutlet: api: ", getAll)
@@ -27,7 +29,7 @@ const FriendsOutlet = ({ state }) => {
         console.log("res", res)
         setUsers(res.data)
       })
-    },[])
+  }, [])
   //btton functionality APIs here
 
   // const fakefriends = [
@@ -109,10 +111,10 @@ const FriendsOutlet = ({ state }) => {
   );
   console.log("RequestedFriends2: ", RequestedFriends2);
 
-console.warn('ALL FRIENDS', state.userProfile.friends)
+  console.warn('ALL FRIENDS', state.userProfile.friends)
 
 
-console.warn('Users', users)
+  console.warn('Users', users)
 
 
 
@@ -121,23 +123,41 @@ console.warn('Users', users)
       {console.warn("REDUX FRIENDS: ", state.userProfile.friends)}
 
       <div className="friendrequests">
-        <h5>Friend Requests</h5>
+        <h6>Friend Requests</h6>
         <div className="requestsdiv">
           {PendingFriends2 ? (
             PendingFriends2.map((friend, i) => {
               return (
                 <div key={i} className="pendingfriend">
-                  {/* <h4>{friend.username}</h4> */}
+                  {/* <h6>{friend.username}</h6> */}
                   <Link to={`/profile/${friend.userId}`}>
-                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" className="friendimages"/>
+                    <div
+                      className="friendimages"
+
+                      style={{
+                        backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: 'cover'
+                      }}
+                    >
+                    </div>
+                    {/* <img src={`http://localhost:5000${friend.profileImg}`} alt=" http://localhost:5000/public/default.jpeg" className="friendimages" /> */}
                   </Link>
+                  <p className="name2">
+                    {friend.username}
+                  </p>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
                   </p>
-                  <p>{friend.username}</p>
                   <div className="pendingfriendsbuttons">
-                    <button className="btn">Accept</button>
-                    <button className="btn1">Reject</button>
+
+                    <FriendStatus id={friend.userId} >
+                      <button className="btn1">Add Friend</button>
+                    </FriendStatus>
+
+                    <Link to={`/messages/${friend.userId}`}>
+                      <button className="btn">Message</button>
+                    </Link>
                   </div>
                 </div>
               );
@@ -145,25 +165,46 @@ console.warn('Users', users)
           ) : (
             <p>loading</p>
           )}
+          <hr className="line" />
+
         </div>
-        <h5>Your Pending Requests</h5>
+        <h6>Your Pending Requests</h6>
         <div className="requestsdiv">
           {RequestedFriends2 ? (
             RequestedFriends2.map((friend, i) => {
               return (
                 <div key={i} className="pendingfriend">
-                  {/* <h4>{friend.username}</h4> */}
+                  {/* <h6>{friend.username}</h6> */}
                   <Link to={`/profile/${friend.userId}`}>
-                  <img src={`http://localhost:5000${friend.profileImg}`} alt="friendProfileImg" className="friendimages"/>
+
+
+                    {/* <img src={`http://localhost:5000${friend.profileImg}`} alt=" http://localhost:5000/public/default.jpeg" className="friendimages" /> */}
+                    <div
+                      className="friendimages"
+
+                      style={{
+                        backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: 'cover'
+                      }}
+                    >
+                    </div>
+
                   </Link>
+                  <p className="name2">
+                    {friend.username}
+                  </p>
+
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
                   </p>
-                  <p>{friend.username}</p>
                   <div className="pendingfriendsbuttons">
                     {/* <button className="btn">Accept</button> */}
-                    <button className="btn1">Reject</button>
-                  </div>
+                    <Link to={`/messages/${friend.userId}`}>
+                      <button className="btn">Message</button>
+
+                    </Link>            
+                          </div>
                 </div>
               );
             })
@@ -175,29 +216,48 @@ console.warn('Users', users)
 
       <hr className="line" />
       <div className="currentfriends">
-        <h4 className="FS">Friends</h4>
+        <h6 className="FS">Friends</h6>
         <div className="accepteddiv">
           {AcceptedFriends2 ? (
             AcceptedFriends2.map((friend, i) => {
-              console.log("accepted frirend console log",friend)
+              console.log("accepted frirend console log", friend)
               return (
                 <div key={i} className="acceptedfriend">
                   {/* <h4>{friend.username}</h4> */}
-                  <Link to={`/profile/${friend.userId}`}>
+                  <Link to={`/profile/${friend._id}`}>
+                    <div
+                      className="friendimages"
 
-                     <img className="friendimages"
-                    src={`http://localhost:5000${friend.profileImg}`}
-                    alt="friendProfileImg"
-                    />
-                    </Link>
-                  
-                 
+                      style={{
+                        backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: 'cover'
+                      }}
+                    >
+                    </div>
+                    {/* <img className="friendimages"
+                      src={`http://localhost:5000${friend.profileImg}`}
+                      alt="friendProfileImg"
+                    /> */}
+                  </Link>
+
+
+                  <p className="name2">
+                    {friend.username}
+                  </p>
+
                   <p className="name1">
-                    {friend.firstName} {friend.lastname}
+                    {friend.firstName} {friend.lastName}
                   </p>
 
                   <div className="acceptedfriendsbuttons">
-                    <button className="btn">Message</button>
+
+                    <Link to={`/messages/${friend.userId}`}>
+                      <button className="btn">Message</button>
+
+                    </Link>
+
+
                     <button className="btn1">Block</button>
                   </div>
                 </div>
@@ -232,27 +292,49 @@ console.warn('Users', users)
         </div>
       </div> */}
       <div className="currentfriends">
-        <h4 className="FS">Suggested Friends</h4>
+        <h6 className="FS">Suggested Friends</h6>
         <div className="accepteddiv">
           {users ? (
             users.map((friend, i) => {
-              console.log("at current user friends outlet",friend)
+              console.log("at current user friends outlet", friend)
               return (
                 <div key={i} className="acceptedfriend">
-                  {/* <h4>{friend.username}</h4> */}
+                  {/* <h6>{friend.username}</h6> */}
                   <Link to={`/profile/${friend._id}`}>
-                  <img className="friendimages"
+
+                    {/* <img className="friendimages"
                     src={`http://localhost:5000${friend.profileImg}`}
-                    alt="friendProfileImg"
-                  />
+                    alt="http://localhost:5000/public/default.jpeg" 
+                                     />
+                   */}
+                    <div
+                      className="friendimages"
+
+                      style={{
+                        backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: 'cover'
+                      }}
+                    >
+                    </div>
                   </Link>
+                  <p className="name2">
+                    {friend.username}
+                  </p>
+
                   <p className="name1">
-                    {friend.firstName} {friend.lastname}
+                    {friend.firstName} {friend.lastName}
                   </p>
 
                   <div className="acceptedfriendsbuttons">
-                    <button className="btn">Message</button>
-                    <button className="btn1">Add Friend</button>
+                    <Link to={`/messages/${friend._id}`}>
+                      <button className="btn">Message</button>
+
+                    </Link>
+                    <FriendStatus id={friend._id} >
+                      <button className="btn1">Add Friend</button>
+                    </FriendStatus>
+
                   </div>
                 </div>
               );
