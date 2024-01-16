@@ -22,7 +22,7 @@ const LandingPage = ({props,authState}) => {
         <div className="innerleft">
         <img src={Logo} alt="logo" className="logo" />
        
-        <Link to="/feed" > bypass auth </Link>
+        {/* <Link to="/feed" > bypass auth </Link> */}
         <p className="statement">Connect, Share, and Engage – Welcome to a vibrant community where your voice matters.</p>
       </div>
 </div>
