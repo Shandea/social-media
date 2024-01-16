@@ -30,6 +30,9 @@ height: 650px;
     align-items: center;
     width: 100%;
     background-color: whitesmoke;
+    overflow-y: auto;
+    /* border: solid 1px red; */
+    height: 650px;
 }
 
 .feedcontainerright {
