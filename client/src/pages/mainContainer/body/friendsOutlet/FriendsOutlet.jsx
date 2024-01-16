@@ -149,11 +149,11 @@ const FriendsOutlet = ({ state }) => {
                   <p>{friend.username}</p>
                   <div className="pendingfriendsbuttons">
 
-                    <FriendStatus id={friend._id} >
+                    <FriendStatus id={friend.userId} >
                       <button className="btn1">Add Friend</button>
                     </FriendStatus>
 
-                    <Link to={`/messages/${friend._id}`}>
+                    <Link to={`/messages/${friend.userId}`}>
                       <button className="btn">Message</button>
 
                     </Link>
@@ -199,7 +199,7 @@ const FriendsOutlet = ({ state }) => {
                   </p>
                   <div className="pendingfriendsbuttons">
                     {/* <button className="btn">Accept</button> */}
-                    <Link to={`/messages/${friend._id}`}>
+                    <Link to={`/messages/${friend.userId}`}>
                       <button className="btn">Message</button>
 
                     </Link>            
@@ -251,7 +251,7 @@ const FriendsOutlet = ({ state }) => {
 
                   <div className="acceptedfriendsbuttons">
 
-                    <Link to={`/messages/${friend._id}`}>
+                    <Link to={`/messages/${friend.userId}`}>
                       <button className="btn">Message</button>
 
                     </Link>
