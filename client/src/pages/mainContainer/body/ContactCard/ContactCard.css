@@ -4,6 +4,8 @@
     /* border: solid black 1px; */
     width: 100%;
     height: 75px;
+    border: red solid 2px;
+    justify-content: space-between;
 }
 
 .contactcardcontainer:hover {
@@ -45,6 +47,7 @@ margin: 5px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    /* margin-right: 10px; */
 }
 
 .status {

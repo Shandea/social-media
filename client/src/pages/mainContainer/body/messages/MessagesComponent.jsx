@@ -187,8 +187,10 @@ const MessagesComponent = ({ authState }) => {
   return (
     <>
       {console.log("ids", id, authed, queryId)}
-      {console.log("c'ONTACT",contact)}
+      {console.log("c'ONTACT", contact)}
       {console.log("Profile", profile)}
+
+      {/* {console.log("test", test)} */}
       {/* {console.log("Message Comp - authSt", authState)} */}
       {/* {console.warn("msg input", message)} */}
 
@@ -225,9 +227,19 @@ const MessagesComponent = ({ authState }) => {
           <div className="contactdiv">
 
             {profile && profile.map((item, i) => {
+
+     console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
+     console.log("MAP ==> ", queryId)
+
               return (
 
-                <ContactCard item={item} contact={contact}/>
+                <ContactCard
+                  item={item}
+                  allMsg={allMsg}
+                  contact={contact}
+                  profile={profile}
+                  queryId={queryId}
+                />
               )
             })}
             {/* <ContactCard /> */}
@@ -280,7 +292,7 @@ const MessagesComponent = ({ authState }) => {
 
           {/* footer */}
           <SendMessage
-          message={message}
+            message={message}
             handleSubmitMessage={handleSubmitMessage}
             handleSetMessage={handleSetMessage}
           />
