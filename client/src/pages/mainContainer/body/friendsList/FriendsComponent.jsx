@@ -5,8 +5,14 @@ import { connect } from 'react-redux'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import truncate from "../../../../util/truncate"
 import io from 'socket.io-client'
+
+import { FiMessageCircle } from "react-icons/fi";
+
+
+
+
 const socket = io.connect('http://localhost:5000')
 
 const FriendsComponent = ({ getAll }) => {
@@ -68,6 +74,7 @@ const FriendsComponent = ({ getAll }) => {
       {
         // getAll.allUsers.map((friends, i) => friends.map((friend, i) => {
         users.map((friend, i) => {
+          // console.log("friend", friend)
           return (
             <div key={i}>
 
@@ -80,7 +87,7 @@ const FriendsComponent = ({ getAll }) => {
                         <div id="FeedImage"
 
                           style={{
-                          
+
                             display: 'flex',
                             justifyContent: 'center',
                             height: '60px',
@@ -94,12 +101,22 @@ const FriendsComponent = ({ getAll }) => {
 
                         {/* <img alt='' src={`http://localhost:5000${friend.profileImg}`} /> */}
                         <h4>{friend.username}</h4>
-
-
-
                       </Link>
+
+
+
+
+
                       <div className='statusDiv'>
-                        <h6>ONLINE</h6>
+
+                        {/* <div> */}
+                        <Link to={`/messages/${friend._id}`}>
+
+                          <FiMessageCircle />
+                        </Link>
+
+                        {/* </div> */}
+                        {/* <h6>ONLINE</h6> */}
                         <div className='onlineStatus' style={{ backgroundColor: friend.isOnline ? "lime" : null }}></div>
                       </div>
                     </div>

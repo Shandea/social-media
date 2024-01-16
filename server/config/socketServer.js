@@ -42,7 +42,20 @@ module.exports = {
                 io.emit("updateFriend", data) // to FriendList
             })
 
+            socket.on('send_message', (data) => {  //from AddMessage && Messages
+                console.log('send_message', data)
+                io.in(data.room).emit('recieve_message', data.message) 
 
+                // to Messages && ViewMessages
+            })
+
+            socket.on("mailCall", (data) =>{ // from Messages
+                console.log("mailCall", data)
+                io.emit("updateMail", data)    // to messaging...or profile rerender
+                //attempt to send to only user needed.... FAIL come back later
+               //  io.in(data).emit('updateMail', data) 
+   
+               })
 
 
             socket.on('join_room', (data) => {

@@ -2,6 +2,7 @@ const UserController = require('../controllers/user.controller')
 const AuthCheck = require("../middleware/auth")
 const ImageController = require("../controllers/image.controller")
 const FeedController = require("../controllers/feed.controller")
+const MessageController = require("../controllers/messaging.controller")
 
 
 module.exports = app => {
@@ -44,13 +45,27 @@ module.exports = app => {
     app.get("/api/getMyFeeds", AuthCheck, FeedController.getMyFeeds)
     /////////////////////////////////
 
-              ///  Comments  \\\
+    ///  Comments  \\\
     app.post("/api/addFeedComment", AuthCheck, FeedController.addFeedComment)
     app.post("/api/addCommentComment", AuthCheck, FeedController.addCommentComment)
     app.put("/api/addCommentLike/:id", AuthCheck, FeedController.addCommentLike)
 
+    ////////////////////////////
+    /// Notification \\\
+
+    app.post("/api/removeNotice", AuthCheck, FeedController.removeNotice)
 
 
+
+    //////////////////////////////
+    ////  Messaging \\\\\\\\\\
+
+
+    app.post("/api/addMessage", AuthCheck, MessageController.addMessage)
+    app.get("/api/getAllMessages", AuthCheck, MessageController.getAllMessages)
+    app.post("/api/getThreadMessages",AuthCheck,  MessageController.getThreadMessages)
+    app.get("/api/getUser/:id",AuthCheck,  MessageController.getUser)
+    // app.put(`/api/messages/deleteall/:id`,AuthCheck,  MessageController.deleteAllMessages)
 
 
 

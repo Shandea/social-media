@@ -7,23 +7,23 @@ const ContactCard = () => {
     <>
       <div className="contactcardcontainer">
         <div className="contactimage">
-       
-            <img src={hacker6} alt="contact image"  className="ci"/>
-            
+
+          <img src={hacker6} alt="contact image" className="ci" />
+
         </div>
-       
+
         <div className="nameandmessage">
           <div className="contactcardname">Contact Name</div>
-          
+
           <div className="contactcardmessage">
             This is the last message sent...
           </div>
         </div>
         <div className="datetimenotification">
-<div className="datetime">2d</div>
-<div className="dot">
-<div className="notification">2</div>
-</div>
+          <div className="datetime">2d</div>
+          <div className="dot">
+            <div className="notification">2</div>
+          </div>
         </div>
       </div>
     </>

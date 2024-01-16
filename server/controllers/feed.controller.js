@@ -93,7 +93,8 @@ module.exports = {
                 User.findByIdAndUpdate({ _id: found.author },
                     {
                         $push: {
-                            notifications: [
+                            notifications:
+                            //  [
                                 {
                                     like: {
                                         likedDoc: found._id,
@@ -103,7 +104,7 @@ module.exports = {
                                         ogFeed: found.OgFeed
                                     }
                                 }
-                            ]
+                            // ]
                         }
                     })
                     
@@ -131,7 +132,8 @@ console.log("ADD LIKE COMMENT ======> if hit")
                 User.findByIdAndUpdate({ _id: found.authorId },
                     {
                         $push: {
-                            notifications: [
+                            notifications: 
+                            // [
                                 {
                                     like: {
                                         likedDoc: found._id,
@@ -141,7 +143,7 @@ console.log("ADD LIKE COMMENT ======> if hit")
                                         ogFeed: found.OgFeed
                                     }
                                 }
-                            ]
+                            // ]
                         }
                     })
 
@@ -264,10 +266,11 @@ console.log("ADD LIKE COMMENT ======> if hit")
                         // console.log("updated", updated)
 
 
-                        User.findOneAndUpdate({ _id: req.body.ogAuthor },
+                        User.findOneAndUpdate({ _id: req.body.parentAuthorId },
                             {
                                 $push: {
-                                    notifications: [
+                                    notifications: 
+                                    [
                                         {
                                             comment: {
                                                 authorName: req.body.authorName,
@@ -315,10 +318,11 @@ console.log("ADD LIKE COMMENT ======> if hit")
                         // console.log("updated", updated)
 
 
-                        User.findOneAndUpdate({ _id: req.body.ogAuthor },
+                        User.findOneAndUpdate({ _id: req.body.parentAuthorId },
                             {
                                 $push: {
-                                    notifications: [
+                                    notifications:
+                                     [
                                         {
                                             comment: {
                                                 authorName: req.body.authorName,
@@ -382,6 +386,24 @@ console.log("ADD LIKE COMMENT ======> if hit")
                 // }
             })
 
+    },
+
+
+    removeNotice: (req, res) => {
+        console.log("remove notice", req.body, req.locals.userId)
+        
+        User.findOne({ _id: req.locals.userId })
+            .then(found => {
+                // console.log("found", found)
+                // found.notifications.splice(parseInt(req.body.index), 1)                       notifications
+                // console.log("WTF", found.notifications)
+                found.notifications.splice(req.body.index, 1)
+                found.save()
+                // res.json({notifications: found.notifications})
+                res.json(found)
+                // ready for pop info in req.body.index 
+            })
+            .catch(err => console.log("err", err))
     }
 
 
