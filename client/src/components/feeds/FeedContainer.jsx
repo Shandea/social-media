@@ -64,7 +64,7 @@ function FeedContainer({ obj }) {
                                 display: 'flex',
                                 justifyContent: 'center',
                                 height: '200px',
-                                width: '200px',
+                                width: '400px',
                                 backgroundImage: `url("${imgSrc}")`,
                                 // backgroundImage: `url("http://localhost:5000${obj.imgPath}" )`,
                                 // fallbackBackgroundImage: `url("http://localhost:5000/public/default.jpg")`,

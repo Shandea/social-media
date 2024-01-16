@@ -15,7 +15,6 @@ const FeedAddImgForm = ({handleSelectedFiles, handleFeedSubmit}) => {
                     <input type="file"
                         onChange={(e) => handleSelectedFiles(e)}
                         accept="image/*"
-                        type="file"
                         id="image"
                         name="image"></input>
                 </form>

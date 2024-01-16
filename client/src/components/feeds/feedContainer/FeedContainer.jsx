@@ -90,14 +90,14 @@ function FeedContainer({ obj, handleAddLike, authState , handleSetFeeds}) {
                         <div id="FeedImage"
 
                             style={{
-                                border: 'solid black 2px',
                                 display: 'flex',
                                 justifyContent: 'center',
-                                height: '200px',
-                                width: '200px',
+                                height: '500px',
+                                width: '100%',
                                 backgroundImage: `url("http://localhost:5000${obj.imgPath}"), url("http://localhost:5000/public/default.jpeg")`,
                                 backgroundRepeat: "no-repeat",
-                                backgroundSize: 'cover'
+                                backgroundSize: 'cover',
+                                backgroundPosition: "center"
                             }}
                         >
 
