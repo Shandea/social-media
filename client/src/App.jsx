@@ -26,6 +26,12 @@ import FriendsOutlet from './pages/mainContainer/body/friendsOutlet/FriendsOutle
 import FriendSearch from "./components/friends/friendSearch/FriendSearch"
 
 const App = () => {
+
+
+
+
+
+
   return (
     <>
       <Routes>
@@ -46,6 +52,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:id" element={<ViewProfile />} />
           <Route path="/messages" element={<MessagesComponent />} />
+          <Route path="/messages/:id" element={<MessagesComponent />} />
           <Route path="/hobby" element={<HobbyComponent />} />
           <Route path="/videos" element={<VideosComponent />} />
           <Route path="/friends" element={<FriendsOutlet />} />
