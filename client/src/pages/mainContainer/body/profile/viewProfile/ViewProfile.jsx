@@ -47,6 +47,56 @@ const ViewProfile = (props) => {
       .catch((err) => console.log("get feed err", err));
   }, [profileView._id]);
 
+  const handleSetFeeds = (e) => {
+    // setFeeds(input)
+
+    console.warn("HandleSetFeed hit  ===>  Rerender Please")
+    axios({
+        method: "GET",
+        url: "http://localhost:5000/api/getfeeds",
+        withCredentials: true,
+    })
+        .then(res => {
+            console.log("res", res)
+            console.warn("TEST", res.data.filter((item) => item.author === id))
+            setFeeds(res.data.filter((item) => item.author === id))
+        })
+        .catch(err => console.log("get feed err", err))
+    // render ? setRender(false) : setRender(true)
+    // console.log("TOP lvl handle set feeds")
+}
+
+const handleAddLike = (e) => {
+    console.warn("adding like", e.target.id, e.target.getAttribute("name"))
+    // let type = e.target.getAttribute("type")
+
+    let type = e.currentTarget.attributes['type'].value
+
+    console.log("type", type)
+    let payload = {
+        type: e.currentTarget.attributes['type'].value,
+        id: e.target.id
+
+    }
+
+    axios({
+        method: "put",
+        url: "http://localhost:5000/api/feeds/addfeedlike",
+        data: { id: e.target.id },
+        data: payload,
+        withCredentials: true
+    })
+        .then(res => {
+            console.log("add like RES", res)
+            // console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
+            setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
+            handleSetFeeds()
+        })
+
+
+
+    }
+
   return (
     <>
       {console.log("img src tag", profileView)}
@@ -101,7 +151,7 @@ const ViewProfile = (props) => {
           </div>
 
           
-          <AddFeed />
+          {/* <AddFeed /> */}
 
           
           <div
@@ -117,7 +167,8 @@ const ViewProfile = (props) => {
                 return (
                   <div key={i}>
                     <FeedContainer
-                      // handleAddLike={handleAddLike}
+                    handleSetFeeds={handleSetFeeds}
+                      handleAddLike={handleAddLike}
                       obj={obj}
                     />
                   </div>

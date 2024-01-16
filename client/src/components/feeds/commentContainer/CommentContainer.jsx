@@ -78,7 +78,7 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
 
                     }}
                 >
-                    {obj.imgPath ? (
+                    {item.imgPath ? (
 
                         <div id="FeedImage"
 
