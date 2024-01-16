@@ -4,7 +4,7 @@ import { ImImages } from "react-icons/im";
 import axios from 'axios'
 
 
-const SendMessage = ({handleSetMessage, handleSubmitMessage}) => {
+const SendMessage = ({handleSetMessage, handleSubmitMessage, message}) => {
 
 
     return (
@@ -23,6 +23,7 @@ const SendMessage = ({handleSetMessage, handleSubmitMessage}) => {
                     onChange={(e) => handleSetMessage(e)}
                     type="text"
                     name="message"
+                    value={message.messageContent || ""}
                     className="messageinput"
                     placeholder="...?" />
 
