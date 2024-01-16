@@ -47,7 +47,7 @@ const MessagesComponent = ({ authState }) => {
 
 
 
-  }, [])
+  }, [id])
 
 
   useEffect(() => {
@@ -185,7 +185,7 @@ const MessagesComponent = ({ authState }) => {
   return (
     <>
       {console.log("ids", id, authed, queryId)}
-      {console.log("threadMsgs",)}
+      {console.log("c'ONTACT",contact)}
       {/* {console.log("Message Comp - authSt", authState)} */}
       {/* {console.warn("msg input", message)} */}
 
@@ -234,7 +234,7 @@ const MessagesComponent = ({ authState }) => {
             <div className="messagerighttopleft">
               <div className="contactimg"
                 style={{
-                  backgroundImage: `url("http://localhost:5000${contact.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                  backgroundImage: `url("http://localhost:5000${contact?.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: 'cover'
                 }}
@@ -243,9 +243,9 @@ const MessagesComponent = ({ authState }) => {
 
               <div className="contactinfo">
                 <p className="text1">
-                  {contact.username}
+                  {contact?.username}
                 </p>
-                <p className="text2">{contact.isOnline ? "online" : "offline"}</p>
+                <p className="text2">{contact?.isOnline ? "online" : "offline"}</p>
               </div>
 
             </div>

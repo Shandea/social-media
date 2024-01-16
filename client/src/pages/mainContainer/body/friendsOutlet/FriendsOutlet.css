@@ -140,7 +140,14 @@
 .name1 {
   margin: 10px;
   width: 100%;
-  font-size: large;
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+}
+.name2 {
+  margin: 10px;
+  width: 100%;
+  font-size: medium;
   font-weight: bold;
   text-align: center;
 }
