@@ -153,14 +153,14 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
                 )}
 
 
-                <AddCommentComment
+                {/* <AddCommentComment
                     // authState={authState} 
                     handleSetFeeds={handleSetFeeds}
                     // handleAddFollow={handleAddFollow}
                     obj={obj}
                     item={item} />
 
-
+ */}
 
             </div>
 

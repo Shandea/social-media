@@ -4,7 +4,7 @@ import { ImImages } from "react-icons/im";
 import axios from 'axios'
 
 
-const SendMessage = ({handleSetMessage, handleSubmitMessage}) => {
+const SendMessage = ({handleSetMessage, handleSubmitMessage, message}) => {
 
 
     return (
@@ -13,8 +13,8 @@ const SendMessage = ({handleSetMessage, handleSubmitMessage}) => {
 
         <div className="messagerightbottom">
             <div className="sendmessageicon">
-                <div className="plus"><FaPlus /></div>
-                <div className="attachimg"><ImImages /></div>
+                {/* <div className="plus"><FaPlus /></div> */}
+                {/* <div className="attachimg"><ImImages /></div> */}
             </div>
 
             <div className="sendmessageinput">
@@ -23,8 +23,9 @@ const SendMessage = ({handleSetMessage, handleSubmitMessage}) => {
                     onChange={(e) => handleSetMessage(e)}
                     type="text"
                     name="message"
+                    value={message.messageContent || ""}
                     className="messageinput"
-                    placeholder="...?" />
+                    placeholder="send a message" />
 
             </div>
 
