@@ -58,7 +58,8 @@ const ViewProfile = (props) => {
     })
         .then(res => {
             console.log("res", res)
-            setFeeds(res.data)
+            console.warn("TEST", res.data.filter((item) => item.author === id))
+            setFeeds(res.data.filter((item) => item.author === id))
         })
         .catch(err => console.log("get feed err", err))
     // render ? setRender(false) : setRender(true)
@@ -151,7 +152,7 @@ const handleAddLike = (e) => {
               overflowY: "auto",
             }}
           >
-            {/* {feeds
+            {feeds
               .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
               .map((obj, i) => {
                 return (
@@ -163,7 +164,7 @@ const handleAddLike = (e) => {
                     />
                   </div>
                 );
-              })} */}
+              })}
           </div>
         </>
       }
