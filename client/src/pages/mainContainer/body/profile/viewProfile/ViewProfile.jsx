@@ -89,6 +89,15 @@ const ViewProfile = (props) => {
             {profileView.details?.maritalStatus || "Single"}
              </p>
             </div>
+            <hr className="line"/>
+            <div className="bottombtncontainer">
+              <div className="leftmessagebtn">
+                <button className="mabtn">Message</button>
+              </div>
+              <div className="rightaddbtn">
+                <button className="mabtn">Add Friend</button>
+              </div>
+            </div>
           </div>
 
           
