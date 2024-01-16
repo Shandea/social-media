@@ -270,8 +270,9 @@ const MessagesComponent = ({ authState }) => {
 
           {/* {allMsg.map((obj, i) => { */}
           {/* return ( */}
+          <div className="messagerightmiddle">
           <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
-
+          </div>
           {/* )
 })} */}
 
