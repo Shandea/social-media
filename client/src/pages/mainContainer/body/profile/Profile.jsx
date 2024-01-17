@@ -32,7 +32,7 @@ const dimensions = {
 const Profile = (props) => {
   let authState = props.authState;
 
-  let nav = useNavigate()
+  let nav = useNavigate();
 
   console.log("authSTATE,PROFILE", props);
   let srcStr = props.authState.userProfile.profileImg;
@@ -77,9 +77,9 @@ const Profile = (props) => {
     // console.log("got here___", props.authState)
 
     API.updateProfileBio(props.authState);
-    setEditBios(false)
-    setEditDetails(false)
-    window.location.reload()
+    setEditBios(false);
+    setEditDetails(false);
+    window.location.reload();
   };
 
   return (
@@ -101,23 +101,20 @@ const Profile = (props) => {
               </div>
             </div>
             <div className="userimgdiv">
-
-
-<div className="img"
-              style={{
-                // border: 'solid black 2px',
-                // display: 'flex',
-                // justifyContent: 'center',
-                // height: '50px',
-                // width: '50px',
-                // borderRadius: '25px',
-                backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: 'cover'
-              }}
-            >
-</div>
-
+              <div
+                className="img"
+                style={{
+                  // border: 'solid black 2px',
+                  // display: 'flex',
+                  // justifyContent: 'center',
+                  // height: '50px',
+                  // width: '50px',
+                  // borderRadius: '25px',
+                  backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                }}
+              ></div>
 
               {/* <img alt="" src={Profileimage} className="img" /> */}
 
@@ -134,67 +131,128 @@ const Profile = (props) => {
                     {editBios == true ? (
                       <>
                         <form onSubmit={handlebiosUpdate} style={dimensions}>
-                          <h4>bio</h4>
-                          <label htmlFor="bio">inputs</label>
-                          <textarea
+                          <h2 className="bioheader1">Bio</h2>
+
+                          <input
+                            className="bioinput"
+                            placeholder="Describe who you are!"
                             name="bio"
-                            defaultValue={props.authState.userProfile.details?.bio || "I Have No Bio"}
+                            defaultValue={
+                              props.authState.userProfile.details?.bio || ""
+                            }
                             onChange={(e) => props.handleInputChange(e.target)}
                           />
-                          <div>
-                            <button onClick={() => setEditBios(!editBios)}>
-                              CANCEL
-                            </button>
-                            <button type="submit"> UPDATE</button>
+                          <div className="bottombiobtns">
+                            <div className="biobtnleft">
+                              <button
+                                onClick={() => setEditBios(!editBios)}
+                                className="biobtn1"
+                              >
+                                CANCEL
+                              </button>
+                            </div>
+                            <div className="biobtnright">
+                              <button type="submit" className="biobtn2">
+                                {" "}
+                                UPDATE
+                              </button>
+                            </div>
                           </div>
                         </form>
                         <div style={dimensions}>
-                          <h4>details</h4>
-                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.details?.education}</p></div>
-                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.details?.education2}</p></div>
-                          <div className="edu"><FaHouse className="capicon" /><p className="edutext">{props.authState.details?.localInfo}</p></div>
-                          <div className="edu"><FaHeart className="capicon" /><p className="edutext">{props.authState.details?.maritalStatus}</p></div>
+                          {/* <h2>Details</h2> */}
+                          <div className="aligndiv1">
+                            <div className="edu">
+                              <GiGraduateCap className="capicon" />
+                              <div className="detailtext"><p>Went to</p></div>
+                              <p className="edutext">
+                                {props.authState.details?.education}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="aligndiv1">
+                            <div className="edu">
+                              <GiGraduateCap className="capicon" />
+                              <div className="detailtext"><p>Studied at</p></div>
+                              <p className="edutext">
+                                {props.authState.details?.education2}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="aligndiv1">
+                            <div className="edu">
+                              <FaHouse className="capicon" />
+                              <div className="detailtext"><p>Lives in</p></div>
+                              <p className="edutext">
+                                {props.authState.details?.localInfo}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="aligndiv1">
+                            <div className="edu">
+                              <FaHeart className="capicon" />
+                              <p className="edutext">
+                                {props.authState.details?.maritalStatus}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </>
                     ) : editDetails == true ? (
                       <>
                         <div style={dimensions}>
                           <h4>bio</h4>
-                          <p>
-                            {props.authState.userProfile.details?.bio}
-                          </p>
+                          <p>{props.authState.userProfile.details?.bio}</p>
                         </div>
 
                         <form onSubmit={handlebiosUpdate} style={dimensions}>
-                          <h4>Details</h4>
-                          <label>Education</label>
-                          <Inputs
+                          {/* <h4>Details</h4> */}
+                          <label className="bioinputlabels">College</label>
+                          <Inputs className="bioinput2"
                             name={"details.education"}
-                            defaultValue={props.authState.userProfile.details?.education || ""}
+                            defaultValue={
+                              props.authState.userProfile.details?.education ||
+                              ""
+                            }
                           />
                           <br />
-                          <label>Education2</label>
-                          <Inputs
+                          <label className="bioinputlabels">High School</label>
+                          <Inputs className="bioinput2"
                             name={"details.education2"}
-                            defaultValue={props.authState.userProfile.details?.education2 || ""}
+                            defaultValue={
+                              props.authState.userProfile.details?.education2 ||
+                              ""
+                            }
                           />
                           <br />
-                          <label>Location</label>
-                          <Inputs
+                          <label className="bioinputlabels">Location</label>
+                          <Inputs className="bioinput2"
                             name={"details.localInfo"}
-                            defaultValue={props.authState.userProfile.details?.localInfo || ""}
+                            defaultValue={
+                              props.authState.userProfile.details?.localInfo ||
+                              ""
+                            }
                           />
                           <br />
-                          <label>Marital Status</label>
-                          <Inputs
+                          <label className="bioinputlabels">Marital Status</label>
+                          <Inputs className="bioinput2"
                             name={"details.maritalStatus"}
-                            defaultValue={props.authState.details.userProfile?.maritalStatus || ""}
+                            defaultValue={
+                              props.authState.details.userProfile
+                                ?.maritalStatus || ""
+                            }
                           />
-                          <div>
-                            <button onClick={() => setEditDetails(!editDetails)}>
+                          <div className="bottombiobtns">
+                            <div className="biobtnleft">
+                            <button className="biobtn1"
+                              onClick={() => setEditDetails(!editDetails)}
+                            >
                               CANCEL
                             </button>
-                            <button type="submit">UPDATE</button>
+                            </div>
+                            <div className="biobtnright">
+                            <button type="submit" className="biobtn2">UPDATE</button>
+                            </div>
                           </div>
                         </form>
                       </>
@@ -214,10 +272,41 @@ const Profile = (props) => {
                           elit. Dignissimos facilis at labore saepe similique
                           architecto quia id? Veritatis, delectus minus.
                         </p> */}
-                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.userProfile.details?.education}</p></div>
-                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.userProfile.details?.education2}</p></div>
-                          <div className="edu"><FaHouse className="capicon" /><p className="edutext">{props.authState.userProfile.details?.localInfo}</p></div>
-                          <div className="edu"><FaHeart className="capicon" /><p className="edutext">{props.authState.userProfile.details?.maritalStatus}</p></div>
+
+                          <div className="edu">
+                            <GiGraduateCap className="capicon" />
+                            <div className="detailtext"><p>Went to</p></div>
+                            <p className="edutext">
+                              {props.authState.userProfile.details?.education}
+                            </p>
+                          </div>
+
+                          <div className="edu">
+                            <GiGraduateCap className="capicon" />
+                            <div className="detailtext"><p>Studied at</p></div>
+                            <p className="edutext">
+                              {props.authState.userProfile.details?.education2}
+                            </p>
+                          </div>
+
+                          <div className="edu">
+                            <FaHouse className="capicon" />
+                            <div className="detailtext"><p>Lives in</p></div>
+                            <p className="edutext">
+                              {props.authState.userProfile.details?.localInfo}
+                            </p>
+                          </div>
+
+                          <div className="edu">
+                            <FaHeart className="capicon" />
+                            <p className="edutext">
+                              {
+                                props.authState.userProfile.details
+                                  ?.maritalStatus
+                              }
+                            </p>
+                          </div>
+
                           {/* <p>education</p>
                         <p>location</p>
                         <p>marital status</p> */}
@@ -266,7 +355,10 @@ const Profile = (props) => {
                   }}
                 >
                   {feeds
-                    .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+                    .sort(
+                      (a, b) =>
+                        Date.parse(b.createdAt) - Date.parse(a.createdAt)
+                    )
                     .map((obj, i) => {
                       return (
                         <div key={i}>
@@ -278,7 +370,6 @@ const Profile = (props) => {
                       );
                     })}
                 </div>
-
               </div>
             </div>
           </>
@@ -288,7 +379,8 @@ const Profile = (props) => {
   );
 };
 
-{/* {
+{
+  /* {
               editBios == true ?
                 <>
                   <form onSubmit={handlebiosUpdate} style={dimensions}>
@@ -353,7 +445,8 @@ const Profile = (props) => {
                     <p>marital status</p>
                     <button onClick={() => setEditDetails(!editDetails)} >edit details</button>
                   </>
-            } */}
+            } */
+}
 //           <h3>create a post here</h3>
 //           <AddFeed />
 
