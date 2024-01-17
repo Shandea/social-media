@@ -105,16 +105,21 @@ const FriendsOutlet = ({ state }) => {
 
   // console.warn('ALL FRIENDS', state.userProfile.friends)
 
-
+  // const filteredUsers = users.filter((item) => itefriends ))
   // console.warn('Users', users)
-
+  const friendMapIds = friends.map((item) => item.userId)
+  console.log("WTF", friendMapIds)
+  const uniqueUsers = users.filter((item) => !friendMapIds.includes(item._id))
+console.warn("uniqueUsers", uniqueUsers)
 
 
   return (
     <div className="friendsoutletcontainer">
       {/* {console.warn("REDUX FRIENDS: ", state.userProfile.friends)} */}
-      {/* {console.warn("FRIENDS", friends)} */}
-
+      {console.warn("FRIENDS", friends)}
+      {/* {console.log("filteredUsers", filteredUsers)} */}
+      {console.log("friends", friends)}
+      {console.log("users", users)}
 
 
 
@@ -403,7 +408,7 @@ const FriendsOutlet = ({ state }) => {
 
             // users.filter((obj) => !state.userProfile.friends.includes(obj.username).map((friend, i) => {
 
-            users.map((friend, i) => {
+            uniqueUsers.map((friend, i) => {
 
 
               // console.log("map users friend", friend)
