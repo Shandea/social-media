@@ -128,12 +128,13 @@ const Navbar = ({ props, authState }) => {
           <div className="circle icon dots" ><TbGridDots /></div>
 
 
-          {messageCount()}
+          
 
           <Link to="/messages/">
 
             <div
               className="circle icon">
+                <div className="numberbadge">{messageCount()}</div>
               <FaRegComment />
 
 
@@ -143,7 +144,14 @@ const Navbar = ({ props, authState }) => {
 
 
 
-          {Object.keys(authState.userProfile).length
+
+
+
+
+          <Link to="/notification">
+            <div
+              className="circle icon" >
+                <div className="numberbadge">       {Object.keys(authState.userProfile).length
             ?
             (
               <div className="notbubble">
@@ -158,13 +166,7 @@ const Navbar = ({ props, authState }) => {
             (
               null
             )
-          }
-
-
-
-          <Link to="/notification">
-            <div
-              className="circle icon" >
+          }</div>
               <FaBell />
             </div>
           </Link>

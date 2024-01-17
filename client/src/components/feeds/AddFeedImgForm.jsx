@@ -5,14 +5,22 @@ const FeedAddImgForm = ({handleSelectedFiles, handleFeedSubmit}) => {
 
     return (
         <div id='FeedAddImgForm'>
-            <p> FeedAddImgForm </p>
+            
 
 
 
             <div>
                 <form >
 
-                    <input type="file"
+                    <input type="file" 
+                    style={{ 
+                    
+                    position: "absolute",
+                zIndex: "3",
+                top: "4px",
+                right: "0.5px"
+                
+                }}
                         onChange={(e) => handleSelectedFiles(e)}
                         accept="image/*"
                         id="image"

@@ -233,6 +233,24 @@ align-items: center;
   margin: 5px;
 }
 
+.numberbadge {
+  position: absolute;
+  z-index: 5;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  width: 18px;
+  height: 18px;
+  /* border: solid 1px red; */
+  background-color: rgba(255, 0, 0, 0.762);
+  border-radius: 50%;
+  color: white;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 /* .circle1 {
 
   height: 55px;
