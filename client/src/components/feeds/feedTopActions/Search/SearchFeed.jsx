@@ -27,7 +27,7 @@ const SearchFeed = ({ handleApiSearch }) => {
         <>
             {/* <div>SearchFeed</div> */}
 
-            {console.log("SEARCH FEED", feedSearch)}
+            {/* {console.log("SEARCH FEED", feedSearch)} */}
 
 
             {/* <input placeholder='Search Feeds'></input> */}
