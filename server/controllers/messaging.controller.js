@@ -9,6 +9,7 @@ module.exports = {
         Messages.create(req.body)
             .then(created => {
                 console.log("created", created)
+                console.log("created MsgContent", created.messageContent)
                 User.findById(req.body.recipient) // find Recipient 
                     .then(foundUser => {
                         // console.log("FoundUser", foundUser)
@@ -21,7 +22,12 @@ module.exports = {
                                 messages: [created._id],
                                 messageCount: 0,
                                 profileImg: created.profileImg,
-                                recent: created.messageContent
+
+                                recent: created.messageContent,
+                                createdAt: created.createdAt,
+                                fromUser: req.locals.username
+                                
+
                             })
                             foundUser.save()
                             console.log("no found ID")
@@ -32,7 +38,10 @@ module.exports = {
                             foundUser.messages.find((item) => item.queryId === created.queryId ?
                                 (
                                     item.messages.push(created._id),
-                                    item.recent = created.messageContent
+                                    item.createdAt = created.createdAt,
+                                    item.recent = created.messageContent,
+                                    item.fromUser = req.locals.username
+
                                 )
                                 : console.log(" ==== line 37 msg controller ERROR")
                             )
@@ -41,6 +50,25 @@ module.exports = {
                         }
                     })
                     .catch(err => console.log("addmessage err", err))
+
+/////////////  add below to have same msg in recent for each user
+
+                User.findById(req.locals.userId)
+                    .then(user => {
+
+                             console.log("USER found")
+                            user.messages.find((item) => item.queryId === created.queryId ?
+                                (
+                                    item.messages.push(created._id),
+                                    item.createdAt = created.createdAt,
+                                    item.recent = created.messageContent,
+                                    item.fromUser = req.locals.username
+                                )
+                                : console.log(" ==== line 53 msg controller ERROR")
+                            )
+                            user.save()
+                            console.log("foundUser saved?")
+                    })
             })
 
     },
@@ -49,39 +77,39 @@ module.exports = {
 
     getThreadMessages: (req, res) => {
         console.log("getting thread messages", req.body.queryId, req.locals.userId)
-       
-       let queryId
-        if(req.body.queryId.length !== 48){
+
+        let queryId
+        if (req.body.queryId.length !== 48) {
             console.log("creating queryid")
             queryId = [req.body.queryId, req.locals.userId].sort().join("")
-        }else {
+        } else {
             queryId = req.body.queryId
         }
         console.log("server side query", queryId)
-      
+
         Messages.find({ queryId: queryId })
             .then(messages => {
                 console.log("msg res", messages)
                 User.findById(req.locals.userId)
-                .then(found => {
-                    // console.log("found", found)
-                    found.messages.find((item) => item.queryId === queryId ?
-                    (
-                        // console.log("wtf", item)
-                        item.messageCount = item.messages.length,
-                        item.recent = ""
+                    .then(found => {
+                        // console.log("found", found)
+                        found.messages.find((item) => item.queryId === queryId ?
+                            (
+                                // console.log("wtf msg find ln 84", item)
+                                item.messageCount = item.messages.length
+                                // item.recent = ""
 
-                    )
-                    : null
-                )
-                found.save()
+                            )
+                            : null
+                        )
+                        found.save()
 
-                })
+                    })
 
-               res.json(messages)
+                res.json(messages)
             })
 
-    
+
 
     },
 
@@ -119,11 +147,11 @@ module.exports = {
     getUser: (req, res) => {
         console.log("get user", req.params.id)
         User.findById(req.params.id)
-        .then(found => {
-            // console.log("found", found)
-            res.json(found)
-        })
-        .catch(err => console.log("err"))
+            .then(found => {
+                // console.log("found", found)
+                res.json(found)
+            })
+            .catch(err => console.log("err"))
     }
 
     // deleteAllMessages: (req, res) => {

@@ -24,6 +24,7 @@ module.exports = app => {
 
     app.post("/socialConnection/addFriend", AuthCheck, UserController.addFriend)
 
+    app.get("/socialConnection/searchFriend", AuthCheck, UserController.socialSearch)
 
 
 
@@ -85,5 +86,6 @@ module.exports = app => {
     app.get("/user/all", AuthCheck, UserController.all)
 
     app.patch("/user/updatebio", AuthCheck, UserController.updateBio)
+    app.patch("/user/updateuserprofile", AuthCheck, UserController.updateUserProfile)
 
 }

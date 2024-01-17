@@ -198,9 +198,9 @@ module.exports = {
             )
         })
 
-    },
-
-
+      
+    }, 
+   
 
 
     addFriend: (req, res) => {
@@ -312,11 +312,40 @@ module.exports = {
 
 
 
+    },
+
+    
+    updateUserProfile : (req,res)=>{
+        let id = req.locals.userId
+        User.findById(id).then(data =>{
+           
+            if(!data){
+                return res.status(400).json({message:"cannot find user"})
+            }else(
+                User.findByIdAndUpdate({_id:id},req.body,{new:true}).then(data=>{
+                   
+                    return res.status(200).json({message:"update successful",data})
+                })
+            )
+        })
+      
+    }, 
+
+
+    socialSearch:(req,res)=>{
+        console.log("search friends BE",req.body)
+        console.log("search friends BE",req.locals.userId)
+        let id = req.locals.userId
+        User.findById({id}).then(data=>{
+            if(!data){
+                res.status(400).json({message:"user error"})
+            }else{
+                User.find().then(data=>{
+                    res.status(200).json(data)
+                })
+            }
+        })
     }
 
 
 }
-
-
-
-

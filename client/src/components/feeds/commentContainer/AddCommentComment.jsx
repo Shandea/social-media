@@ -35,7 +35,7 @@ const AddCommentComment = ({ authState, obj, item, handleSetFeeds }) => {
     }
 
     const handleAddComment = (e) => {
-        console.log("submiting", addComment)
+        // console.log("submiting", addComment)
         axios({
             method: "POST",
             url: "http://localhost:5000/api/addCommentComment",

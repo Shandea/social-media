@@ -25,6 +25,7 @@ const UserSchema = new Schema({
     details:{
         bio: String,
         education: String,
+        education2: String,
         localInfo: String,
         maritalStatus: String
     },
@@ -49,7 +50,9 @@ const UserSchema = new Schema({
         status: String,
         senderName: String,
         profileImg: String,
-        recent: String
+        recent: String,
+        fromUser: String,
+        createdAt: Date
     }],
 
 

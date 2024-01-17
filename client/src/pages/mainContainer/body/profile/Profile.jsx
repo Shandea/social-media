@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import "./Profile.css";
 import { connect } from "react-redux";
 import { CiEdit } from "react-icons/ci";
@@ -30,6 +31,8 @@ const dimensions = {
 
 const Profile = (props) => {
   let authState = props.authState;
+
+  let nav = useNavigate()
 
   console.log("authSTATE,PROFILE", props);
   let srcStr = props.authState.userProfile.profileImg;
@@ -72,12 +75,11 @@ const Profile = (props) => {
   const handlebiosUpdate = (e) => {
     e.preventDefault();
     // console.log("got here___", props.authState)
-    let info = {
-      bio: props.authState.bio,
-      details: props.authState.details,
-    };
 
-    API.updateProfileBio(info);
+    API.updateProfileBio(props.authState);
+    setEditBios(false)
+    setEditDetails(false)
+    window.location.reload()
   };
 
   return (
@@ -136,7 +138,7 @@ const Profile = (props) => {
                           <label htmlFor="bio">inputs</label>
                           <textarea
                             name="bio"
-                            defaultValue={props.authState.bio || "I Have No Bio"}
+                            defaultValue={props.authState.userProfile.details?.bio || "I Have No Bio"}
                             onChange={(e) => props.handleInputChange(e.target)}
                           />
                           <div>
@@ -148,9 +150,10 @@ const Profile = (props) => {
                         </form>
                         <div style={dimensions}>
                           <h4>details</h4>
-                          <p>education</p>
-                          <p>location</p>
-                          <p>marital status</p>
+                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.details?.education}</p></div>
+                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.details?.education2}</p></div>
+                          <div className="edu"><FaHouse className="capicon" /><p className="edutext">{props.authState.details?.localInfo}</p></div>
+                          <div className="edu"><FaHeart className="capicon" /><p className="edutext">{props.authState.details?.maritalStatus}</p></div>
                         </div>
                       </>
                     ) : editDetails == true ? (
@@ -158,9 +161,7 @@ const Profile = (props) => {
                         <div style={dimensions}>
                           <h4>bio</h4>
                           <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dignissimos facilis at labore saepe similique
-                            architecto quia id? Veritatis, delectus minus.
+                            {props.authState.userProfile.details?.bio}
                           </p>
                         </div>
 
@@ -169,19 +170,25 @@ const Profile = (props) => {
                           <label>Education</label>
                           <Inputs
                             name={"details.education"}
-                            value={props.authState.details.education || ""}
+                            defaultValue={props.authState.userProfile.details?.education || ""}
+                          />
+                          <br />
+                          <label>Education2</label>
+                          <Inputs
+                            name={"details.education2"}
+                            defaultValue={props.authState.userProfile.details?.education2 || ""}
                           />
                           <br />
                           <label>Location</label>
                           <Inputs
                             name={"details.localInfo"}
-                            value={props.authState.details.localInfo || ""}
+                            defaultValue={props.authState.userProfile.details?.localInfo || ""}
                           />
                           <br />
                           <label>Marital Status</label>
                           <Inputs
                             name={"details.maritalStatus"}
-                            value={props.authState.details.maritalStatus || ""}
+                            defaultValue={props.authState.details.userProfile?.maritalStatus || ""}
                           />
                           <div>
                             <button onClick={() => setEditDetails(!editDetails)}>
@@ -200,16 +207,17 @@ const Profile = (props) => {
                           Add Bio
                         </button>
                         <div className="biomiddle">
+                          <p>{authState.userProfile.details?.bio}</p>
                           {/* <h4>bio</h4>
                         <p>
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit. Dignissimos facilis at labore saepe similique
                           architecto quia id? Veritatis, delectus minus.
                         </p> */}
-                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">Studied at</p></div>
-                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">Went to</p></div>
-                          <div className="edu"><FaHouse className="capicon" /><p className="edutext">Lives in</p></div>
-                          <div className="edu"><FaHeart className="capicon" /><p className="edutext">Single</p></div>
+                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.userProfile.details?.education}</p></div>
+                          <div className="edu"><GiGraduateCap className="capicon" /><p className="edutext">{props.authState.userProfile.details?.education2}</p></div>
+                          <div className="edu"><FaHouse className="capicon" /><p className="edutext">{props.authState.userProfile.details?.localInfo}</p></div>
+                          <div className="edu"><FaHeart className="capicon" /><p className="edutext">{props.authState.userProfile.details?.maritalStatus}</p></div>
                           {/* <p>education</p>
                         <p>location</p>
                         <p>marital status</p> */}
