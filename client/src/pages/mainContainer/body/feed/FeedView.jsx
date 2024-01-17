@@ -44,7 +44,7 @@ export default function Feed() {
     const handleSetFeeds = (e) => {
         // setFeeds(input)
 
-        console.warn("HandleSetFeed hit  ===>  Rerender Please")
+        // console.warn("HandleSetFeed hit  ===>  Rerender Please")
         axios({
             method: "GET",
             url: "http://localhost:5000/api/getfeeds",
@@ -60,12 +60,12 @@ export default function Feed() {
     }
 
     const handleAddLike = (e) => {
-        console.warn("adding like", e.target.id, e.target.getAttribute("name"))
+        // console.warn("adding like", e.target.id, e.target.getAttribute("name"))
         // let type = e.target.getAttribute("type")
 
         let type = e.currentTarget.attributes['type'].value
 
-        console.log("type", type)
+        // console.log("type", type)
         let payload = {
             type: e.currentTarget.attributes['type'].value,
             id: e.target.id
@@ -91,7 +91,7 @@ export default function Feed() {
         }
 
     const handleApiSearch = (e, input) => {
-        console.log("handleAPISearch", input)
+        // console.log("handleAPISearch", input)
         // setFeedSearch(e.target.value)
 
         axios({
@@ -152,8 +152,8 @@ export default function Feed() {
     return (
 
         <>
-            {console.log("feed state", feeds)}
-            {console.warn("RENDER STATUS", render)}
+            {/* {console.log("feed state", feeds)} */}
+            {/* {console.warn("RENDER STATUS", render)} */}
 
 <div className='mainfeedcontainer'>
 <div className="feedcontainerleft"><LeftSideNav /></div>

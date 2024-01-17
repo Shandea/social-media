@@ -42,6 +42,7 @@ let initialState = {
     bio: "",
     details: {
         education: "",
+        education2: "",
         localInfo: "",
         maritalStatus: ""
     },

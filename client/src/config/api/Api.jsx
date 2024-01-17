@@ -72,10 +72,11 @@ const API = {
   updateProfileBio: async (info) => {
     console.log("firing", info)
     let details = {
-      bio:info.bio,
-      education:info.details.education,
-      localInfo:info.details.localInfo,
-      maritalStatus:info.details.maritalStatus,
+      bio:info?.bio ? info.bio : info.userProfile.details.bio,
+      education:info?.details.education ? info.details.education : info.userProfile.details.education,
+      education2:info?.details.education2 ? info.details.education2 : info.userProfile.details.education2,
+      localInfo:info?.details.localInfo ? info.details.localInfo : info.userProfile.details.localInfo,
+      maritalStatus:info?.details.maritalStatus ? info.details.maritalStatus : info.userProfile.details.maritalStatus,
     }
     console.log(details)
     try {
@@ -105,7 +106,7 @@ const API = {
       gender:info?.gender ? info.gender: info.userProfile.gender
 
     }
-    // console.log("firing update profile info", profileInfo)
+
     try {
       const response = await instance.patch(`/user/updateuserprofile`,profileInfo);
       // console.log("from backend update user profile", response.data);
