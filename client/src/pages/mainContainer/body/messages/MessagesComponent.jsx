@@ -234,6 +234,7 @@ const MessagesComponent = ({ authState }) => {
               return (
 
                 <ContactCard
+                authState={authState}
                   item={item}
                   allMsg={allMsg}
                   contact={contact}

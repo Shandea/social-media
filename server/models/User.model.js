@@ -49,7 +49,9 @@ const UserSchema = new Schema({
         status: String,
         senderName: String,
         profileImg: String,
-        recent: String
+        recent: String,
+        fromUser: String,
+        createdAt: Date
     }],
 
 
