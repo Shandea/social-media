@@ -205,9 +205,8 @@ export default function Feed() {
             {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
 
             <div className='feedContainer' style={{
-                marginTop: "20px",
-                overflowY: "auto",
-                height: "325px",
+                marginTop: "20px"
+               
                 // border: "1px solid black"
             }}>
                 {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {

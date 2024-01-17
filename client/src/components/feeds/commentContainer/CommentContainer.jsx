@@ -78,7 +78,7 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
 
                     }}
                 >
-                    {obj.imgPath ? (
+                    {item.imgPath ? (
 
                         <div id="FeedImage"
 
@@ -153,14 +153,14 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
                 )}
 
 
-                <AddCommentComment
+                {/* <AddCommentComment
                     // authState={authState} 
                     handleSetFeeds={handleSetFeeds}
                     // handleAddFollow={handleAddFollow}
                     obj={obj}
                     item={item} />
 
-
+ */}
 
             </div>
 

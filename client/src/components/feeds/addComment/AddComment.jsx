@@ -39,6 +39,7 @@ const AddComment = ({ authState, obj, handleSetFeeds }) => {
             withCredentials: true,
         }).then(res => {
             console.log("RESRES RES", res)
+            handleSetFeeds(res.data)
         }
         )
 

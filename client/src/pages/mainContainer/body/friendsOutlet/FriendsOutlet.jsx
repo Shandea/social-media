@@ -143,10 +143,12 @@ const FriendsOutlet = ({ state }) => {
                     </div>
                     {/* <img src={`http://localhost:5000${friend.profileImg}`} alt=" http://localhost:5000/public/default.jpeg" className="friendimages" /> */}
                   </Link>
+                  <p className="name2">
+                    {friend.username}
+                  </p>
                   <p className="name1">
                     {friend.firstName} {friend.lastName}
                   </p>
-                  <p>{friend.username}</p>
                   <div className="pendingfriendsbuttons">
 
                     <FriendStatus id={friend.userId} >
@@ -155,7 +157,6 @@ const FriendsOutlet = ({ state }) => {
 
                     <Link to={`/messages/${friend.userId}`}>
                       <button className="btn">Message</button>
-
                     </Link>
                   </div>
                 </div>
