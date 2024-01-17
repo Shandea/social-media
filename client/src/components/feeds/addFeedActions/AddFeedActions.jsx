@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AddFeedImgForm from '../AddFeedImgForm'
 
-import { FaPhotoFilm } from "react-icons/fa6";
+import { FaImage } from "react-icons/fa6";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { MdOutlinePostAdd } from "react-icons/md";
 import "./AddFeedActions.css"
@@ -23,11 +23,15 @@ const AddFeedActions = ({ handleFeedSubmit, handleSelectedFiles }) => {
 
             <section id="FeedAddNewActions">
 
-                <div className='left'><FaPhotoFilm
+                <div className='left'><FaImage 
                     className='icon2'
                     onClick={(e) => setAddImage(true)}
                 />
-                
+                      {addImg &&
+                <div>
+                    <AddFeedImgForm handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} />
+                </div>
+            }
                 </div>
 
                 <div className='right'>
@@ -52,11 +56,7 @@ const AddFeedActions = ({ handleFeedSubmit, handleSelectedFiles }) => {
 
             </section>
 
-            {addImg &&
-                <div>
-                    <AddFeedImgForm handleFeedSubmit={handleFeedSubmit} handleSelectedFiles={handleSelectedFiles} />
-                </div>
-            }
+      
 
             {/* {expandOptions &&
 

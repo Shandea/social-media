@@ -5,6 +5,8 @@ import { FaHouse } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import "./ViewProfile.css";
 
+import { Link } from 'react-router-dom'
+
 import API from "../../../../../config/api/Api";
 import { connect } from "react-redux";
 import { hideOnline } from "../../../../../config/redux/actions/AuthActions";
@@ -52,21 +54,21 @@ const ViewProfile = (props) => {
 
     console.warn("HandleSetFeed hit  ===>  Rerender Please")
     axios({
-        method: "GET",
-        url: "http://localhost:5000/api/getfeeds",
-        withCredentials: true,
+      method: "GET",
+      url: "http://localhost:5000/api/getfeeds",
+      withCredentials: true,
     })
-        .then(res => {
-            console.log("res", res)
-            console.warn("TEST", res.data.filter((item) => item.author === id))
-            setFeeds(res.data.filter((item) => item.author === id))
-        })
-        .catch(err => console.log("get feed err", err))
+      .then(res => {
+        console.log("res", res)
+        console.warn("TEST", res.data.filter((item) => item.author === id))
+        setFeeds(res.data.filter((item) => item.author === id))
+      })
+      .catch(err => console.log("get feed err", err))
     // render ? setRender(false) : setRender(true)
     // console.log("TOP lvl handle set feeds")
-}
+  }
 
-const handleAddLike = (e) => {
+  const handleAddLike = (e) => {
     console.warn("adding like", e.target.id, e.target.getAttribute("name"))
     // let type = e.target.getAttribute("type")
 
@@ -74,28 +76,28 @@ const handleAddLike = (e) => {
 
     console.log("type", type)
     let payload = {
-        type: e.currentTarget.attributes['type'].value,
-        id: e.target.id
+      type: e.currentTarget.attributes['type'].value,
+      id: e.target.id
 
     }
 
     axios({
-        method: "put",
-        url: "http://localhost:5000/api/feeds/addfeedlike",
-        data: { id: e.target.id },
-        data: payload,
-        withCredentials: true
+      method: "put",
+      url: "http://localhost:5000/api/feeds/addfeedlike",
+      data: { id: e.target.id },
+      data: payload,
+      withCredentials: true
     })
-        .then(res => {
-            console.log("add like RES", res)
-            // console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
-            setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
-            handleSetFeeds()
-        })
+      .then(res => {
+        console.log("add like RES", res)
+        // console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
+        setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
+        handleSetFeeds()
+      })
 
 
 
-    }
+  }
 
   return (
     <>
@@ -118,42 +120,53 @@ const handleAddLike = (e) => {
           </span>
 
           <div>
-            <FriendStatus id={id} />
+            {/* <FriendStatus id={id} /> */}
           </div>
 
           <div className="biodiv">
             <h2 className="bioheader">Intro</h2>
             <p className="biotext">{profileView?.details?.bio || "I Have No Bio"}</p>
-           <div className="aligndiv">
+            <div className="aligndiv">
+              <div><GiGraduateCap className="capicon" /></div>
+              <p>Studied at {profileView?.details?.education || "I Have No Education"}</p>
+            </div>
+            <div className="aligndiv">
             <div><GiGraduateCap className="capicon" /></div>
-            <p>Studied at {profileView?.details?.education || "I Have No Education"}</p>
+            <p>Went to {profileView?.details?.education || "I Have No Education"}</p>
             </div>
             <div className="aligndiv">
               <div><FaHouse className="capicon" /></div>
-            <p>Lives In {profileView?.details?.localInfo || "I Have No Local Info"}</p>
+              <p>Lives In {profileView?.details?.localInfo || "I Have No Local Info"}</p>
             </div>
             <div className="aligndiv">
               <div><FaHeart className="capicon" /></div>
               <p>
-            
-            {profileView.details?.maritalStatus || "Single"}
-             </p>
+
+                {profileView.details?.maritalStatus || "Single"}
+              </p>
             </div>
-            <hr className="line"/>
+            <hr className="line" />
             <div className="bottombtncontainer">
-              <div className="leftmessagebtn">
-                <button className="mabtn">Message</button>
-              </div>
+
+              <Link to={`/messages/${id}`}>
+                <div className="leftmessagebtn">
+                  <button className="mabtn">Message</button>
+                </div>
+              </Link>
+
+
               <div className="rightaddbtn">
-                <button className="mabtn">Add Friend</button>
+                <FriendStatus id={id}>
+                  <button className="mabtn">Add Friend</button>
+                </FriendStatus>
               </div>
             </div>
           </div>
 
-          
+
           {/* <AddFeed /> */}
 
-          
+
           <div
             className="feedContainer"
             style={{
@@ -167,7 +180,7 @@ const handleAddLike = (e) => {
                 return (
                   <div key={i}>
                     <FeedContainer
-                    handleSetFeeds={handleSetFeeds}
+                      handleSetFeeds={handleSetFeeds}
                       handleAddLike={handleAddLike}
                       obj={obj}
                     />

@@ -1,10 +1,11 @@
-
+import React, { useState } from "react"
 import { FaHome, FaRegComment, FaBell } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi"
 import { IoSearch, IoAdd } from "react-icons/io5"
 import { TbGridDots } from "react-icons/tb"
 import logo1 from "../../imagess/logo1.png"
 import { TbDoorExit } from "react-icons/tb";
+import MenuModal from "../Modal/MenuModal";
 import hacker6 from "../../imagess/hacker6.png"
 
 
@@ -20,6 +21,13 @@ const socket = io.connect('http://localhost:5000')
 
 const Navbar = ({ props, authState }) => {
   // console.log("header prop", props, authState)
+
+
+const [menuModal, setMenuModal] = useState(false)
+
+const handleMenuModal = () => {
+  setMenuModal(prev => !prev)
+}
 
   let nav = useNavigate()
 
@@ -121,6 +129,7 @@ const Navbar = ({ props, authState }) => {
           </div>
 
         </div>
+        
         {/* { modal ? <Modal /> : ""}
           { modal1 ? <Modal1 /> : ""} */}
         <div className="right-nav">
@@ -135,15 +144,19 @@ const Navbar = ({ props, authState }) => {
 
 
 
-          <div className="circle icon dots" ><TbGridDots /></div>
+          <div className="circle icon dots" 
+          style={{ width: "40px", height: "40px"}}
+          onClick={() => handleMenuModal()}
+          ><TbGridDots /></div>
 
 
-          {messageCount()}
+          
 
           <Link to="/messages/">
 
             <div
               className="circle icon">
+                <div className="numberbadge">{messageCount()}</div>
               <FaRegComment />
 
 
@@ -153,7 +166,14 @@ const Navbar = ({ props, authState }) => {
 
 
 
-          {Object.keys(authState.userProfile).length
+
+
+
+
+          <Link to="/notification">
+            <div
+              className="circle icon" >
+                <div className="numberbadge">       {Object.keys(authState.userProfile).length
             ?
             (
               <div className="notbubble">
@@ -168,13 +188,7 @@ const Navbar = ({ props, authState }) => {
             (
               null
             )
-          }
-
-
-
-          <Link to="/notification">
-            <div
-              className="circle icon" >
+          }</div>
               <FaBell />
             </div>
           </Link>
@@ -191,6 +205,7 @@ const Navbar = ({ props, authState }) => {
           </div>
         </div>
       </div>
+      {menuModal ? <MenuModal /> : null}
     </>
   )
 }
