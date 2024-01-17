@@ -7,6 +7,7 @@ import { FaRegComment } from "react-icons/fa";
 import convertDate from "../../../util/convertDate"
 
 // import AddComment from "../addComment/AddComment"
+import { Link } from 'react-router-dom'
 
 import AddCommentComment from "./AddCommentComment"
 
@@ -28,8 +29,8 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
 
     return (
         <>
-            {/* //     {console.warn("COMMENT container props", obj)}
-        //     {console.log("Coment ITEM", item)} */}
+             {console.warn("COMMENT container props", obj)}
+            {console.log("Coment ITEM", item)}
 
             <div
                 id="CommentContainer" className='FC'
@@ -43,21 +44,26 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
                     }}
                 >
                     <div className='userpost'>
-                        <div className='friendimg'
-                            style={{
-                                border: 'solid black 2px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                height: '30px',
-                                width: '30px',
-                                borderRadius: '25px',
-                                backgroundImage: `url("http://localhost:5000${item.authorImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                                backgroundRepeat: "no-repeat",
-                                backgroundSize: 'cover'
-                            }}
-                        >
+                        <Link to={`/profile/${item.authorId}`}>
 
-                        </div>
+                            <div className='friendimg'
+                                style={{
+                                    border: 'solid black 2px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    height: '30px',
+                                    width: '30px',
+                                    borderRadius: '25px',
+                                    backgroundImage: `url("http://localhost:5000${item.authorImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: 'cover'
+                                }}
+                            >
+
+                            </div>
+
+                        </Link>
+
                         <div className='nametime'>
                             <div className='name'>{item.authorName}</div>
                             <div className='time'>{convertDate(item.createdAt)}</div>
