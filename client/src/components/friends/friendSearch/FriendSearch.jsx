@@ -39,9 +39,9 @@ const handleSearchChange = (event) => {
     return (
         <>
        
-        {console.log("input change",data)}
+        {/* {console.log("input change",data)}
         {console.log("input change search query",searchQuery)}
-        {console.log("input change search fields",fieldQuery)}
+        {console.log("input change search fields",fieldQuery)} */}
 
             <div>FriendSearch</div>
             <p>database query to return users to localstate and render</p>
@@ -51,7 +51,7 @@ const handleSearchChange = (event) => {
             <form>
 
                 <div style={quikBorder}>
-                    <input onChange={handleSearchChange}  name="search" type="text"  />
+                    <input onChange={handleSearchChange} placeholder='type in a search'  name="search" type="text"  />
                     {/* <button>search</button> */}
                 </div>
                 {/* 
@@ -64,8 +64,6 @@ const handleSearchChange = (event) => {
                     <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"allFields"} />
                     <label>GENDER</label>
                     <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"gender"} />
-                    <label>AGE</label>
-                    <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"age"} />
                     <label>USERNAME</label>
                     <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"username"} />
                     <label>LOCATION</label>

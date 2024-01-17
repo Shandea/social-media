@@ -398,6 +398,7 @@ module.exports = {
                 if (queryZipcode) {
                     filter["location.zipcode"] = queryZipcode;
                 }
+            
     
                 User.find(filter)
                     .then(users => {
