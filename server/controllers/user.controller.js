@@ -304,7 +304,7 @@ module.exports = {
                             }
                         })
                 } else {
-                    // console.log("you can't add yourself")
+                     console.log("you can't add yourself")
                 }
             })
 
