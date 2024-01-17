@@ -198,9 +198,9 @@ module.exports = {
             )
         })
 
-      
-    }, 
-   
+
+    },
+
 
 
     addFriend: (req, res) => {
@@ -300,52 +300,140 @@ module.exports = {
                                 })
                                 userFound.save()
                                 found.save()
-                         
+
                             }
                         })
-                }else {
-                    console.log("you can't add yourself")
+                } else {
+                    // console.log("you can't add yourself")
                 }
             })
 
-
-
-
-
     },
 
+
     
-    updateUserProfile : (req,res)=>{
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    updateUserProfile: (req, res) => {
         let id = req.locals.userId
-        User.findById(id).then(data =>{
-           
-            if(!data){
-                return res.status(400).json({message:"cannot find user"})
-            }else(
-                User.findByIdAndUpdate({_id:id},req.body,{new:true}).then(data=>{
-                   
-                    return res.status(200).json({message:"update successful",data})
+        User.findById(id).then(data => {
+
+            if (!data) {
+                return res.status(400).json({ message: "cannot find user" })
+            } else (
+                User.findByIdAndUpdate({ _id: id }, req.body, { new: true }).then(data => {
+
+                    return res.status(200).json({ message: "update successful", data })
                 })
             )
         })
-      
-    }, 
+
+    },
 
 
-    socialSearch:(req,res)=>{
-        console.log("search friends BE",req.body)
-        console.log("search friends BE",req.locals.userId)
-        let id = req.locals.userId
-        User.findById({id}).then(data=>{
-            if(!data){
-                res.status(400).json({message:"user error"})
-            }else{
-                User.find().then(data=>{
-                    res.status(200).json(data)
-                })
-            }
-        })
+    socialSearch: (req, res) => {
+        // console.log("social search BE", req.query);
+        // console.log("social search BE id", req.locals.userId);
+        let id = req.locals.userId;
+        let queryUsername = req.query.username;
+        let queryGender = req.query.gender;
+        let queryCity = req.query.city;
+        let queryState = req.query.state;
+        let queryZipcode = req.query.zipcode;
+
+
+        User.findById(id)
+            .then(user => {
+                if (!user) {
+                    return res.status(400).json({ message: "User not found" });
+                }
+                let filter = { _id: { $ne: id } };
+                // console.log("filter find query", filter)
+    
+                if (queryUsername) {
+                    filter.username = queryUsername; 
+                }
+                if (queryGender) {
+                    filter.gender = queryGender; 
+                }
+                if (queryCity) {
+                    filter["location.city"] = queryCity;
+                }
+                if (queryState) {
+                    filter["location.state"] = queryState;
+                }
+                if (queryZipcode) {
+                    filter["location.zipcode"] = queryZipcode;
+                }
+    
+                User.find(filter)
+                    .then(users => {
+
+                        if (!users) {
+                            return res.json({ message: "No users found" });
+                        } else {
+                            return res.json(users);
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        return res.status(500).json({ message: "Internal server error" });
+                    });
+            })
+            .catch(err => {
+                console.error(err);
+                return res.status(500).json({ message: "Internal server error" });
+            });
     }
 
 
+
 }
+
+
+// searchUsers: (req, res) => {
+//     console.log("searchUsers", req.body)
+//     req.body.ageLow ? null : req.body.ageLow = 18
+//     req.body.ageHigh ? null : req.body.ageHigh = 80
+//     // const {gender, ageLow, ageHigh } = req.body
+//     User.find({ gender: req.body.gender })
+//         .where("age").gt(req.body.ageLow).lt(req.body.ageHigh)
+//         // .exec()
+
+//         .then(users => {
+//             console.log("users", users)
+//             res.json(users)
+//         })
