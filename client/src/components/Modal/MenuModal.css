@@ -1,0 +1,59 @@
+.menumodalmain {
+    box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.2) ;
+    position: absolute;
+    width: 350px;
+    height: 625px;
+    background-color: white;
+    top: 70px;
+    right: 50px;
+    z-index: 4;
+border-radius: 10px;
+}
+
+.menuheader {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+}
+
+.usernameimg1 {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.userimg11 {
+    width: 50px;
+    height: 50px;
+    border: solid grey 1px;
+    border-radius: 50%;
+    margin: 5px;
+    /* padding: 10px; */
+}
+
+.leftnavdiv1 {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+}
+
+.leftnavicon1 {
+    background: var(--blue-gradient);
+/* border: solid black 1px; */
+width: 50px;
+height: 50px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+font-size: xx-large;
+margin: 5px;
+}
+
+.leftnavtext1 {
+font-family: Arial, Helvetica, sans-serif;
+}
