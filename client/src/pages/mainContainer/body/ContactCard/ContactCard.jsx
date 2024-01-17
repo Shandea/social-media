@@ -5,38 +5,14 @@ import truncate from "../../../../util/truncate"
 import { Link } from 'react-router-dom'
 import { all } from "axios";
 import convertDate from "../../../../util/convertDate"
+
+
 const ContactCard = ({ item, contact, profile, allMsg, queryId, authState }) => {
-
   const img = profile.filter((obj) => obj.userId === item.userId)
-  let test = profile.filter((msg) => msg.queryId === queryId).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-
-  // let recent
-  // let recentMsg
-  // if (allMsg) {
-
-  //   recent = allMsg.filter((msg) => msg.queryId === queryId).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-  // } if (recent.length) {
-  //   recentMsg = recent[0].messageContent
-  // }
 
   return (
     <>
-      {/* {console.log("contact card item", item)} */}
-      {/* {console.log("img", img)} */}
-      {/* {console.log("contact card contact", contact)} */}
-      {console.log("contact card profile", profile)}
-      {console.log("allmsg", allMsg)}
-      {/* {console.log("recent", recent[0]?.messageContent)} */}
-      {/* {console.log("recentMSG ====>", recentMsg)} */}
-      {console.log("queryId", queryId)}
-      {console.log("tet", test)}
-
-      {/* {console.log("recent", recent[0].messageContent)} */}
-      {/* {console.log("filterImg", profile.filter((obj) => obj.userId === item.userId))} */}
-
-      {/* {console.log("recent", allMsg.filter((msg) => msg.queryId === queryId).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)))} */}
-
-
+ 
       <Link to={`/messages/${item.userId}`}>
 
         <div className="contactcardcontainer">
@@ -54,13 +30,7 @@ const ContactCard = ({ item, contact, profile, allMsg, queryId, authState }) => 
           <div className="nameandmessage">
             <div className="contactcardname">{item.senderName}</div>
 
-            {/* {console.warn("ALLMSGS", allMsg.filter((item) => item.queryId === queryId))} */}
-            {/* {allMsg[1].sender === authState.user.userId ?(<p>sent user</p>):(null)} */}
-            {/* {console.warn("contact", item.filter((user) => user.senderName === authState.user.username))} */}
-            {/* {console.warn("item", item, authState.user.username)} */}
-
-
-            <div className="contactcardmessage">
+                    <div className="contactcardmessage">
 
               {item.fromUser == authState.user.username ?
                 (

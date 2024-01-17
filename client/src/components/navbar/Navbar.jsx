@@ -23,6 +23,7 @@ const Navbar = ({ props, authState }) => {
 
   let nav = useNavigate()
 
+  const profile = authState.userProfile.messages
 
   const handleLogout = (e) => {
     console.log("logging out")
@@ -41,22 +42,22 @@ const Navbar = ({ props, authState }) => {
       .catch(err => console.log("logouterr", err))
     // nav("/")
 
-
-
-
   }
 
+  const messageCount = () => {
+    return authState.userProfile.messages.reduce((a, b) => a.messageCount + b.messageCount)
+  }
 
 
   return (
 
     <>
-    {console.log("AUTHstate - NAV", authState)}
+      {console.log("AUTHstate - NAV", authState, profile)}
 
       <div className="navbar">
         <div className="left-nav">
           <div >
-            <img src={logo1} alt="" className="logo1"/>
+            <img src={logo1} alt="" className="logo1" />
           </div>
           <div className="search2"><IoSearch /></div>
           <input
@@ -109,10 +110,16 @@ const Navbar = ({ props, authState }) => {
 
           <div className="circle icon dots" ><TbGridDots /></div>
 
+          
+            {messageCount()}
+
           <Link to="/messages/">
+
             <div
               className="circle icon">
               <FaRegComment />
+
+
             </div>
           </Link>
 
@@ -120,21 +127,21 @@ const Navbar = ({ props, authState }) => {
 
 
           {Object.keys(authState.userProfile).length
-                            ?
-                            (
-                                <div className="notbubble">
+            ?
+            (
+              <div className="notbubble">
 
-                                    {authState?.userProfile?.notifications.length ? authState?.userProfile?.notifications.length : 0}
+                {authState?.userProfile?.notifications.length ? authState?.userProfile?.notifications.length : 0}
 
-                                    {/* <Link style={{ fontSize: "26px" }} className="fas fa-bolt" to={`/notifications/${authedUser._id}`}>  </Link> */}
-                                </div>
+                {/* <Link style={{ fontSize: "26px" }} className="fas fa-bolt" to={`/notifications/${authedUser._id}`}>  </Link> */}
+              </div>
 
-                            )
-                            :
-                            (
-                                null
-                            )
-                        }
+            )
+            :
+            (
+              null
+            )
+          }
 
 
 
