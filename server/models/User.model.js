@@ -25,6 +25,7 @@ const UserSchema = new Schema({
     details:{
         bio: String,
         education: String,
+        education2: String,
         localInfo: String,
         maritalStatus: String
     },

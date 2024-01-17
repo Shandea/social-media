@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from "axios"
 const quikBorder = {
     display: "flex",
     flexDirection: "column",
@@ -8,17 +9,27 @@ const quikBorder = {
 }
 
 const FriendSearch = () => {
-let [input,setInput] = useState("")
-const fetchData = (value)=>{
-    // fetch(//http loacal host.....endpoint)
-}
-    const hanldeDataChange=(value)=>{
-        setInput(value)
-        fetchData(value)
-    }
+let [data,setData] = useState([])
+let [records,setRecords] = useState("")
 
+useEffect(()=>{
+    axios({
+        method: 'get',
+        url: 'http://localhost:5000/user/all',
+        withCredentials: true
+      })
+        .then(res => {
+          console.log("res", res)
+          setData(res.data)
+        })
+    
+},[])
+
+    
     return (
         <>
+       
+        {console.log("input change",data)}
 
             <div>FriendSearch</div>
             <p>database query to return users to localstate and render</p>
@@ -28,7 +39,7 @@ const fetchData = (value)=>{
             <form>
 
                 <div style={quikBorder}>
-                    <input onChange={(e)=>hanldeDataChange(e.target.value)} name="search" type="text" value={input} />
+                    <input  name="search" type="text"  />
                     <button>search</button>
                 </div>
                 {/* 

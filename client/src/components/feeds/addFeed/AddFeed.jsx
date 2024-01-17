@@ -27,7 +27,7 @@ const AddFeed = ({ authState, handleSetFeeds }) => {
     })
 
     const handleFeedChange = (e) => {
-        console.log("onChange", e.target.id, e.target.value)
+        // console.log("onChange", e.target.id, e.target.value)
         setAddFeed(prev => ({
             ...prev,
             [e.target.id]: e.target.value
@@ -80,7 +80,7 @@ const AddFeed = ({ authState, handleSetFeeds }) => {
     }
 
     const handleSelectedFiles = (e) => {
-        console.log("fiels", e.target.files)
+        // console.log("fiels", e.target.files)
 
         setAddFeed(prev => ({
             ...prev,
@@ -160,7 +160,7 @@ const AddFeed = ({ authState, handleSetFeeds }) => {
 
 
 const mapStateToProps = (state) => {
-    console.log("AUTHED USER", state)
+    // console.log("AUTHED USER", state)
     return {
         authState: state.auth
     }

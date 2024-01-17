@@ -275,9 +275,14 @@ const MessagesComponent = ({ authState }) => {
           </div>
 
 
+          <div className="messagerightmiddle">
           <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
-
+          </div>
   
+
+
+
+
           {/* footer */}
           <SendMessage
             message={message}

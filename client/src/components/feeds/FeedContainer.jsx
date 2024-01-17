@@ -8,7 +8,7 @@ function FeedContainer({ obj }) {
 
     const handleError = e => {
     e. stopPropagation()
-    console.log("error hit")
+    // console.log("error hit")
     
     setImgSrc("http://localhost:5000/public/default.jpeg")
     }

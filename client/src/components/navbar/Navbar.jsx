@@ -19,14 +19,14 @@ const socket = io.connect('http://localhost:5000')
 
 
 const Navbar = ({ props, authState }) => {
-  console.log("header prop", props, authState)
+  // console.log("header prop", props, authState)
 
   let nav = useNavigate()
 
   const profile = authState.userProfile.messages
 
   const handleLogout = (e) => {
-    console.log("logging out")
+    // console.log("logging out")
     // e.preventDefault()
     socket.emit("loggedOut", "loggedOut")
 
@@ -69,7 +69,7 @@ const Navbar = ({ props, authState }) => {
   return (
 
     <>
-      {console.log("AUTHstate - NAV", authState, profile)}
+    {/* {console.log("AUTHstate - NAV", authState)} */}
 
       <div className="navbar">
         <div className="left-nav">
