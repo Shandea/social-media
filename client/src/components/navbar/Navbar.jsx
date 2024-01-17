@@ -23,6 +23,7 @@ const Navbar = ({ props, authState }) => {
 
   let nav = useNavigate()
 
+  const profile = authState.userProfile.messages
 
   const handleLogout = (e) => {
     // console.log("logging out")
@@ -41,11 +42,28 @@ const Navbar = ({ props, authState }) => {
       .catch(err => console.log("logouterr", err))
     // nav("/")
 
-
-
-
   }
 
+  function messageCount() {
+    let count = 0
+    if (authState) {
+      console.log("AUTH")
+      if (authState.userProfile) {
+        console.log("PROFILE`")
+      } if (authState.userProfile.messages) {
+
+        for (let i = 0; i < profile.length; i++) {
+          count += profile[i].messageCount
+          // console.log("WTWTF", profile[i], i, profile[i].messageCount)
+        }
+
+      }
+      // console.warn("ASDGDSAG", count) 
+      return count
+
+    }
+
+  }
 
 
   return (
@@ -56,7 +74,7 @@ const Navbar = ({ props, authState }) => {
       <div className="navbar">
         <div className="left-nav">
           <div >
-            <img src={logo1} alt="" className="logo1"/>
+            <img src={logo1} alt="" className="logo1" />
           </div>
           <div className="search2"><IoSearch /></div>
           <input
@@ -109,10 +127,16 @@ const Navbar = ({ props, authState }) => {
 
           <div className="circle icon dots" ><TbGridDots /></div>
 
+
+          {messageCount()}
+
           <Link to="/messages/">
+
             <div
               className="circle icon">
               <FaRegComment />
+
+
             </div>
           </Link>
 
@@ -120,21 +144,21 @@ const Navbar = ({ props, authState }) => {
 
 
           {Object.keys(authState.userProfile).length
-                            ?
-                            (
-                                <div className="notbubble">
+            ?
+            (
+              <div className="notbubble">
 
-                                    {authState?.userProfile?.notifications.length ? authState?.userProfile?.notifications.length : 0}
+                {authState?.userProfile?.notifications.length ? authState?.userProfile?.notifications.length : 0}
 
-                                    {/* <Link style={{ fontSize: "26px" }} className="fas fa-bolt" to={`/notifications/${authedUser._id}`}>  </Link> */}
-                                </div>
+                {/* <Link style={{ fontSize: "26px" }} className="fas fa-bolt" to={`/notifications/${authedUser._id}`}>  </Link> */}
+              </div>
 
-                            )
-                            :
-                            (
-                                null
-                            )
-                        }
+            )
+            :
+            (
+              null
+            )
+          }
 
 
 
