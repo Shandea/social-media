@@ -129,6 +129,10 @@ const handleAddLike = (e) => {
             <p>Studied at {profileView?.details?.education || "I Have No Education"}</p>
             </div>
             <div className="aligndiv">
+            <div><GiGraduateCap className="capicon" /></div>
+            <p>Went to {profileView?.details?.education || "I Have No Education"}</p>
+            </div>
+            <div className="aligndiv">
               <div><FaHouse className="capicon" /></div>
             <p>Lives In {profileView?.details?.localInfo || "I Have No Local Info"}</p>
             </div>
