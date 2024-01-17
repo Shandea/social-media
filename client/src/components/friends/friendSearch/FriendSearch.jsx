@@ -10,26 +10,38 @@ const quikBorder = {
 
 const FriendSearch = () => {
 let [data,setData] = useState([])
-let [records,setRecords] = useState("")
+let [fieldQuery,setFieldQuery] = useState({fields:""})
+const [searchQuery, setSearchQuery] = useState('')
+const initialValue = 'defaultSearchTerm';
 
+const fetchData = (value) =>{
+     axios({
+    method: 'get',
+    url: `http://localhost:5000/socialConnection/searchFriend?${fieldQuery}=${value}`,
+    withCredentials: true
+  })
+    .then(res => {
+      console.log("res", res)
+      setData(res.data)
+    })
+}
 useEffect(()=>{
-    axios({
-        method: 'get',
-        url: 'http://localhost:5000/user/all',
-        withCredentials: true
-      })
-        .then(res => {
-          console.log("res", res)
-          setData(res.data)
-        })
+    
+   fetchData(initialValue)
     
 },[])
+const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    fetchData(event.target.value)
+  };
 
     
     return (
         <>
        
-        {console.log("input change",data)}
+        {/* {console.log("input change",data)}
+        {console.log("input change search query",searchQuery)}
+        {console.log("input change search fields",fieldQuery)} */}
 
             <div>FriendSearch</div>
             <p>database query to return users to localstate and render</p>
@@ -39,8 +51,8 @@ useEffect(()=>{
             <form>
 
                 <div style={quikBorder}>
-                    <input  name="search" type="text"  />
-                    <button>search</button>
+                    <input onChange={handleSearchChange} placeholder='type in a search'  name="search" type="text"  />
+                    {/* <button>search</button> */}
                 </div>
                 {/* 
                 need check box for fields
@@ -49,25 +61,32 @@ useEffect(()=>{
                 <div style={quikBorder}>
 
                     <label>ALL</label>
-                    <input name='fields' type="radio" value={"allFields"} />
+                    <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"allFields"} />
                     <label>GENDER</label>
-                    <input name='fields' type="radio" value={"gender"} />
-                    <label>AGE</label>
-                    <input name='fields' type="radio" value={"age"} />
+                    <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"gender"} />
                     <label>USERNAME</label>
-                    <input name='fields' type="radio" value={"username"} />
+                    <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"username"} />
                     <label>LOCATION</label>
                     <label>CITY</label>
-                    <input name='fields' type="radio" value={"city"} />
+                    <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"city"} />
                     <label>STATE</label>
-                    <input name='fields' type="radio" value={"state"} />
+                    <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"state"} />
                     <label>ZIPCODE</label>
-                    <input name='fields' type="radio" value={"zipcode"} />
+                    <input onChange={(e)=>setFieldQuery(e.target.value)} name='fields' type="radio" value={"zipcode"} />
                 </div>
             </form>
 
             <div style={quikBorder}>
                 <h1>Diplay results</h1>
+                {
+                    data.map((foundUser,i)=>{
+                        return(
+                            <div key={foundUser._id}>
+                                <h1>{foundUser.username}</h1>
+                            </div>
+                        )
+                    })
+                }
             </div>
 
 

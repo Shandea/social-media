@@ -77,7 +77,7 @@ const handleMenuModal = () => {
   return (
 
     <>
-    {/* {console.log("AUTHstate - NAV", authState)} */}
+      {/* {console.log("AUTHstate - NAV", authState)} */}
 
       <div className="navbar">
         <div className="left-nav">
@@ -85,12 +85,22 @@ const handleMenuModal = () => {
             <img src={logo1} alt="" className="logo1" />
           </div>
           <div className="search2"><IoSearch /></div>
-          <input
+
+          {/* moved the link of find friends to this left side
+                wasnst sure how i was going to make that search input type an input for that page..
+                solution at hand         
+          */}
+          <Link to="/FriendSearch">
+
+            <div className="search1">Find friends</div>
+
+          </Link>
+          {/* <input
             type="search"
             name=""
             className="search"
             placeholder="Search"
-          />
+          /> */}
         </div>
 
 
@@ -126,11 +136,11 @@ const handleMenuModal = () => {
           <div className="circle icon add"><IoAdd /> </div>
 
 
-          <Link to="/FriendSearch">
+          {/* <Link to="/FriendSearch">
 
             <div className="search1">Find friends</div>
 
-          </Link>
+          </Link> */}
 
 
 
