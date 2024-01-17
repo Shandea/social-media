@@ -44,8 +44,25 @@ const Navbar = ({ props, authState }) => {
 
   }
 
-  const messageCount = () => {
-    return authState.userProfile.messages.reduce((a, b) => a.messageCount + b.messageCount)
+  function messageCount() {
+    let count = 0
+    if (authState) {
+      console.log("AUTH")
+      if (authState.userProfile) {
+        console.log("PROFILE`")
+      } if (authState.userProfile.messages) {
+
+        for (let i = 0; i < profile.length; i++) {
+          count += profile[i].messageCount
+          // console.log("WTWTF", profile[i], i, profile[i].messageCount)
+        }
+
+      }
+      // console.warn("ASDGDSAG", count) 
+      return count
+
+    }
+
   }
 
 
@@ -110,8 +127,8 @@ const Navbar = ({ props, authState }) => {
 
           <div className="circle icon dots" ><TbGridDots /></div>
 
-          
-            {messageCount()}
+
+          {messageCount()}
 
           <Link to="/messages/">
 
