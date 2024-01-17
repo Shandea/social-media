@@ -198,9 +198,9 @@ module.exports = {
             )
         })
 
-      
-    }, 
-   
+
+    },
+
 
 
     addFriend: (req, res) => {
@@ -230,15 +230,16 @@ module.exports = {
                             found.save()
                         } else if (filter[0].friendStatus == "removed") {
                             console.log("status = REMOVED", filter[0].friendStatus)
-                            filter[0].friendStatus = "pending"
+                            filter[0].friendStatus = "approved"
                             found.save()
                         }
-                        // else if
-                        //     (filter[0].friendStatus == "approved") {
-                        //     console.log("requested to remove")
-                        //     filter[0].friendStatus = "removed"
-                        //     found.save()
-                        // }
+                        ////////////
+                        else if
+                            (filter[0].friendStatus == "approved") {
+                            console.log("requested to remove")
+                            filter[0].friendStatus = "removed"
+                            found.save()
+                        }
                     }
 
                     User.findById(req.body.id) // friend to add
@@ -256,19 +257,26 @@ module.exports = {
                                     userFound.save()
                                     // filter2.save()
                                     // socket.emit("addFriend", userFound._id)
+                                    // res.json(found)
                                 } else if (filter2[0].friendStatus === "removed") {
-                                    filter2[0].friendStatus = 'requested'
+                                    console.log("approved to removed")
+
+                                    filter2[0].friendStatus = 'approved'
                                     userFound.save()
+
+                                    // res.json(found)
+
                                 }
-                                // else
-                                //     if (filter2[0].friendStatus === "approved") {
-                                //         console.log("pending to approved")
-                                //         filter2[0].friendStatus = "removed"
-                                //         userFound.save()
+                                else
+                                    if (filter2[0].friendStatus === "approved") {
+                                        console.log("approved to removed")
+                                        filter2[0].friendStatus = "removed"
+                                        userFound.save()
 
                                 //         // filter2.save()
                                 //         // socket.emit("addFriend", userFound._id)
-                                //     }
+                                //         // res.json(found)
+                                    }
 
 
                             } else if (found.friends.filter((obj) => obj.userId !== userFound._id)) {
@@ -300,13 +308,21 @@ module.exports = {
                                 })
                                 userFound.save()
                                 found.save()
-                         
+
+                                // res.json(found)
                             }
+
+
+                            res.json(found)
+
+
                         })
-                }else {
+                        .catch(err => console.log(err))
+                } else {
                     console.log("you can't add yourself")
                 }
             })
+            .catch(err => console.log(err))
 
 
 
@@ -314,33 +330,33 @@ module.exports = {
 
     },
 
-    
-    updateUserProfile : (req,res)=>{
+
+    updateUserProfile: (req, res) => {
         let id = req.locals.userId
-        User.findById(id).then(data =>{
-           
-            if(!data){
-                return res.status(400).json({message:"cannot find user"})
-            }else(
-                User.findByIdAndUpdate({_id:id},req.body,{new:true}).then(data=>{
-                   
-                    return res.status(200).json({message:"update successful",data})
+        User.findById(id).then(data => {
+
+            if (!data) {
+                return res.status(400).json({ message: "cannot find user" })
+            } else (
+                User.findByIdAndUpdate({ _id: id }, req.body, { new: true }).then(data => {
+
+                    return res.status(200).json({ message: "update successful", data })
                 })
             )
         })
-      
-    }, 
+
+    },
 
 
-    socialSearch:(req,res)=>{
-        console.log("search friends BE",req.body)
-        console.log("search friends BE",req.locals.userId)
+    socialSearch: (req, res) => {
+        console.log("search friends BE", req.body)
+        console.log("search friends BE", req.locals.userId)
         let id = req.locals.userId
-        User.findById({id}).then(data=>{
-            if(!data){
-                res.status(400).json({message:"user error"})
-            }else{
-                User.find().then(data=>{
+        User.findById({ id }).then(data => {
+            if (!data) {
+                res.status(400).json({ message: "user error" })
+            } else {
+                User.find().then(data => {
                     res.status(200).json(data)
                 })
             }

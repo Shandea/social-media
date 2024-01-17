@@ -13,13 +13,16 @@ const FriendStatus = ({ id, children }) => {
             url: "http://localhost:5000/socialConnection/addFriend",
             data: {id: id}
         })
-            .then(res => { console.log("res", res) })
+            .then(res => {
+                 console.log("res", res)
+                 return res
+                 })
             .catch(err => console.log("err", err))
     }
 
     return (
         <>
-        {console.log("id", id)}
+        {/* {console.log("id", id)} */}
             <div
                 onClick={(e) => handleFriendStatus(e)}
 
