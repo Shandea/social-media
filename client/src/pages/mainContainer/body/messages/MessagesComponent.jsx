@@ -32,6 +32,9 @@ const MessagesComponent = ({ authState }) => {
   const [contact, setContact] = useState({})  // user u looking at for most recent pic
   /// if from link get id, else wait for click.... of user card..
 
+  const [userSearch, setUserSearch] = useState(authState.userProfile.messages)
+
+
   const profile = authState.userProfile.messages
 
   useEffect(() => {
@@ -178,17 +181,29 @@ const MessagesComponent = ({ authState }) => {
   }
 
 
+  const handleChangeSearch = (e) => {
+    // setUserSearch(prev => ({
+    console.log("handle Search", e.target.value)
+    setUserSearch(profile.filter((item) => item.senderName.includes(e.target.value)))
+    //   ...prev,
+      
+    // }))
+    console.log(profile.filter((item) => item.senderName.includes(e.target.value)))
+
+    // }))
+  }
 
 
   return (
     <>
-      {/* {console.log("ids", id, authed, queryId)}
+      {/* {console.log("ids", id, authed, queryId)} */}
       {console.log("c'ONTACT", contact)}
-      {console.log("Profile", profile)} */}
+      {/* {console.log("Profile", profile)} */}
 
       {/* {console.log("test", test)} */}
       {/* {console.log("Message Comp - authSt", authState)} */}
       {/* {console.warn("msg input", message)} */}
+      {console.log("userSearch", userSearch)}
 
 
 
@@ -210,36 +225,75 @@ const MessagesComponent = ({ authState }) => {
           <div id="search">
             <div className="searchdiv">
               <div className="searchicon">
-                <IoMdSearch />
+
+
+
+
+                <IoMdSearch
+                />
+
+
+
+
+
+
               </div>
               <input
                 type="search"
+                onChange={(e) => handleChangeSearch(e)}
                 className="searchinput"
-                placeholder=" Search Messages"
+                placeholder=" Search Contacts"
               />
             </div>
           </div>
 
           <div className="contactdiv">
 
-            {profile && profile.map((item, i) => {
+            {userSearch
+              ?
+              (
+                userSearch && userSearch.map((item, i) => {
 
-    //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
-    //  console.log("MAP ==> ", queryId)
+                  //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
+                  //  console.log("MAP ==> ", queryId)
 
-              return (
+                  return (
 
-                <ContactCard
-                authState={authState}
-                  item={item}
-                  allMsg={allMsg}
-                  contact={contact}
-                  profile={profile}
-                  queryId={queryId}
-                />
+                    <ContactCard
+                      authState={authState}
+                      item={item}
+                      allMsg={allMsg}
+                      contact={contact}
+                      profile={userSearch}
+                      queryId={queryId}
+                    />
+                  )
+                }))
+              :
+              (
+
+
+                profile && profile.map((item, i) => {
+
+                  //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
+                  //  console.log("MAP ==> ", queryId)
+
+                  return (
+
+                    <ContactCard
+                      authState={authState}
+                      item={item}
+                      allMsg={allMsg}
+                      contact={contact}
+                      profile={profile}
+                      queryId={queryId}
+                    />
+                  )
+                })
+
+
               )
-            })}
-            {/* <ContactCard /> */}
+            }
           </div>
         </div>
 
@@ -276,9 +330,9 @@ const MessagesComponent = ({ authState }) => {
 
 
           <div className="messagerightmiddle">
-          <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
+            <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
           </div>
-  
+
 
 
 
@@ -289,8 +343,8 @@ const MessagesComponent = ({ authState }) => {
             handleSubmitMessage={handleSubmitMessage}
             handleSetMessage={handleSetMessage}
           />
-               
-        
+
+
         </div>
       </div>
     </>
