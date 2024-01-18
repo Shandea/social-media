@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.SECRET_KEY)
         console.log("decoded", decoded)
         const userId = decoded.userId
-        console.log("userId decoded", userId)
+        // console.log("userId decoded", userId)
         if (userId.length) {
             console.log("if is good", decoded.username)
             // req.user = decoded
@@ -19,10 +19,14 @@ module.exports = (req, res, next) => {
             // console.log("req.user", req.user)
             next()
 
+        }else {
+
+            res.json({"message": "not auth"})
         }
     }
     catch {
         console.log("CATCH HIT from auth middleware")
+        // res.status(403),
     }
 }
 
