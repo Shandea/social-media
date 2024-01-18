@@ -25,9 +25,16 @@ app.use(fileUpload({
 app.use("/public/", express.static(process.cwd() + "/public"))
 
 app.use(cookieParser())
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
 //had to do for the cors communication to fronend credentials
 app.use(cors({
-  origin:`http://localhost:3000`,
+  // origin:`*`,
+  methods: ['POST', 'GET', 'PUT','PATCH'],
+  origin:[`http://localhost:3000`],
   optionsSuccessStatus:200,
   credentials:true
 }));

@@ -34,14 +34,15 @@ const Profile = (props) => {
 
   let nav = useNavigate();
 
-  console.log("authSTATE,PROFILE", props);
+  // console.log("authSTATE,PROFILE", props);
   let srcStr = props.authState.userProfile.profileImg;
+  let id = authState.user.userId
   let [pIMG, setPIMG] = useState("");
   let [editProfile, setEditProfile] = useState(false);
 
   let [editBios, setEditBios] = useState(false);
   let [editDetails, setEditDetails] = useState(false);
-  const [feeds, setFeeds] = useState([]);
+
 
   useEffect(() => {
     axios({
@@ -57,6 +58,65 @@ const Profile = (props) => {
       })
       .catch((err) => console.log("get feed err", err));
   }, []);
+
+
+  // to fix broken add like / comment in local profile feed.... not following DRY  :)
+  const [feeds, setFeeds] = useState([]);
+
+
+  const handleSetFeeds = (e) => {
+    // setFeeds(input)
+
+    console.warn("HandleSetFeed hit  ===>  Rerender Please")
+    axios({
+      method: "GET",
+      url: "http://localhost:5000/api/getfeeds",
+      withCredentials: true,
+    })
+      .then(res => {
+        console.log("res", res)
+        console.warn("TEST", res.data.filter((item) => item.author === id))
+        setFeeds(res.data.filter((item) => item.author === id))
+      })
+      .catch(err => console.log("get feed err", err))
+    // render ? setRender(false) : setRender(true)
+    // console.log("TOP lvl handle set feeds")
+  }
+
+  const handleAddLike = (e) => {
+    console.warn("adding like", e.target.id, e.target.getAttribute("name"))
+    // let type = e.target.getAttribute("type")
+
+    let type = e.currentTarget.attributes['type'].value
+
+    console.log("type", type)
+    let payload = {
+      type: e.currentTarget.attributes['type'].value,
+      id: e.target.id
+
+    }
+
+    axios({
+      method: "put",
+      url: "http://localhost:5000/api/feeds/addfeedlike",
+      data: { id: e.target.id },
+      data: payload,
+      withCredentials: true
+    })
+      .then(res => {
+        console.log("add like RES", res)
+        // console.log("FEED LIKE UPDATE", feeds.find((item) => item._id === res.data._id))
+        setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
+        handleSetFeeds()
+      })
+
+
+
+  }
+
+
+
+
 
   useEffect(() => {
     return setPIMG(srcStr);
@@ -75,7 +135,17 @@ const Profile = (props) => {
   const handlebiosUpdate = (e) => {
     e.preventDefault();
     // console.log("got here___", props.authState)
-
+// console.warn('FIRING THE UPDATE BIO API: \n\n', props.authState)
+// if(props.authState.details.education == ""){
+//   props.authState.details.education = ' '
+//   props.authState.details.education2 = ' '
+//   props.authState.details.maritalStatus = ' '
+//   props.authState.details.localInfo = ' '
+// }
+// if(props.authState.bio == ""){
+//   props.authState.bio = 'I like cake'
+// }
+// console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
     API.updateProfileBio(props.authState);
     setEditBios(false);
     setEditDetails(false);
@@ -85,7 +155,7 @@ const Profile = (props) => {
   return (
     <>
       {/* {console.log("img src tag", srcStr)} */}
-      {console.log("profile page page", feeds)}
+      {/* {console.log("profile page page", feeds)} */}
       {editProfile ? (
         <EditProfile backtoProfile={backtoProfile} />
       ) : (
@@ -101,8 +171,10 @@ const Profile = (props) => {
               </div>
             </div>
             <div className="userimgdiv">
+
               <div
                 className="img"
+
                 style={{
                   // border: 'solid black 2px',
                   // display: 'flex',
@@ -112,9 +184,12 @@ const Profile = (props) => {
                   // borderRadius: '25px',
                   backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
+
+                  backgroundSize: 'cover'
                 }}
-              ></div>
+              >
+              </div>
+
 
               {/* <img alt="" src={Profileimage} className="img" /> */}
 
@@ -301,8 +376,7 @@ const Profile = (props) => {
                             <FaHeart className="capicon" />
                             <p className="edutext">
                               {
-                                props.authState.userProfile.details
-                                  ?.maritalStatus
+                                props.authState.userProfile.details?.maritalStatus
                               }
                             </p>
                           </div>
@@ -363,7 +437,8 @@ const Profile = (props) => {
                       return (
                         <div key={i}>
                           <FeedContainer
-                            // handleAddLike={handleAddLike}
+                            handleSetFeeds={handleSetFeeds}
+                            handleAddLike={handleAddLike}
                             obj={obj}
                           />
                         </div>

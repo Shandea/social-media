@@ -1,5 +1,5 @@
 import "./MessagesComponent.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom'
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
@@ -24,6 +24,8 @@ const MessagesComponent = ({ authState }) => {
   const authed = authState.user.userId
   let queryId = [authed, id].sort().join("")
 
+
+
   const payload = { queryId: queryId }
   const [message, setMessage] = useState({})  // the message you are typing
   const [typing, setTyping] = useState(false)
@@ -32,7 +34,13 @@ const MessagesComponent = ({ authState }) => {
   const [contact, setContact] = useState({})  // user u looking at for most recent pic
   /// if from link get id, else wait for click.... of user card..
 
+  const [userSearch, setUserSearch] = useState(authState.userProfile.messages)
+
+
   const profile = authState.userProfile.messages
+
+
+  // ref={messagesEndRef}
 
   useEffect(() => {
     console.warn("GET USER")
@@ -67,9 +75,6 @@ const MessagesComponent = ({ authState }) => {
         data
       ]))
 
-      // let newChat = document.getElementById("chat");
-      // newChat.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
     })
 
     return () => socket.off('recieve_message')
@@ -87,6 +92,9 @@ const MessagesComponent = ({ authState }) => {
       .then(res => {
         // console.log("res", res)
         handleSetAllMsg(res)
+        let newChat = document.getElementById("chat");
+        newChat.scrollIntoView({ behavior: 'instant', block: 'end' })
+        console.log("should scroll - getThreadMessages")
       })
 
       .catch(err => console.log("err", err))
@@ -95,10 +103,10 @@ const MessagesComponent = ({ authState }) => {
 
   useEffect(() => {
 
-    if (allMsg.length) {
-      // let newChat = document.getElementById("chat");
-      // newChat.scrollIntoView({ behavior: 'instant', block: 'end' })
-      // console.log("should scroll - getThreadMessages")
+    if (allMsg.length && id) {
+      let newChat = document.getElementById("chat");
+      newChat.scrollIntoView({ behavior: 'instant', block: 'end' })
+      console.log("should scroll - getThreadMessages")
     }
 
   }, [allMsg])
@@ -178,17 +186,29 @@ const MessagesComponent = ({ authState }) => {
   }
 
 
+  const handleChangeSearch = (e) => {
+    // setUserSearch(prev => ({
+    console.log("handle Search", e.target.value)
+    setUserSearch(profile.filter((item) => item.senderName.includes(e.target.value)))
+    //   ...prev,
+
+    // }))
+    console.log(profile.filter((item) => item.senderName.includes(e.target.value)))
+
+    // }))
+  }
 
 
   return (
     <>
-      {/* {console.log("ids", id, authed, queryId)}
-      {console.log("c'ONTACT", contact)}
-      {console.log("Profile", profile)} */}
+      {/* {console.log("ids", id, authed, queryId)} */}
+      {/* {console.log("c'ONTACT", contact)} */}
+      {/* {console.log("Profile", profile)} */}
 
       {/* {console.log("test", test)} */}
       {/* {console.log("Message Comp - authSt", authState)} */}
       {/* {console.warn("msg input", message)} */}
+      {/* {console.log("userSearch", userSearch)} */}
 
 
 
@@ -210,89 +230,147 @@ const MessagesComponent = ({ authState }) => {
           <div id="search">
             <div className="searchdiv">
               <div className="searchicon">
-                <IoMdSearch />
+
+
+
+
+                <IoMdSearch
+                />
+
+
+
+
+
+
               </div>
               <input
                 type="search"
+                onChange={(e) => handleChangeSearch(e)}
                 className="searchinput"
-                placeholder=" Search Messages"
+                placeholder=" Search Contacts"
               />
             </div>
           </div>
 
           <div className="contactdiv">
 
-            {profile && profile.map((item, i) => {
+            {userSearch
+              ?
+              (
+                userSearch && userSearch.map((item, i) => {
 
-    //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
-    //  console.log("MAP ==> ", queryId)
+                  //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
+                  //  console.log("MAP ==> ", queryId)
 
-              return (
+                  return (
 
-                <ContactCard
-                authState={authState}
-                  item={item}
-                  allMsg={allMsg}
-                  contact={contact}
-                  profile={profile}
-                  queryId={queryId}
-                />
+                    <ContactCard
+                      authState={authState}
+                      item={item}
+                      allMsg={allMsg}
+                      contact={contact}
+                      profile={userSearch}
+                      queryId={queryId}
+                    />
+                  )
+                }))
+              :
+              (
+
+
+                profile && profile.map((item, i) => {
+
+                  //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
+                  //  console.log("MAP ==> ", queryId)
+
+                  return (
+
+                    <ContactCard
+                      authState={authState}
+                      item={item}
+                      allMsg={allMsg}
+                      contact={contact}
+                      profile={profile}
+                      queryId={queryId}
+                    />
+                  )
+                })
+
+
               )
-            })}
-            {/* <ContactCard /> */}
+            }
           </div>
         </div>
 
 
         {/*message header */}
+        {id
+          ?
+          (
+            <div className="messageright">
+              <div className="messagerighttop">
+                <div className="messagerighttopleft">
+                  <div className="contactimg"
+                    style={{
+                      backgroundImage: `url("http://localhost:5000${contact?.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: 'cover'
+                    }}
+                  >
+                  </div>
 
+                  <div className="contactinfo">
+                    <p className="text1">
+                      {contact?.username}
+                    </p>
+                    <p className="text2">{contact?.isOnline ? "online" : "offline"}</p>
+                  </div>
 
-        <div className="messageright">
-          <div className="messagerighttop">
-            <div className="messagerighttopleft">
-              <div className="contactimg"
-                style={{
-                  backgroundImage: `url("http://localhost:5000${contact?.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: 'cover'
-                }}
-              >
+                </div>
+                <div className="messagerighttopright">
+                  <div className="optiondiv" onClick={() => handleContactModal()}>
+                    <BsThreeDots />
+                  </div>
+                </div>
               </div>
 
-              <div className="contactinfo">
-                <p className="text1">
-                  {contact?.username}
-                </p>
-                <p className="text2">{contact?.isOnline ? "online" : "offline"}</p>
+
+              <div className="messagerightmiddle">
+                <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
               </div>
+
+              {/* <div id="chat" ref={messagesEndRef}>scrol here</div> */}
+
+
+
+
+              {/* footer */}
+              <SendMessage
+                message={message}
+                handleSubmitMessage={handleSubmitMessage}
+                handleSetMessage={handleSetMessage}
+              />
+
 
             </div>
-            <div className="messagerighttopright">
-              <div className="optiondiv" onClick={() => handleContactModal()}>
-                <BsThreeDots />
-              </div>
+
+          )
+          :
+          (
+            // this section is for when there is no ID in the url... no contact selected...
+
+
+            <div>
+
+              <p>Please select a contant to connect with!</p>
+
             </div>
-          </div>
 
 
-          <div className="messagerightmiddle">
-          <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
-          </div>
-  
+          )}
 
-
-
-
-          {/* footer */}
-          <SendMessage
-            message={message}
-            handleSubmitMessage={handleSubmitMessage}
-            handleSetMessage={handleSetMessage}
-          />
-               
-        
-        </div>
       </div>
+
     </>
   );
 };

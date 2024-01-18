@@ -25,7 +25,7 @@
     background: var(--blue-gradient);
     color: white;
     width: 85%;
-    margin-top: 10px;
+    margin-top: 80px;
     cursor: pointer;
     padding: 12px;
     font-size: large;
@@ -125,7 +125,9 @@
 
     .signIn-input {}
 
-    .form-btn {}
+    .form-btn {
+        margin-top:100px;
+    }
 
     .container-right hr {}
 
