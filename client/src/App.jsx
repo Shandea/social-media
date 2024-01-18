@@ -49,6 +49,7 @@ const App = () => {
           {/* <Route path="/main" element={<MainContainer />} />  */}
 
           <Route path="/feed" element={<FeedView />} />
+          <Route path="/feed/:id" element={<FeedView />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:id" element={<ViewProfile />} />
           <Route path="/messages" element={<MessagesComponent />} />

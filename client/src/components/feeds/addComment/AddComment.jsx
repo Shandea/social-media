@@ -87,9 +87,12 @@ const AddComment = ({ authState, obj, handleSetFeeds }) => {
                 />
 
 
-                <input
+                <button
+                style={{width: "30px", height: "30px", borderRadius: '25px'}}
                     onClick={(e) => handleAddComment(e)}
-                    type="submit"></input>
+                    type="click"
+                    placeholder='add'
+                    >add</button>
 
             </div>
 

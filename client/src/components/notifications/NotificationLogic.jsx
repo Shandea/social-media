@@ -15,6 +15,10 @@ const NotificationLogic = ({ authState }) => {
     authState.userProfile.notifications
   );
 
+
+  const [contact, setContact] = useState({}) 
+
+  
   useEffect(() => {
     console.log("usee=Effect", authState.userProfile.notifications);
     setNotifications(authState.userProfile.notifications);
@@ -90,10 +94,10 @@ const NotificationLogic = ({ authState }) => {
                 <p className="liketext">liked your</p>
 
                 <div style={{ marginRight: "10px" }}>
-                  <div onClick={() => nav(`/feednotification/${item.like.ogFeed}#${item.like.likedDoc}`)}
+                  <div onClick={() => nav(`/feed/${item.like.ogFeed}#${item.like.likedDoc}`)}
                   className="comment1"
                     style={{ textDecoration: "none", font: "black" }}
-                    to={`/feednotification/${item.like.ogFeed}#${item.like.likedDoc}`}
+                    to={`/feed/${item.like.ogFeed}#${item.like.likedDoc}`}
                   >
                     {" "}
                     comment{" "}
@@ -117,6 +121,10 @@ const NotificationLogic = ({ authState }) => {
       console.log("ITEM", item);
       return (
         <div key={item.i}>
+        
+        
+        
+        
           <div className="notificationInfo" style={{ display: "flex" }}>
             {/* <p> */}
 
@@ -139,7 +147,7 @@ const NotificationLogic = ({ authState }) => {
 
             <Link
               style={{ marginRight: "10px" }}
-              to={`/feednotification/${item.comment.ogFeed}#${item.comment.parentDoc}`}
+              to={`/feed/${item.comment.ogFeed}#${item.comment.parentDoc}`}
             >
               {" "}
               about post
@@ -174,11 +182,11 @@ const NotificationLogic = ({ authState }) => {
 
       <br />
 
-      <div>
+      {/* <div>
         <p className="likecount1">comments: {commentCount}</p>
 
         {commentMap}
-      </div>
+      </div> */}
     </>
   );
 };
