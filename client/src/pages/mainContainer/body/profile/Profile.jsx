@@ -143,7 +143,7 @@ const Profile = (props) => {
 //   props.authState.details.localInfo = ' '
 // }
 // if(props.authState.bio == ""){
-//   props.authState.bio = 'I like cake'
+//   props.authState.bio = ' '
 // }
 console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
     API.updateProfileBio(props.authState);
