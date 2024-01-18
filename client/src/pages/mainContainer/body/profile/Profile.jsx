@@ -34,7 +34,7 @@ const Profile = (props) => {
 
   let nav = useNavigate();
 
-  console.log("authSTATE,PROFILE", props);
+  // console.log("authSTATE,PROFILE", props);
   let srcStr = props.authState.userProfile.profileImg;
   let id = authState.user.userId
   let [pIMG, setPIMG] = useState("");
@@ -135,7 +135,17 @@ const Profile = (props) => {
   const handlebiosUpdate = (e) => {
     e.preventDefault();
     // console.log("got here___", props.authState)
-
+// console.warn('FIRING THE UPDATE BIO API: \n\n', props.authState)
+// if(props.authState.details.education == ""){
+//   props.authState.details.education = ' '
+//   props.authState.details.education2 = ' '
+//   props.authState.details.maritalStatus = ' '
+//   props.authState.details.localInfo = ' '
+// }
+// if(props.authState.bio == ""){
+//   props.authState.bio = 'I like cake'
+// }
+// console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
     API.updateProfileBio(props.authState);
     setEditBios(false);
     setEditDetails(false);
@@ -145,7 +155,7 @@ const Profile = (props) => {
   return (
     <>
       {/* {console.log("img src tag", srcStr)} */}
-      {console.log("profile page page", feeds)}
+      {/* {console.log("profile page page", feeds)} */}
       {editProfile ? (
         <EditProfile backtoProfile={backtoProfile} />
       ) : (
@@ -366,8 +376,7 @@ const Profile = (props) => {
                             <FaHeart className="capicon" />
                             <p className="edutext">
                               {
-                                props.authState.userProfile.details
-                                  ?.maritalStatus
+                                props.authState.userProfile.details?.maritalStatus
                               }
                             </p>
                           </div>
