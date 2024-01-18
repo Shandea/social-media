@@ -205,7 +205,7 @@ const handleNotificationModal = () => {
           </div>
 
           <div className="circle1 img1"
-          
+          onClick={() => nav("/profile/")}
           
           style={{
             backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
