@@ -6,7 +6,8 @@ import { TbGridDots } from "react-icons/tb"
 import logo1 from "../../imagess/logo1.png"
 import { TbDoorExit } from "react-icons/tb";
 import MenuModal from "../Modal/MenuModal";
-import hacker6 from "../../imagess/hacker6.png"
+import NotificationModal from "../Modal/NotificationModal";
+
 
 
 import { useNavigate, Link } from "react-router-dom";
@@ -24,9 +25,14 @@ const Navbar = ({ props, authState }) => {
 
 
 const [menuModal, setMenuModal] = useState(false)
+const [notificationModal, setNotificationModal] = useState(false)
 
 const handleMenuModal = () => {
   setMenuModal(prev => !prev)
+}
+
+const handleNotificationModal = () => {
+  setNotificationModal(prev => !prev)
 }
 
   let nav = useNavigate()
@@ -130,8 +136,7 @@ const handleMenuModal = () => {
 
         </div>
         
-        {/* { modal ? <Modal /> : ""}
-          { modal1 ? <Modal1 /> : ""} */}
+       
         <div className="right-nav">
           <div className="circle icon add"><IoAdd /> </div>
 
@@ -170,8 +175,8 @@ const handleMenuModal = () => {
 
 
 
-          <Link to="/notification">
-            <div
+          {/* <Link to="/notification"> */}
+            <div onClick={() => handleNotificationModal()}
               className="circle icon" >
                 <div className="numberbadge">       {Object.keys(authState.userProfile).length
             ?
@@ -191,7 +196,7 @@ const handleMenuModal = () => {
           }</div>
               <FaBell />
             </div>
-          </Link>
+          {/* </Link> */}
 
           <div
             className="circle icon"
@@ -199,13 +204,23 @@ const handleMenuModal = () => {
           ><TbDoorExit />
           </div>
 
-          <div className="circle1">
+          <div className="circle1 img1"
+          
+          
+          style={{
+            backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: 'cover'
+          }}
+          
+          >
             {/* <img src={hacker6} alt="" className="img1"/> */}
-            <img className="img1" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" />
+            {/* <img className="img1" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" /> */}
           </div>
         </div>
       </div>
       {menuModal ? <MenuModal /> : null}
+      {notificationModal ? <NotificationModal /> : null}
     </>
   )
 }
