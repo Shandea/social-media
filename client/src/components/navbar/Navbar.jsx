@@ -204,9 +204,18 @@ const handleNotificationModal = () => {
           ><TbDoorExit />
           </div>
 
-          <div className="circle1">
+          <div className="circle1 img1"
+          
+          
+          style={{
+            backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: 'cover'
+          }}
+          
+          >
             {/* <img src={hacker6} alt="" className="img1"/> */}
-            <img className="img1" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" />
+            {/* <img className="img1" onClick={() => nav("/profile/")} src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" /> */}
           </div>
         </div>
       </div>
