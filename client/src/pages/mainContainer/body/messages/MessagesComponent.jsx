@@ -1,5 +1,5 @@
 import "./MessagesComponent.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom'
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
@@ -24,6 +24,8 @@ const MessagesComponent = ({ authState }) => {
   const authed = authState.user.userId
   let queryId = [authed, id].sort().join("")
 
+
+
   const payload = { queryId: queryId }
   const [message, setMessage] = useState({})  // the message you are typing
   const [typing, setTyping] = useState(false)
@@ -36,6 +38,9 @@ const MessagesComponent = ({ authState }) => {
 
 
   const profile = authState.userProfile.messages
+
+
+  // ref={messagesEndRef}
 
   useEffect(() => {
     console.warn("GET USER")
@@ -70,9 +75,6 @@ const MessagesComponent = ({ authState }) => {
         data
       ]))
 
-      // let newChat = document.getElementById("chat");
-      // newChat.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
     })
 
     return () => socket.off('recieve_message')
@@ -90,6 +92,9 @@ const MessagesComponent = ({ authState }) => {
       .then(res => {
         // console.log("res", res)
         handleSetAllMsg(res)
+        let newChat = document.getElementById("chat");
+        newChat.scrollIntoView({ behavior: 'instant', block: 'end' })
+        console.log("should scroll - getThreadMessages")
       })
 
       .catch(err => console.log("err", err))
@@ -98,10 +103,10 @@ const MessagesComponent = ({ authState }) => {
 
   useEffect(() => {
 
-    if (allMsg.length) {
-      // let newChat = document.getElementById("chat");
-      // newChat.scrollIntoView({ behavior: 'instant', block: 'end' })
-      // console.log("should scroll - getThreadMessages")
+    if (allMsg.length && id) {
+      let newChat = document.getElementById("chat");
+      newChat.scrollIntoView({ behavior: 'instant', block: 'end' })
+      console.log("should scroll - getThreadMessages")
     }
 
   }, [allMsg])
@@ -186,7 +191,7 @@ const MessagesComponent = ({ authState }) => {
     console.log("handle Search", e.target.value)
     setUserSearch(profile.filter((item) => item.senderName.includes(e.target.value)))
     //   ...prev,
-      
+
     // }))
     console.log(profile.filter((item) => item.senderName.includes(e.target.value)))
 
@@ -197,13 +202,13 @@ const MessagesComponent = ({ authState }) => {
   return (
     <>
       {/* {console.log("ids", id, authed, queryId)} */}
-      {console.log("c'ONTACT", contact)}
+      {/* {console.log("c'ONTACT", contact)} */}
       {/* {console.log("Profile", profile)} */}
 
       {/* {console.log("test", test)} */}
       {/* {console.log("Message Comp - authSt", authState)} */}
       {/* {console.warn("msg input", message)} */}
-      {console.log("userSearch", userSearch)}
+      {/* {console.log("userSearch", userSearch)} */}
 
 
 
@@ -299,54 +304,73 @@ const MessagesComponent = ({ authState }) => {
 
 
         {/*message header */}
+        {id
+          ?
+          (
+            <div className="messageright">
+              <div className="messagerighttop">
+                <div className="messagerighttopleft">
+                  <div className="contactimg"
+                    style={{
+                      backgroundImage: `url("http://localhost:5000${contact?.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: 'cover'
+                    }}
+                  >
+                  </div>
 
+                  <div className="contactinfo">
+                    <p className="text1">
+                      {contact?.username}
+                    </p>
+                    <p className="text2">{contact?.isOnline ? "online" : "offline"}</p>
+                  </div>
 
-        <div className="messageright">
-          <div className="messagerighttop">
-            <div className="messagerighttopleft">
-              <div className="contactimg"
-                style={{
-                  backgroundImage: `url("http://localhost:5000${contact?.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: 'cover'
-                }}
-              >
+                </div>
+                <div className="messagerighttopright">
+                  <div className="optiondiv" onClick={() => handleContactModal()}>
+                    <BsThreeDots />
+                  </div>
+                </div>
               </div>
 
-              <div className="contactinfo">
-                <p className="text1">
-                  {contact?.username}
-                </p>
-                <p className="text2">{contact?.isOnline ? "online" : "offline"}</p>
+
+              <div className="messagerightmiddle">
+                <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
               </div>
+
+              {/* <div id="chat" ref={messagesEndRef}>scrol here</div> */}
+
+
+
+
+              {/* footer */}
+              <SendMessage
+                message={message}
+                handleSubmitMessage={handleSubmitMessage}
+                handleSetMessage={handleSetMessage}
+              />
+
 
             </div>
-            <div className="messagerighttopright">
-              <div className="optiondiv" onClick={() => handleContactModal()}>
-                <BsThreeDots />
-              </div>
+
+          )
+          :
+          (
+            // this section is for when there is no ID in the url... no contact selected...
+
+
+            <div>
+
+              <p>Please select a contant to connect with!</p>
+
             </div>
-          </div>
 
 
-          <div className="messagerightmiddle">
-            <MessageContent allMsg={allMsg} authState={authState} contact={contact} />
-          </div>
+          )}
 
-
-
-
-
-          {/* footer */}
-          <SendMessage
-            message={message}
-            handleSubmitMessage={handleSubmitMessage}
-            handleSetMessage={handleSetMessage}
-          />
-
-
-        </div>
       </div>
+
     </>
   );
 };
