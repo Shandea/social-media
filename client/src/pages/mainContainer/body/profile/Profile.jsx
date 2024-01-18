@@ -145,7 +145,7 @@ const Profile = (props) => {
 // if(props.authState.bio == ""){
 //   props.authState.bio = 'I like cake'
 // }
-// console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
+console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
     API.updateProfileBio(props.authState);
     setEditBios(false);
     setEditDetails(false);
