@@ -186,7 +186,7 @@ module.exports = {
 
     updateBio: (req, res) => {
         let id = req.locals.userId
-        console.log('\n\n\n\nGRAHAM!!!!!!!!!!!\n\n\n\n')
+        // console.log('\n\n\n\nGRAHAM!!!!!!!!!!!\n\n\n\n')
         User.findById(id).then(data => {
 
             if (!data) {
