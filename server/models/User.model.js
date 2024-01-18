@@ -23,17 +23,17 @@ const UserSchema = new Schema({
     age: Number,
 
     details:{
-        bio: String,
-        education: String,
-        education2: String,
-        localInfo: String,
-        maritalStatus: String
+        bio: {type: String, default: ' '},
+        education: {type: String, default: ' '},
+        education2: {type: String, default: ' '},
+        localInfo: {type: String, default: ' '},
+        maritalStatus: {type: String, default: ' '}
     },
     pronoun: String,
     location: {
-        city: String,
-        state: String,
-        zipcode: String
+        city: {type: String, default: ' '},
+        state: {type: String, default: ' '},
+        zipcode: {type: String, default: ' '}
     },
     secretQuestion: String,
     secretAnswer: String,
