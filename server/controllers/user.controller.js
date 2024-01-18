@@ -401,18 +401,18 @@ module.exports = {
                 return res.status(500).json({ message: "Internal server error" });
             });
 
-        console.log("search friends BE", req.body)
-        console.log("search friends BE", req.locals.userId)
-        let id = req.locals.userId
-        User.findById({ id }).then(data => {
-            if (!data) {
-                res.status(400).json({ message: "user error" })
-            } else {
-                User.find().then(data => {
-                    res.status(200).json(data)
-                })
-            }
-        })
+        // console.log("search friends BE", req.body)
+        // console.log("search friends BE", req.locals.userId)
+        // let id = req.locals.userId
+        // User.findById({ id }).then(data => {
+        //     if (!data) {
+        //         res.status(400).json({ message: "user error" })
+        //     } else {
+        //         User.find().then(data => {
+        //             res.status(200).json(data)
+        //         })
+        //     }
+        // })
 
     }
 
