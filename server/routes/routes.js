@@ -44,6 +44,7 @@ module.exports = app => {
     app.get("/api/getFollowingFeeds", AuthCheck, FeedController.getFollowingFeeds)
     app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
     app.get("/api/getMyFeeds", AuthCheck, FeedController.getMyFeeds)
+    app.get("/api/findFeed/:id", AuthCheck, FeedController.findFeed)
     /////////////////////////////////
 
     ///  Comments  \\\
