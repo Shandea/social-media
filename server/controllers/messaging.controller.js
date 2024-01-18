@@ -32,6 +32,35 @@ module.exports = {
                             foundUser.save()
                             console.log("no found ID")
 
+
+                            User.findById(req.locals.userId)
+                            .then(user => {
+                                user.messages.push({
+                                queryId: created.queryId,
+                                userId: foundUser._id,
+                                senderName: foundUser.username,
+                                messages: [created._id],
+                                messageCount: 0,
+                                profileImg: foundUser.profileImg,
+
+                                recent: created.messageContent,
+                                createdAt: created.createdAt,
+                                fromUser: req.locals.username
+                                
+
+                            })
+                                    user.save()
+                                    console.log("foundUser saved?")
+                            })
+
+
+
+
+
+
+
+
+
                         } else {
 
                             console.log(" id found")
