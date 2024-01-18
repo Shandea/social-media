@@ -33,7 +33,7 @@ app.use(cookieParser())
 //had to do for the cors communication to fronend credentials
 app.use(cors({
   // origin:`*`,
-  methods: ['POST', 'GET', 'PUT'],
+  methods: ['POST', 'GET', 'PUT','PATCH'],
   origin:[`http://localhost:3000`],
   optionsSuccessStatus:200,
   credentials:true

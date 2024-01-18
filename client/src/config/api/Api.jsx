@@ -71,6 +71,7 @@ const API = {
   },
   updateProfileBio: async (info) => {
     console.log("firing", info)
+    
     let details = {
       bio:info?.bio ? info.bio : info.userProfile.details.bio,
       education:info?.details.education ? info.details.education : info.userProfile.details.education,

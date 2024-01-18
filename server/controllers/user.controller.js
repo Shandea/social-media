@@ -186,13 +186,13 @@ module.exports = {
 
     updateBio: (req, res) => {
         let id = req.locals.userId
+        console.log('\n\n\n\nGRAHAM!!!!!!!!!!!\n\n\n\n')
         User.findById(id).then(data => {
 
             if (!data) {
                 return res.status(400).json({ message: "cannot find user" })
             } else (
                 User.findByIdAndUpdate({ _id: id }, req.body, { new: true }).then(data => {
-
                     return res.status(200).json({ message: "update successful", data })
                 })
             )
