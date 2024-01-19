@@ -359,9 +359,9 @@ const MessagesComponent = ({ authState }) => {
             // this section is for when there is no ID in the url... no contact selected...
 
 
-            <div>
+            <div className="pleasediv">
 
-              <p>Please select a contant to connect with!</p>
+              <p>Choose a contact to send a message!</p>
 
             </div>
 
