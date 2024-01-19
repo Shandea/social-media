@@ -12,6 +12,9 @@ body, html {
     
 }
 
+a {
+    text-decoration: none;
+}
 
 :root{
     --primary-gradient-text: -webkit-linear-gradient(#dc07d8, #ffffff);

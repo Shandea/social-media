@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import { useParams, useLocation } from 'react-router-dom'
 import FeedContainer from "../../../../components/feeds/feedContainer/FeedContainer"
 
 import AddFeed from "../../../../components/feeds/addFeed/AddFeed"
@@ -16,25 +16,42 @@ import FriendsComponent from '../friendsList/FriendsComponent'
 export default function Feed() {
     // feed container... a feed 
 
+    const { id } = useParams()
+    const { loc } = useLocation()
     const [render, setRender] = useState(false)
     const [feeds, setFeeds] = useState([])
 
     useEffect(() => {
-        
+        if (id) {
 
-        axios({
-            method: "GET",
-            url: "http://localhost:5000/api/getfeeds",
-            withCredentials: true,
-        })
-            .then(res => {
-                console.log("res feed views", res)
-                setFeeds(res.data)
+            console.log("ID GET DIFF FEED")
+
+            axios({
+                method: "GET",
+                url: `http://localhost:5000/api/findfeed/${id}`,
+                withCredentials: true
             })
-            .catch(err => console.log("get feed err", err))
-        
+                .then(res => setFeeds(res.data))
 
-    }, [render])
+
+
+        } else {
+
+
+            axios({
+                method: "GET",
+                url: "http://localhost:5000/api/getfeeds",
+                withCredentials: true,
+            })
+                .then(res => {
+                    console.log("res feed views", res)
+                    setFeeds(res.data)
+                })
+                .catch(err => console.log("get feed err", err))
+
+        }
+
+    }, [id])
 
 
     const [feedSearch, setFeedSearch] = useState("")
@@ -85,10 +102,10 @@ export default function Feed() {
                 setFeeds(prev => prev.map((item) => item._id === res.data._id ? res.data : item))
                 handleSetFeeds()
             })
-    
 
-    
-        }
+
+
+    }
 
     const handleApiSearch = (e, input) => {
         // console.log("handleAPISearch", input)
@@ -155,76 +172,76 @@ export default function Feed() {
             {/* {console.log("feed state", feeds)} */}
             {/* {console.warn("RENDER STATUS", render)} */}
 
-<div className='mainfeedcontainer'>
-<div className="feedcontainerleft"><LeftSideNav /></div>
-<div className="feedcontainermiddle"><div id="FeedTopAction"
-            >
+            <div className='mainfeedcontainer'>
+                <div className="feedcontainerleft"><LeftSideNav /></div>
+                <div className="feedcontainermiddle"><div id="FeedTopAction"
+                >
 
-                <div id="filterActions">
-                <div>
+                    <div id="filterActions">
+                        <div>
 
-<SearchFeed
-    handleApiSearch={handleApiSearch}
+                            <SearchFeed
+                                handleApiSearch={handleApiSearch}
 
-/>
+                            />
 
-</div>
-<hr className='line'/>
-<div className='words'>
-                    <div className='word'
-                        onClick={(e) => handleGetNewFeeds(e)}
-                    >
-                        New
+                        </div>
+                        <hr className='line' />
+                        <div className='words'>
+                            <div className='word'
+                                onClick={(e) => handleGetNewFeeds(e)}
+                            >
+                                New
+
+                            </div>
+
+                            <div className='word'
+                                onClick={(e) => handleFollowingFeeds(e)}
+
+                            >Following</div>
+
+                            <div className='word'
+                                onClick={(e) => handleMyFeeds(e)}
+
+                            >
+                                My</div>
+                        </div>
+
+
 
                     </div>
 
-                    <div className='word'
-                        onClick={(e) => handleFollowingFeeds(e)}
-
-                    >Following</div>
-
-                    <div className='word'
-                        onClick={(e) => handleMyFeeds(e)}
-
-                    >
-                        My</div>
-                        </div>
 
 
 
                 </div>
 
+                    <AddFeed handleSetFeeds={handleSetFeeds} />
 
 
+                    {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
 
-            </div>
+                    <div className='feedContainer' style={{
+                        marginTop: "20px"
 
-            <AddFeed handleSetFeeds={handleSetFeeds} />
+                        // border: "1px solid black"
+                    }}>
+                        {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
+                            return (
+                                <div key={i}
+                                >
+                                    <FeedContainer
+                                        handleSetFeeds={handleSetFeeds}
+                                        handleAddLike={handleAddLike}
+                                        obj={obj} />
+                                </div>
+                            )
 
+                        })}
+                    </div>
+                </div>
+                <div className="feedcontainerright"><FriendsComponent /></div>
 
-            {/* FOR ILLUSTRATIVE PURPOSE, this will be a map from the api endpoint rendering into <FeedContainer /> */}
-
-            <div className='feedContainer' style={{
-                marginTop: "20px"
-               
-                // border: "1px solid black"
-            }}>
-                {feeds.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((obj, i) => {
-                    return (
-                        <div key={i}
-                        >
-                            <FeedContainer
-                                handleSetFeeds={handleSetFeeds}
-                                handleAddLike={handleAddLike}
-                                obj={obj} />
-                        </div>
-                    )
-
-                })}
-            </div>
-            </div>
-<div className="feedcontainerright"><FriendsComponent /></div>
-            
 
             </div>
         </>

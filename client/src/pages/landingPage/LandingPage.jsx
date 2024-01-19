@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom'
 import Logo from "../../imagess/Logo.png"
 
 import { useEffect } from "react"
-import API from "../../config/api"
+// import API from "../../config/api"
 
 import {connect} from "react-redux"
 
 const LandingPage = ({props,authState}) => {
   
-  useEffect(()=>{
-   API.userAll()
-  },[])
+  // useEffect(()=>{
+  //  API.userAll()
+  // },[])
 
   return (
     <>

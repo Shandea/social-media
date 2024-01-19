@@ -44,6 +44,7 @@ module.exports = app => {
     app.get("/api/getFollowingFeeds", AuthCheck, FeedController.getFollowingFeeds)
     app.get("/api/getFeeds", AuthCheck, FeedController.getFeeds)
     app.get("/api/getMyFeeds", AuthCheck, FeedController.getMyFeeds)
+    app.get("/api/findFeed/:id", AuthCheck, FeedController.findFeed)
     /////////////////////////////////
 
     ///  Comments  \\\
@@ -83,7 +84,8 @@ module.exports = app => {
         res.json({ message: "test good, end points working", user: req.locals })
     })
 
-    app.get("/user/all", AuthCheck, UserController.all)
+    // app.get("/user/all", AuthCheck, UserController.all)
+    app.get("/user/all",  UserController.all)
 
     app.patch("/user/updatebio", AuthCheck, UserController.updateBio)
     app.patch("/user/updateuserprofile", AuthCheck, UserController.updateUserProfile)

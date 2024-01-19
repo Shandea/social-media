@@ -10,23 +10,29 @@ import API from '../../config/api/Api'
 import store from '../../config/redux/Store'
 import { getUser } from "../../config/redux/actions/AuthActions"
 
-
 function ProtectedRoutes() {
-    
-    let nav = useNavigate()
 
+    let nav = useNavigate()
+    let loc = useLocation()
     const [loggedIn, setLoggedIn] = useState(false)
 
+
     useEffect(() => {
-        console.log("Prot RT useEffect FIRE")
+        API.userAll()
+    }, [])
+
+
+
+    useEffect(() => {
+        console.warn("Prot RT useEffect FIRE")
         axios.defaults.withCredentials = true
         axios({
             method: "GET",
             withCredentials: true,
             url: 'http://localhost:5000/user/authCheck',
         })
-        .then(res => {
-            
+            .then(res => {
+
                 console.log("still good", res.data)
                 if (res.data.message == "proceed") {
 
@@ -44,8 +50,8 @@ function ProtectedRoutes() {
                 nav("/")
                 console.log(err)
             })
-    }, [])
-    
+    }, [loc])
+
     useEffect(() => {
         API.getUserProfile()
     }, [])
@@ -92,7 +98,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUser: ()=>dispatch(getUser())
+        getUser: () => dispatch(getUser())
     }
 }
 // first param is state, 2nd is dispatch (functions / actions)
