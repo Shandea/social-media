@@ -43,6 +43,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
   const emailRegex = /^\S+@\S+\.\S+$/; // cuts spaces, no domain, ensures period
   const nameRegex = /^.{4,12}$/;
   const phoneRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\S\s.-]\d{3}[\s.-]\d{4}$/;
+  const phoneRegex2 = /\d{10}/
   const zipregex = /\d{5}/;
   // EXAMPLE INLINE STYLING VALIDATION
   // style={{ border : validation ? 'none' : solid red 1px}}
@@ -171,7 +172,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               placeholder="Phone Number"
               required={true}
               style={
-                phoneRegex.test(authState.phone) || authState.phone.length == 0
+                phoneRegex.test(authState.phone) || phoneRegex2.test(authState.phone) || authState.phone.length == 0
                   ? { border: "solid 1px grey" }
                   : { border: "red solid 3px" }
               }
