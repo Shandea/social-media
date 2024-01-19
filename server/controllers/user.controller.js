@@ -13,19 +13,31 @@ module.exports = {
 
     register: (req, res) => {
         console.log("register attempt", req.body)
-
+let userNameAttempt = req.body.username
         User.findOne({ email: req.body.email })
             .then(found => {
-                console.log("found user")
+                // console.log("Duplicate Email Attempt")
                 // if (!req.body.password) {
-                //     res.json("Register error, please fill out fields")
-                // }
-
-                if (found) {
-                    res.json({ message: "Registration Error" })
+                    //     res.json("Register error, please fill out fields")
+                    // }
+                    
+                    if (found) {
+                    console.log("\n\nDuplicate Email Attempt\n\n")
+                    res.json({ message: "Duplicate Email" })
 
                 } else {
-
+                    User.findOne({ username: userNameAttempt })
+                    .then(found => {
+                        console.log('\nFound: \n',found)
+                        // if (!req.body.password) {
+                            //     res.json("Register error, please fill out fields")
+                            // }
+                            
+                            if (found) {
+                            console.log("\n\nDuplicate Username Attempt\n\n")
+                            return res.json({ message: "Duplicate Username" })
+        
+                        } else {
                     const hash = bcrypt.hashSync(req.body.password, 10)
                     const newUser = new User({
                         username: req.body.username,
@@ -47,6 +59,7 @@ module.exports = {
                         isOnline: true
 
                     })
+                
                     User.create(newUser)
                         .then(created => {
                             console.log("created User", created)
@@ -59,6 +72,11 @@ module.exports = {
 
                             // on successful reg, give a jwt and auth to site
                         })
+
+                    }
+                })
+
+
                 }
             })
             .catch(err => console.log("err", err))
