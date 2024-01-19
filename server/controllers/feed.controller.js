@@ -270,7 +270,7 @@ console.log("ADD LIKE COMMENT ======> if hit")
                             {
                                 $push: {
                                     notifications: 
-                                    [
+                                    // [
                                         {
                                             comment: {
                                                 authorName: req.body.authorName,
@@ -282,7 +282,7 @@ console.log("ADD LIKE COMMENT ======> if hit")
 
                                             }
                                         }
-                                    ]
+                                    // ]
                                 }
                             })
                             .then(ogFound => console.log("og Found"))
