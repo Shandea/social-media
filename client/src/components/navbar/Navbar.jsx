@@ -7,6 +7,8 @@ import logo1 from "../../imagess/logo1.png"
 import { TbDoorExit } from "react-icons/tb";
 import MenuModal from "../Modal/MenuModal";
 import NotificationModal from "../Modal/NotificationModal";
+import FriendModal from "../Modal/FriendModal";
+
 
 
 
@@ -26,6 +28,7 @@ const Navbar = ({ props, authState }) => {
 
 const [menuModal, setMenuModal] = useState(false)
 const [notificationModal, setNotificationModal] = useState(false)
+const [friendModal, setFriendModal] = useState(false)
 
 const handleMenuModal = () => {
   setMenuModal(prev => !prev)
@@ -33,6 +36,10 @@ const handleMenuModal = () => {
 
 const handleNotificationModal = () => {
   setNotificationModal(prev => !prev)
+}
+
+const handleFriendModal = () => {
+  setFriendModal(prev => !prev)
 }
 
   let nav = useNavigate()
@@ -96,17 +103,17 @@ const handleNotificationModal = () => {
                 wasnst sure how i was going to make that search input type an input for that page..
                 solution at hand         
           */}
-          <Link to="/FriendSearch">
+          {/* <Link to="/FriendSearch">
 
             <div className="search1">Find friends</div>
 
-          </Link>
-          {/* <input
+          </Link> */}
+          <input onClick={() => handleFriendModal()}
             type="search"
             name=""
             className="search"
-            placeholder="Search"
-          /> */}
+            placeholder="Find Friends"
+          />
         </div>
 
 
@@ -221,6 +228,7 @@ const handleNotificationModal = () => {
       </div>
       {menuModal ? <MenuModal /> : null}
       {notificationModal ? <NotificationModal /> : null}
+      {friendModal ? <FriendModal /> : null}
     </>
   )
 }
