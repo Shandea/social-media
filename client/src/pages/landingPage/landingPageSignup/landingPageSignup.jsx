@@ -32,6 +32,7 @@ const dropIn = {
 
 const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
   let nav = useNavigate();
+  const [serverResponse, setServerResponse] = useState([])
 
   const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/; // one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
   const pass1 = /\d/; //has a number
@@ -48,6 +49,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
   // EXAMPLE INLINE STYLING VALIDATION
   // style={{ border : validation ? 'none' : solid red 1px}}
 
+
   const handleSubmit = (e, reg) => {
     console.log("my state", authState);
     e.preventDefault();
@@ -58,9 +60,12 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
     authState.phone = authState.phone.replace(/[^\d]/g, "");
     console.warn("AUTHSTATE BEING SENT:\n", authState);
     API.register(authState).then((res) => {
-      console.log("reg res", res);
+      // console.log("reg res", res);
       if (res.message == "Logged in successfully") {
         nav("/feed");
+      } else {
+        setServerResponse(res.message)
+        console.log('\n\nserverResponse: \n\n', serverResponse)
       }
     });
   };
@@ -122,7 +127,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               required={true}
               maxLength="12"
               style={
-                authState.lastname.length > 3 || authState.lastname.length == 0
+                authState.lastname.length > 2 || authState.lastname.length == 0
                   ? { border: "solid 1px grey" }
                   : { border: "red solid 3px" }
               }
@@ -420,7 +425,9 @@ authState.gender != ""
  ? <button type="submit" className="formbtn" >Sign Up</button> : <button type="submit" className="form-btnBAD" disabled='true'>Something Wrong</button>} */}
 
         {/* you gott get rid of tis line VVV for deployment */}
-
+        <p>
+          {serverResponse}
+        </p>
         <button type="submit" className="formbtn">
           Sign Up
         </button>
