@@ -36,7 +36,21 @@ font-size: xx-large;
     font-size: xx-large;
 }
 
-@media screen and (max-width: 600px) {
+@media  (max-width: 1000px) {
+    
+    .postcontainer {
+        width: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    
+    .postcontainer {
+        width: 400px;
+    }
+}
+
+@media  (max-width: 600px) {
     
     .postcontainer {
         width: 350px;
