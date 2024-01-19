@@ -17,7 +17,7 @@
 }
 
 .feedcontainerleft {
-    width: 50%;
+    width: 35%;
 /* border: solid 1px blue; */
 background-color: whitesmoke;
 height: 650px;
@@ -36,7 +36,7 @@ height: 650px;
 }
 
 .feedcontainerright {
-    width: 50%;
+    width: 35%;
     /* border: solid 1px blue; */
     background-color: whitesmoke;
     overflow-y: auto;
@@ -60,7 +60,11 @@ height: 650px;
     padding: 5px;
 }
 
-@media screen and (max-width: 900px) {
+.word:hover {
+    background-color: black;
+}
+
+@media screen and (max-width: 1000px) {
     
 .feedcontainerleft {
     display: none;
@@ -72,7 +76,21 @@ height: 650px;
 
 }
 
-@media screen and (max-width: 600px) {
+@media  (max-width: 1000px) {
+    
+    #filterActions {
+        width: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    
+    #filterActions {
+        width: 400px;
+    }
+}
+
+@media  (max-width: 600px) {
     
     #filterActions {
         width: 350px;

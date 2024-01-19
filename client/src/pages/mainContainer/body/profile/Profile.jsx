@@ -200,6 +200,9 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
             </div>
             <div className="mainprofilecontainer">
               <div className="profileleft">
+<div className="leftleft1">
+
+
                 <div className="card">
                   <div className="intro">Intro</div>
                   <div className="innerleft">
@@ -418,6 +421,9 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
                     <div className="photoimg"></div>
                   </div>
                 </div>
+                </div>
+
+
               </div>
 
               <div className="profileright">

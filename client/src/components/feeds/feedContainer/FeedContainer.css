@@ -100,10 +100,28 @@ margin-left: 2px;
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
+    
+    .FC {
+        width: 500px;
+    }
+    
+    }
+
+
+@media (max-width: 800px) {
     
 .FC {
-    width: 350px;
+    width: 400px;
 }
 
 }
+
+@media (max-width: 600px) {
+    
+    .FC {
+        width: 350px;
+    }
+    
+    }
+

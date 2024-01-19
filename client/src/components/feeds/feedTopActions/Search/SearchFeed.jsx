@@ -16,50 +16,32 @@ const SearchFeed = ({ handleApiSearch }) => {
 
     const handleSubmitSearch = () => {
 
-        // console.log("searching")
-        // handleApiSearch(null, feedSearch)
-
+       
     }
 
     return (
 
 
         <>
-            {/* <div>SearchFeed</div> */}
 
-            {/* {console.log("SEARCH FEED", feedSearch)} */}
-
-
-            {/* <input placeholder='Search Feeds'></input> */}
 
             <div className='searchContainer'>
                 <div className="addpost">
 
-                    {/* <div
-                        className='userimg'
-                        style={{
-                            backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: 'cover'
-                        }}
-
-                    > */}
-
-                    {/* </div> */}
-
+             
+<div className='searchleft'>
                     <input
                         className='searchinput'
                         onChange={(e) => handleFeedSearch(e)}
                         name="feedSearch"
-                        id="feedSearch"
                         value={feedSearch || ""}
                         placeholder="  Search Feeds"
                     >
 
                     </input>
+</div>
 
-
-                    <div>
+                    <div className='searchright'>
 
                         <input className='inputbtn'
                             type="submit"
