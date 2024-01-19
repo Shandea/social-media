@@ -1,0 +1,103 @@
+.FSheader {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+}
+
+.FSinput {
+    width: 100%;
+    /* border: solid 1px red; */
+    display: flex;
+    justify-content: center;
+}
+
+.fsinput {
+    width: 80%;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.173);
+    border-radius: 20px;
+    outline: none;
+    border: none;
+}
+
+.filterinputs {
+    /* border: solid red 1px; */
+}
+
+.topthree {
+    display: flex;
+    justify-content: center;
+}
+
+.bottomthree {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    background: var(--blue-gradient);
+    border-radius: 4px;
+    padding: 3px;
+    margin: 5px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    font-size: small;
+}
+
+.searchresults {
+    /* border: solid 1px red; */
+    height: 410px;
+    overflow-y: auto;
+}
+
+.usercard {
+    display: flex;
+
+    /* border: black solid 1px; */
+    padding: 10px;
+}
+
+.conimg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.ufln {
+    font-family: Arial, Helvetica, sans-serif;
+
+    margin-left: 5px;
+}
+
+.un {
+color: grey;
+font-size: small;
+margin-top: 4px;
+}
+
+.fl {
+margin-bottom: 4px;
+}
+
+.OL {
+    width: 45%;
+    /* border: solid red 1px; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.OD {
+    margin-left: 5px;
+    width: 15px;
+    height: 15px;
+    /* border: solid black 1px; */
+    background-color: rgb(0, 255, 0);
+    border-radius: 50%;
+}
+
+.usercard:hover {
+    background-color: rgba(128, 128, 128, 0.181);
+    border-radius: 10px;
+}
