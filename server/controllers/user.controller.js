@@ -384,26 +384,28 @@ let userNameAttempt = req.body.username
                 // console.log("filter find query", filter)
     
                 if (queryUsername) {
-                    filter.username = queryUsername; 
+                    filter.username = { $regex: new RegExp(queryUsername, 'i') };
                 }
                 if (queryGender) {
-                    filter.gender = queryGender; 
+                    filter.gender ={ $regex: new RegExp(queryGender, 'i') }; 
                 }
                 if (queryCity) {
-                    filter["location.city"] = queryCity;
+                    filter["location.city"] = { $regex: new RegExp(queryCity, 'i') };
                 }
                 if (queryState) {
-                    filter["location.state"] = queryState;
+                    // filter["location.state"] = queryState;
+                    filter["location.state"] = { $regex: new RegExp(queryState, 'i') };
+
                 }
                 if (queryZipcode) {
-                    filter["location.zipcode"] = queryZipcode;
+                    filter["location.zipcode"] = { $regex: new RegExp(queryZipcode, 'i') };
                 }
-            
+              
     
                 User.find(filter)
                     .then(users => {
 
-                        if (!users) {
+                        if (!users ) {
                             return res.json({ message: "No users found" });
                         } else {
                             return res.json(users);
@@ -419,36 +421,10 @@ let userNameAttempt = req.body.username
                 return res.status(500).json({ message: "Internal server error" });
             });
 
-        // console.log("search friends BE", req.body)
-        // console.log("search friends BE", req.locals.userId)
-        // let id = req.locals.userId
-        // User.findById({ id }).then(data => {
-        //     if (!data) {
-        //         res.status(400).json({ message: "user error" })
-        //     } else {
-        //         User.find().then(data => {
-        //             res.status(200).json(data)
-        //         })
-        //     }
-        // })
+
 
     }
 
 
 
 }
-
-
-// searchUsers: (req, res) => {
-//     console.log("searchUsers", req.body)
-//     req.body.ageLow ? null : req.body.ageLow = 18
-//     req.body.ageHigh ? null : req.body.ageHigh = 80
-//     // const {gender, ageLow, ageHigh } = req.body
-//     User.find({ gender: req.body.gender })
-//         .where("age").gt(req.body.ageLow).lt(req.body.ageHigh)
-//         // .exec()
-
-//         .then(users => {
-//             console.log("users", users)
-//             res.json(users)
-//         })
