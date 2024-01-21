@@ -6,6 +6,7 @@ import { TbMessages } from "react-icons/tb";
 import { LiaFileVideoSolid } from "react-icons/lia";
 import { MdInterests } from "react-icons/md";
 import { TbLogout } from "react-icons/tb";
+import { MdFeed } from "react-icons/md";
 import "./MenuModal.css"
 
 
@@ -59,7 +60,7 @@ const MenuModal = () => {
 
 <div className="leftnavdiv1" onClick={() => nav(`/images/`)}>
   <div className="leftnavicon1"><PiImageSquareFill /></div>
-  <div className="leftnavtext1">Pictures</div>
+  <div className="leftnavtext1">Photos</div>
 </div>
 
 <div className="leftnavdiv1" onClick={() => nav(`/messages/`)}>
@@ -67,15 +68,15 @@ const MenuModal = () => {
   <div className="leftnavtext1">Messages</div>
 </div>
 
-<div className="leftnavdiv1" onClick={() => nav(`/videos/`)}>
-  <div className="leftnavicon1"><LiaFileVideoSolid /></div>
-  <div className="leftnavtext1">Videos</div>
+<div className="leftnavdiv1" onClick={() => nav(`/Feed/`)}>
+  <div className="leftnavicon1"><MdFeed /></div>
+  <div className="leftnavtext1">Feeds</div>
 </div>
 
-<div className="leftnavdiv1" onClick={() => nav(`/hobby/`)}>
+{/* <div className="leftnavdiv1" onClick={() => nav(`/hobby/`)}>
   <div className="leftnavicon1"><MdInterests /></div>
   <div className="leftnavtext1">Hobbies</div>
-</div>
+</div> */}
 
 <div className="leftnavdiv1" onClick={handleLogout}>
   <div className="leftnavicon1"><TbLogout /></div>

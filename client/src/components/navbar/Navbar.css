@@ -177,12 +177,14 @@ background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%
+  width: 40%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
 }
 
 
 
-@media screen and (max-width: 600px) {
+@media  (max-width: 600px) {
   .search {
       display: none;
   }
@@ -198,6 +200,9 @@ background-color: black;
   .dots {
       display: none;
   }
+  .welcome {
+    display: none;
+  }
 }
 
 @media (min-width: 600px) {
@@ -205,9 +210,6 @@ background-color: black;
       display: none;
   }
 
-  .add {
-      display: none;
-  }
 
 
 }

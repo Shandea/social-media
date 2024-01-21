@@ -94,10 +94,10 @@ const handleFriendModal = () => {
 
       <div className="navbar">
         <div className="left-nav">
-          <div >
-            <img src={logo1} alt="" className="logo1" />
+          <div onClick={() => nav("/feed")} >
+            <img src={logo1} alt="logo" className="logo1" />
           </div>
-          <div className="search2"><IoSearch /></div>
+          <div className="search2"><IoSearch onClick={() => handleFriendModal()}/></div>
 
           {/* moved the link of find friends to this left side
                 wasnst sure how i was going to make that search input type an input for that page..
@@ -114,19 +114,20 @@ const handleFriendModal = () => {
             className="search"
             placeholder="Find Friends"
           />
-        </div>
-
-
-        <div
+                <div
           className="welcome"
         >
           <p>Welcome back {authState.user.username}</p>
         </div>
+        </div>
+
+
+  
 
         <div className="middle-nav">
           <div className="middle-left-nav">
             <div className="circle icon">
-              <Link to="/feed">
+              <Link to="/feed"  style={{color: "white"}}>
 
                 <FaHome />
               </Link>
@@ -134,7 +135,7 @@ const handleFriendModal = () => {
           </div>
           <div className="middle-right-nav">
             <div className="circle icon">
-              <Link to="/friends">
+              <Link to="/friends" style={{color: "white"}}>
                 <PiUsersThreeFill />
               </Link>
             </div>
@@ -145,7 +146,7 @@ const handleFriendModal = () => {
         
        
         <div className="right-nav">
-          <div className="circle icon add"><IoAdd /> </div>
+          {/* <div className="circle icon add"><IoAdd /> </div> */}
 
 
           {/* <Link to="/FriendSearch">
