@@ -6,6 +6,7 @@ import API from "../../../config/api";
 import { getCreateAcct } from "../../../config/redux/actions/AuthActions";
 import { connect } from "react-redux";
 import { AiFillQuestionCircle } from "react-icons/ai";
+import { IoCloseSharp } from "react-icons/io5";
 import { handleInputsAuth } from "../../../config/redux/actions/AuthActions";
 
 import { motion } from "framer-motion";
@@ -86,21 +87,20 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
           exit={"exit"}
         >
           <div className="signupheader">
-            <p>
-              Sign Up{" "}
-              <button
-                style={{ fontSize: "xx-large" }}
-                onClick={getCreateAcct}
-                className="x"
-                type="button"
-              >
-                ❌
-              </button>
-            </p>
-          </div>
+            <div className="signupleft">
+              <h1>Sign up</h1>
+            </div>
+            <div className="signupright">
+              <div className="close11" onClick={getCreateAcct}> <IoCloseSharp /></div>
+           
+            </div>
+           
+            
+  
+                     </div>
           <hr className="line" />
           <div className="name-div">
-            <Input
+            <div className="namedivleft">       <Input
               className="input3"
               type="text"
               name="firstname"
@@ -111,14 +111,14 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               style={
                 authState.firstname.length > 2 ||
                 authState.firstname.length == 0
-                  ? { border: "solid 1px grey" }
+                  ? { border: "solid 1px rgba(128, 128, 128, 0.311)" }
                   : { border: "red solid 3px" }
               }
               // style={authState.firstname.length>3 ? { border : 'solid green 5px !important'} : { border : 'solid red 4px !important'}}
 
               // style={{ border : authState.firstname.length>3 ? 'solid green 5px !important' : 'solid red 4px !important'}}
-            />
-            <Input
+            /></div>
+            <div className="namedivright">       <Input
               className="input3"
               type="text"
               name="lastname"
@@ -128,10 +128,12 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               maxLength="12"
               style={
                 authState.lastname.length > 2 || authState.lastname.length == 0
-                  ? { border: "solid 1px grey" }
+                  ? { border: "solid 1px rgba(128, 128, 128, 0.311)" }
                   : { border: "red solid 3px" }
               }
-            />
+            /></div>
+     
+     
           </div>
 
           <div className="uppc">
@@ -143,7 +145,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               value={authState.username || ""}
               required={true}
               maxLength="15"
-              style={{ border: "1px solid grey" }}
+              style={{ border: "1px solid rgba(128, 128, 128, 0.311)" }}
             />
             <Input
               className="input4"
@@ -154,7 +156,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               required={true}
               style={
                 emailRegex.test(authState.email) || authState.email.length == 0
-                  ? { border: "solid 1px grey" }
+                  ? { border: "solid 1px rgba(128, 128, 128, 0.311)" }
                   : { border: "red solid 3px" }
               }
             />
@@ -178,7 +180,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               required={true}
               style={
                 phoneRegex.test(authState.phone) || phoneRegex2.test(authState.phone) || authState.phone.length == 0
-                  ? { border: "solid 1px grey" }
+                  ? { border: "solid 1px rgba(128, 128, 128, 0.311)" }
                   : { border: "red solid 3px" }
               }
             />
@@ -206,36 +208,36 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
   textDecoration: completed ? 'line-through' : 'none'
 }} */}
 
-            <p>Pass Word Contains:</p>
-            <p
+            <p className="centertext">Pass Word Contains:</p>
+            <p className="centertext"
               style={{
                 color: pass1.test(authState.password) ? "green" : "red",
               }}
             >
               -a number
             </p>
-            <p
+            <p className="centertext"
               style={{
                 color: pass2.test(authState.password) ? "green" : "red",
               }}
             >
               -a lowercase
             </p>
-            <p
+            <p className="centertext"
               style={{
                 color: pass3.test(authState.password) ? "green" : "red",
               }}
             >
               -an uppercase
             </p>
-            <p
+            <p className="centertext"
               style={{
                 color: pass4.test(authState.password) ? "green" : "red",
               }}
             >
               -a symbol
             </p>
-            <p
+            <p className="centertext"
               style={{
                 color: pass5.test(authState.password) ? "green" : "red",
               }}
@@ -253,7 +255,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               style={
                 authState.password == authState.confirmPassword ||
                 authState.confirmPassword.length == 0
-                  ? { border: "solid 1px grey" }
+                  ? { border: "solid 1px rgba(128, 128, 128, 0.311)" }
                   : { border: "red solid 3px" }
               }
             />
@@ -296,7 +298,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               style={
                 zipregex.test(authState.location.zipcode) ||
                 authState.location.zipcode.length == 0
-                  ? { border: "solid 1px grey" }
+                  ? { border: "solid 1px rgba(128, 128, 128, 0.311)" }
                   : { border: "red solid 3px" }
               }
             />
@@ -311,7 +313,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
           <label className="BD-label">
             Birth Date
             <AiFillQuestionCircle className="q-icon" />
-            Month - Day - Year
+
           </label>
           <div className="birth-date">
             <Input
@@ -327,7 +329,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
                   authState.birthDate.month > 12 ||
                   authState.birthDate.month < 1
                     ? "solid red 1px"
-                    : "solid grey 1px",
+                    : "solid rgba(128, 128, 128, 0.311) 1px",
               }}
             />
 
@@ -343,7 +345,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
                 border:
                   authState.birthDate.day > 31 || authState.birthDate.day < 1
                     ? "solid red 1px"
-                    : "solid grey 1px",
+                    : "solid rgba(128, 128, 128, 0.311) 1px",
               }}
             />
 
@@ -360,7 +362,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
                   authState.birthDate.year > 2024 ||
                   authState.birthDate.year < 1920
                     ? "solid red 1px"
-                    : "solid grey 1px",
+                    : "solid rgba(128, 128, 128, 0.311) 1px",
               }}
             />
           </div>

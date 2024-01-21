@@ -5,13 +5,19 @@
 
 
       /* BRIAN!!! Make this dude go to the corner, he no listen to me*/
-.x{
-  margin-left:auto;
-  align-self: flex-end;
+
+.name-div {
+  display: flex;
 }
 
+.close11 {
+  color: grey;
+  margin-right: 20px;
+}
 
-
+.centertext {
+  text-align: center;
+}
 
 .signup-form {
   display: flex;
@@ -51,18 +57,31 @@
   text-align: start;
   font-size: large;
   font-family: Arial, sans-serif;
+  display: flex;
+}
+.signupleft {
+width: 100%;
+display: flex;
+justify-content: flex-start;
+}
+
+.signupright {
+  width: 100%;
+  display: flex;
+justify-content: flex-end;
+font-size: xx-large;
 }
 
 .line {
   width: 95%;
-  color: rgba(128, 128, 128, 0.46);
+  color: grey;
   margin: 10px;
 }
 
 .input3 {
   border-radius: 5px;
-  border: solid 1px rgba(128, 128, 128, 0.199);
-  width: 200px;
+  border: solid 1px rgba(128, 128, 128, 0.311);
+  width: 100%;
   padding: 10px;
   margin: 10px;
   background-color: rgba(128, 128, 128, 0.084);
@@ -71,12 +90,25 @@
 
 .input4 {
   border-radius: 5px;
-  border: solid 1px rgba(128, 128, 128, 0.199);
+  border: solid 1px rgba(128, 128, 128, 0.311);
   width: 95%;
   padding: 10px;
   margin: 10px;
   background-color: rgba(128, 128, 128, 0.084);
   outline: none;
+}
+
+.namedivleft {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+
+}
+
+.namedivright {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .uppc {
@@ -99,7 +131,7 @@
   padding: 10px;
   outline: none;
   border-radius: 5px;
-  border: solid 1px rgba(128, 128, 128, 0.275);
+  border: solid 1px rgba(128, 128, 128, 0.311);
  
 }
 
@@ -109,7 +141,7 @@
     align-items: center;
     width: 92%;
    
-color: rgba(128, 128, 128, 0.623);
+color: grey;
 }
 
 .birth-date {
@@ -129,13 +161,13 @@ color: rgba(128, 128, 128, 0.623);
     padding: 10px;
     outline: none;
     border-radius: 5px;
-    border: solid 1px rgba(128, 128, 128, 0.275);
-    color: rgba(128, 128, 128, 0.623);
+    border: solid 1px rgba(128, 128, 128, 0.311);
+    color: grey;
 }
 
 .BD-label {
     width: 92%;
-    color: rgba(128, 128, 128, 0.623);
+    color: grey;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -148,7 +180,7 @@ color: rgba(128, 128, 128, 0.623);
     align-items: center;
     width: 92%;
    
-color: rgba(128, 128, 128, 0.623);
+color: grey;
 }
 
 
@@ -157,7 +189,7 @@ color: rgba(128, 128, 128, 0.623);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: rgba(128, 128, 128, 0.623);
+  color: grey;
   width: 100%;
   height: 100%;
   margin-bottom: 20px;
@@ -171,7 +203,7 @@ color: rgba(128, 128, 128, 0.623);
 }
 
 .signup-radio {
-  border: 1px solid rgba(128, 128, 128, 0.423);
+  border: 1px solid rgba(128, 128, 128, 0.311);
   border-radius: 5px;
   width: 25%;
   padding: 9px;
@@ -206,3 +238,6 @@ color: rgba(128, 128, 128, 0.623);
   color: grey;
   
 }
+
+
+
