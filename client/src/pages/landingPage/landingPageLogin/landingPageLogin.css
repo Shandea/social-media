@@ -33,6 +33,21 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.formbtn1 {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: var(--blue-gradient);
+    color: white;
+    width: 85%;
+    margin-top: 20px;
+    cursor: pointer;
+    padding: 12px;
+    font-size: large;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .signIn-form {
     display: flex;
     flex-direction: column;
@@ -82,7 +97,7 @@
     height: 60px;
     cursor: pointer;
     border-radius: 6px;
-    margin-top: 5%;
+    margin-bottom: 20px;
 
     font-size: 1.2rem;
     border: none;
