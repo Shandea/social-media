@@ -9,4 +9,10 @@
     z-index: 5;
 border-radius: 10px;
 overflow-y: auto;
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+
+.friendmodalmain::-webkit-scrollbar {
+    display: none;
 }

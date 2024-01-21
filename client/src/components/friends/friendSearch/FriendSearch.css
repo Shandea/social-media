@@ -48,6 +48,12 @@
     /* border: solid 1px red; */
     height: 410px;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.searchresults::-webkit-scrollbar {
+    display: none;
 }
 
 .usercard {

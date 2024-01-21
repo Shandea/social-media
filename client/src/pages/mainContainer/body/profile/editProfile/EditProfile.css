@@ -67,6 +67,12 @@ align-items: center;
     /* border: solid red 1px; */
     height: 380px;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.editprofileform::-webkit-scrollbar {
+    display: none;
 }
 
 .editprofilelabels {

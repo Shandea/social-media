@@ -27,8 +27,14 @@
   height: 50px;
   border: 1px solid black;
   border-radius: 50%;
-  overflow: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   
+}
+
+.friendscomponentcontainer::-webkit-scrollbar {
+  display: none;
 }
 
 .friendscomponentcontainer div {
