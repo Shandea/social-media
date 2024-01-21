@@ -270,7 +270,16 @@ box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
 }
 
 .edutext {
-    margin-top: 10px;
+    margin-top: 12px;
+    margin-left: 5px;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.biobio {
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
 }
 
 .photocontainer {
