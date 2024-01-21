@@ -65,7 +65,7 @@
 @media (max-width:900px) {
     .landingPage-container {
         flex-direction: column;
-        height: auto;
+        
     }
     .container-left {
         margin-left: 0px;
