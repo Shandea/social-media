@@ -102,7 +102,7 @@ const FriendsComponent = ({ getAll }) => {
                         </div>
 
                         {/* <img alt='' src={`http://localhost:5000${friend.profileImg}`} /> */}
-                        <h4 style={{color: "black"}}>{friend.username}</h4>
+                        <h4 className='linktext'>{friend.username}</h4>
                       </Link>
 
 
