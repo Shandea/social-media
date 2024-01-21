@@ -97,10 +97,12 @@ const FriendsComponent = ({ getAll }) => {
                             backgroundRepeat: "no-repeat",
                             backgroundSize: 'cover'
                           }}
-                        ></div>
+                        >
+<div className='onlineStatus' style={{ backgroundColor: friend.isOnline ? "lime" : null }}></div>
+                        </div>
 
                         {/* <img alt='' src={`http://localhost:5000${friend.profileImg}`} /> */}
-                        <h4>{friend.username}</h4>
+                        <h4 style={{color: "black"}}>{friend.username}</h4>
                       </Link>
 
 
@@ -112,12 +114,12 @@ const FriendsComponent = ({ getAll }) => {
                         {/* <div> */}
                         <Link to={`/messages/${friend._id}`}>
 
-                          <FiMessageCircle />
+                          <FiMessageCircle className='message123'/>
                         </Link>
 
                         {/* </div> */}
                         {/* <h6>ONLINE</h6> */}
-                        <div className='onlineStatus' style={{ backgroundColor: friend.isOnline ? "lime" : null }}></div>
+                        
                       </div>
                     </div>
 

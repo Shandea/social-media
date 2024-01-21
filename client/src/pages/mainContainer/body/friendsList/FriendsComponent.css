@@ -81,11 +81,17 @@ justify-content: flex-end;
 
 
 .onlineStatus{
-  background-color: white;
-  border: 1px solid black;
+  background-color: black;
+  border: 2px solid white;
   border-radius: 50%;
   max-width: 0.3px;
   max-height: 0.3px;
-  margin-left: 5px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.message123 {
+  color: rgb(172, 92, 172);
+  font-size: x-large;
 }
 
