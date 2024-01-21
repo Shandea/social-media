@@ -86,6 +86,12 @@ outline: none;
   /* border: solid blue 1px; */
   height: 515px;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.contactdiv::-webkit-scrollbar {
+display: none;
 }
 
 .messagerighttop {
@@ -151,6 +157,12 @@ flex-direction: column;
 /* border: solid black 1px; */
 height: 520px;
 overflow-y: auto;
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+
+.messagerightmiddle::-webkit-scrollbar {
+display: none;
 }
 
 .messagemiddleleft {

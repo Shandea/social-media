@@ -24,7 +24,7 @@ height: 650px;
 
 }
 
-.feedcontainermiddle {
+#feedcontainermiddle {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,6 +33,15 @@ height: 650px;
     overflow-y: auto;
     /* border: solid 1px red; */
     height: 650px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+
+#feedcontainermiddle::-webkit-scrollbar {
+    display: none;
 }
 
 .feedcontainerright {
@@ -41,6 +50,14 @@ height: 650px;
     background-color: whitesmoke;
     overflow-y: auto;
     height: 650px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+.feedcontainerright::-webkit-scrollbar {
+    display: none;
 }
 
 .words {

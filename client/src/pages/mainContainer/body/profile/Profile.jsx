@@ -343,7 +343,7 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
                           Add Bio
                         </button>
                         <div className="biomiddle">
-                          <p>{authState.userProfile.details?.bio}</p>
+                          <p className="biobio">{authState.userProfile.details?.bio}</p>
                           {/* <h4>bio</h4>
                         <p>
                           Lorem ipsum dolor sit amet consectetur adipisicing

@@ -174,7 +174,7 @@ export default function Feed() {
 
             <div className='mainfeedcontainer'>
                 <div className="feedcontainerleft"><LeftSideNav /></div>
-                <div className="feedcontainermiddle"><div id="FeedTopAction"
+                <div id="feedcontainermiddle"><div id="FeedTopAction"
                 >
 
                     <div id="filterActions">

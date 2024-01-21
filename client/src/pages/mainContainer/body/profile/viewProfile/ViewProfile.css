@@ -74,8 +74,9 @@ margin: -70px;
 }
 
 .biotext {
-    margin-left: 10px;
+font-family: Arial, Helvetica, sans-serif;
     padding: 5px;
+    text-align: center;
 }
 
 .aligndiv {

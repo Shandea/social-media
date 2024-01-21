@@ -9,6 +9,8 @@ body, html {
     margin: 0;
     padding: 0;
    background-color: whitesmoke;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
     
 }
 
@@ -24,6 +26,8 @@ a {
     /* regular/matte colors */
     --primary:#dc07d8;
     --info: rgb(19, 134, 215);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .form-btn {
