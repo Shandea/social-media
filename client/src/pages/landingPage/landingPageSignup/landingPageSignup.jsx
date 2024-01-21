@@ -32,6 +32,7 @@ const dropIn = {
 
 const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
   let nav = useNavigate();
+  const [serverResponse, setServerResponse] = useState([])
 
   const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/; // one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
   const pass1 = /\d/; //has a number
@@ -43,9 +44,11 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
   const emailRegex = /^\S+@\S+\.\S+$/; // cuts spaces, no domain, ensures period
   const nameRegex = /^.{4,12}$/;
   const phoneRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\S\s.-]\d{3}[\s.-]\d{4}$/;
+  const phoneRegex2 = /\d{10}/
   const zipregex = /\d{5}/;
   // EXAMPLE INLINE STYLING VALIDATION
   // style={{ border : validation ? 'none' : solid red 1px}}
+
 
   const handleSubmit = (e, reg) => {
     console.log("my state", authState);
@@ -57,9 +60,12 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
     authState.phone = authState.phone.replace(/[^\d]/g, "");
     console.warn("AUTHSTATE BEING SENT:\n", authState);
     API.register(authState).then((res) => {
-      console.log("reg res", res);
+      // console.log("reg res", res);
       if (res.message == "Logged in successfully") {
         nav("/feed");
+      } else {
+        setServerResponse(res.message)
+        console.log('\n\nserverResponse: \n\n', serverResponse)
       }
     });
   };
@@ -121,7 +127,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               required={true}
               maxLength="12"
               style={
-                authState.lastname.length > 3 || authState.lastname.length == 0
+                authState.lastname.length > 2 || authState.lastname.length == 0
                   ? { border: "solid 1px grey" }
                   : { border: "red solid 3px" }
               }
@@ -171,7 +177,7 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
               placeholder="Phone Number"
               required={true}
               style={
-                phoneRegex.test(authState.phone) || authState.phone.length == 0
+                phoneRegex.test(authState.phone) || phoneRegex2.test(authState.phone) || authState.phone.length == 0
                   ? { border: "solid 1px grey" }
                   : { border: "red solid 3px" }
               }
@@ -419,7 +425,9 @@ authState.gender != ""
  ? <button type="submit" className="formbtn" >Sign Up</button> : <button type="submit" className="form-btnBAD" disabled='true'>Something Wrong</button>} */}
 
         {/* you gott get rid of tis line VVV for deployment */}
-
+        <p>
+          {serverResponse}
+        </p>
         <button type="submit" className="formbtn">
           Sign Up
         </button>
