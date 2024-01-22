@@ -19,6 +19,11 @@ import FriendStatus from "../../../../../components/friends/friendStatus/FriendS
 const ViewProfile = (props) => {
   console.log(props.authState);
 
+
+
+
+  let banner = ["http://localhost:5000/public/banner/banner1.jpg", "http://localhost:5000/public/banner/banner2.jpg", "http://localhost:5000/public/banner/banner3.jpg", "http://localhost:5000/public/banner/banner4.jpg", "http://localhost:5000/public/banner/banner5.jpg", "http://localhost:5000/public/banner/banner6.jpg"]
+
   let [profileView, setProfileView] = useState({});
   let { id } = useParams();
   useEffect(() => {
@@ -31,6 +36,14 @@ const ViewProfile = (props) => {
   }, [id]);
 
   const [feeds, setFeeds] = useState([]);
+
+  let [bannerImg, setBannerImg] = useState("")
+
+  useEffect(() => {
+    setBannerImg(banner[Math.floor(Math.random() * banner.length)])
+  }, [])
+
+  
 
   useEffect(() => {
     axios({
@@ -106,7 +119,16 @@ const ViewProfile = (props) => {
       {
         <>
           <div className="header">
-            <div className="banner">
+            <div className="banner"
+            
+            style={{
+              // backgroundImage: `url(${banner[Math.floor(Math.random() * banner.length)]}), url("http://localhost:5000/public/default.jpeg")`,
+              backgroundImage: `url(${bannerImg}), url("http://localhost:5000/public/default.jpeg")`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: 'cover'
+            }}
+
+            >
               <div className="topbannernav"></div>
             </div>
           </div>
@@ -125,24 +147,24 @@ const ViewProfile = (props) => {
 
           <div className="biodiv">
             <h2 className="bioheader">Intro</h2>
-            <p className="biotext">{profileView?.details?.bio || "I Have No Bio"}</p>
+            <p className="biotext">{profileView?.details?.bio || ""}</p>
             <div className="aligndiv">
               <div><GiGraduateCap className="capicon" /></div>
-              <p>Studied at {profileView?.details?.education || "I Have No Education"}</p>
+              <p>College {profileView?.details?.education || ""}</p>
             </div>
             <div className="aligndiv">
             <div><GiGraduateCap className="capicon" /></div>
-            <p>Went to {profileView?.details?.education || "I Have No Education"}</p>
+            <p>High School {profileView?.details?.education || ""}</p>
             </div>
             <div className="aligndiv">
               <div><FaHouse className="capicon" /></div>
-              <p>Lives In {profileView?.details?.localInfo || "I Have No Local Info"}</p>
+              <p>Lives In {profileView?.details?.localInfo || ""}</p>
             </div>
             <div className="aligndiv">
               <div><FaHeart className="capicon" /></div>
               <p>
 
-                {profileView.details?.maritalStatus || "Single"}
+                {profileView.details?.maritalStatus || ""}
               </p>
             </div>
             <hr className="line" />

@@ -45,6 +45,8 @@ const Profile = (props) => {
   let [editDetails, setEditDetails] = useState(false);
 
 
+  let banner = ["http://localhost:5000/public/banner/banner1.jpg", "http://localhost:5000/public/banner/banner2.jpg", "http://localhost:5000/public/banner/banner3.jpg", "http://localhost:5000/public/banner/banner4.jpg", "http://localhost:5000/public/banner/banner5.jpg", "http://localhost:5000/public/banner/banner6.jpg"]
+
   useEffect(() => {
     axios({
       method: "GET",
@@ -64,7 +66,13 @@ const Profile = (props) => {
   // to fix broken add like / comment in local profile feed.... not following DRY  :)
   const [feeds, setFeeds] = useState([]);
 
+  let [bannerImg, setBannerImg] = useState("")
 
+  useEffect(() => {
+    setBannerImg(banner[Math.floor(Math.random() * banner.length)])
+  }, [])
+
+  
   const handleSetFeeds = (e) => {
     // setFeeds(input)
 
@@ -163,7 +171,15 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
         <>
           <>
             <div className="header">
-              <div className="banner">
+              <div className="banner"
+               
+            style={{
+              // backgroundImage: `url(${banner[Math.floor(Math.random() * banner.length)]}), url("http://localhost:5000/public/default.jpeg")`,
+              backgroundImage: `url(${bannerImg}), url("http://localhost:5000/public/default.jpeg")`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: 'cover'
+            }}
+              >
                 <div className="topbannernav">
                   <div className="arrow" onClick={getEditProfile}>
                   <HiCamera />
@@ -354,7 +370,7 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
 
                           <div className="edu">
                             <GiGraduateCap className="capicon" />
-                            <div className="detailtext"><p>Went to</p></div>
+                            <div className="detailtext"><p>College</p></div>
                             <p className="edutext">
                               {props.authState.userProfile.details?.education}
                             </p>
@@ -362,7 +378,7 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
 
                           <div className="edu">
                             <GiGraduateCap className="capicon" />
-                            <div className="detailtext"><p>Studied at</p></div>
+                            <div className="detailtext"><p>High School</p></div>
                             <p className="edutext">
                               {props.authState.userProfile.details?.education2}
                             </p>

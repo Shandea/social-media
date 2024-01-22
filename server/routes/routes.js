@@ -16,6 +16,8 @@ module.exports = app => {
     app.get("/user/getProfile", AuthCheck, UserController.getUser)
     app.post("/user/viewProfile", AuthCheck, UserController.viewProfile)
 
+    app.put("/user/updateBanner/:banner", AuthCheck, UserController.updateBanner)
+
 
 
 
