@@ -26,13 +26,39 @@ const ViewProfile = (props) => {
 
   let [profileView, setProfileView] = useState({});
   let { id } = useParams();
+
+  let [friendsList, setFriendsList] = useState([])
+
+
+  // let friends
+
   useEffect(() => {
+
     API.getViewProfile(id).then((res) => {
       console.log("res data", res);
 
       setProfileView(res);
-    });
+      setFriendsList(res.friends)
+    }
+    )
+
+
+    // .then(test => {
+    // if (Object.keys(profileView).length) {
+    //   console.log("profileView", profileView)
+    //   if (profileView.friends) {
+
+    //     console.warn("friends", profileView.friends)
+    //     friends =
+    //       profileView.friends.filter((e) => e.friendStatus === "approved");
+    //     console.log("friends: ", friends)
+    //   }
+    // }
+
+    // })
+
     props.hideOnline();
+
   }, [id]);
 
   const [feeds, setFeeds] = useState([]);
@@ -43,7 +69,11 @@ const ViewProfile = (props) => {
     setBannerImg(banner[Math.floor(Math.random() * banner.length)])
   }, [])
 
-  
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [id]);
+
 
   useEffect(() => {
     axios({
@@ -112,21 +142,27 @@ const ViewProfile = (props) => {
 
   }
 
+  // const friends =
+  //   Object.keys(profileView).length && profileView.friends.filter((e) => e.friendStatus === "approved");
+  // console.log("friends: ", friends);
+
+
   return (
     <>
-      {console.log("img src tag", profileView)}
+      {/* {console.log("img src tag", profileView)}
       {console.log("img src feeds", feeds)}
+      {console.log("friendsLists", friendsList)} */}
       {
         <>
           <div className="header">
             <div className="banner"
-            
-            style={{
-              // backgroundImage: `url(${banner[Math.floor(Math.random() * banner.length)]}), url("http://localhost:5000/public/default.jpeg")`,
-              backgroundImage: `url(${bannerImg}), url("http://localhost:5000/public/default.jpeg")`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: 'cover'
-            }}
+
+              style={{
+                // backgroundImage: `url(${banner[Math.floor(Math.random() * banner.length)]}), url("http://localhost:5000/public/default.jpeg")`,
+                backgroundImage: `url(${bannerImg}), url("http://localhost:5000/public/default.jpeg")`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: 'cover'
+              }}
 
             >
               <div className="topbannernav"></div>
@@ -153,8 +189,8 @@ const ViewProfile = (props) => {
               <p>College {profileView?.details?.education || ""}</p>
             </div>
             <div className="aligndiv">
-            <div><GiGraduateCap className="capicon" /></div>
-            <p>High School {profileView?.details?.education || ""}</p>
+              <div><GiGraduateCap className="capicon" /></div>
+              <p>High School {profileView?.details?.education || ""}</p>
             </div>
             <div className="aligndiv">
               <div><FaHouse className="capicon" /></div>
@@ -188,21 +224,21 @@ const ViewProfile = (props) => {
 
           {/* <AddFeed /> */}
           <div className="photos card">
-                  <div className="intro">Photos</div>
-                  <div className="photocontainer">
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                  </div>
-                </div>
+            <div className="intro">Photos</div>
+            <div className="photocontainer">
+              <div className="photoimg"></div>
+              <div className="photoimg"></div>
+              <div className="photoimg"></div>
+              <div className="photoimg"></div>
+              <div className="photoimg"></div>
+              <div className="photoimg"></div>
+            </div>
+          </div>
 
-                <div className="friends card">
-                  <div className="intro">Friends</div>
-                  <div className="photocontainer">
-                    <div className="friendimgcontainer">
+          <div className="friends card">
+            <div className="intro">Friends</div>
+            <div className="photocontainer">
+              {/* <div className="friendimgcontainer">
                     <div className="photoimg1"></div>
                     <div className="usernametext">Friends name</div>
                     </div>
@@ -233,10 +269,56 @@ const ViewProfile = (props) => {
                     <div className="friendimgcontainer">
                     <div className="photoimg1"></div>
                     <div className="usernametext">Friends name</div>
+                    </div> */}
+
+              {friendsList.filter((item) => item.friendStatus === 'approved').map((friend, i) => {
+
+                return (
+                 <div key={i} className="acceptedfriend">
+                      {/* <h4>{friend.username}</h4> */}
+                      <Link to={`/profile/${friend.userId}`}>
+                        <div
+                          className="friendimages"
+                          style={{
+                            backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                          }}
+                        ></div>
+                        {/* <img className="friendimages"
+                      src={`http://localhost:5000${friend.profileImg}`}
+                      alt="friendProfileImg"
+                    /> */}
+                      </Link>
+
+                      <p className="name2">{friend.username}</p>
+
+                      <p className="name1">
+                        {friend.firstName} {friend.lastName}
+                      </p>
+
+                 
+
+                        {/* <button className="btn1">Block</button> */}
+                        {/* <button
+                          id={friend.userId}
+                          onClick={(e) => handleFriendStatus(e)}
+                          className="btn1"
+                        >
+                          Remove
+                        </button> */}
+                      {/* </div> */}
                     </div>
-                    
-                  </div>
-                </div>
+                )
+              }
+
+              )}
+
+
+
+
+            </div>
+          </div>
 
           <div
             className="feedContainer"
