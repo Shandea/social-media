@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { FaShare } from "react-icons/fa";
-import { FaPhotoFilm } from "react-icons/fa6";
-import { MdOutlineEmojiEmotions } from "react-icons/md";
+
 import { connect } from 'react-redux'
 
 import AddFeedActions from '../addFeedActions/AddFeedActions'

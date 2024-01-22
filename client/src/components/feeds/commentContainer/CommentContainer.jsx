@@ -48,7 +48,7 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
 
                             <div className='friendimg'
                                 style={{
-                                    border: 'solid black 2px',
+                                    
                                     display: 'flex',
                                     justifyContent: 'center',
                                     height: '30px',
@@ -89,7 +89,7 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
                         <div id="FeedImage"
 
                             style={{
-                                border: 'solid black 2px',
+                                // border: 'solid black 2px',
                                 display: 'flex',
                                 justifyContent: 'center',
                                 height: '200px',
@@ -139,7 +139,7 @@ function CommentContainer({ obj, authState, item, handleAddLike, handleSetFeeds 
                 {viewComment && item.comments.map((item, i) => {
                     return (
                         <div id="feed-comment"
-                            style={{ marginTop: "20px" }}
+                            style={{ marginTop: "15px" }}
                         >
                             <CommentContainer
                                 // <Feed
