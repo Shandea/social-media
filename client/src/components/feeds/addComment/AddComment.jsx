@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import "./addComment.css"
 import axios from 'axios'
 
 const AddComment = ({ authState, obj, handleSetFeeds }) => {
@@ -61,7 +61,7 @@ const AddComment = ({ authState, obj, handleSetFeeds }) => {
                 <div className='userimg'
 
                     style={{
-                        border: 'solid black 2px',
+                        // border: 'solid black 2px',
                         display: 'flex',
                         justifyContent: 'center',
                         height: '20px',
@@ -80,7 +80,7 @@ const AddComment = ({ authState, obj, handleSetFeeds }) => {
                     type="text"
                     value={addComment.content || ""}
                     name="content"
-                    className='input1'
+                    className='commentinput'
                     placeholder='  Write a comment...'
                     onChange={(e) => handleChange(e)}
 
@@ -88,11 +88,11 @@ const AddComment = ({ authState, obj, handleSetFeeds }) => {
 
 
                 <button
-                style={{width: "30px", height: "30px", borderRadius: '25px'}}
+                className='commentbtn'
                     onClick={(e) => handleAddComment(e)}
                     type="click"
                     placeholder='add'
-                    >add</button>
+                    >Comment</button>
 
             </div>
 
