@@ -30,6 +30,13 @@ const handleProfileUpdate = (e)=>{
    <div className='imguploaddiv'>
     <ImageUpload/>
 </div>
+<div className='editimg3'>
+  Cover Photo
+    {/* <img src={""} alt="" className='editpp'/> */}
+   </div>
+   <div className='imguploaddiv'>
+    <ImageUpload/>
+</div>
     <div>
       <form onSubmit={handleProfileUpdate} className='editprofileform'>
 

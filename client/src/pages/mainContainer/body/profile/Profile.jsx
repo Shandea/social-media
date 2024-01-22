@@ -9,6 +9,7 @@ import { IoCameraOutline } from "react-icons/io5";
 import { GiGraduateCap } from "react-icons/gi";
 import { FaHouse } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
+import { HiCamera } from "react-icons/hi2";
 
 import {
   showOnline,
@@ -164,8 +165,8 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
             <div className="header">
               <div className="banner">
                 <div className="topbannernav">
-                  <div className="arrow">
-                    <MdDoubleArrow onClick={showMeOnline} />
+                  <div className="arrow" onClick={getEditProfile}>
+                  <HiCamera />
                   </div>
                 </div>
               </div>
@@ -413,12 +414,39 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
                 <div className="friends card">
                   <div className="intro">Friends</div>
                   <div className="photocontainer">
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    
                   </div>
                 </div>
                 </div>

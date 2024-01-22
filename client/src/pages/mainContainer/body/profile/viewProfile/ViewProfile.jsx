@@ -165,7 +165,56 @@ const ViewProfile = (props) => {
 
 
           {/* <AddFeed /> */}
+          <div className="photos card">
+                  <div className="intro">Photos</div>
+                  <div className="photocontainer">
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                    <div className="photoimg"></div>
+                  </div>
+                </div>
 
+                <div className="friends card">
+                  <div className="intro">Friends</div>
+                  <div className="photocontainer">
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    <div className="friendimgcontainer">
+                    <div className="photoimg1"></div>
+                    <div className="usernametext">Friends name</div>
+                    </div>
+                    
+                  </div>
+                </div>
 
           <div
             className="feedContainer"
