@@ -13,68 +13,68 @@ module.exports = {
 
     register: (req, res) => {
         console.log("register attempt", req.body)
-let userNameAttempt = req.body.username
+        let userNameAttempt = req.body.username
         User.findOne({ email: req.body.email })
             .then(found => {
                 // console.log("Duplicate Email Attempt")
                 // if (!req.body.password) {
-                    //     res.json("Register error, please fill out fields")
-                    // }
-                    
-                    if (found) {
+                //     res.json("Register error, please fill out fields")
+                // }
+
+                if (found) {
                     console.log("\n\nDuplicate Email Attempt\n\n")
                     res.json({ message: "Duplicate Email" })
 
                 } else {
                     User.findOne({ username: userNameAttempt })
-                    .then(found => {
-                        console.log('\nFound: \n',found)
-                        // if (!req.body.password) {
+                        .then(found => {
+                            console.log('\nFound: \n', found)
+                            // if (!req.body.password) {
                             //     res.json("Register error, please fill out fields")
                             // }
-                            
+
                             if (found) {
-                            console.log("\n\nDuplicate Username Attempt\n\n")
-                            return res.json({ message: "Duplicate Username" })
-        
-                        } else {
-                    const hash = bcrypt.hashSync(req.body.password, 10)
-                    const newUser = new User({
-                        username: req.body.username,
-                        email: req.body.email,
-                        password: hash,
-                        location: {
-                            city: req.body.location.city,
-                            state: req.body.location.state,
-                            zipcode: req.body.location.zipcode
-                        },
-                        // secretAnswer: req.body.secretAnswer,
-                        // secretQuestion: req.body.secretQuestion,
-                        gender: req.body.gender,
-                        birthDate: req.body.birthDate,
-                        phone: req.body.phone,
-                        firstName: req.body.firstname,
-                        lastName: req.body.lastname,
-                        profileImg: `/public/default.jpeg`,
-                        isOnline: true
+                                console.log("\n\nDuplicate Username Attempt\n\n")
+                                return res.json({ message: "Duplicate Username" })
 
-                    })
-                
-                    User.create(newUser)
-                        .then(created => {
-                            console.log("created User", created)
+                            } else {
+                                const hash = bcrypt.hashSync(req.body.password, 10)
+                                const newUser = new User({
+                                    username: req.body.username,
+                                    email: req.body.email,
+                                    password: hash,
+                                    location: {
+                                        city: req.body.location.city,
+                                        state: req.body.location.state,
+                                        zipcode: req.body.location.zipcode
+                                    },
+                                    // secretAnswer: req.body.secretAnswer,
+                                    // secretQuestion: req.body.secretQuestion,
+                                    gender: req.body.gender,
+                                    birthDate: req.body.birthDate,
+                                    phone: req.body.phone,
+                                    firstName: req.body.firstname,
+                                    lastName: req.body.lastname,
+                                    profileImg: `/public/default.jpeg`,
+                                    isOnline: true
 
-                            const token = jwt.sign({ userId: created._id, username: created.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
+                                })
 
-                            console.log("token", token, created)
-                            return res.cookie('jwt', token, { httpOnly: true, secure: false, maxAge: 3600000 }).status(200).json({ message: "Logged in successfully", token: token, user: created })
-                            // res.json({ message: "Success", User: created })
+                                User.create(newUser)
+                                    .then(created => {
+                                        console.log("created User", created)
 
-                            // on successful reg, give a jwt and auth to site
+                                        const token = jwt.sign({ userId: created._id, username: created.username }, process.env.SECRET_KEY, { expiresIn: 3600000 })
+
+                                        console.log("token", token, created)
+                                        return res.cookie('jwt', token, { httpOnly: true, secure: false, maxAge: 3600000 }).status(200).json({ message: "Logged in successfully", token: token, user: created })
+                                        // res.json({ message: "Success", User: created })
+
+                                        // on successful reg, give a jwt and auth to site
+                                    })
+
+                            }
                         })
-
-                    }
-                })
 
 
                 }
@@ -291,9 +291,9 @@ let userNameAttempt = req.body.username
                                         filter2[0].friendStatus = "removed"
                                         userFound.save()
 
-                                //         // filter2.save()
-                                //         // socket.emit("addFriend", userFound._id)
-                                //         // res.json(found)
+                                        //         // filter2.save()
+                                        //         // socket.emit("addFriend", userFound._id)
+                                        //         // res.json(found)
                                     }
 
 
@@ -382,12 +382,12 @@ let userNameAttempt = req.body.username
                 }
                 let filter = { _id: { $ne: id } };
                 // console.log("filter find query", filter)
-    
+
                 if (queryUsername) {
                     filter.username = { $regex: new RegExp(queryUsername, 'i') };
                 }
                 if (queryGender) {
-                    filter.gender ={ $regex: new RegExp(queryGender, 'i') }; 
+                    filter.gender = { $regex: new RegExp(queryGender, 'i') };
                 }
                 if (queryCity) {
                     filter["location.city"] = { $regex: new RegExp(queryCity, 'i') };
@@ -400,12 +400,12 @@ let userNameAttempt = req.body.username
                 if (queryZipcode) {
                     filter["location.zipcode"] = { $regex: new RegExp(queryZipcode, 'i') };
                 }
-              
-    
+
+
                 User.find(filter)
                     .then(users => {
 
-                        if (!users ) {
+                        if (!users) {
                             return res.json({ message: "No users found" });
                         } else {
                             return res.json(users);
@@ -423,6 +423,18 @@ let userNameAttempt = req.body.username
 
 
 
+    },
+
+
+
+    updateBanner: (req, res) => {
+        console.log("update Banner", req.locals.userId, req.params.banner)
+        User.findById(req.locals.userId)
+            .then(found => {
+                found.bannerImg = req.params.bannerImg
+                found.save()
+            })
+            .catch(err => console.log("err", err))
     }
 
 

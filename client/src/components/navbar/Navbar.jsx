@@ -8,6 +8,7 @@ import { TbDoorExit } from "react-icons/tb";
 import MenuModal from "../Modal/MenuModal";
 import NotificationModal from "../Modal/NotificationModal";
 import FriendModal from "../Modal/FriendModal";
+import OutsideClickHandler from "react-outside-click-handler";
 
 
 
@@ -90,6 +91,9 @@ const handleFriendModal = () => {
   return (
 
     <>
+
+
+          
       {/* {console.log("AUTHstate - NAV", authState)} */}
 
       <div className="navbar">
@@ -97,8 +101,10 @@ const handleFriendModal = () => {
           <div onClick={() => nav("/feed")} >
             <img src={logo1} alt="logo" className="logo1" />
           </div>
-          <div className="search2"><IoSearch onClick={() => handleFriendModal()}/></div>
 
+ 
+          <div className="search2"><IoSearch onClick={() => handleFriendModal()}/></div>
+          
           {/* moved the link of find friends to this left side
                 wasnst sure how i was going to make that search input type an input for that page..
                 solution at hand         
@@ -227,9 +233,27 @@ const handleFriendModal = () => {
           </div>
         </div>
       </div>
+      <OutsideClickHandler 
+        onOutsideClick={() => {
+          setMenuModal(false)
+        }}
+        >
       {menuModal ? <MenuModal /> : null}
+      </OutsideClickHandler>
+      <OutsideClickHandler 
+        onOutsideClick={() => {
+          setNotificationModal(false)
+        }}
+        >
       {notificationModal ? <NotificationModal /> : null}
+      </OutsideClickHandler>
+      <OutsideClickHandler 
+        onOutsideClick={() => {
+          setFriendModal(false)
+        }}
+        >
       {friendModal ? <FriendModal /> : null}
+      </OutsideClickHandler>
     </>
   )
 }

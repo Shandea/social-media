@@ -41,6 +41,8 @@ const UserSchema = new Schema({
     hobbies: [String],
     profileImg: String,
 
+
+    
     feeds: [{ type: Schema.Types.ObjectId, ref: 'Feeds' }],
     messages: [{
         queryId: String,

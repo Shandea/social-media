@@ -23,6 +23,18 @@ import EditProfile from "./editProfile/EditProfile";
 import FeedContainer from "../../../../components/feeds/feedContainer/FeedContainer";
 import AddFeed from "../../../../components/feeds/addFeed/AddFeed";
 
+import BannerSelect from "./bannerSelect/BannerSelect";
+
+
+
+// import banner2 from "http://localhost:5000/public/banner/banner2.jpg"
+// import banner3 from "http://localhost:5000/public/banner/banner3.jpg"
+// import banner4 from "http://localhost:5000/public/banner/banner4.jpg"
+// import banner5 from "http://localhost:5000/public/banner/banner5.jpg"
+// import banner6 from "http://localhost:5000/public/banner/banner6.jpg"
+
+
+
 const dimensions = {
   width: "100%",
   height: "100%",
@@ -44,6 +56,15 @@ const Profile = (props) => {
   let [editBios, setEditBios] = useState(false);
   let [editDetails, setEditDetails] = useState(false);
 
+  let [bannerImg, setBannerImg] = useState("")
+
+  useEffect(() => {
+    setBannerImg(banner[Math.floor(Math.random() * banner.length)])
+  }, [])
+
+
+
+  let banner = ["http://localhost:5000/public/banner/banner1.jpg", "http://localhost:5000/public/banner/banner2.jpg", "http://localhost:5000/public/banner/banner3.jpg", "http://localhost:5000/public/banner/banner4.jpg", "http://localhost:5000/public/banner/banner5.jpg", "http://localhost:5000/public/banner/banner6.jpg"]
 
   useEffect(() => {
     axios({
@@ -136,17 +157,17 @@ const Profile = (props) => {
   const handlebiosUpdate = (e) => {
     e.preventDefault();
     // console.log("got here___", props.authState)
-// console.warn('FIRING THE UPDATE BIO API: \n\n', props.authState)
-// if(props.authState.details.education == ""){
-//   props.authState.details.education = ' '
-//   props.authState.details.education2 = ' '
-//   props.authState.details.maritalStatus = ' '
-//   props.authState.details.localInfo = ' '
-// }
-// if(props.authState.bio == ""){
-//   props.authState.bio = ' '
-// }
-console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
+    // console.warn('FIRING THE UPDATE BIO API: \n\n', props.authState)
+    // if(props.authState.details.education == ""){
+    //   props.authState.details.education = ' '
+    //   props.authState.details.education2 = ' '
+    //   props.authState.details.maritalStatus = ' '
+    //   props.authState.details.localInfo = ' '
+    // }
+    // if(props.authState.bio == ""){
+    //   props.authState.bio = ' '
+    // }
+    console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
     API.updateProfileBio(props.authState);
     setEditBios(false);
     setEditDetails(false);
@@ -157,16 +178,32 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
     <>
       {/* {console.log("img src tag", srcStr)} */}
       {/* {console.log("profile page page", feeds)} */}
+
+      {/* {console.log("dsag", Math.floor(Math.random(banner.length)))} */}
       {editProfile ? (
         <EditProfile backtoProfile={backtoProfile} />
       ) : (
         <>
           <>
             <div className="header">
-              <div className="banner">
+              <div className="banner"
+
+                style={{
+                  // backgroundImage: `url(${banner[Math.floor(Math.random() * banner.length)]}), url("http://localhost:5000/public/default.jpeg")`,
+                  backgroundImage: `url(${bannerImg}), url("http://localhost:5000/public/default.jpeg")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: 'cover'
+                }}
+
+
+              >
                 <div className="topbannernav">
-                  <div className="arrow" onClick={getEditProfile}>
-                  <HiCamera />
+                  <div className="arrow"
+                  // onClick={getEditProfile}
+                  // onClick={nav("")}
+
+                  >
+                    <HiCamera />
                   </div>
                 </div>
               </div>
@@ -201,79 +238,190 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
             </div>
             <div className="mainprofilecontainer">
               <div className="profileleft">
-<div className="leftleft1">
+                <div className="leftleft1">
 
 
-                <div className="card">
-                  <div className="intro">Intro</div>
-                  <div className="innerleft">
-                    {editBios == true ? (
-                      <>
-                        <form onSubmit={handlebiosUpdate} style={dimensions}>
-                          <h2 className="bioheader1">Bio</h2>
+                  <div className="card">
+                    <div className="intro">Intro</div>
+                    <div className="innerleft">
+                      {editBios == true ? (
+                        <>
+                          <form onSubmit={handlebiosUpdate} style={dimensions}>
+                            <h2 className="bioheader1">Bio</h2>
 
-                          <input
-                            className="bioinput"
-                            placeholder="Describe who you are!"
-                            name="bio"
-                            defaultValue={
-                              props.authState.userProfile.details?.bio || ""
-                            }
-                            onChange={(e) => props.handleInputChange(e.target)}
-                          />
-                          <div className="bottombiobtns">
-                            <div className="biobtnleft">
-                              <button
-                                onClick={() => setEditBios(!editBios)}
-                                className="biobtn1"
-                              >
-                                CANCEL
-                              </button>
+                            <input
+                              className="bioinput"
+                              placeholder="Describe who you are!"
+                              name="bio"
+                              defaultValue={
+                                props.authState.userProfile.details?.bio || ""
+                              }
+                              onChange={(e) => props.handleInputChange(e.target)}
+                            />
+                            <div className="bottombiobtns">
+                              <div className="biobtnleft">
+                                <button
+                                  onClick={() => setEditBios(!editBios)}
+                                  className="biobtn1"
+                                >
+                                  CANCEL
+                                </button>
+                              </div>
+                              <div className="biobtnright">
+                                <button type="submit" className="biobtn2">
+                                  {" "}
+                                  UPDATE
+                                </button>
+                              </div>
                             </div>
-                            <div className="biobtnright">
-                              <button type="submit" className="biobtn2">
-                                {" "}
-                                UPDATE
-                              </button>
+                          </form>
+                          <div style={dimensions}>
+                            {/* <h2>Details</h2> */}
+                            <div className="aligndiv1">
+                              <div className="edu">
+                                <GiGraduateCap className="capicon" />
+                                <div className="detailtext"><p>Went to</p></div>
+                                <p className="edutext">
+                                  {props.authState.details?.education}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="aligndiv1">
+                              <div className="edu">
+                                <GiGraduateCap className="capicon" />
+                                <div className="detailtext"><p>Studied at</p></div>
+                                <p className="edutext">
+                                  {props.authState.details?.education2}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="aligndiv1">
+                              <div className="edu">
+                                <FaHouse className="capicon" />
+                                <div className="detailtext"><p>Lives in</p></div>
+                                <p className="edutext">
+                                  {props.authState.details?.localInfo}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="aligndiv1">
+                              <div className="edu">
+                                <FaHeart className="capicon" />
+                                <p className="edutext">
+                                  {props.authState.details?.maritalStatus}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </form>
-                        <div style={dimensions}>
-                          {/* <h2>Details</h2> */}
-                          <div className="aligndiv1">
+                        </>
+                      ) : editDetails == true ? (
+                        <>
+                          <div style={dimensions}>
+                            <h4>bio</h4>
+                            <p>{props.authState.userProfile.details?.bio}</p>
+                          </div>
+
+                          <form onSubmit={handlebiosUpdate} style={dimensions}>
+                            {/* <h4>Details</h4> */}
+                            <label className="bioinputlabels">College</label>
+                            <Inputs className="bioinput2"
+                              name={"details.education"}
+                              defaultValue={
+                                props.authState.userProfile.details?.education ||
+                                ""
+                              }
+                            />
+                            <br />
+                            <label className="bioinputlabels">High School</label>
+                            <Inputs className="bioinput2"
+                              name={"details.education2"}
+                              defaultValue={
+                                props.authState.userProfile.details?.education2 ||
+                                ""
+                              }
+                            />
+                            <br />
+                            <label className="bioinputlabels">Location</label>
+                            <Inputs className="bioinput2"
+                              name={"details.localInfo"}
+                              defaultValue={
+                                props.authState.userProfile.details?.localInfo ||
+                                ""
+                              }
+                            />
+                            <br />
+                            <label className="bioinputlabels">Marital Status</label>
+                            <Inputs className="bioinput2"
+                              name={"details.maritalStatus"}
+                              defaultValue={
+                                props.authState.details.userProfile
+                                  ?.maritalStatus || ""
+                              }
+                            />
+                            <div className="bottombiobtns">
+                              <div className="biobtnleft">
+                                <button className="biobtn1"
+                                  onClick={() => setEditDetails(!editDetails)}
+                                >
+                                  CANCEL
+                                </button>
+                              </div>
+                              <div className="biobtnright">
+                                <button type="submit" className="biobtn2">UPDATE</button>
+                              </div>
+                            </div>
+                          </form>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => setEditBios(!editBios)}
+                            className="biobtn"
+                          >
+                            Add Bio
+                          </button>
+                          <div className="biomiddle">
+                            <p className="biobio">{authState.userProfile.details?.bio}</p>
+                            {/* <h4>bio</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Dignissimos facilis at labore saepe similique
+                          architecto quia id? Veritatis, delectus minus.
+                        </p> */}
+
                             <div className="edu">
                               <GiGraduateCap className="capicon" />
                               <div className="detailtext"><p>Went to</p></div>
                               <p className="edutext">
-                                {props.authState.details?.education}
+                                {props.authState.userProfile.details?.education}
                               </p>
                             </div>
-                          </div>
-                          <div className="aligndiv1">
+
                             <div className="edu">
                               <GiGraduateCap className="capicon" />
                               <div className="detailtext"><p>Studied at</p></div>
                               <p className="edutext">
-                                {props.authState.details?.education2}
+                                {props.authState.userProfile.details?.education2}
                               </p>
                             </div>
-                          </div>
-                          <div className="aligndiv1">
+
                             <div className="edu">
                               <FaHouse className="capicon" />
                               <div className="detailtext"><p>Lives in</p></div>
                               <p className="edutext">
-                                {props.authState.details?.localInfo}
+                                {props.authState.userProfile.details?.localInfo}
                               </p>
                             </div>
-                          </div>
-                          <div className="aligndiv1">
+
                             <div className="edu">
                               <FaHeart className="capicon" />
                               <p className="edutext">
-                                {props.authState.details?.maritalStatus}
+                                {
+                                  props.authState.userProfile.details?.maritalStatus
+                                }
                               </p>
                             </div>
+
                           </div>
                         </div>
                       </>
@@ -385,70 +533,71 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
                             </p>
                           </div>
 
-                          {/* <p>education</p>
+
+                            {/* <p>education</p>
                         <p>location</p>
                         <p>marital status</p> */}
-                        </div>
-                        <button
-                          onClick={() => setEditDetails(!editDetails)}
-                          className="biobtn"
-                        >
-                          edit details
-                        </button>
-                      </>
-                    )}
+                          </div>
+                          <button
+                            onClick={() => setEditDetails(!editDetails)}
+                            className="biobtn"
+                          >
+                            edit details
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="photos card">
-                  <div className="intro">Photos</div>
-                  <div className="photocontainer">
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
-                    <div className="photoimg"></div>
+                  <div className="photos card">
+                    <div className="intro">Photos</div>
+                    <div className="photocontainer">
+                      <div className="photoimg"></div>
+                      <div className="photoimg"></div>
+                      <div className="photoimg"></div>
+                      <div className="photoimg"></div>
+                      <div className="photoimg"></div>
+                      <div className="photoimg"></div>
+                    </div>
                   </div>
-                </div>
 
-                <div className="friends card">
-                  <div className="intro">Friends</div>
-                  <div className="photocontainer">
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
+                  <div className="friends card">
+                    <div className="intro">Friends</div>
+                    <div className="photocontainer">
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+                      <div className="friendimgcontainer">
+                        <div className="photoimg1"></div>
+                        <div className="usernametext">Friends name</div>
+                      </div>
+
                     </div>
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
-                    </div>
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
-                    </div>
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
-                    </div>
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
-                    </div>
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
-                    </div>
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
-                    </div>
-                    <div className="friendimgcontainer">
-                    <div className="photoimg1"></div>
-                    <div className="usernametext">Friends name</div>
-                    </div>
-                    
                   </div>
-                </div>
                 </div>
 
 

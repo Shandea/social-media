@@ -60,11 +60,11 @@ const AddCommentComment = ({ authState, obj, item, handleSetFeeds }) => {
             <div className='userimg'
 
                 style={{
-                    border: 'solid black 2px',
+                    // border: 'solid black 2px',
                     display: 'flex',
                     justifyContent: 'center',
-                    height: '20px',
-                    width: '20px',
+                    height: '25px',
+                    width: '25px',
                     borderRadius: '25px',
                     backgroundImage: `url("http://localhost:5000${authState?.userProfile?.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
                     backgroundRepeat: "no-repeat",

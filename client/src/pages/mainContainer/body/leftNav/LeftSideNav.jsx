@@ -69,15 +69,15 @@ const handleLogout = (e) => {
   <div className="leftnavtext">Messages</div>
 </div>
 
-<div className="leftnavdiv" onClick={() => nav(`/videos/`)}>
+<div className="leftnavdiv" onClick={() => nav(`/feed/`)}>
   <div className="leftnavicon"><LiaFileVideoSolid /></div>
-  <div className="leftnavtext">Videos</div>
+  <div className="leftnavtext">Feeds</div>
 </div>
 
-<div className="leftnavdiv" onClick={() => nav(`/hobby/`)}>
+{/* <div className="leftnavdiv" onClick={() => nav(`/hobby/`)}>
   <div className="leftnavicon"><MdInterests /></div>
   <div className="leftnavtext">Hobbies</div>
-</div>
+</div> */}
 
 <div className="leftnavdiv" onClick={handleLogout}>
   <div className="leftnavicon"><TbLogout /></div>
