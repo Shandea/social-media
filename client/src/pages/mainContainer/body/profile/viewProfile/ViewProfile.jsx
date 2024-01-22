@@ -190,7 +190,7 @@ const ViewProfile = (props) => {
             </div>
             <div className="aligndiv">
               <div><GiGraduateCap className="capicon" /></div>
-              <p>High School {profileView?.details?.education || ""}</p>
+              <p>High School {profileView?.details?.education2 || ""}</p>
             </div>
             <div className="aligndiv">
               <div><FaHouse className="capicon" /></div>
