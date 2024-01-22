@@ -2,8 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./FriendSearch.css";
+import { Link } from "react-router-dom";
 
 const FriendSearch = () => {
+
   let [data, setData] = useState([]);
   let [fieldQuery, setFieldQuery] = useState({ fields: "" });
   const [searchQuery, setSearchQuery] = useState("");
@@ -125,12 +127,14 @@ const FriendSearch = () => {
         <h1 style={{margin: "10px"}}>Search results</h1>
         <div className="searchresults">
         {data.map((foundUser, i) => {
+          console.log("friend search",foundUser)
           return (
+            <Link to={`/profile/${foundUser._id}`}>
             <div key={foundUser._id} className="usercard">
-                <div className="conimg"></div>
-
-                <div className="ufln">
-                    <p className="fl">First & last name</p>
+                {/* <div className="conimg"></div> */}
+                      <img className="conimg" src={`http://localhost:5000${foundUser.profileImg}`} alt="" />
+                <div  className="ufln">
+                    <p className="fl">{`${foundUser.firstName} ${foundUser.lastName}`}</p>
                 <p className="un">{foundUser.username}</p>
                 
               </div>
@@ -139,6 +143,7 @@ const FriendSearch = () => {
                 <div className="OD"></div>
               </div>
             </div>
+            </Link>
           );
         })}
         </div>

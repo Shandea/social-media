@@ -10,9 +10,12 @@ import profilepic from "../../../../../imagess/Profileimage.jpg"
 
 const EditProfile = ({authState,backtoProfile}) => {
 let userPro = authState.userProfile
+
+console.log("userpro",userPro)
 const handleProfileUpdate = (e)=>{
   e.preventDefault()
   API.updateProfile(authState)
+  window.location.reload()
 }
 
   return (
@@ -79,12 +82,12 @@ const handleProfileUpdate = (e)=>{
       <label htmlFor="pronoun" className='editprofilelabels'>Pronoun</label>
       <Inputs className="editprofileinputs"
       name="pronoun"
-      defaultValue={userPro.pronoun}
+      defaultValue={userPro.pronoun || ""}
       />
       <label htmlFor="vibe" className='editprofilelabels'>Vibe</label>
       <Inputs className="editprofileinputs"
       name="vibe"
-      defaultValue={userPro.vibe}
+      defaultValue={userPro.vibe || ""}
       />
       <label htmlFor="gender" className='editprofilelabels'>Gender</label>
       <Inputs className="editprofileinputs"
