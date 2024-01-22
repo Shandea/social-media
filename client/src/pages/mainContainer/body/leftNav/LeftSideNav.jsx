@@ -20,6 +20,8 @@ const socket = io.connect('http://localhost:5000')
 
 const LeftSideNav = ({ profile }) => {
 
+  console.log("left sid e nav",profile)
+
   let nav = useNavigate()
 
 const handleLogout = (e) => {
@@ -41,15 +43,14 @@ const handleLogout = (e) => {
 
 }
 
-
   return (
     <>
       <div >
         <div className="usernameimg" onClick={() => nav("/profile/")}>
-        <div className="userimg1">
-          
-        </div>
-        <div className="username">User Name</div>
+        {/* <div className="userimg1"> */}
+          <img className="userimg1" src={`http://localhost:5000${profile.userProfile.profileImg}`} alt="" />
+        {/* </div> */}
+        <div className="username">{profile.userProfile.username }</div>
         </div>
 
 

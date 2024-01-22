@@ -17,7 +17,7 @@ import axios from 'axios'
 import io from 'socket.io-client'
 const socket = io.connect('http://localhost:5000')
 
-const MenuModal = () => {
+const MenuModal = ({authState}) => {
 
     const nav = useNavigate();
 
@@ -46,10 +46,10 @@ const MenuModal = () => {
     <div className="menuheader"><h1>Menu</h1></div>
     <div >
         <div className="usernameimg1" onClick={() => nav("/profile/")}>
-        <div className="userimg11">
-          
-        </div>
-        <div className="username1">User Name</div>
+        {/* <div className="userimg11"> */}
+          <img className="userimg11" src={`http://localhost:5000${authState.userProfile.profileImg}`} alt="" />
+        {/* </div> */}
+        <div className="username1">{authState.userProfile.username}</div>
         </div>
 
 
@@ -93,4 +93,10 @@ const MenuModal = () => {
   )
 }
 
-export default MenuModal
+const mapStateToProps = (state)=>{
+  return {
+    authState:state.auth
+  }
+}
+
+export default connect(mapStateToProps,null)(MenuModal)
