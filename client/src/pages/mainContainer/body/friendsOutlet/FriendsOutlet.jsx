@@ -118,11 +118,11 @@ const FriendsOutlet = ({ state }) => {
             <div className="accepteddiv">
               {AcceptedFriends2 ? (
                 AcceptedFriends2.map((friend, i) => {
-                  // console.log("accepted frirend console log", friend)
+                  console.log("accepted frirend console log", friend)
                   return (
                     <div key={i} className="acceptedfriend">
                       {/* <h4>{friend.username}</h4> */}
-                      <Link to={`/profile/${friend._id}`}>
+                      <Link to={`/profile/${friend.userId}`}>
                         <div
                           className="friendimages"
                           style={{
