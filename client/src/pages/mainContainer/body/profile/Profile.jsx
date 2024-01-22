@@ -434,48 +434,56 @@ const Profile = (props) => {
                   <div className="friends card">
                     <div className="intro">Friends</div>
                     <div className="photocontainer">
-                      {authState.userProfile && friends.filter((item) => item.friendStatus === 'approved').map((friend, i) => {
+                      {authState?.userProfile?.friends ? 
+                      (
 
-                        return (
-                          <div key={i} className="acceptedfriend">
-                            {/* <h4>{friend.username}</h4> */}
-                            <Link to={`/profile/${friend.userId}`}>
-                              <div
-                                className="friendimages"
-                                style={{
-                                  backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
-                                  backgroundRepeat: "no-repeat",
-                                  backgroundSize: "cover",
-                                }}
-                              ></div>
-                              {/* <img className="friendimages"
-      src={`http://localhost:5000${friend.profileImg}`}
-      alt="friendProfileImg"
-    /> */}
-                            </Link>
-
-                            <p className="name2">{friend.username}</p>
-
-                            <p className="name1">
-                              {friend.firstName} {friend.lastName}
-                            </p>
-
-
-
-                            {/* <button className="btn1">Block</button> */}
-                            {/* <button
-          id={friend.userId}
-          onClick={(e) => handleFriendStatus(e)}
-          className="btn1"
-        >
-          Remove
-        </button> */}
-                            {/* </div> */}
-                          </div>
-                        )
+                        friends.filter((item) => item.friendStatus === 'approved').map((friend, i) => {
+  
+                         return (
+                           <div key={i} className="acceptedfriend">
+                             {/* <h4>{friend.username}</h4> */}
+                             <Link to={`/profile/${friend.userId}`}>
+                               <div
+                                 className="friendimages"
+                                 style={{
+                                   backgroundImage: `url("http://localhost:5000${friend.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
+                                   backgroundRepeat: "no-repeat",
+                                   backgroundSize: "cover",
+                                 }}
+                               ></div>
+                               {/* <img className="friendimages"
+       src={`http://localhost:5000${friend.profileImg}`}
+       alt="friendProfileImg"
+     /> */}
+                             </Link>
+  
+                             <p className="name2">{friend.username}</p>
+  
+                             <p className="name1">
+                               {friend.firstName} {friend.lastName}
+                             </p>
+  
+  
+  
+                             {/* <button className="btn1">Block</button> */}
+                             {/* <button
+           id={friend.userId}
+           onClick={(e) => handleFriendStatus(e)}
+           className="btn1"
+         >
+           Remove
+         </button> */}
+                             {/* </div> */}
+                           </div>
+                         )
+                       }
+  
+                       )
+                      ) 
+                      :
+                       (null) 
+                       
                       }
-
-                      )}
 
                       {/* <div className="friendimgcontainer">
                         <div className="photoimg1"></div>
