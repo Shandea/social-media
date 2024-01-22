@@ -43,10 +43,10 @@ const SearchFeed = ({ handleApiSearch }) => {
 
                     <div className='searchright'>
 
-                        <input className='inputbtn'
-                            type="submit"
+                        <button className='inputbtn'
+                            // type="submit"
                             onClick={(e) => handleApiSearch(e, feedSearch)}
-                        ></input>
+                        >submit</button>
                     </div>
 
                 </div>
