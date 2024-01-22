@@ -422,6 +422,118 @@ const Profile = (props) => {
                               </p>
                             </div>
 
+                          </div>
+                        </div>
+                      </>
+                    ) : editDetails == true ? (
+                      <>
+                        <div style={dimensions}>
+                          <h4>bio</h4>
+                          <p>{props.authState.userProfile.details?.bio}</p>
+                        </div>
+
+                        <form onSubmit={handlebiosUpdate} style={dimensions}>
+                          {/* <h4>Details</h4> */}
+                          <label className="bioinputlabels">College</label>
+                          <Inputs className="bioinput2"
+                            name={"details.education"}
+                            defaultValue={
+                              props.authState.userProfile.details?.education ||
+                              ""
+                            }
+                          />
+                          <br />
+                          <label className="bioinputlabels">High School</label>
+                          <Inputs className="bioinput2"
+                            name={"details.education2"}
+                            defaultValue={
+                              props.authState.userProfile.details?.education2 ||
+                              ""
+                            }
+                          />
+                          <br />
+                          <label className="bioinputlabels">Location</label>
+                          <Inputs className="bioinput2"
+                            name={"details.localInfo"}
+                            defaultValue={
+                              props.authState.userProfile.details?.localInfo ||
+                              ""
+                            }
+                          />
+                          <br />
+                          <label className="bioinputlabels">Marital Status</label>
+                          <Inputs className="bioinput2"
+                            name={"details.maritalStatus"}
+                            defaultValue={
+                              props.authState.details.userProfile
+                                ?.maritalStatus || ""
+                            }
+                          />
+                          <div className="bottombiobtns">
+                            <div className="biobtnleft">
+                            <button className="biobtn1"
+                              onClick={() => setEditDetails(!editDetails)}
+                            >
+                              CANCEL
+                            </button>
+                            </div>
+                            <div className="biobtnright">
+                            <button type="submit" className="biobtn2">UPDATE</button>
+                            </div>
+                          </div>
+                        </form>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => setEditBios(!editBios)}
+                          className="biobtn"
+                        >
+                          Add Bio
+                        </button>
+                        <div className="biomiddle">
+                          <p className="biobio">{authState.userProfile.details?.bio}</p>
+                          {/* <h4>bio</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Dignissimos facilis at labore saepe similique
+                          architecto quia id? Veritatis, delectus minus.
+                        </p> */}
+
+                          <div className="edu">
+                            <GiGraduateCap className="capicon" />
+                            <div className="detailtext"><p>College</p></div>
+                            <p className="edutext">
+                              {props.authState.userProfile.details?.education}
+                            </p>
+                          </div>
+
+                          <div className="edu">
+                            <GiGraduateCap className="capicon" />
+                            <div className="detailtext"><p>High School</p></div>
+                            <p className="edutext">
+                              {props.authState.userProfile.details?.education2}
+                            </p>
+                          </div>
+
+                          <div className="edu">
+                            <FaHouse className="capicon" />
+                            <div className="detailtext"><p>Lives in</p></div>
+                            <p className="edutext">
+                              {props.authState.userProfile.details?.localInfo}
+                            </p>
+                          </div>
+
+                          <div className="edu">
+                            <FaHeart className="capicon" />
+                            <p className="edutext">
+                              {
+                                props.authState.userProfile.details?.maritalStatus
+                              }
+                            </p>
+                          </div>
+
+
                             {/* <p>education</p>
                         <p>location</p>
                         <p>marital status</p> */}

@@ -147,24 +147,24 @@ const ViewProfile = (props) => {
 
           <div className="biodiv">
             <h2 className="bioheader">Intro</h2>
-            <p className="biotext">{profileView?.details?.bio || "I Have No Bio"}</p>
+            <p className="biotext">{profileView?.details?.bio || ""}</p>
             <div className="aligndiv">
               <div><GiGraduateCap className="capicon" /></div>
-              <p>Studied at {profileView?.details?.education || "I Have No Education"}</p>
+              <p>College {profileView?.details?.education || ""}</p>
             </div>
             <div className="aligndiv">
             <div><GiGraduateCap className="capicon" /></div>
-            <p>Went to {profileView?.details?.education || "I Have No Education"}</p>
+            <p>High School {profileView?.details?.education || ""}</p>
             </div>
             <div className="aligndiv">
               <div><FaHouse className="capicon" /></div>
-              <p>Lives In {profileView?.details?.localInfo || "I Have No Local Info"}</p>
+              <p>Lives In {profileView?.details?.localInfo || ""}</p>
             </div>
             <div className="aligndiv">
               <div><FaHeart className="capicon" /></div>
               <p>
 
-                {profileView.details?.maritalStatus || "Single"}
+                {profileView.details?.maritalStatus || ""}
               </p>
             </div>
             <hr className="line" />
