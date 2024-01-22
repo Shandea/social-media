@@ -12,7 +12,7 @@ const ContactCard = ({ item, contact, profile, allMsg, queryId, authState }) => 
 
   return (
     <>
- 
+ {console.log("item", item)}
       <Link to={`/messages/${item.userId}`}>
 
         <div className="contactcardcontainer">

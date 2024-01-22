@@ -37,8 +37,14 @@ const MessagesComponent = ({ authState }) => {
   const [userSearch, setUserSearch] = useState(authState.userProfile.messages)
 
 
-  const profile = authState.userProfile.messages
+  // const profile = authState.userProfile.messages
 
+
+  const [profile, setProfile] = useState()
+
+  useEffect(() => {
+    setProfile(authState.userProfile.messages)
+  })
 
   // ref={messagesEndRef}
 
@@ -208,7 +214,7 @@ const MessagesComponent = ({ authState }) => {
       {/* {console.log("test", test)} */}
       {/* {console.log("Message Comp - authSt", authState)} */}
       {/* {console.warn("msg input", message)} */}
-      {/* {console.log("userSearch", userSearch)} */}
+      {console.log("userSearch", userSearch)}
 
 
 
@@ -257,9 +263,9 @@ const MessagesComponent = ({ authState }) => {
             {userSearch
               ?
               (
-                userSearch && userSearch.sort((a,b)=> Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((item, i) => {
-// {console.log("ETST", userSearch.sort((a,b)=> Date.parse(a.createdAt) - Date.parse(b.createdAt)))}                  //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
-                  //  console.log("MAP ==> ",item )
+                userSearch && userSearch.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((item, i) => {
+                  // {console.log("ETST", userSearch.sort((a,b)=> Date.parse(a.createdAt) - Date.parse(b.createdAt)))}                  //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
+                  console.log("MAP ==> ", item)
 
                   return (
 
@@ -277,7 +283,7 @@ const MessagesComponent = ({ authState }) => {
               (
 
 
-                profile && profile.sort((a,b)=> Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((item, i) => {
+                profile && profile.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).map((item, i) => {
 
                   //  console.log("MAP ==> ", profile.filter((user) => user.queryId === queryId))
                   //  console.log("MAP ==> ", queryId)

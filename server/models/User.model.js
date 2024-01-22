@@ -52,7 +52,8 @@ const UserSchema = new Schema({
         profileImg: String,
         recent: String,
         fromUser: String,
-        createdAt: Date
+        createdAt: Date,
+        renderCount: Number
     }],
 
 
