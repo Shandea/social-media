@@ -19,6 +19,11 @@ import FriendStatus from "../../../../../components/friends/friendStatus/FriendS
 const ViewProfile = (props) => {
   console.log(props.authState);
 
+
+
+
+  let banner = ["http://localhost:5000/public/banner/banner1.jpg", "http://localhost:5000/public/banner/banner2.jpg", "http://localhost:5000/public/banner/banner3.jpg", "http://localhost:5000/public/banner/banner4.jpg", "http://localhost:5000/public/banner/banner5.jpg", "http://localhost:5000/public/banner/banner6.jpg"]
+
   let [profileView, setProfileView] = useState({});
   let { id } = useParams();
   useEffect(() => {
@@ -31,6 +36,14 @@ const ViewProfile = (props) => {
   }, [id]);
 
   const [feeds, setFeeds] = useState([]);
+
+  let [bannerImg, setBannerImg] = useState("")
+
+  useEffect(() => {
+    setBannerImg(banner[Math.floor(Math.random() * banner.length)])
+  }, [])
+
+  
 
   useEffect(() => {
     axios({
@@ -106,7 +119,16 @@ const ViewProfile = (props) => {
       {
         <>
           <div className="header">
-            <div className="banner">
+            <div className="banner"
+            
+            style={{
+              // backgroundImage: `url(${banner[Math.floor(Math.random() * banner.length)]}), url("http://localhost:5000/public/default.jpeg")`,
+              backgroundImage: `url(${bannerImg}), url("http://localhost:5000/public/default.jpeg")`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: 'cover'
+            }}
+
+            >
               <div className="topbannernav"></div>
             </div>
           </div>
