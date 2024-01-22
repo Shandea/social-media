@@ -354,7 +354,7 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
 
                           <div className="edu">
                             <GiGraduateCap className="capicon" />
-                            <div className="detailtext"><p>Went to</p></div>
+                            <div className="detailtext"><p>College</p></div>
                             <p className="edutext">
                               {props.authState.userProfile.details?.education}
                             </p>
@@ -362,7 +362,7 @@ console.warn('FIRING THE UPDATE BIO API AFTER CHANGES: \n\n', props.authState)
 
                           <div className="edu">
                             <GiGraduateCap className="capicon" />
-                            <div className="detailtext"><p>Studied at</p></div>
+                            <div className="detailtext"><p>High School</p></div>
                             <p className="edutext">
                               {props.authState.userProfile.details?.education2}
                             </p>
