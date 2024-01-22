@@ -94,8 +94,8 @@ const API = {
     // console.log("firing update profile", info)
     let profileInfo = {
       firstName:info?.firstname ? info.firstname: info.userProfile.firstName,
-      lastName:info?.firstname ? info.lastname: info.userProfile.lastName,
-      email:info?.firstname ? info.email: info.userProfile.email,
+      lastName:info?.lastname ? info.lastname: info.userProfile.lastName,
+      email:info?.email ? info.email: info.userProfile.email,
       phone:info?.phone ? info.phone: info.userProfile.phone,
       location:{
         city:info?.location.city ? info.location.city: info.userProfile.location.city,
