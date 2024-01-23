@@ -52,21 +52,21 @@ const LandingPageSignup = ({ authState, getCreateAcct, handleInputsAuth }) => {
 
 
   const handleSubmit = (e, reg) => {
-    console.log("my state", authState);
+    // console.log("my state", authState);
     e.preventDefault();
 
     //created api folder... check config folder
 
     // this line is to make the phone number straight numbers. Gotta rember to format it other places -graham
     authState.phone = authState.phone.replace(/[^\d]/g, "");
-    console.warn("AUTHSTATE BEING SENT:\n", authState);
+    // console.warn("AUTHSTATE BEING SENT:\n", authState);
     API.register(authState).then((res) => {
       // console.log("reg res", res);
       if (res.message == "Logged in successfully") {
         nav("/feed");
       } else {
         setServerResponse(res.message)
-        console.log('\n\nserverResponse: \n\n', serverResponse)
+        // console.log('\n\nserverResponse: \n\n', serverResponse)
       }
     });
   };
