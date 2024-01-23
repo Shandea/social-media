@@ -440,8 +440,8 @@ const Profile = (props) => {
                         friends.filter((item) => item.friendStatus === 'approved').map((friend, i) => {
   
                          return (
-                           <div key={i} className="acceptedfriend">
-                             {/* <h4>{friend.username}</h4> */}
+                           <div key={i} className="acceptedfriend2">
+                       
                              <Link to={`/profile/${friend.userId}`}>
                                <div
                                  className="friendimages"
@@ -451,29 +451,17 @@ const Profile = (props) => {
                                    backgroundSize: "cover",
                                  }}
                                ></div>
-                               {/* <img className="friendimages"
-       src={`http://localhost:5000${friend.profileImg}`}
-       alt="friendProfileImg"
-     /> */}
-                             </Link>
+                  </Link>
   
-                             <p className="name2">{friend.username}</p>
+                             <p className="name22">{friend.username}</p>
   
-                             <p className="name1">
+                             <p className="name11">
                                {friend.firstName} {friend.lastName}
                              </p>
   
   
   
-                             {/* <button className="btn1">Block</button> */}
-                             {/* <button
-           id={friend.userId}
-           onClick={(e) => handleFriendStatus(e)}
-           className="btn1"
-         >
-           Remove
-         </button> */}
-                             {/* </div> */}
+       
                            </div>
                          )
                        }
@@ -485,39 +473,7 @@ const Profile = (props) => {
                        
                       }
 
-                      {/* <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div>
-                      <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div>
-                      <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div>
-                      <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div>
-                      <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div>
-                      <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div>
-                      <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div>
-                      <div className="friendimgcontainer">
-                        <div className="photoimg1"></div>
-                        <div className="usernametext">Friends name</div>
-                      </div> */}
-
+                     
                     </div>
                   </div>
                 </div>
