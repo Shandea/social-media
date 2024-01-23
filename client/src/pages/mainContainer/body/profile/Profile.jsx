@@ -166,9 +166,9 @@ const Profile = (props) => {
 
   return (
     <>
-      {/* {console.log("img src tag", srcStr)} */}
-      {/* {console.log('firends', friends)}
-      {console.log("profile page page", authState)} */}
+      {/* {console.log("img src tag", srcStr)} */} 
+     {console.log('firends', friends)} 
+      {console.log("profile page page", authState)}
       {editProfile ? (
         <EditProfile backtoProfile={backtoProfile} />
       ) : (
