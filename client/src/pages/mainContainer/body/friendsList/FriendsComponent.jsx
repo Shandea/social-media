@@ -30,7 +30,7 @@ const FriendsComponent = ({ getAll }) => {
       withCredentials: true
     })
       .then(res => {
-        console.log("res", res)
+        // console.log("res", res)
         setUsers(res.data)
       })
 
@@ -38,7 +38,7 @@ const FriendsComponent = ({ getAll }) => {
 
     // useEffect(() => {
     socket.on("updateLoggedIn", data => {
-      console.log("user loggin in")
+      // console.log("user loggin in")
       axios({
         method: "GET",
         url: 'http://localhost:5000/user/all',
@@ -50,7 +50,7 @@ const FriendsComponent = ({ getAll }) => {
 
 
     socket.on("updateLoggedOut", data => {
-      console.log("user loggin out")
+      // console.log("user loggin out")
 
       axios({
         method: "GET",

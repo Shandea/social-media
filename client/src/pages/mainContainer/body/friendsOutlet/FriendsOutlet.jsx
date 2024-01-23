@@ -32,7 +32,7 @@ const FriendsOutlet = ({ state }) => {
       url: `http://localhost:5000/user/getProfile`,
       withCredentials: true,
     }).then((res) => {
-      console.warn("PROFILE", res);
+      // console.warn("PROFILE", res);
       setFriends(res.data.friends);
     });
   }, []);
@@ -45,13 +45,13 @@ const FriendsOutlet = ({ state }) => {
       url: "http://localhost:5000/user/all",
       withCredentials: true,
     }).then((res) => {
-      console.log("res", res);
+      // console.log("res", res);
       setUsers(res.data);
     });
   }, []);
 
   const handleFriendStatus = (e) => {
-    console.log("HandleAdd Fre ===> ", e.target.id);
+    // console.log("HandleAdd Fre ===> ", e.target.id);
     axios({
       method: "post",
       withCredentials: true,
@@ -59,7 +59,7 @@ const FriendsOutlet = ({ state }) => {
       data: { id: e.target.id },
     })
       .then((res) => {
-        console.warn("FRIEND ADD STATUE =====> ", res);
+        // console.warn("FRIEND ADD STATUE =====> ", res);
         setFriends(res.data.friends);
       })
       .catch((err) => console.log("err", err));
@@ -76,19 +76,19 @@ const FriendsOutlet = ({ state }) => {
 
   const PendingFriends2 =
     friends && friends.filter((e) => e.friendStatus === "requested");
-  console.log("PendingFriends2: ", PendingFriends2);
+  // console.log("PendingFriends2: ", PendingFriends2);
 
   const AcceptedFriends2 =
     friends && friends.filter((e) => e.friendStatus === "approved");
-  console.log("AcceptedFriends2: ", AcceptedFriends2);
+  // console.log("AcceptedFriends2: ", AcceptedFriends2);
 
   const BlockedFriends2 =
     friends && friends.filter((e) => e.friendStatus === "Blocked");
-  console.log("BlockedFriends2: ", BlockedFriends2);
+  // console.log("BlockedFriends2: ", BlockedFriends2);
 
   const RequestedFriends2 =
     friends && friends.filter((e) => e.friendStatus === "pending");
-  console.log("RequestedFriends2: ", RequestedFriends2);
+  // console.log("RequestedFriends2: ", RequestedFriends2);
 
   const RemovedFriends2 =
     friends && friends.filter((e) => e.friendStatus === "removed");
@@ -99,17 +99,17 @@ const FriendsOutlet = ({ state }) => {
   // const filteredUsers = users.filter((item) => itefriends ))
   // console.warn('Users', users)
   const friendMapIds = friends.map((item) => item.userId);
-  console.log("WTF", friendMapIds);
+  // console.log("WTF", friendMapIds);
   const uniqueUsers = users.filter((item) => !friendMapIds.includes(item._id));
-  console.warn("uniqueUsers", uniqueUsers);
+  // console.warn("uniqueUsers", uniqueUsers);
 
   return (
     <div className="friendsoutletcontainer">
       {/* {console.warn("REDUX FRIENDS: ", state.userProfile.friends)} */}
-      {console.warn("FRIENDS", friends)}
+      {/* {console.warn("FRIENDS", friends)} */}
       {/* {console.log("filteredUsers", filteredUsers)} */}
-      {console.log("friends", friends)}
-      {console.log("users", users)}
+      {/* {console.log("friends", friends)} */}
+      {/* {console.log("users", users)} */}
 
       <div className="currentfriends">
         {AcceptedFriends2.length > 0 ? (
@@ -118,7 +118,7 @@ const FriendsOutlet = ({ state }) => {
             <div className="accepteddiv">
               {AcceptedFriends2 ? (
                 AcceptedFriends2.map((friend, i) => {
-                  console.log("accepted frirend console log", friend)
+                  // console.log("accepted frirend console log", friend)
                   return (
                     <div key={i} className="acceptedfriend">
                       {/* <h4>{friend.username}</h4> */}
@@ -177,7 +177,7 @@ const FriendsOutlet = ({ state }) => {
             <div className="requestsdiv">
               {PendingFriends2 ? (
                 PendingFriends2.map((friend, i) => {
-                  console.log("pending", friend);
+                  // console.log("pending", friend);
                   return (
                     <div key={i} className="pendingfriend">
                       {/* <h6>{friend.username}</h6> */}
