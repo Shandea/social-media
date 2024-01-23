@@ -126,7 +126,8 @@ const AddFeed = ({ authState, handleSetFeeds }) => {
                         style={{
                             backgroundImage: `url("http://localhost:5000${authState.userProfile.profileImg}"), url("http://localhost:5000/public/default.jpeg")`,
                             backgroundRepeat: 'no-repeat',
-                            backgroundSize: 'cover'
+                            backgroundSize: 'cover',
+                            border: "none"
                         }}
 
                     >
