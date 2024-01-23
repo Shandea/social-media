@@ -227,11 +227,12 @@ const ViewProfile = (props) => {
             <div className="intro">Photos</div>
             <div className="photocontainer">
               <div className="photoimg"></div>
-              <div className="photoimg"></div>
-              <div className="photoimg"></div>
-              <div className="photoimg"></div>
-              <div className="photoimg"></div>
-              <div className="photoimg"></div>
+              <div className="photoimg1"></div>
+              <div className="photoimg2"></div>
+              <div className="photoimg3"></div>
+              <div className="photoimg4"></div>
+              <div className="photoimg5"></div>
+              <div className="photoimg6"></div>
             </div>
           </div>
 

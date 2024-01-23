@@ -313,11 +313,78 @@ height: 250px;
 border-radius: 10px;
 border: solid 1px rgba(128, 128, 128, 0.43);
 margin: 5px;
-background-image: url("../../../../imagess/hacker6.png");
+background-image: url("../../../../imagess/Elon.jpg");
 background-size: contain;
+
 }
 
 .photoimg1 {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    border: solid 1px rgba(128, 128, 128, 0.43);
+    margin: 5px;
+    background-image: url("../../../../imagess/Taylor.jpg");
+    background-size: contain;
+  
+    }
+
+    .photoimg2 {
+        width: 250px;
+        height: 250px;
+        border-radius: 10px;
+        border: solid 1px rgba(128, 128, 128, 0.43);
+        margin: 5px;
+        background-image: url("../../../../imagess/Scarjo.jpg");
+        background-size: contain;
+    
+        }
+
+        .photoimg3 {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            border: solid 1px rgba(128, 128, 128, 0.43);
+            margin: 5px;
+            background-image: url("../../../../imagess/Pooh.jpg");
+            background-size: contain;
+      
+            }
+
+            .photoimg4 {
+                width: 250px;
+                height: 250px;
+                border-radius: 10px;
+                border: solid 1px rgba(128, 128, 128, 0.43);
+                margin: 5px;
+                background-image: url("../../../../imagess/Justin.jpg");
+                background-size: contain;
+        
+                }
+
+                .photoimg5 {
+                    width: 250px;
+                    height: 250px;
+                    border-radius: 10px;
+                    border: solid 1px rgba(128, 128, 128, 0.43);
+                    margin: 5px;
+                    background-image: url("../../../../imagess/Dave.jpg");
+                    background-size: contain;
+                   
+                    }
+
+                    .photoimg6 {
+                        width: 250px;
+                        height: 250px;
+                        border-radius: 10px;
+                        border: solid 1px rgba(128, 128, 128, 0.43);
+                        margin: 5px;
+                        background-image: url("../../../../imagess/Olivia.jpg");
+                        background-size: contain;
+                       
+                        }
+
+/* .photoimg1 {
     width: 250px;
     height: 275px;
     border-top-right-radius: 10px;
@@ -329,7 +396,7 @@ background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     
-    }
+    } */
 
     .usernametext {
         /* border: solid red 1px; */
