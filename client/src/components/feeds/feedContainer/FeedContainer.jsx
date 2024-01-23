@@ -43,7 +43,7 @@ function FeedContainer({ obj, handleAddLike, authState , handleSetFeeds}) {
                         <Link to={`/profile/${obj.author}`} >
                             <div className='friendimg'
                                 style={{
-                                    border: 'solid black 2px',
+                                    // border: 'solid black 2px',
                                     display: 'flex',
                                     justifyContent: 'center',
                                     height: '50px',

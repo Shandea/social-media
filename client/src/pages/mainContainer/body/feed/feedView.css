@@ -73,8 +73,9 @@ height: 650px;
     color: white;
     width: 100px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .word:hover {

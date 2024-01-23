@@ -132,7 +132,8 @@ const FriendSearch = () => {
             <Link to={`/profile/${foundUser._id}`}>
             <div key={foundUser._id} className="usercard">
                 {/* <div className="conimg"></div> */}
-                      <img className="conimg" src={`http://localhost:5000${foundUser.profileImg}`} alt="" />
+       
+                      <div className="conimg" style={{  backgroundImage: `url("http://localhost:5000${foundUser.profileImg}"), url("http://localhost:5000/public/default.jpeg")`}}></div>
                 <div  className="ufln">
                     <p className="fl">{`${foundUser.firstName} ${foundUser.lastName}`}</p>
                 <p className="un">{foundUser.username}</p>
