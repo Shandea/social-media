@@ -141,7 +141,7 @@ const FriendSearch = () => {
               </div>
               <div className="OL">
                 <p>Online</p>
-                <div className="OD"></div>
+                <div className={foundUser.isOnline?"OD":"OFF"}></div>
               </div>
             </div>
             </Link>
