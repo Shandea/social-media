@@ -170,6 +170,14 @@ margin-left: 15px;
     display: none;
 }
 
+.acceptedfriend2 {
+   margin: 10px; 
+   border: solid 1px rgba(128, 128, 128, 0.334);
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2) ;
+}
+
 
 .profileleft {
     /* margin-left: 10px; */
@@ -289,6 +297,7 @@ flex-wrap: wrap;
 justify-content: center;
 }
 
+
 .friendimgcontainer {
     border: solid 1px black;
     height: 320px;
@@ -331,6 +340,20 @@ background-size: contain;
         align-items: center;
         font-size: x-large;
         font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .name11 {
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+font-size: medium;
+margin: 5px;
+    }
+
+    .name22 {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        margin: 5px;
     }
 
 
